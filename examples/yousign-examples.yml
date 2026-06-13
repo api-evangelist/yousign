@@ -1,0 +1,165 @@
+title: Yousign Public API v3 - Request/Response Examples
+description: Sample request and response schemas for the Yousign Public API v3.
+examples:
+- path: /archives
+  method: POST
+  operationId: post-archives
+  summary: Direct upload an archived file
+  tags:
+  - Archive
+  responseSchema:
+    $ref: '#/components/schemas/ArchivedFile'
+- path: /archives/{archivedFileId}/download
+  method: GET
+  operationId: get-archives-archivedFileId-download
+  summary: Download archived file
+  tags:
+  - Archive
+- path: /consumptions
+  method: GET
+  operationId: get-consumptions
+  summary: Get Consumptions
+  tags:
+  - Consumption
+  responseSchema:
+    $ref: '#/components/schemas/Consumption'
+- path: /consumptions/addons
+  method: GET
+  operationId: get-consumption-addon
+  summary: Get detailed addon consumption.
+  tags:
+  - Consumption
+  responseSchema:
+    $ref: '#/components/schemas/get_consumption_addon_200_response'
+- path: /consumptions/detail
+  method: GET
+  operationId: get-consumption-detail
+  summary: Get detailed Consumption data
+  tags:
+  - Consumption
+  responseSchema:
+    $ref: '#/components/schemas/get_consumption_detail_200_response'
+- path: /consumptions/export
+  method: GET
+  operationId: get-consumptions-export
+  summary: Export Consumption data
+  tags:
+  - Consumption
+- path: /consumptions/records/electronic_seals
+  method: GET
+  operationId: get-consumptions-records-electronic_seals
+  summary: Get Electronic Seals consumption records
+  tags:
+  - Consumption
+  responseSchema:
+    $ref: '#/components/schemas/get_consumptions_records_electronic_seals_200_response'
+- path: /consumptions/records/identifications
+  method: GET
+  operationId: get-consumptions-records-identifications
+  summary: Get Identifications consumption records
+  tags:
+  - Consumption
+  responseSchema:
+    $ref: '#/components/schemas/get_consumptions_records_identifications_200_response'
+- path: /consumptions/records/invited_signers
+  method: GET
+  operationId: get-consumptions-records-invited_signers
+  summary: Get Invited signers consumption records
+  tags:
+  - Consumption
+  responseSchema:
+    $ref: '#/components/schemas/get_consumptions_records_invited_signers_200_response'
+- path: /contacts
+  method: GET
+  operationId: get-contacts
+  summary: List Contacts
+  tags:
+  - Contact
+  responseSchema:
+    $ref: '#/components/schemas/get_contacts_200_response'
+- path: /contacts
+  method: POST
+  operationId: post-contact
+  summary: Create a Contact
+  tags:
+  - Contact
+  requestBodySchema:
+    $ref: '#/components/schemas/CreateContact'
+  responseSchema:
+    $ref: '#/components/schemas/Contact'
+- path: /contacts/{contactId}
+  method: GET
+  operationId: get-contacts-contactId
+  summary: Get a Contact
+  tags:
+  - Contact
+  responseSchema:
+    $ref: '#/components/schemas/Contact'
+- path: /custom_experiences
+  method: GET
+  operationId: get-custom_experiences
+  summary: List Custom Experiences
+  tags:
+  - Custom Experience
+  responseSchema:
+    $ref: '#/components/schemas/get_custom_experiences_200_response'
+- path: /custom_experiences
+  method: POST
+  operationId: post-custom-experience
+  summary: Create a Custom Experience
+  tags:
+  - Custom Experience
+  requestBodySchema:
+    $ref: '#/components/schemas/CreateCustomExperience'
+  responseSchema:
+    $ref: '#/components/schemas/CustomExperience'
+- path: /custom_experiences/{customExperienceId}
+  method: GET
+  operationId: get-custom_experiences-customExperienceId
+  summary: Get a Custom Experience
+  tags:
+  - Custom Experience
+  responseSchema:
+    $ref: '#/components/schemas/CustomExperience'
+- path: /custom_experiences/{customExperienceId}/logo
+  method: POST
+  operationId: patch-custom-experience-logo
+  summary: Update a Custom Experience logo
+  tags:
+  - Custom Experience
+  responseSchema:
+    $ref: '#/components/schemas/CustomExperience'
+- path: /custom_properties
+  method: GET
+  operationId: get-custom_properties
+  summary: List Custom Properties
+  tags:
+  - Custom Property
+  responseSchema:
+    $ref: '#/components/schemas/CustomPropertyList'
+- path: /custom_properties
+  method: POST
+  operationId: post-custom_properties
+  summary: Create a Custom Property
+  tags:
+  - Custom Property
+  requestBodySchema:
+    $ref: '#/components/schemas/CreateCustomProperty'
+  responseSchema:
+    $ref: '#/components/schemas/CustomProperty'
+- path: /custom_properties/{customPropertyId}
+  method: GET
+  operationId: get-custom_properties-id
+  summary: Get a Custom Property
+  tags:
+  - Custom Property
+  responseSchema:
+    $ref: '#/components/schemas/CustomProperty'
+- path: /document_analyses
+  method: GET
+  operationId: get-document_analyses
+  summary: List Document Analyses
+  tags:
+  - Document Analysis
+  responseSchema:
+    $ref: '#/components/schemas/get_document_analyses_200_response'

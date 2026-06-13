@@ -1,0 +1,167 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "yousign": "https://developers.yousign.com/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "SignatureRequest": {
+      "@id": "yousign:SignatureRequest",
+      "@type": "@id"
+    },
+    "Signer": {
+      "@id": "yousign:Signer",
+      "@type": "@id"
+    },
+    "Approver": {
+      "@id": "yousign:Approver",
+      "@type": "@id"
+    },
+    "Follower": {
+      "@id": "yousign:Follower",
+      "@type": "@id"
+    },
+    "Document": {
+      "@id": "yousign:Document",
+      "@type": "@id"
+    },
+    "Field": {
+      "@id": "yousign:Field",
+      "@type": "@id"
+    },
+    "ElectronicSeal": {
+      "@id": "yousign:ElectronicSeal",
+      "@type": "@id"
+    },
+    "AuditTrail": {
+      "@id": "yousign:AuditTrail",
+      "@type": "@id"
+    },
+    "CustomExperience": {
+      "@id": "yousign:CustomExperience",
+      "@type": "@id"
+    },
+    "Contact": {
+      "@id": "yousign:Contact",
+      "@type": "@id"
+    },
+    "Consumption": {
+      "@id": "yousign:Consumption",
+      "@type": "@id"
+    },
+    "Label": {
+      "@id": "yousign:Label",
+      "@type": "@id"
+    },
+    "ArchivedFile": {
+      "@id": "yousign:ArchivedFile",
+      "@type": "@id"
+    },
+
+    "id": "@id",
+    "name": "schema:name",
+    "description": "schema:description",
+    "email": "schema:email",
+    "status": "yousign:status",
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "expirationDate": {
+      "@id": "yousign:expirationDate",
+      "@type": "xsd:date"
+    },
+    "documents": {
+      "@id": "yousign:documents",
+      "@container": "@set"
+    },
+    "signers": {
+      "@id": "yousign:signers",
+      "@container": "@set"
+    },
+    "approvers": {
+      "@id": "yousign:approvers",
+      "@container": "@set"
+    },
+    "followers": {
+      "@id": "yousign:followers",
+      "@container": "@set"
+    },
+    "fields": {
+      "@id": "yousign:fields",
+      "@container": "@set"
+    },
+    "signatureLevel": "yousign:signatureLevel",
+    "deliveryMode": "yousign:deliveryMode",
+    "reminderSettings": "yousign:reminderSettings",
+    "timezone": "schema:timezone",
+    "locale": "schema:inLanguage",
+    "redirectUrls": "yousign:redirectUrls",
+    "customExperience": {
+      "@id": "yousign:customExperience",
+      "@type": "@id"
+    },
+    "metadata": "yousign:metadata",
+    "labels": {
+      "@id": "yousign:labels",
+      "@container": "@set"
+    },
+    "webhooks": {
+      "@id": "yousign:webhooks",
+      "@container": "@set"
+    },
+    "phoneNumber": "schema:telephone",
+    "firstName": "schema:givenName",
+    "lastName": "schema:familyName",
+    "signatureAuthenticationMode": "yousign:signatureAuthenticationMode",
+    "signatureLink": "yousign:signatureLink",
+    "page": "yousign:page",
+    "width": "schema:width",
+    "height": "schema:height",
+    "x": "yousign:x",
+    "y": "yousign:y",
+    "type": "@type",
+    "url": "schema:url",
+    "filename": "schema:name",
+    "nature": "yousign:nature",
+    "contentType": "schema:encodingFormat",
+    "sha256": "yousign:sha256",
+    "totalPages": "yousign:totalPages"
+  },
+  "@graph": [
+    {
+      "@id": "yousign:SignatureRequest",
+      "@type": "schema:Action",
+      "schema:name": "Signature Request",
+      "schema:description": "A Yousign signature request encapsulating documents, signers, and signing workflow settings compliant with eIDAS."
+    },
+    {
+      "@id": "yousign:Signer",
+      "@type": "schema:Person",
+      "schema:name": "Signer",
+      "schema:description": "An individual required to electronically sign one or more documents within a Yousign signature request."
+    },
+    {
+      "@id": "yousign:Document",
+      "@type": "schema:DigitalDocument",
+      "schema:name": "Document",
+      "schema:description": "A PDF document uploaded to a signature request, containing pages where signature fields are positioned."
+    },
+    {
+      "@id": "yousign:ElectronicSeal",
+      "@type": "schema:Action",
+      "schema:name": "Electronic Seal",
+      "schema:description": "An automated cryptographic seal applied at the organization level to documents without human signer interaction."
+    },
+    {
+      "@id": "yousign:AuditTrail",
+      "@type": "schema:Report",
+      "schema:name": "Audit Trail",
+      "schema:description": "A tamper-evident log of all events in a signature request lifecycle for legal evidence and compliance."
+    }
+  ]
+}

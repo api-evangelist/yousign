@@ -1,0 +1,120 @@
+vocabulary:
+  - term: Signature Request
+    definition: The primary object in Yousign representing a document signing workflow. Contains documents, signers, settings, and tracks the overall signing process status.
+    tags:
+      - core
+      - workflow
+
+  - term: Signer
+    definition: An individual added to a signature request who is required or invited to sign one or more documents. Identified by name, email, and optionally phone number.
+    tags:
+      - core
+      - participant
+
+  - term: Approver
+    definition: A participant in a signature request who reviews and approves the document(s) before signers are notified. Approvers do not sign; they approve or reject.
+    tags:
+      - participant
+      - workflow
+
+  - term: Follower
+    definition: A participant who receives notifications about a signature request's progress but does not sign or approve. Used for keeping stakeholders informed.
+    tags:
+      - participant
+      - notification
+
+  - term: Document
+    definition: A PDF file uploaded to a signature request. Documents contain the content to be signed and may have signature fields positioned on specific pages.
+    tags:
+      - core
+      - file
+
+  - term: Field
+    definition: A positional element placed on a document page that defines where and how a signer interacts (e.g., signature zone, checkbox, text input).
+    tags:
+      - document
+      - ui
+
+  - term: Electronic Seal
+    definition: An automated, organization-level cryptographic seal applied to documents without human signer interaction. Used for batch or automated signing workflows.
+    tags:
+      - seal
+      - advanced
+
+  - term: eIDAS
+    definition: European Union regulation (Electronic Identification, Authentication and Trust Services) that establishes a legal framework for electronic signatures across EU member states.
+    tags:
+      - regulation
+      - compliance
+
+  - term: Simple Electronic Signature (SES)
+    definition: The basic tier of electronic signature, compliant with eIDAS. Lowest barrier to adoption; suitable for low-risk documents.
+    tags:
+      - signature-level
+      - eIDAS
+
+  - term: Advanced Electronic Signature (AES)
+    definition: A higher-trust eIDAS signature level that uniquely links the signature to the signatory and can detect subsequent changes. Requires stronger identity verification.
+    tags:
+      - signature-level
+      - eIDAS
+
+  - term: Qualified Electronic Signature (QES)
+    definition: The highest eIDAS signature tier, equivalent to a handwritten signature under EU law. Requires a qualified certificate issued by a trust service provider.
+    tags:
+      - signature-level
+      - eIDAS
+
+  - term: Audit Trail
+    definition: A tamper-evident log recording all events in a signature request lifecycle (views, signatures, rejections, timestamps, IP addresses) for legal evidence.
+    tags:
+      - compliance
+      - evidence
+
+  - term: Custom Experience
+    definition: Branding configuration applied to the signer-facing portal, including logo, colors, and redirects, enabling white-label signature workflows.
+    tags:
+      - branding
+      - ux
+
+  - term: Sandbox
+    definition: Yousign's test environment (api-sandbox.yousign.app) where developers can simulate signature workflows without consuming credits or sending real emails.
+    tags:
+      - environment
+      - testing
+
+  - term: Webhook
+    definition: HTTP callbacks configured to notify an external URL when signature request events occur (e.g., signer_done, request_completed, request_expired).
+    tags:
+      - integration
+      - event
+
+  - term: Contact
+    definition: A reusable signer profile stored in the Yousign account, containing name and email, to pre-populate signer details in new signature requests.
+    tags:
+      - account
+      - reuse
+
+  - term: Consumption
+    definition: Usage metrics tracking the number of signature requests, signers, and electronic seals consumed against an account's plan limits.
+    tags:
+      - billing
+      - usage
+
+  - term: Label
+    definition: A user-defined tag applied to signature requests for categorization and filtering purposes in the Yousign dashboard.
+    tags:
+      - organization
+      - metadata
+
+  - term: Metadata
+    definition: Custom key-value pairs attached to a signature request or signer, passed through the API and echoed in webhooks for cross-system correlation.
+    tags:
+      - integration
+      - custom
+
+  - term: Archive
+    definition: Long-term tamper-proof storage of completed signed documents and audit trails, accessible via the /archives endpoint for retrieval and download.
+    tags:
+      - storage
+      - compliance
