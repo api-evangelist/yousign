@@ -1,0 +1,67 @@
+name: Yousign API FinOps
+description: Financial operations framework for managing Yousign API costs, tracking signature consumption, and optimizing API spend across development, staging, and production environments. Aligned with the FinOps Foundation FOCUS specification.
+url: https://yousign.com/pricing-api
+specificationVersion: '1.0'
+provider: Yousign
+currency: EUR
+billingModel: subscription
+billingCycle: annual
+costDrivers:
+  - name: Signature Requests
+    description: The primary cost driver is the volume of signature requests sent through the API. Plan tiers are based on expected monthly or annual signature volumes.
+    unit: signature-request
+    url: https://yousign.com/pricing-api
+  - name: Qualified Electronic Signatures (QES)
+    description: QES add-ons are charged per envelope and represent an additional cost above the base subscription for signatures requiring the highest level of legal validity under eIDAS.
+    unit: envelope
+    priceMin: 5
+    priceMax: 15
+    currency: EUR
+    url: https://help.yousign.app/en/articles/109634-understand-qes
+  - name: Subscription Tier
+    description: Monthly subscription fee starting at EUR 125/month (billed annually) for the entry-level API plan. Higher tiers are priced on quotation based on volume and support requirements.
+    unit: subscription
+    priceMin: 125
+    currency: EUR
+    billingCycle: monthly-billed-annually
+    url: https://yousign.com/pricing-api
+costAllocation:
+  - dimension: Environment
+    description: Separate sandbox (free) and production (paid) environments allow cost isolation between development and live usage.
+    values:
+      - sandbox
+      - production
+  - dimension: SignatureType
+    description: Simple and advanced signatures are included in the base plan; qualified signatures (QES) carry an additional per-envelope cost.
+    values:
+      - simple
+      - advanced
+      - qualified
+  - dimension: WorkflowType
+    description: Different signing workflows (one-time, sequential, parallel) may have different consumption implications depending on number of signers per request.
+    values:
+      - one-time
+      - sequential
+      - parallel
+optimization:
+  - name: Use Webhooks Over Polling
+    description: Implement webhook-based event notifications instead of polling API endpoints to reduce unnecessary API calls and stay within rate limits, which in turn reduces risk of overages and potential throttling costs.
+    url: https://developers.yousign.com/docs/limits-new
+  - name: Batch Signature Requests
+    description: Group multiple documents into a single signature request envelope where workflow allows, to minimize the total number of signature requests consumed per billing period.
+  - name: Monitor Sandbox Usage
+    description: Use the free sandbox environment for all development and testing to avoid consuming production signature quota during integration and testing phases.
+    url: https://developers.yousign.com/docs/environments-new
+  - name: Right-Size QES Usage
+    description: Only apply Qualified Electronic Signature (QES) to workflows where legally required, as QES carries additional per-envelope cost. Use simple or advanced signatures where the legal requirement is met.
+    url: https://help.yousign.app/en/articles/109634-understand-qes
+  - name: Annual vs Monthly Billing
+    description: Opt for annual subscription billing to benefit from lower effective monthly costs compared to month-to-month plans for the application tier.
+    url: https://yousign.com/pricing-application
+reporting:
+  - name: API Usage Dashboard
+    description: Monitor signature request consumption and API usage through the Yousign developer portal and account dashboard to track spend against plan limits.
+    url: https://developers.yousign.com/
+  - name: Changelog Monitoring
+    description: Track pricing and limit changes through the Yousign developer changelog to proactively plan for cost impacts from policy updates.
+    url: https://developers.yousign.com/changelog

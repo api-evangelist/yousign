@@ -1,0 +1,70 @@
+name: Yousign API Plans & Pricing
+description: Pricing plans for Yousign API integration, offering yearly subscriptions for businesses integrating e-signature capabilities into their software. Plans are tailored to signature volume and support level requirements.
+url: https://yousign.com/pricing-api
+specificationVersion: '0.1'
+plans:
+  - name: API Sandbox / Trial
+    description: Free development environment for testing and integration. Includes all features available in paid plans and access to a dedicated support team. Includes trial limits such as a maximum of 5 Signers per Signature Request and a daily sending limit of 100 Signature Requests.
+    url: https://developers.yousign.com/docs/environments-new
+    price: 0
+    currency: EUR
+    period: free
+    features:
+      - Access to all API features in sandbox mode
+      - Up to 5 Signers per Signature Request
+      - Up to 5 Approvers per Signature Request
+      - Up to 5 Followers per Signature Request
+      - Daily limit of 100 Signature Requests
+      - Dedicated developer support
+      - Full OpenAPI specification access
+  - name: API Starter
+    description: Entry-level API plan for businesses starting to integrate e-signatures. Yearly subscription with a defined signature volume and standard support.
+    url: https://yousign.com/pricing-api
+    price: 125
+    currency: EUR
+    period: monthly
+    billingCycle: annual
+    features:
+      - REST API access
+      - Simple and advanced electronic signatures
+      - eIDAS compliant signatures
+      - Webhook support
+      - Developer documentation and integration guides
+      - Standard support
+  - name: API Business
+    description: Mid-tier API plan for growing businesses with higher signature volumes. Custom pricing based on volume requirements negotiated directly with Yousign.
+    url: https://yousign.com/pricing-api
+    price: custom
+    currency: EUR
+    period: monthly
+    billingCycle: annual
+    features:
+      - All Starter features
+      - Higher signature volume allowances
+      - Advanced webhook configuration
+      - Priority support
+      - SLA guarantees
+      - Custom rate limit requests available
+  - name: API Enterprise
+    description: Enterprise-grade API plan for large-scale integrations with high signature volumes. Fully custom pricing on quotation with dedicated account management and premium support.
+    url: https://yousign.com/pricing-api
+    price: custom
+    currency: EUR
+    period: monthly
+    billingCycle: annual
+    features:
+      - All Business features
+      - Unlimited signature volume (by agreement)
+      - Qualified Electronic Signatures (QES) add-ons available
+      - Dedicated account manager
+      - Premium SLA
+      - Custom integration support
+      - Compliance and legal advisory
+addons:
+  - name: Qualified Electronic Signature (QES)
+    description: Add-on for qualified electronic signatures legally equivalent to handwritten signatures under eIDAS. Required for regulated industries.
+    price: 5
+    priceTo: 15
+    currency: EUR
+    unit: per envelope
+    url: https://help.yousign.app/en/articles/109634-understand-qes
