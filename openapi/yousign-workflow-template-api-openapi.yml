@@ -1,0 +1,362 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: contact@yousign.com
+    name: Support
+    url: https://yousign.com/contact
+  description: Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.
+  license:
+    name: proprietary
+    url: https://yousign.com/terms
+  title: Public Api v3 Applicant Workflow Template API
+  version: '3.0'
+servers:
+- description: Sandbox URL
+  url: https://api-sandbox.yousign.app/v3
+- description: Production URL
+  url: https://api.yousign.app/v3
+security:
+- bearerAuth: []
+tags:
+- description: Structure of a workflow defined by the type of Actions a customer must complete.
+  name: Workflow Template
+paths:
+  /workflow_templates:
+    get:
+      description: 'Returns the list of all Workflow Templates in your organization. You can limit the number of items returned by using filters and pagination.
+
+        '
+      operationId: get-workflow_templates
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_workflow_templates_200_response'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: List Workflow Templates
+      tags:
+      - Workflow Template
+components:
+  headers:
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+  schemas:
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    WorkflowTemplate_workspaces_inner:
+      properties:
+        id:
+          description: Unique identifier of the Workspace.
+          example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+          format: uuid
+          type: string
+      required:
+      - id
+      type: object
+    WorkflowTemplate:
+      properties:
+        id:
+          description: Unique identifier of the Workflow Template.
+          example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+          format: uuid
+          type: string
+        name:
+          description: Name of the Workflow Template.
+          example: Customer Onboarding
+          type: string
+        action_groups:
+          description: List of the Action Groups contained in the Workflow Template. The Action Groups will determine what Actions the end users will have to go through to complete the Workflow Session.
+          items:
+            $ref: '#/components/schemas/WorkflowTemplate_action_groups_inner'
+          type: array
+        workspaces:
+          description: List of Workspaces that define where the Workflow Template is scoped. The scoping determines which Workspace a Workflow Session created from this Template will belong to. Behavior varies depending on whether the Template is scoped to one, multiple, or no Workspaces.
+          items:
+            $ref: '#/components/schemas/WorkflowTemplate_workspaces_inner'
+          type: array
+      required:
+      - action_groups
+      - id
+      - name
+      - workspaces
+      title: A Workflow Template
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    WorkflowTemplate_action_groups_inner:
+      properties:
+        type:
+          description: Type of the Action Group.
+          enum:
+          - signature_request
+          - identity_verification
+          - proof_of_address_verification
+          - company_verification
+          - watchlist_verification
+          - bank_account_verification
+          - document_analysis
+          example: identity_verification
+          type: string
+      required:
+      - type
+      type: object
+    get_workflow_templates_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/WorkflowTemplate'
+          type: array
+      type: object
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - next_cursor
+      type: object
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

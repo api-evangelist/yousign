@@ -1,0 +1,3189 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: contact@yousign.com
+    name: Support
+    url: https://yousign.com/contact
+  description: Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.
+  license:
+    name: proprietary
+    url: https://yousign.com/terms
+  title: Public Api v3 Applicant Field API
+  version: '3.0'
+servers:
+- description: Sandbox URL
+  url: https://api-sandbox.yousign.app/v3
+- description: Production URL
+  url: https://api.yousign.app/v3
+security:
+- bearerAuth: []
+tags:
+- description: Dynamic content that will appear on a Document.
+  name: Field
+paths:
+  /signature_requests/{signatureRequestId}/documents/{documentId}/fields:
+    get:
+      description: Returns a list of Fields for a given Document. You can limit the number of items returned by using filters.
+      operationId: get-signature_requests-signatureRequestId-documents-documentId-fields
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: Document ID
+        in: path
+        name: documentId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: After cursor (pagination)
+        in: query
+        name: after
+        required: false
+        schema:
+          minLength: 1
+          type: string
+      - description: The limit of items count to retrieve.
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 100
+          maximum: 100
+          minimum: 1
+          type: integer
+      - description: 'Filter by `type`. Allowed operators: `eq`, `in`.
+
+          Example: `type[in]=text,checkbox`
+
+          '
+        example:
+          eq:
+          - text
+          in:
+          - text
+          - checkbox
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          description: Filter by type.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: 'Filter by `signer_id`. Allowed operators: `eq`.
+
+          Example: `signer_id[eq]=500800fc-3f91-4e86-a9c9-866809a1e3c9`
+
+          '
+        example:
+          eq:
+          - 500800fc-3f91-4e86-a9c9-866809a1e3c9
+        explode: true
+        in: query
+        name: signer_id
+        required: false
+        schema:
+          description: Filter by signer_id.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: 'Filter by `name`. Allowed operators: `eq`.
+
+          Example: `name[eq]=text 1`
+
+          '
+        example:
+          eq:
+          - text 1
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          description: Filter by name.
+          minProperties: 1
+          type: object
+        style: deepObject
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_signature_requests_signatureRequestId_documents_documentId_fields_200_response'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Lists the Fields of a Signature Request Document.
+      tags:
+      - Field
+    post:
+      description: Adds a Field to a given Document.
+      operationId: post-signature_requests-signatureRequestId-documents-documentId-fields
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: Document ID
+        in: path
+        name: documentId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateField'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_signature_requests_signatureRequestId_documents_documentId_fields_200_response_data_inner'
+          description: Created
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '415':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeResponse'
+          description: UnsupportedMediaType
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Create a new Field on a Document
+      tags:
+      - Field
+  /signature_requests/{signatureRequestId}/documents/{documentId}/fields/{fieldId}:
+    delete:
+      description: Deletes a given Field from a Document.
+      operationId: delete-signature_requests-signatureRequestId-documents-documentId-fields-fieldId
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: Document Id
+        in: path
+        name: documentId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: Field Id
+        in: path
+        name: fieldId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '204':
+          description: The resource was deleted successfully
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Delete a Field
+      tags:
+      - Field
+    patch:
+      description: Updates a given Field. Any parameters not provided are left unchanged.
+      operationId: update-signature_requests-signatureRequestId-documents-documentId-fields-fieldId
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: Document Id
+        in: path
+        name: documentId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: Field Id
+        in: path
+        name: fieldId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateField'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_signature_requests_signatureRequestId_documents_documentId_fields_200_response_data_inner'
+          description: The Field has been successfully updated.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '415':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeResponse'
+          description: UnsupportedMediaType
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Update a Field
+      tags:
+      - Field
+  /signature_requests/{signatureRequestId}/documents/{documentId}/fields/{fieldId}/answer:
+    post:
+      description: 'This endpoint can be used on ongoing Signature Requests only.
+
+        It aims to fill a Field value with a Signer input collected in your custom signing interface. The Fields compatible are Text Fields, Checkboxes and Radio Groups.
+
+        '
+      operationId: signature_requests-id-documents-id-fields-id-answer
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: Document Id
+        in: path
+        name: documentId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: Field Id
+        in: path
+        name: fieldId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FieldAnswer'
+      responses:
+        '204':
+          description: No Content
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Answer a Field
+      tags:
+      - Field
+components:
+  headers:
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+  schemas:
+    UpdateField:
+      anyOf:
+      - $ref: '#/components/schemas/Signature_1'
+      - $ref: '#/components/schemas/Mention_1'
+      - $ref: '#/components/schemas/SignatureDate_1'
+      - $ref: '#/components/schemas/Text_1'
+      - $ref: '#/components/schemas/Checkbox_1'
+      - $ref: '#/components/schemas/RadioGroup_1'
+      - $ref: '#/components/schemas/ReadOnlyText_1'
+      type: object
+    HumanName:
+      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
+      type: string
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    Text_1:
+      properties:
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        width:
+          description: If not set, the width is automatically calculated with the max_length value
+          example: 200
+          minimum: 24
+          type: integer
+        height:
+          description: The height must be 24 or a multiple of 15 greater than 24.
+          example: 150
+          minimum: 24
+          type: integer
+        max_length:
+          example: 150
+          maximum: 32767
+          minimum: 1
+          type: integer
+        question:
+          description: If you don't want any question, you can give an empty string.
+          example: What is your job title?
+          maxLength: 255
+          type: string
+        instruction:
+          example: Your position in the company
+          nullable: true
+          type: string
+        optional:
+          default: false
+          type: boolean
+        font:
+          $ref: '#/components/schemas/UpdateFieldFont'
+        name:
+          description: Name of the Field.
+          example: Job Title
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        default_value:
+          description: If a default value is provided, the Field will be pre-filled with this value. The Signer can modify it before signing unless the Field is set to `read-only`.
+          example: Software Engineer
+          maxLength: 32767
+          minLength: 1
+          nullable: true
+          type: string
+        read_only:
+          default: false
+          description: If set to `true`, the Signer cannot modify the Field and the default value (if provided) will remain unchanged.
+          type: boolean
+      title: Text
+      type: object
+    CreateFieldNameFormat:
+      default: full_name
+      description: Format used to display the signer's name.
+      enum:
+      - full_name
+      - first_name
+      - last_name
+      example: full_name
+      title: name_format
+      type: string
+    SignerName:
+      properties:
+        signer_id:
+          example: b0745f33-23d1-41c0-832e-27b968207cb9
+          format: uuid
+          type: string
+        type:
+          enum:
+          - signer_name
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 200
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        font:
+          $ref: '#/components/schemas/CreateFieldFont'
+        name:
+          description: Name of the Field.
+          example: Name 1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        name_format:
+          $ref: '#/components/schemas/CreateFieldNameFormat'
+      required:
+      - page
+      - signer_id
+      - type
+      - x
+      - y
+      title: SignerName
+      type: object
+    FieldRadioButtonGroup:
+      properties:
+        id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - radio_group
+          type: string
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        optional:
+          description: Does the Signer has to select one of the radio buttons from this group?
+          type: boolean
+        name:
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        radios:
+          items:
+            $ref: '#/components/schemas/FieldRadioButtonGroup_radios_inner'
+          type: array
+      required:
+      - document_id
+      - id
+      - name
+      - optional
+      - page
+      - radios
+      - signer_id
+      - type
+      title: RadioGroup
+      type: object
+    FieldSignerEmail:
+      properties:
+        id:
+          example: 94de855c-21c5-4bde-b82c-745ce415b084
+          format: uuid
+          type: string
+        document_id:
+          example: 3218d951-3096-4145-8639-0054757ec223
+          format: uuid
+          type: string
+        signer_id:
+          example: 72cbe6fd-9225-460e-901c-94acf7a066bb
+          format: uuid
+          type: string
+        type:
+          enum:
+          - signer_email
+          type: string
+        height:
+          description: 'The height must be calculated using the formula: "height = number_of_lines \* font_size \* line_height", where the line height is always set to 1.5.'
+          format: int32
+          minimum: 1
+          type: integer
+        width:
+          format: int32
+          minimum: 24
+          type: integer
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        value:
+          nullable: true
+          type: string
+        font:
+          $ref: '#/components/schemas/Font'
+        name:
+          description: Name of the Field.
+          example: Email 1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - document_id
+      - font
+      - height
+      - id
+      - page
+      - signer_id
+      - type
+      - value
+      - width
+      - x
+      - y
+      title: SignerEmail
+      type: object
+    FieldCheckbox:
+      properties:
+        id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - checkbox
+          type: string
+        name:
+          description: Checkbox name
+          example: Checkbox name
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        checked:
+          description: Signer has checked the checkbox
+          type: boolean
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        optional:
+          type: boolean
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        size:
+          description: The size determines both the width and height of the checkbox.
+          format: int32
+          maximum: 240
+          minimum: 8
+          type: integer
+      required:
+      - checked
+      - document_id
+      - id
+      - name
+      - optional
+      - page
+      - signer_id
+      - type
+      - x
+      - y
+      title: Checkbox
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    RadioGroup_1:
+      properties:
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        optional:
+          default: false
+          type: boolean
+        name:
+          description: Radio group's name
+          example: radio_group_name_1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        read_only:
+          default: false
+          description: If set to `true`, the radio button cannot be modified by the Signer.
+          type: boolean
+        radios:
+          items:
+            $ref: '#/components/schemas/RadioGroup_1_radios_inner'
+          type: array
+      title: RadioGroup
+      type: object
+    CreateFieldFont:
+      description: If set, **width** and **height** properties become required. Otherwise, if not set or null, the default font will be used.
+      example:
+        family: Inconsolata
+        color: '#F53D1E'
+        size: 12
+        variants:
+          bold: true
+          italic: false
+      nullable: true
+      properties:
+        family:
+          $ref: '#/components/schemas/FontFamily'
+        color:
+          default: '#000000'
+          pattern: ^#([a-f0-9]{6}|[A-F0-9]{6})$
+          type: string
+        size:
+          default: 12
+          maximum: 96
+          minimum: 7
+          type: integer
+        variants:
+          $ref: '#/components/schemas/FontVariants'
+      required:
+      - color
+      - family
+      - size
+      - variants
+      title: Font
+      type: object
+    Signature:
+      properties:
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - signature
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 200
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        height:
+          description: Default value is 37
+          example: 37
+          maximum: 1000
+          minimum: 37
+          type: integer
+        width:
+          description: Default value is 85
+          example: 150
+          maximum: 2000
+          minimum: 85
+          type: integer
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          description: 'Provide extra context to explain why the Document is being signed. Once the Document is signed, the custom reason is stored in the Audit Trail and is included in the signature certificate.
+
+
+            The default value is: "Signed by [Signer first name] [Signer last name]".
+
+
+            This parameter is only available for users with a `pro` or `scale` plan.
+
+            '
+          example: Signed by John Doe
+          maxLength: 150
+          nullable: true
+          type: string
+        display:
+          $ref: '#/components/schemas/SignatureDisplay_1'
+      required:
+      - page
+      - signer_id
+      - type
+      - x
+      - y
+      title: Signature
+      type: object
+    Mention_1:
+      properties:
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        width:
+          description: If not set, the width is automatically calculated with the read only text length.
+          example: 200
+          minimum: 24
+          type: integer
+        height:
+          description: The height must be 24 or a multiple of 15 greater than 24. If height is not provided, it will be calculated depending on the number of newlines in the read only text.
+          example: 150
+          minimum: 24
+          nullable: true
+          type: integer
+        mention:
+          description: 'Content of the Mention.
+
+            You can use dynamic tags when creating the Mention:
+
+            • %date% will display the current date when the Signer sign the Signature Request (eg. "24-03-2025")
+
+            • %datetime% will display the current date and time when the Signer signs the Signature Request (eg. "24-03-2025 10:30 UTC+0")
+
+            '
+          example: Signed on %date%
+          maxLength: 255
+          minLength: 1
+          type: string
+        font:
+          $ref: '#/components/schemas/UpdateFieldFont'
+        name:
+          description: Name of the Field.
+          example: Text 1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+      title: Mention
+      type: object
+    FieldReadOnlyText:
+      properties:
+        id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - read_only_text
+          type: string
+        height:
+          description: 'The height must be calculated using the formula: "height = number_of_lines \* font_size \* line_height", where the line height is always set to 1.5.'
+          example: 150
+          format: int32
+          minimum: 1
+          type: integer
+        width:
+          description: If not set, the width is automatically calculated with the max_length value
+          example: 90
+          format: int32
+          minimum: 24
+          type: integer
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        text:
+          description: This property holds the content displayed in the read-only text field.
+          example: Please, read the whole document before to sign it.
+          maxLength: 5000
+          type: string
+        font:
+          $ref: '#/components/schemas/Font'
+      required:
+      - document_id
+      - font
+      - height
+      - id
+      - page
+      - text
+      - type
+      - width
+      - x
+      - y
+      title: ReadOnlyText
+      type: object
+    RadioGroup_radios_inner:
+      properties:
+        name:
+          description: Radio button's name
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        x:
+          example: 200
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        size:
+          default: 24
+          example: 24
+          maximum: 240
+          minimum: 8
+          type: integer
+        default_checked:
+          default: false
+          description: Indicates whether the radio is initially checked (`true`) or unchecked (`false`).
+          type: boolean
+      required:
+      - x
+      - y
+      type: object
+    UpdateFieldFont:
+      description: If set, **width** and **height** properties become required. Otherwise, if not set the font will not be changed, and if set to null the default font will be used.
+      example:
+        family: Inconsolata
+        color: '#F53D1E'
+        size: 12
+        variants:
+          bold: true
+          italic: false
+      nullable: true
+      properties:
+        family:
+          $ref: '#/components/schemas/FontFamily'
+        color:
+          default: '#000000'
+          pattern: ^#([a-f0-9]{6}|[A-F0-9]{6})$
+          type: string
+        size:
+          default: 12
+          maximum: 22
+          minimum: 8
+          type: integer
+        variants:
+          $ref: '#/components/schemas/FontVariants'
+      required:
+      - color
+      - family
+      - size
+      - variants
+      title: Font
+      type: object
+    Mention:
+      properties:
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - mention
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 200
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        width:
+          description: If not set, the width is automatically calculated with the mention length.
+          example: 250
+          minimum: 24
+          type: integer
+        height:
+          description: 'The height must be calculated using the formula: "height = number_of_lines \* font_size \* line_height", where the line height is always set to 1.5.'
+          example: 150
+          minimum: 1
+          nullable: true
+          type: integer
+        mention:
+          description: 'Content of the Mention.\
+
+            You can use dynamic tags when creating the Mention:\
+
+            • `%date%` will display the current date when the Signer sign the Signature Request (eg. "24-03-2025")\
+
+            • `%datetime%` will display the current date and time when the Signer signs the Signature Request (eg. "24-03-2025 10:30 UTC+0")\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email.
+
+            '
+          example: Signed on %date%
+          format: safe-string
+          maxLength: 255
+          minLength: 1
+          type: string
+        font:
+          $ref: '#/components/schemas/CreateFieldFont'
+        name:
+          description: Name of the Field.
+          example: Mention 1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - mention
+      - page
+      - signer_id
+      - type
+      - x
+      - y
+      title: Mention
+      type: object
+    Checkbox_1:
+      properties:
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        size:
+          default: 24
+          example: 24
+          maximum: 240
+          minimum: 8
+          type: integer
+        optional:
+          default: false
+          type: boolean
+        name:
+          example: Checkbox 1
+          nullable: true
+          type: string
+        checked:
+          default: false
+          type: boolean
+        read_only:
+          default: false
+          description: If set to `true`, the checkbox cannot be modified by the Signer.
+          type: boolean
+      title: Checkbox
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    FieldMention:
+      properties:
+        id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - mention
+          type: string
+        height:
+          description: 'The height must be calculated using the formula: "height = number_of_lines \* font_size \* line_height", where the line height is always set to 1.5.'
+          format: int32
+          minimum: 1
+          type: integer
+        width:
+          format: int32
+          minimum: 24
+          type: integer
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        mention:
+          type: string
+        font:
+          $ref: '#/components/schemas/Font'
+        name:
+          description: Name of the Field.
+          example: Mention 1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - document_id
+      - font
+      - height
+      - id
+      - mention
+      - page
+      - signer_id
+      - type
+      - width
+      - x
+      - y
+      title: Mention
+      type: object
+    FieldSignature:
+      properties:
+        id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - signature
+          type: string
+        height:
+          format: int32
+          maximum: 1000
+          minimum: 37
+          type: integer
+        width:
+          format: int32
+          maximum: 2000
+          minimum: 85
+          type: integer
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          maxLength: 150
+          nullable: true
+          type: string
+        display:
+          $ref: '#/components/schemas/SignatureDisplay'
+      required:
+      - display
+      - document_id
+      - height
+      - id
+      - page
+      - reason
+      - signer_id
+      - type
+      - width
+      - x
+      - y
+      title: Signature
+      type: object
+    SignerEmail:
+      properties:
+        signer_id:
+          example: f5939433-43f0-423d-87d5-9ee80042fb0d
+          format: uuid
+          type: string
+        type:
+          enum:
+          - signer_email
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 200
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        font:
+          $ref: '#/components/schemas/CreateFieldFont'
+        name:
+          description: Name of the Field.
+          example: Email 1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - page
+      - signer_id
+      - type
+      - x
+      - y
+      title: SignerEmail
+      type: object
+    ReadOnlyText:
+      properties:
+        type:
+          enum:
+          - read_only_text
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 200
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        width:
+          description: If not set, the width is automatically calculated with the read only text length.
+          example: 250
+          minimum: 24
+          nullable: true
+          type: integer
+        height:
+          description: 'The height must be calculated using the formula: "height = number_of_lines \* font_size \* line_height", where the line height is always set to 1.5.'
+          example: 150
+          minimum: 1
+          nullable: true
+          type: integer
+        text:
+          example: Order n°12345
+          maxLength: 5000
+          type: string
+        font:
+          $ref: '#/components/schemas/CreateFieldFont'
+      required:
+      - page
+      - text
+      - type
+      - x
+      - y
+      title: ReadOnlyText
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    SignatureDisplay:
+      description: Controls what is shown within the signature field.
+      example:
+        layout: detailed
+        options:
+          date_format: dd/MM/yyyy
+          time_format: HH:mm
+          show_timezone: true
+          show_email: false
+      oneOf:
+      - $ref: '#/components/schemas/SignatureDisplay_oneOf'
+      - $ref: '#/components/schemas/SignatureDisplay_oneOf_1'
+      title: SignatureDisplay
+      type: object
+    Text:
+      properties:
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - text
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 200
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        width:
+          description: If not set, the width is automatically calculated with the max_length value
+          example: 90
+          minimum: 24
+          type: integer
+        height:
+          description: 'The height must be calculated using the formula: "height = number_of_lines \* font_size \* line_height", where the line height is always set to 1.5.'
+          example: 150
+          minimum: 1
+          type: integer
+        max_length:
+          example: 120
+          maximum: 32767
+          minimum: 1
+          type: integer
+        question:
+          description: If you don't want any question, you can give an empty string.
+          example: What is your job title?
+          maxLength: 255
+          type: string
+        instruction:
+          example: Your position in the company
+          nullable: true
+          type: string
+        optional:
+          default: false
+          type: boolean
+        font:
+          $ref: '#/components/schemas/CreateFieldFont'
+        name:
+          description: Name of the Field.
+          example: Job Title
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        default_value:
+          description: If a default value is provided, the Field will be pre-filled with this value. The Signer can modify it before signing unless the Field is set to `read-only`.
+          example: Software Engineer
+          maxLength: 32767
+          minLength: 1
+          nullable: true
+          type: string
+        read_only:
+          default: false
+          description: If set to `true`, the Signer cannot modify the Field and the default value (if provided) will remain unchanged.
+          type: boolean
+      required:
+      - max_length
+      - page
+      - question
+      - signer_id
+      - type
+      - x
+      - y
+      title: Text
+      type: object
+    FieldAnswer:
+      properties:
+        value:
+          $ref: '#/components/schemas/FieldAnswer_value'
+      required:
+      - value
+      type: object
+    Minimal_layout:
+      properties:
+        layout:
+          description: '`minimal` (default): Only shows the signer’s signature visual.
+
+            `detailed`: Adds extra detail to the signature field, including the signer’s full name, email, and the date of signature.
+
+            '
+          enum:
+          - minimal
+          type: string
+      required:
+      - layout
+      title: Minimal layout
+      type: object
+    SignatureDate_1:
+      properties:
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        font:
+          $ref: '#/components/schemas/UpdateFieldFont'
+        name:
+          description: Name of the Field.
+          example: Date 1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        date_format:
+          $ref: '#/components/schemas/CreateFieldDateFormat'
+        time_format:
+          $ref: '#/components/schemas/CreateFieldTimeFormat'
+        show_timezone:
+          default: false
+          description: Boolean indicating whether to display the timezone abbreviation (e.g., `CEST`) next to the time.
+          nullable: true
+          type: boolean
+        show_email:
+          default: true
+          description: Boolean indicating whether to display the signer's email address.
+          nullable: false
+          type: boolean
+        offset_unit:
+          $ref: '#/components/schemas/CreateFieldOffsetUnit'
+        offset_value:
+          default: 0
+          description: 'Number of units to add to the signature date. Ignored if `offset_unit` is `null`. For example, use `offset_unit`: `"month"` and `offset_value: 3` to display "signature date + 3 months"'
+          example: 30
+          minimum: 0
+          nullable: true
+          type: integer
+      title: SignatureDate
+      type: object
+    Checkbox:
+      properties:
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - checkbox
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 200
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        size:
+          default: 24
+          example: 24
+          maximum: 240
+          minimum: 8
+          type: integer
+        optional:
+          default: false
+          type: boolean
+        name:
+          example: Checkbox 1
+          nullable: true
+          type: string
+        checked:
+          default: false
+          type: boolean
+        read_only:
+          default: false
+          description: If set to `true`, the checkbox cannot be modified by the signer.
+          type: boolean
+      required:
+      - page
+      - signer_id
+      - type
+      - x
+      - y
+      title: Checkbox
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    SignatureDisplay_oneOf:
+      properties:
+        layout:
+          description: '• `minimal` (default): Only shows the signer’s signature visual.
+
+            • `detailed`: Adds extra detail to the signature field, including the signer’s full name, email, and the date of signature.
+
+            '
+          enum:
+          - minimal
+          - legacy
+          type: string
+      required:
+      - layout
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    FieldText:
+      properties:
+        id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - text
+          type: string
+        width:
+          description: If not set, the width is automatically calculated with the max_length value
+          example: 90
+          format: int32
+          minimum: 24
+          type: integer
+        height:
+          description: 'The height must be calculated using the formula: "height = number_of_lines \* font_size \* line_height", where the line height is always set to 1.5.'
+          example: 150
+          format: int32
+          minimum: 1
+          type: integer
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        question:
+          example: What is your job title?
+          maxLength: 255
+          type: string
+        instruction:
+          example: Your position in the company
+          nullable: true
+          type: string
+        optional:
+          type: boolean
+        answer:
+          example: Software Engineer
+          nullable: true
+          type: string
+        max_length:
+          maximum: 32767
+          minimum: 1
+          type: integer
+        font:
+          $ref: '#/components/schemas/Font'
+        name:
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        default_value:
+          maxLength: 32767
+          minLength: 1
+          nullable: true
+          type: string
+        read_only:
+          type: boolean
+      required:
+      - answer
+      - document_id
+      - font
+      - height
+      - id
+      - instruction
+      - max_length
+      - optional
+      - page
+      - question
+      - signer_id
+      - type
+      - width
+      - x
+      - y
+      title: Text
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    ReadOnlyText_1:
+      properties:
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        width:
+          description: If not set, the width is automatically calculated with the mention length.
+          example: 24
+          minimum: 24
+          nullable: true
+          type: integer
+        height:
+          description: The height must be 24 or a multiple of 15 greater than 24. If height is not provided, it will be calculated depending on the number of newlines in the mention.
+          example: 150
+          minimum: 24
+          nullable: true
+          type: integer
+        text:
+          example: Order n°12345
+          maxLength: 5000
+          type: string
+        font:
+          $ref: '#/components/schemas/UpdateFieldFont'
+      title: ReadOnlyText
+      type: object
+    Font:
+      example:
+        family: Inconsolata
+        color: '#F53D1E'
+        size: 12
+        variants:
+          bold: true
+          italic: false
+      properties:
+        family:
+          $ref: '#/components/schemas/FontFamily'
+        color:
+          pattern: ^#([a-f0-9]{6}|[A-F0-9]{6})$
+          type: string
+        size:
+          maximum: 96
+          minimum: 7
+          type: integer
+        variants:
+          $ref: '#/components/schemas/FontVariants'
+      required:
+      - color
+      - family
+      - size
+      - variants
+      title: Font
+      type: object
+    Detailed_layout:
+      example:
+        layout: detailed
+        options:
+          date_format: dd/MM/yyyy
+          time_format: HH:mm
+          show_timezone: true
+          show_email: false
+      properties:
+        layout:
+          description: '`minimal` (default): Only shows the signer’s signature visual.
+
+            `detailed`: Adds extra detail to the signature field, including the signer’s full name, email, and the date of signature.
+
+            '
+          enum:
+          - detailed
+          type: string
+        options:
+          $ref: '#/components/schemas/SignatureDisplay_oneOf_1_options'
+      required:
+      - layout
+      - options
+      title: Detailed layout
+      type: object
+    CreateField:
+      oneOf:
+      - $ref: '#/components/schemas/Signature'
+      - $ref: '#/components/schemas/Mention'
+      - $ref: '#/components/schemas/SignatureDate'
+      - $ref: '#/components/schemas/Text'
+      - $ref: '#/components/schemas/Checkbox'
+      - $ref: '#/components/schemas/RadioGroup'
+      - $ref: '#/components/schemas/ReadOnlyText'
+      - $ref: '#/components/schemas/SignerName'
+      - $ref: '#/components/schemas/SignerEmail'
+      type: object
+    RadioGroup:
+      properties:
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - radio_group
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        optional:
+          default: false
+          type: boolean
+        name:
+          description: Radio group's name
+          example: radio_group_name_1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        read_only:
+          default: false
+          description: If set to `true`, the radio button cannot be modified by the Signer.
+          type: boolean
+        radios:
+          items:
+            $ref: '#/components/schemas/RadioGroup_radios_inner'
+          type: array
+      required:
+      - page
+      - radios
+      - signer_id
+      - type
+      title: RadioGroup
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    FieldSignerName:
+      properties:
+        id:
+          example: 94de855c-21c5-4bde-b82c-745ce415b084
+          format: uuid
+          type: string
+        document_id:
+          example: 3218d951-3096-4145-8639-0054757ec223
+          format: uuid
+          type: string
+        signer_id:
+          example: 72cbe6fd-9225-460e-901c-94acf7a066bb
+          format: uuid
+          type: string
+        type:
+          enum:
+          - signer_name
+          type: string
+        height:
+          description: 'The height must be calculated using the formula: "height = number_of_lines \* font_size \* line_height", where the line height is always set to 1.5.'
+          format: int32
+          minimum: 1
+          type: integer
+        width:
+          format: int32
+          minimum: 24
+          type: integer
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        value:
+          nullable: true
+          type: string
+        font:
+          $ref: '#/components/schemas/Font'
+        name:
+          description: Name of the Field.
+          example: Name 1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        name_format:
+          $ref: '#/components/schemas/CreateFieldNameFormat'
+      required:
+      - document_id
+      - font
+      - height
+      - id
+      - page
+      - signer_id
+      - type
+      - value
+      - width
+      - x
+      - y
+      title: SignerName
+      type: object
+    Signature_1:
+      properties:
+        signer_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        height:
+          description: Default value is 37
+          example: 50
+          maximum: 1000
+          minimum: 37
+          type: integer
+        width:
+          description: Default value is 85
+          example: 200
+          maximum: 2000
+          minimum: 85
+          type: integer
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          description: 'Provide extra context to explain why the Document is being signed. Once the Document is signed, the custom reason is stored in the Audit Trail and is included in the signature certificate.
+
+            The default value is: "Signed by [Signer first name] [Signer last name]".
+
+            '
+          example: Signed by John Doe
+          maxLength: 150
+          nullable: true
+          type: string
+        display:
+          $ref: '#/components/schemas/SignatureDisplay_1'
+      title: Signature
+      type: object
+    RadioGroup_1_radios_inner:
+      properties:
+        name:
+          description: Radio button's name
+          example: My radio group
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        x:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        size:
+          default: 24
+          example: 24
+          maximum: 240
+          minimum: 8
+          type: integer
+      required:
+      - x
+      - y
+      type: object
+    CreateFieldOffsetUnit:
+      default: days
+      description: Unit of time used to offset the signature date. When `null`, the field will display the exact signature date.
+      enum:
+      - days
+      - weeks
+      - months
+      - years
+      example: months
+      nullable: true
+      title: offset_unit
+      type: string
+    SignatureDate:
+      properties:
+        signer_id:
+          example: b9142070-7039-4c19-ae30-67ac3e72ee7e
+          format: uuid
+          type: string
+        type:
+          enum:
+          - signature_date
+          type: string
+        page:
+          example: 1
+          minimum: 1
+          type: integer
+        x:
+          example: 200
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 400
+          maximum: 32767
+          minimum: 0
+          type: integer
+        font:
+          $ref: '#/components/schemas/CreateSignatureDateFieldFont'
+        name:
+          description: Name of the Field.
+          example: Date 1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        date_format:
+          $ref: '#/components/schemas/CreateFieldDateFormat'
+        time_format:
+          $ref: '#/components/schemas/CreateFieldTimeFormat'
+        show_timezone:
+          default: false
+          description: Boolean indicating whether to display the timezone abbreviation (e.g., `CEST`) next to the time.
+          nullable: true
+          type: boolean
+        show_email:
+          default: true
+          description: Boolean indicating whether to display the signer's email address.
+          nullable: false
+          type: boolean
+        offset_unit:
+          $ref: '#/components/schemas/CreateFieldOffsetUnit'
+        offset_value:
+          default: 0
+          description: 'Number of units to add to the signature date. Ignored if `offset_unit` is `null`. For example, use `offset_unit`: `"month"` and `offset_value: 3` to display "signature date + 3 months"'
+          example: 30
+          minimum: 0
+          nullable: true
+          type: integer
+      required:
+      - page
+      - signer_id
+      - type
+      - x
+      - y
+      title: SignatureDate
+      type: object
+    SignatureDisplay_oneOf_1_options:
+      description: Only applicable when `display.layout = detailed`.
+      properties:
+        date_format:
+          $ref: '#/components/schemas/CreateFieldDateFormat'
+        time_format:
+          $ref: '#/components/schemas/CreateFieldTimeFormat'
+        show_timezone:
+          default: false
+          description: Boolean indicating whether to display the timezone abbreviation (e.g., `CEST`) next to the time.
+          nullable: true
+          type: boolean
+        show_email:
+          default: true
+          description: Boolean indicating whether to display the signer's email address.
+          nullable: false
+          type: boolean
+      type: object
+    CreateSignatureDateFieldFont:
+      description: Font configuration (family, size, color, style variants).
+      example:
+        family: Inconsolata
+        color: '#F53D1E'
+        size: 12
+        variants:
+          bold: true
+          italic: false
+      nullable: true
+      properties:
+        family:
+          $ref: '#/components/schemas/FontFamily'
+        color:
+          default: '#000000'
+          pattern: ^#([a-f0-9]{6}|[A-F0-9]{6})$
+          type: string
+        size:
+          default: 12
+          maximum: 96
+          minimum: 7
+          type: integer
+        variants:
+          $ref: '#/components/schemas/FontVariants'
+      required:
+      - color
+      - family
+      - size
+      - variants
+      title: Font
+      type: object
+    SignatureDisplay_oneOf_1:
+      properties:
+        layout:
+          description: '• `minimal` (default): Only shows the signer’s signature visual.
+
+            • `detailed`: Adds extra detail to the signature field, including the signer’s full name, email, and the date of signature.
+
+            '
+          enum:
+          - detailed
+          type: string
+        options:
+          $ref: '#/components/schemas/SignatureDisplay_oneOf_1_options'
+      required:
+      - layout
+      - options
+      type: object
+    get_signature_requests_signatureRequestId_documents_documentId_fields_200_response_data_inner:
+      oneOf:
+      - $ref: '#/components/schemas/FieldSignature'
+      - $ref: '#/components/schemas/FieldText'
+      - $ref: '#/components/schemas/FieldMention'
+      - $ref: '#/components/schemas/FieldCheckbox'
+      - $ref: '#/components/schemas/FieldRadioButtonGroup'
+      - $ref: '#/components/schemas/FieldReadOnlyText'
+      - $ref: '#/components/schemas/FieldSignatureDate'
+      - $ref: '#/components/schemas/FieldSignerName'
+      - $ref: '#/components/schemas/FieldSignerEmail'
+    FieldSignatureDate:
+      properties:
+        id:
+          example: 94de855c-21c5-4bde-b82c-745ce415b084
+          format: uuid
+          type: string
+        document_id:
+          example: 3218d951-3096-4145-8639-0054757ec223
+          format: uuid
+          type: string
+        signer_id:
+          example: 72cbe6fd-9225-460e-901c-94acf7a066bb
+          format: uuid
+          type: string
+        type:
+          enum:
+          - signature_date
+          type: string
+        height:
+          description: 'The height must be calculated using the formula: "height = number_of_lines \* font_size \* line_height", where the line height is always set to 1.5.'
+          format: int32
+          minimum: 1
+          type: integer
+        width:
+          format: int32
+          minimum: 24
+          type: integer
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        value:
+          nullable: true
+          type: string
+        font:
+          $ref: '#/components/schemas/Font'
+        name:
+          description: Name of the Field.
+          example: Date 1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        date_format:
+          $ref: '#/components/schemas/CreateFieldDateFormat'
+        time_format:
+          $ref: '#/components/schemas/CreateFieldTimeFormat'
+        show_timezone:
+          default: false
+          description: Boolean indicating whether to display the timezone abbreviation (e.g., `CEST`) next to the time.
+          nullable: true
+          type: boolean
+        show_email:
+          default: true
+          description: Boolean indicating whether to display the signer's email address.
+          nullable: false
+          type: boolean
+        offset_unit:
+          $ref: '#/components/schemas/CreateFieldOffsetUnit'
+        offset_value:
+          default: 0
+          description: 'Number of units to add to the signature date. Ignored if `offset_unit` is `null`. For example, use `offset_unit`: `"month"` and `offset_value: 3` to display "signature date + 3 months"'
+          example: 30
+          minimum: 0
+          nullable: true
+          type: integer
+      required:
+      - document_id
+      - font
+      - height
+      - id
+      - page
+      - signer_id
+      - type
+      - value
+      - width
+      - x
+      - y
+      title: SignatureDate
+      type: object
+    FontFamily:
+      enum:
+      - Inconsolata
+      - Open Sans
+      - Lato
+      - Raleway
+      - Merriweather
+      - EB Garamond
+      - Comic Neue
+      - Monaco
+      - Helvetica
+      - Courier
+      - Times Roman
+      title: FontFamily
+      type: string
+    CreateFieldTimeFormat:
+      description: Format used to display the time. Can be null to display only the date, or a format like `HH:mm` or `hh:mm a`
+      enum:
+      - null
+      - HH:mm
+      - hh:mm a
+      example: HH:mm
+      nullable: true
+      title: time_format
+      type: string
+    get_signature_requests_signatureRequestId_documents_documentId_fields_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/get_signature_requests_signatureRequestId_documents_documentId_fields_200_response_data_inner'
+          type: array
+      type: object
+    FontVariants:
+      properties:
+        italic:
+          default: false
+          type: boolean
+        bold:
+          default: false
+          type: boolean
+      required:
+      - bold
+      - italic
+      title: FontVariants
+      type: object
+    FieldAnswer_value:
+      oneOf:
+      - description: 'The answer value for a text field. Can be null if the field is not required.
+
+          The selected radio name in a radio group.
+
+          '
+        example: My custom answer or my radio name in the group
+        maxLength: 32767
+        minLength: 1
+        title: Answer Text or a Radio Group Field
+        type: string
+      - description: The answer value for a checkbox field.
+        example: true
+        title: Answer Checkbox Field
+        type: boolean
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - next_cursor
+      type: object
+    FieldRadioButtonGroup_radios_inner:
+      properties:
+        name:
+          description: Radio button's name.
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        size:
+          description: The size determines both the width and height of the radio button.
+          format: int32
+          maximum: 240
+          minimum: 8
+          type: integer
+        checked:
+          description: Signer has checked the radio button.
+          type: boolean
+      required:
+      - checked
+      - name
+      - size
+      - x
+      - y
+      type: object
+    CreateFieldDateFormat:
+      default: dd/MM/yyyy
+      description: Format used to display the date (e.g., `dd/MM/yyyy`, `MM/dd/yyyy`)
+      enum:
+      - dd/MM/yyyy
+      - dd-MM-yyyy
+      - dd.MM.yyyy
+      - yyyy-MM-dd
+      - MM/dd/yyyy
+      - dd MMMM yyyy
+      - MMMM dd, yyyy
+      - MMM dd, yyyy
+      example: dd/MM/yyyy
+      title: date_format
+      type: string
+    SignatureDisplay_1:
+      description: Controls what is shown within the signature field.
+      nullable: true
+      oneOf:
+      - $ref: '#/components/schemas/Minimal_layout'
+      - $ref: '#/components/schemas/Detailed_layout'
+      title: SignatureDisplay
+      type: object
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

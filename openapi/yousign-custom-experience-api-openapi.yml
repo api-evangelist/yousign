@@ -1,0 +1,1865 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: contact@yousign.com
+    name: Support
+    url: https://yousign.com/contact
+  description: Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.
+  license:
+    name: proprietary
+    url: https://yousign.com/terms
+  title: Public Api v3 Applicant Custom Experience API
+  version: '3.0'
+servers:
+- description: Sandbox URL
+  url: https://api-sandbox.yousign.app/v3
+- description: Production URL
+  url: https://api.yousign.app/v3
+security:
+- bearerAuth: []
+tags:
+- description: Allows to customize the look and feel of the signature experience.
+  name: Custom Experience
+paths:
+  /custom_experiences:
+    get:
+      description: 'Returns the list of all Custom Experiences in your Organization.
+
+        You can limit the number of items returned by using pagination.
+
+        '
+      operationId: get-custom_experiences
+      parameters:
+      - description: After cursor (pagination)
+        in: query
+        name: after
+        required: false
+        schema:
+          minLength: 1
+          type: string
+      - description: The limit of items count to retrieve.
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 100
+          maximum: 100
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_custom_experiences_200_response'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: List Custom Experiences
+      tags:
+      - Custom Experience
+    post:
+      description: Creates a new Custom Experience.
+      operationId: post-custom-experience
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomExperience'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomExperience'
+          description: Created
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '415':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeResponse'
+          description: UnsupportedMediaType
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Create a Custom Experience
+      tags:
+      - Custom Experience
+  /custom_experiences/{customExperienceId}:
+    delete:
+      description: Deletes a given Custom Experience.
+      operationId: delete-custom_experience
+      parameters:
+      - description: Custom Experience Id
+        in: path
+        name: customExperienceId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '204':
+          description: The resource was deleted successfully
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Delete a Custom Experience
+      tags:
+      - Custom Experience
+    get:
+      description: Retrieves a given Custom Experience.
+      operationId: get-custom_experiences-customExperienceId
+      parameters:
+      - description: Custom Experience Id
+        in: path
+        name: customExperienceId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomExperience'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Get a Custom Experience
+      tags:
+      - Custom Experience
+    patch:
+      description: 'Updates a given Custom Experience.
+
+        Any parameters not provided are left unchanged.
+
+        '
+      operationId: patch-custom_experiences-customExperienceId
+      parameters:
+      - description: Custom Experience Id
+        in: path
+        name: customExperienceId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomExperience'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomExperience'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '415':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeResponse'
+          description: UnsupportedMediaType
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Update a Custom Experience
+      tags:
+      - Custom Experience
+  /custom_experiences/{customExperienceId}/logo:
+    delete:
+      description: Deletes the logo of a Custom Experience.
+      operationId: delete-custom_experience-logo
+      parameters:
+      - description: Custom Experience Id
+        in: path
+        name: customExperienceId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '204':
+          description: The resource was deleted successfully
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Delete a Custom Experience logo
+      tags:
+      - Custom Experience
+    post:
+      description: Updates the logo of a given Custom Experience by uploading the image of your choice.
+      operationId: patch-custom-experience-logo
+      parameters:
+      - description: Custom Experience Id
+        in: path
+        name: customExperienceId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/patch_custom_experience_logo_request'
+        description: Update a Custom Experience logo
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomExperience'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '415':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeResponse'
+          description: UnsupportedMediaType
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Update a Custom Experience logo
+      tags:
+      - Custom Experience
+components:
+  headers:
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+  schemas:
+    CreateCustomExperience_redirect_urls:
+      nullable: true
+      properties:
+        success:
+          example: https://example.com/success
+          format: uri
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+        error:
+          example: https://example.com/error
+          format: uri
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+        decline:
+          example: https://example.com/decline
+          format: uri
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    CustomExperience:
+      properties:
+        id:
+          format: uuid
+          readOnly: true
+          type: string
+        name:
+          type: string
+        landing_page_disabled:
+          type: boolean
+        side_panel_disabled:
+          type: boolean
+        background_color:
+          nullable: true
+          type: string
+        button_color:
+          nullable: true
+          type: string
+        text_color:
+          nullable: true
+          type: string
+        text_button_color:
+          nullable: true
+          type: string
+        disabled_notifications:
+          items:
+            $ref: '#/components/schemas/CustomExperience_DisabledNotificationsType'
+          type: array
+        email_logo_disabled:
+          type: boolean
+        email_header_text_disabled:
+          type: boolean
+        email_footer_signature_disabled:
+          type: boolean
+        email_expiration_text_disabled:
+          type: boolean
+        recipients_activity_disabled:
+          type: boolean
+        download_documents_disabled:
+          type: boolean
+        document_navigation_disabled:
+          type: boolean
+        redirect_urls:
+          $ref: '#/components/schemas/CustomExperience_redirect_urls'
+        logo:
+          example: https://yousign.com/custom_experience/89120884-d29a-4b1a-ac7b-a9e73a872795/logo
+          format: uri
+          nullable: true
+          type: string
+        source:
+          $ref: '#/components/schemas/CustomExperience_Source'
+        created_at:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+      required:
+      - background_color
+      - button_color
+      - created_at
+      - disabled_notifications
+      - document_navigation_disabled
+      - download_documents_disabled
+      - email_expiration_text_disabled
+      - email_footer_signature_disabled
+      - email_header_text_disabled
+      - email_logo_disabled
+      - id
+      - landing_page_disabled
+      - logo
+      - recipients_activity_disabled
+      - redirect_urls
+      - side_panel_disabled
+      - source
+      - text_button_color
+      - text_color
+      type: object
+    patch_custom_experience_logo_request:
+      description: Upload a file
+      properties:
+        file:
+          example: Binary file
+          format: binary
+          type: string
+      required:
+      - file
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    CustomExperience_redirect_urls:
+      properties:
+        success:
+          example: https://example.com/success
+          format: uri
+          nullable: true
+          type: string
+        error:
+          example: https://example.com/error
+          format: uri
+          nullable: true
+          type: string
+        decline:
+          example: https://example.com/decline
+          format: uri
+          nullable: true
+          type: string
+      required:
+      - decline
+      - error
+      - success
+      type: object
+    CreateCustomExperience:
+      properties:
+        name:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          format: safe-string
+          maxLength: 255
+          minLength: 1
+          type: string
+        landing_page_disabled:
+          default: false
+          nullable: true
+          type: boolean
+        side_panel_disabled:
+          default: false
+          nullable: true
+          type: boolean
+        background_color:
+          description: Hexadecimal color value
+          example: '#ff0011'
+          nullable: true
+          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
+          type: string
+        button_color:
+          description: Hexadecimal color value
+          example: '#ff0011'
+          nullable: true
+          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
+          type: string
+        text_color:
+          description: Hexadecimal color value
+          example: '#ff0011'
+          nullable: true
+          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
+          type: string
+        text_button_color:
+          description: Hexadecimal color value
+          example: '#ff0011'
+          nullable: true
+          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
+          type: string
+        disabled_notifications:
+          items:
+            $ref: '#/components/schemas/CustomExperience_DisabledNotificationsType'
+          nullable: true
+          type: array
+        email_logo_disabled:
+          default: false
+          nullable: true
+          type: boolean
+        email_header_text_disabled:
+          default: false
+          nullable: true
+          type: boolean
+        email_footer_signature_disabled:
+          default: false
+          nullable: true
+          type: boolean
+        email_expiration_text_disabled:
+          default: false
+          nullable: true
+          type: boolean
+        recipients_activity_disabled:
+          default: true
+          nullable: true
+          type: boolean
+        download_documents_disabled:
+          default: false
+          description: If true, signers won't be able to download documents before signing.
+          nullable: true
+          type: boolean
+        document_navigation_disabled:
+          default: false
+          description: If true and the request contains more than 1 document, signers must read each document before moving to the next.
+          nullable: true
+          type: boolean
+        redirect_urls:
+          $ref: '#/components/schemas/CreateCustomExperience_redirect_urls'
+        logo_layout:
+          $ref: '#/components/schemas/LogoLayout'
+      required:
+      - name
+      type: object
+    CustomExperience_DisabledNotificationsType:
+      enum:
+      - approver.expiration_date_reminder
+      - approver.canceled
+      - approver.expiration_date_updated
+      - approver.notified
+      - approver.approved
+      - approver.rejected
+      - approver.declined
+      - follower.approved
+      - follower.canceled
+      - follower.completed
+      - follower.expired
+      - follower.rejected
+      - follower.activated
+      - follower.signed
+      - follower.declined
+      - sender.approved
+      - sender.canceled
+      - sender.completed
+      - sender.rejected
+      - sender.signed
+      - sender.declined
+      - signer.expiration_date_reminder
+      - signer.canceled
+      - signer.completed
+      - signer.signed
+      - signer.expiration_date_updated
+      - signer.signature_requested
+      - signer.declined
+      example: approver.canceled
+      type: string
+    UpdateCustomExperience:
+      properties:
+        name:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          format: safe-string
+          type: string
+        landing_page_disabled:
+          nullable: true
+          type: boolean
+        side_panel_disabled:
+          nullable: true
+          type: boolean
+        background_color:
+          description: Hexadecimal color value
+          example: '#ff0011'
+          nullable: true
+          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
+          type: string
+        button_color:
+          description: Hexadecimal color value
+          example: '#ff0011'
+          nullable: true
+          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
+          type: string
+        text_color:
+          description: Hexadecimal color value
+          example: '#ff0011'
+          nullable: true
+          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
+          type: string
+        text_button_color:
+          description: Hexadecimal color value
+          example: '#ff0011'
+          nullable: true
+          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
+          type: string
+        disabled_notifications:
+          items:
+            $ref: '#/components/schemas/CustomExperience_DisabledNotificationsType'
+          nullable: true
+          type: array
+        email_logo_disabled:
+          nullable: true
+          type: boolean
+        email_header_text_disabled:
+          nullable: true
+          type: boolean
+        email_footer_signature_disabled:
+          nullable: true
+          type: boolean
+        email_expiration_text_disabled:
+          nullable: true
+          type: boolean
+        recipients_activity_disabled:
+          nullable: true
+          type: boolean
+        download_documents_disabled:
+          description: If true, signers won't be able to download documents before signing.
+          nullable: true
+          type: boolean
+        document_navigation_disabled:
+          default: false
+          description: If true and the request contains more than 1 document, signers must read each document before moving to the next.
+          nullable: true
+          type: boolean
+        redirect_urls:
+          $ref: '#/components/schemas/UpdateCustomExperience_redirect_urls'
+        logo_layout:
+          $ref: '#/components/schemas/LogoLayout'
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    LogoLayout:
+      description: 'Determines the display layout of the logo. Possible values are:
+
+        - `round`: Displays the logo in a circular format.
+
+        - `original`: Displays the logo in its original shape.
+
+        '
+      enum:
+      - round
+      - original
+      example: round
+      title: LogoLayout
+      type: string
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    CustomExperience_Source:
+      description: Custom Experience Source
+      enum:
+      - app
+      - public_api
+      example: app
+      nullable: true
+      type: string
+    get_custom_experiences_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/CustomExperience'
+          type: array
+      type: object
+    UpdateCustomExperience_redirect_urls:
+      nullable: true
+      properties:
+        success:
+          example: https://example.com/success
+          format: uri
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+        error:
+          example: https://example.com/error
+          format: uri
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+        decline:
+          example: https://example.com/decline
+          format: uri
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - decline
+      - error
+      - success
+      type: object
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - next_cursor
+      type: object
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

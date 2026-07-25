@@ -1,0 +1,1433 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: contact@yousign.com
+    name: Support
+    url: https://yousign.com/contact
+  description: Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.
+  license:
+    name: proprietary
+    url: https://yousign.com/terms
+  title: Public Api v3 Applicant Company Verification API
+  version: '3.0'
+servers:
+- description: Sandbox URL
+  url: https://api-sandbox.yousign.app/v3
+- description: Production URL
+  url: https://api.yousign.app/v3
+security:
+- bearerAuth: []
+tags:
+- description: Retrieve structured and official data about a company.
+  name: Company Verification
+paths:
+  /verifications/companies:
+    get:
+      description: Returns the list of all Company Verifications within your organization. You can limit the number of items returned by using filters and pagination. Consult our [guide](https://developers.yousign.com/docs/company-verification) for more details and examples.
+      operationId: get-verifications-companies
+      parameters:
+      - description: After cursor (pagination)
+        in: query
+        name: after
+        required: false
+        schema:
+          minLength: 1
+          type: string
+      - description: The limit of items count to retrieve.
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 100
+          maximum: 100
+          minimum: 1
+          type: integer
+      - description: 'Filter by `status`. Allowed operators: `eq`.
+
+          Example: `status[eq]=verified`
+
+          '
+        example:
+          eq:
+          - verified
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          description: Filter by status.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: 'Filter by `workspace_id`. Allowed operators: `eq`.
+
+          Example: `workspace_id[eq]=9b6ed2f3-244f-487a-baa1-bbe4f51c8748`
+
+          '
+        example:
+          eq:
+          - 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+        explode: true
+        in: query
+        name: workspace_id
+        required: false
+        schema:
+          description: Filter by workspace_id.
+          minProperties: 1
+          type: object
+        style: deepObject
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_verifications_companies_200_response'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: List Company Verifications
+      tags:
+      - Company Verification
+    post:
+      description: 'Initiate a new Company Verification by providing the company number or by uploading a document containing company information.
+
+
+        Related guide: [Company Registry Verification](https://developers.yousign.com/docs/company-verification).
+
+
+        **ℹ️ This endpoint accepts two request body formats — pick the one that matches your use case:**
+
+        - 📝 `application/json` — provide the company number directly, or reference an existing Workflow Session Applicant by ID.
+
+        - 📁 `multipart/form-data` — upload a binary file containing the company information.
+
+
+        **🔓 Endpoint access**
+
+        - Environments: `production`, `sandbox`
+
+        - API key scopes: `organization`, `workspace`
+
+        - Plans: `pro`, `scale`
+
+        - Add-ons (for production access): `Verify - Company registry verification`
+
+        '
+      operationId: post-verifications-companies
+      requestBody:
+        content:
+          application/json:
+            examples:
+              france:
+                summary: French company verification
+                value:
+                  company_number: '794513986'
+                  country_code: FR
+                  workspace_id: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+              spain:
+                summary: Spanish company verification
+                value:
+                  company_number: B12345678
+                  country_code: ES
+                  workspace_id: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+              luxembourg:
+                summary: Luxembourg company verification
+                value:
+                  company_number: B1234567
+                  country_code: LU
+                  workspace_id: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+              italy:
+                summary: Italian company verification
+                value:
+                  company_number: '12345678901'
+                  country_code: IT
+                  workspace_id: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+              germany:
+                summary: German company verification
+                value:
+                  company_number: HRB123456
+                  country_code: DE
+                  company_name: Test Company GmbH
+                  zip_code: '10115'
+                  street: Unter den Linden 1
+                  city: Berlin
+                  register_court: Amtsgericht Berlin (Charlottenburg)
+                  workspace_id: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+              with_applicant:
+                summary: Verification linked to an existing Workflow Session Applicant
+                value:
+                  applicant_id: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+            schema:
+              $ref: '#/components/schemas/post_verifications_companies_request'
+          multipart/form-data:
+            example:
+              file: Binary file
+              country_code: FR
+              workspace_id: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+            schema:
+              $ref: '#/components/schemas/InitiateCompanyFromFile'
+      responses:
+        '201':
+          content:
+            application/json:
+              examples:
+                pending:
+                  $ref: '#/components/examples/CompanyExample'
+              schema:
+                $ref: '#/components/schemas/CompanyFull'
+          description: Created
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '415':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeResponse'
+          description: UnsupportedMediaType
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Initiate a new Company Verification
+      tags:
+      - Company Verification
+  /verifications/companies/{companyVerificationId}:
+    get:
+      description: Get the detailed results of a Company Verification.
+      operationId: get-verifications-companies-id
+      parameters:
+      - description: Company Verification Id
+        in: path
+        name: companyVerificationId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                verified:
+                  summary: Verified result
+                  value:
+                    id: 550e8400-e29b-41d4-a716-446655440000
+                    workspace_id: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+                    created_at: '2023-01-01T12:00:00+00:00'
+                    updated_at: '2023-01-01T12:00:00+00:00'
+                    status: verified
+                    data_anonymized: false
+                    workflow_session_id: null
+                    previous_attempt_id: null
+                    applicant_id: null
+                    data:
+                      extracted_from_document:
+                        company_number: '794513986'
+                        issued_on: '2023-01-01'
+                      company_information:
+                        name: YOUSIGN
+                        trade_name: null
+                        company_number: '794513986'
+                        partial_data: true
+                        required_document_type:
+                        - company_certificate
+                        legal_form:
+                          code: 6CHY
+                          description: SAS, société par actions simplifiée
+                        vat_number: FR61794513986
+                        activities:
+                        - code: '62.01'
+                          description: Computer programming activities
+                          classification: NACE
+                        founded_on: '2013-07-24'
+                        ceased_on: null
+                        active: true
+                        commercial_registration:
+                          location: CAEN
+                          registered_on: '2013-08-01'
+                        has_workforce: true
+                      headquarter:
+                        address_line_1: AVENUE PIERRE BERTHELOT
+                        address_line_2: null
+                        postal_code: '14000'
+                        city: CAEN
+                        country_code: FR
+                      legal_representatives:
+                      - title: Président
+                        type: natural_person
+                        first_name: John
+                        last_name: Doe
+                        birth_name: Doe
+                        born_on: '1994-04-20'
+                        company_name: null
+                        company_number: null
+              schema:
+                $ref: '#/components/schemas/CompanyFull'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Retrieve a Company Verification
+      tags:
+      - Company Verification
+components:
+  headers:
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+  schemas:
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    CompanyMeta:
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          description: The Workspace ID in which the verification has been created.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+        created_at:
+          description: Creation date of the Company Verification.
+          example: '2023-01-01T12:00:00Z'
+          format: date-time
+          type: string
+        updated_at:
+          description: Update date of the Company Verification.
+          example: '2023-01-01T12:00:00Z'
+          format: date-time
+          type: string
+        status:
+          description: Status of the Company Verification.
+          enum:
+          - pending
+          - awaiting_data
+          - verified
+          - failed
+          - inconclusive
+          example: verified
+          type: string
+        data_anonymized:
+          description: 'Indicates if the company data has been anonymized.
+
+            If set to `true`, all fields in the `data` field are set to NULL.
+
+            '
+          example: false
+          nullable: false
+          type: boolean
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        applicant_id:
+          $ref: '#/components/schemas/WorkflowSessionApplicantId'
+      required:
+      - applicant_id
+      - created_at
+      - id
+      - previous_attempt_id
+      - status
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: CompanyMeta
+      type: object
+    CompanyFull_allOf_data_company_information:
+      properties:
+        name:
+          description: Denomination of the company.
+          example: YOUSIGN
+          nullable: true
+          type: string
+        trade_name:
+          description: Trade name of the company.
+          nullable: true
+          type: string
+        company_number:
+          description: The number of the company entity.
+          example: '794513986'
+          nullable: true
+          type: string
+        partial_data:
+          description: 'Describes if a company has declined to make some of her data public (ie : legal representatives personal data), when true data might be missing from the response'
+          example: true
+          nullable: true
+          type: boolean
+        required_document_type:
+          description: 'Provides the right document type to request for a given company based on its registry. ie: company_certificate, rne_certificate or business_registration_certificate. You can use those types when calling Document Analysis.'
+          example:
+          - company_certificate
+          items:
+            enum:
+            - company_certificate
+            - business_registration_certificate
+            - rne_certificate
+            type: string
+          type: array
+        legal_form:
+          $ref: '#/components/schemas/CompanyFull_allOf_data_company_information_legal_form'
+        vat_number:
+          description: Tax number of the company.
+          example: FR61794513986
+          nullable: true
+          type: string
+        activities:
+          items:
+            $ref: '#/components/schemas/CompanyFull_allOf_data_company_information_activities'
+          type: array
+        founded_on:
+          description: Company's creation date.
+          example: '2013-07-24'
+          format: date
+          nullable: true
+          type: string
+        ceased_on:
+          description: Indicates the company's cessation date if company is inactive, otherwise null.
+          format: date
+          nullable: true
+          type: string
+        active:
+          description: Indicates whether or not the company is still active.
+          nullable: true
+          type: boolean
+        commercial_registration:
+          $ref: '#/components/schemas/CompanyFull_allOf_data_company_information_commercial_registration'
+        has_workforce:
+          description: True if the company has at least one employee.
+          nullable: true
+          type: boolean
+      type: object
+    post_verifications_companies_request:
+      oneOf:
+      - $ref: '#/components/schemas/InitiateCompanyFromJson'
+      - $ref: '#/components/schemas/InitiateCompanyFromApplicant'
+    CompanyFull_allOf_data_extracted_from_document:
+      properties:
+        company_number:
+          description: Company number extracted from the document.
+          nullable: true
+          type: string
+        issued_on:
+          description: Date when the document was issued.
+          format: date
+          nullable: true
+          type: string
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    InitiateCompanyFromJson:
+      properties:
+        company_number:
+          description: 'Please provide the exact company number depending on the country format.
+
+            For any doubt, consult the Company Verification [guide](https://developers.yousign.com/docs/company-verification).
+
+            '
+          example: '794513986'
+          minLength: 1
+          type: string
+        country_code:
+          description: Defines the country where the company is registered.
+          enum:
+          - FR
+          - GB
+          - BE
+          - CH
+          - NL
+          - ES
+          - LU
+          - IT
+          - DE
+          example: FR
+          maxLength: 2
+          minLength: 2
+          type: string
+        workspace_id:
+          description: 'Scopes the verification to a specific workspace.
+
+            Defaults to the default workspace if not specified.
+
+            '
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          nullable: true
+          type: string
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        company_name:
+          description: 'The company name. Required for German (DE) companies.\
+
+            When country_code is DE, this field must be provided.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+
+            '
+          example: Test Company GmbH
+          format: safe-string
+          maxLength: 255
+          nullable: true
+          type: string
+        zip_code:
+          description: 'Additional search field. Only accepted when country_code is DE.\
+
+            For DE, it must be a 5-digit Postleitzahl (e.g. "10115").\
+
+            Helps narrow the company lookup when several companies share similar names.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+
+            '
+          example: '10115'
+          format: safe-string
+          maxLength: 10
+          nullable: true
+          type: string
+        street:
+          description: 'Additional search field. Only accepted when country_code is DE.\
+
+            Helps narrow the company lookup when several companies share similar names.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+
+            '
+          example: Unter den Linden 1
+          format: safe-string
+          maxLength: 255
+          nullable: true
+          type: string
+        city:
+          description: 'Additional search field. Only accepted when country_code is DE.\
+
+            Helps narrow the company lookup when several companies share similar names.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+
+            '
+          example: Berlin
+          format: safe-string
+          maxLength: 255
+          nullable: true
+          type: string
+        register_court:
+          description: 'Additional search field. Only accepted when country_code is DE.\
+
+            The German commercial register court (Registergericht) handling the company.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+
+            '
+          example: Amtsgericht Berlin (Charlottenburg)
+          format: safe-string
+          maxLength: 255
+          nullable: true
+          type: string
+      required:
+      - company_number
+      - country_code
+      title: Initiate Company Verification from company number
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    InitiateCompanyFromFile:
+      properties:
+        file:
+          description: 'The file containing the company details mostly known as Kbis.
+
+            Accepted formats: PDF.
+
+            Max size: 10 MB.
+
+            '
+          example: Binary file
+          format: binary
+          type: string
+        country_code:
+          enum:
+          - FR
+          example: FR
+          maxLength: 2
+          minLength: 2
+          type: string
+        workspace_id:
+          description: 'Scopes the verification to a specific workspace.
+
+            Defaults to the default workspace if not specified.
+
+            '
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          nullable: true
+          type: string
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+      required:
+      - country_code
+      - file
+      title: Initiate Company Verification from Kbis
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    CompanyFull_allOf_data_legal_representatives:
+      properties:
+        title:
+          description: The representative's role within the company.
+          example: Président
+          nullable: true
+          type: string
+        type:
+          description: Indicates whether the representative is a natural person or a legal entity.
+          enum:
+          - natural_person
+          - legal_person
+          nullable: true
+          type: string
+        first_name:
+          description: The representative's first name in case of a natural person, otherwise null.
+          example: John
+          nullable: true
+          type: string
+        last_name:
+          description: The representative's last name in case of a natural person, otherwise null.
+          example: Doe
+          nullable: true
+          type: string
+        birth_name:
+          description: The representative's birth name in case of a natural person, otherwise null.
+          example: Doe
+          nullable: true
+          type: string
+        born_on:
+          description: The representative's birthdate in case of a natural person, otherwise null.
+          example: '1994-04-20'
+          format: date
+          nullable: true
+          type: string
+        company_name:
+          description: The representative's company name in case of a legal person, otherwise null.
+          nullable: true
+          type: string
+        company_number:
+          description: The representative's company number in case of a legal person, otherwise null.
+          nullable: true
+          type: string
+      required:
+      - birth_name
+      - born_on
+      - company_name
+      - company_number
+      - first_name
+      - last_name
+      - title
+      - type
+      type: object
+    CompanyFull_allOf_data_company_information_activities:
+      properties:
+        code:
+          description: Activity code.
+          example: '62.01'
+          nullable: true
+          type: string
+        description:
+          description: Activity name.
+          example: Computer programming activities
+          nullable: true
+          type: string
+        classification:
+          description: Activity classification.
+          example: NACE
+          nullable: true
+          type: string
+      required:
+      - classification
+      - code
+      - description
+      type: object
+    WorkflowSessionApplicantId:
+      description: 'Unique identifier of an Applicant.
+
+        '
+      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+      format: uuid
+      nullable: true
+      title: Applicant
+      type: string
+    CompanyFull_allOf_data_company_information_commercial_registration:
+      properties:
+        location:
+          description: Indicates the location of the company's commercial register.
+          example: CAEN
+          nullable: true
+          type: string
+        registered_on:
+          description: Indicates the company's registration date in the commercial register.
+          example: '2013-08-01'
+          format: date
+          nullable: true
+          type: string
+      required:
+      - location
+      - registered_on
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    CompanyFull:
+      allOf:
+      - $ref: '#/components/schemas/CompanyMeta'
+      - properties:
+          data:
+            $ref: '#/components/schemas/CompanyFull_allOf_data'
+        required:
+        - data
+        type: object
+      title: CompanyFull
+      type: object
+    CompanyFull_allOf_data_company_information_legal_form:
+      properties:
+        code:
+          description: Legal form code (ISO 20275).
+          example: 6CHY
+          nullable: true
+          type: string
+        description:
+          description: Local legal form name.
+          example: SAS, société par actions simplifiée
+          nullable: true
+          type: string
+      required:
+      - code
+      - description
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    InitiateCompanyFromApplicant:
+      additionalProperties: false
+      properties:
+        applicant_id:
+          description: The Applicant ID linked to the Workflow Session.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+      required:
+      - applicant_id
+      title: Attach a new Company Verification to an Applicant
+      type: object
+    CompanyFull_allOf_data_headquarter:
+      properties:
+        address_line_1:
+          example: AVENUE PIERRE BERTHELOT
+          nullable: true
+          type: string
+        address_line_2:
+          nullable: true
+          type: string
+        postal_code:
+          example: '14000'
+          nullable: true
+          type: string
+        city:
+          example: CAEN
+          nullable: true
+          type: string
+        country_code:
+          example: FR
+          nullable: true
+          type: string
+      required:
+      - address_line_1
+      - address_line_2
+      - city
+      - country_code
+      - postal_code
+      type: object
+    get_verifications_companies_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/CompanyMeta'
+          type: array
+      type: object
+    PreviousAttemptId:
+      description: 'ID of the previous attempt within the same `workflow_session_id`.
+
+        Allows continuity between multiple attempts of the same Action.
+
+        Null if this is the first attempt.
+
+        '
+      example: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde4
+      format: uuid
+      nullable: true
+      title: Previous Attempt identifier
+      type: string
+    CompanyFull_allOf_data:
+      properties:
+        extracted_from_document:
+          $ref: '#/components/schemas/CompanyFull_allOf_data_extracted_from_document'
+        company_information:
+          $ref: '#/components/schemas/CompanyFull_allOf_data_company_information'
+        headquarter:
+          $ref: '#/components/schemas/CompanyFull_allOf_data_headquarter'
+        legal_representatives:
+          items:
+            $ref: '#/components/schemas/CompanyFull_allOf_data_legal_representatives'
+          type: array
+      type: object
+    WorkflowSessionId:
+      description: 'Unique identifier of a Workflow Session. When provided, an Action is created in the Workflow Session, and this resource is associated with that Action.
+
+        '
+      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+      format: uuid
+      nullable: true
+      title: Workflow Session identifier
+      type: string
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - next_cursor
+      type: object
+  examples:
+    CompanyExample:
+      summary: 'Pending - Verification Is In Progress: On Creation The Status Is Always Pending'
+      value:
+        id: aa8c4e74-ad8f-4a10-bd9d-5681bbf23572
+        workspace_id: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+        workflow_session_id: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+        previous_attempt_id: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde4
+        applicant_id: null
+        created_at: '2023-01-01T12:00:00+00:00'
+        updated_at: '2023-01-01T12:00:00+00:00'
+        status: pending
+        data_anonymized: false
+        data:
+          extracted_from_document:
+            company_number: null
+            issued_on: null
+          company_information:
+            name: null
+            trade_name: null
+            company_number: null
+            legal_form:
+              code: null
+              description: null
+            vat_number: null
+            activities: []
+            founded_on: null
+            ceased_on: null
+            active: null
+            commercial_registration:
+              location: null
+              registered_on: null
+            has_workforce: null
+          headquarter:
+            address_line_1: null
+            address_line_2: null
+            postal_code: null
+            city: null
+            country_code: null
+          legal_representatives: []
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

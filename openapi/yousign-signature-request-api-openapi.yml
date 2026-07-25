@@ -1,0 +1,4113 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: contact@yousign.com
+    name: Support
+    url: https://yousign.com/contact
+  description: Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.
+  license:
+    name: proprietary
+    url: https://yousign.com/terms
+  title: Public Api v3 Applicant Signature Request API
+  version: '3.0'
+servers:
+- description: Sandbox URL
+  url: https://api-sandbox.yousign.app/v3
+- description: Production URL
+  url: https://api.yousign.app/v3
+security:
+- bearerAuth: []
+tags:
+- description: Process of inviting Signers to sign a Document.
+  name: Signature Request
+paths:
+  /signature_requests:
+    get:
+      description: Returns the list of all Signatures Requests in your organization. You can limit the number of items returned by using filters and pagination. Consult our guide for more details and examples.
+      operationId: get-signature_requests
+      parameters:
+      - description: After cursor (pagination)
+        in: query
+        name: after
+        required: false
+        schema:
+          minLength: 1
+          type: string
+      - description: The limit of items count to retrieve.
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 100
+          maximum: 100
+          minimum: 1
+          type: integer
+      - description: 'Filter by `status`. Allowed operators: `eq`, `in`.
+
+          Example: `status[in]=draft,done`
+
+          '
+        example:
+          eq:
+          - draft
+          in:
+          - draft
+          - done
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          description: Filter by status.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: 'Filter by `created_at`. Allowed operators: `eq`, `between`, `before`, `after`.
+
+          Format: the date format required is `yyyy-mm-dd`
+
+          Example: `created_at[between]=2025-03-02,2025-03-04`
+
+          '
+        example:
+          between:
+          - '2025-03-02'
+          - '2025-03-04'
+          before:
+          - '2025-03-02'
+        explode: true
+        in: query
+        name: created_at
+        required: false
+        schema:
+          description: Filter by date of creation.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: 'Filter by `activated_at`. Allowed operators: `eq`, `between`, `before`, `after`.
+
+          Format: the date format required is `yyyy-mm-dd`
+
+          Example: `activated_at[after]=2025-03-01`
+
+          '
+        example:
+          after:
+          - '2025-03-01'
+        explode: true
+        in: query
+        name: activated_at
+        required: false
+        schema:
+          description: Filter by activation date.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: 'Filter by `completed_at`. Allowed operators: `eq`, `between`, `before`, `after`.
+
+          Format: the date format required is `yyyy-mm-dd`
+
+          Example: `completed_at[between]=2025-03-01,2025-03-31`
+
+          '
+        example:
+          between:
+          - '2025-03-01'
+          - '2025-03-31'
+        explode: true
+        in: query
+        name: completed_at
+        required: false
+        schema:
+          description: Filter by completion date.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: 'Filter by `approved_at`. Allowed operators: `eq`, `between`, `before`, `after`.
+
+          Format: the date format required is `yyyy-mm-dd`
+
+          Example: `approved_at[after]=2025-03-01`
+
+          '
+        example:
+          after:
+          - '2025-03-01'
+        explode: true
+        in: query
+        name: approved_at
+        required: false
+        schema:
+          description: Filter by approval date.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: 'Filter by `rejected_at`. Allowed operators: `eq`, `between`, `before`, `after`.
+
+          Format: the date format required is `yyyy-mm-dd`
+
+          Example: `rejected_at[before]=2025-04-01`
+
+          '
+        example:
+          before:
+          - '2025-04-01'
+        explode: true
+        in: query
+        name: rejected_at
+        required: false
+        schema:
+          description: Filter by rejection date.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: 'Filter by `declined_at`. Allowed operators: `eq`, `between`, `before`, `after`.
+
+          Format: the date format required is `yyyy-mm-dd`
+
+          Example: `declined_at[after]=2025-01-01`
+
+          '
+        example:
+          after:
+          - '2025-01-01'
+        explode: true
+        in: query
+        name: declined_at
+        required: false
+        schema:
+          description: Filter by decline date.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: 'Filter by `workspace_id`. Allowed operators: `eq`.
+
+          Example: `workspace_id[eq]=9b6ed2f3-244f-487a-baa1-bbe4f51c8748`
+
+          '
+        example:
+          eq:
+          - 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+        explode: true
+        in: query
+        name: workspace_id
+        required: false
+        schema:
+          description: Filter by workspace_id.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: 'Filter by `external_id`. Allowed operators: `eq`.
+
+          Example: `external_id[eq]=an-external-id`
+
+          '
+        example:
+          eq:
+          - an-external-id
+        explode: true
+        in: query
+        name: external_id
+        required: false
+        schema:
+          description: Filter by external_id.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: 'Filter by `source`. Allowed operators: `eq`, `in`.
+
+          Default value: `source[eq]=public_api`. If not specified, only Signature Requests created via the Public API are returned.
+
+          Example: `source[in]=public_api,app`
+
+          '
+        example:
+          eq:
+          - public_api
+          in:
+          - public_api
+          - app
+        explode: true
+        in: query
+        name: source
+        required: false
+        schema:
+          description: Filter by source.
+          minProperties: 1
+          type: object
+        style: deepObject
+      - description: Search on name
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+      - description: 'Filter by Label''s `name`. Allowed operators: `eq`, `in`.
+
+          Example: `label.name[in]=To Sign,Miscellaneous`
+
+          '
+        example:
+          eq:
+          - To Sign
+          in:
+          - To Sign
+          - Miscellaneous
+        explode: true
+        in: query
+        name: label.name
+        required: false
+        schema:
+          description: Case sensitive filter by Label's name.
+          minProperties: 1
+          type: object
+        style: deepObject
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_signature_requests_200_response'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: List Signature Requests
+      tags:
+      - Signature Request
+    post:
+      description: Creates a new Signature Request resource.
+      operationId: post-signature_requests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSignatureRequest'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureRequest'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '415':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeResponse'
+          description: UnsupportedMediaType
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Initiate a new Signature Request
+      tags:
+      - Signature Request
+  /signature_requests/{signatureRequestId}:
+    delete:
+      description: Deletes a given Signature Request, not possible if the Signature Request is in `approval` and `ongoing` status.
+      operationId: delete-signature_requests-signatureRequestId
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: If true it will permanently delete the Signature Request. It will no longer be retrievable.
+        in: query
+        name: permanent_delete
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '204':
+          description: The resource was deleted successfully
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Delete a Signature Request
+      tags:
+      - Signature Request
+    get:
+      description: Retrieves a given Signature Request.
+      operationId: get-signature_requests-signatureRequestId
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureRequest'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Fetch a Signature Request
+      tags:
+      - Signature Request
+    patch:
+      description: Updates a given Signature Request. Any parameters not provided are left unchanged.
+      operationId: patch-signature_requests-signatureRequestId
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSignatureRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureRequest'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '415':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeResponse'
+          description: UnsupportedMediaType
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Update a Signature Request
+      tags:
+      - Signature Request
+  /signature_requests/{signatureRequestId}/activate:
+    post:
+      description: 'Activates a Signature request, so it is not in `draft` status anymore.
+
+        If the `delivery_mode` is not `null`, activating the Signature Request will trigger the notifications to Approvers/Followers/Signers.
+
+        '
+      operationId: post-signature_requests-signatureRequestId-activate
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateSignatureRequest'
+          '*/*': {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureRequestActivated'
+          description: The Signature Request has been activated
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Activate a Signature Request
+      tags:
+      - Signature Request
+  /signature_requests/{signatureRequestId}/cancel:
+    post:
+      description: Cancels a Signature Request when it is in `approval` or `ongoing` status. A canceled Signature Request cannot be reactivated.
+      operationId: post-signature_requests-signatureRequestId-cancel
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/post_signature_requests_signatureRequestId_cancel_request'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureRequest'
+          description: The Signature Request has been canceled
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '415':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeResponse'
+          description: UnsupportedMediaType
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Cancel a Signature Request
+      tags:
+      - Signature Request
+  /signature_requests/{signatureRequestId}/reactivate:
+    post:
+      description: Reactivates a Signature Request when it is in `expired` status.
+      operationId: post-signature_requests-signatureRequestId-reactivate
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/post_signature_requests_signatureRequestId_reactivate_request'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignatureRequest'
+          description: The Signature Request has been reactivated
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '415':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeResponse'
+          description: UnsupportedMediaType
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Reactivate an expired Signature Request
+      tags:
+      - Signature Request
+components:
+  schemas:
+    CustomPropertyType:
+      enum:
+      - text
+      - list
+      example: text
+      type: string
+    EmbeddedSignerWithSignatureLink:
+      description: ''
+      properties:
+        id:
+          format: uuid
+          minLength: 1
+          type: string
+        status:
+          enum:
+          - initiated
+          - notified
+          - verified
+          - processing
+          - consent_given
+          - signed
+          - aborted
+          - error
+          minLength: 1
+          type: string
+        signature_link:
+          format: uri
+          minLength: 1
+          nullable: true
+          type: string
+        signature_link_expiration_date:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - id
+      - signature_link
+      - signature_link_expiration_date
+      - status
+      type: object
+    UpdateSignatureRequest:
+      properties:
+        name:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          format: safe-string
+          maxLength: 128
+          minLength: 1
+          type: string
+        delivery_mode:
+          description: Delivery mode to notify signers.
+          enum:
+          - none
+          - email
+          type: string
+        ordered_signers:
+          description: Enable an ordered workflow, each signer will be requested to sign in a sequential order
+          example: true
+          type: boolean
+        ordered_approvers:
+          description: 'When enabled, Approvers are requested to approve sequentially.
+
+            Each Approver will be invited to approve only once the previous one has completed their approval.
+
+            '
+          example: true
+          type: boolean
+        reminder_settings:
+          $ref: '#/components/schemas/UpdateSignatureRequest_reminder_settings'
+        timezone:
+          $ref: '#/components/schemas/SignatureRequestTimeZone'
+        email_custom_note:
+          deprecated: true
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email.
+          example: Please sign these documents as soon as possible.
+          format: safe-string
+          maxLength: 500
+          nullable: true
+          type: string
+        expiration_date:
+          description: 'Due date of the Signature Request (yyyy-mm-dd).
+
+            The date cannot be in the past and cannot be more than one year after initiation.
+
+            '
+          format: date
+          pattern: ^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$
+          type: string
+        external_id:
+          maxLength: 255
+          nullable: true
+          pattern: ^[\w\-@.%+]+$
+          type: string
+        branding_id:
+          deprecated: true
+          example: 3a93d3b5-fb3b-4abf-9e70-26315b33506b
+          format: uuid
+          nullable: true
+          type: string
+        custom_experience_id:
+          description: Use a specific Custom Experience to customize the signature experience.
+          example: 3a93d3b5-fb3b-4abf-9e70-26315b33506b
+          format: uuid
+          nullable: true
+          type: string
+        signers_allowed_to_decline:
+          default: false
+          description: Allowing signers to decline to sign.
+          example: true
+          type: boolean
+        workspace_id:
+          description: Transfer the Signature Request into a given Workspace.
+          example: 3a93d3b5-fb3b-4abf-9e70-26315b33506b
+          format: uuid
+          nullable: true
+          type: string
+        audit_trail_locale:
+          allOf:
+          - $ref: '#/components/schemas/AuditTrailLocale'
+          description: Define the locale for the generated audit trail.
+          nullable: true
+          type: string
+        email_notification:
+          $ref: '#/components/schemas/SignatureRequest_EmailNotification'
+        labels:
+          description: List of Labels to associate with the Signature Request. Labels are identified by their ID.
+          example:
+          - 3a93d3b5-fb3b-4abf-9e70-26315b33506b
+          - 89120884-d29a-4b1a-ac7b-a9e73a872795
+          items:
+            format: uuid
+            type: string
+          maxItems: 50
+          type: array
+      type: object
+    New_Signature_Request_From_Scratch:
+      description: Create a new Signature Request from scratch
+      properties:
+        name:
+          description: 'Name of the signature request.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+
+            '
+          format: safe-string
+          maxLength: 128
+          minLength: 1
+          type: string
+        delivery_mode:
+          description: Delivery mode to notify Signers.
+          enum:
+          - none
+          - email
+          type: string
+        ordered_signers:
+          description: Enable an ordered workflow, each Signer will be requested to sign in a sequential order
+          example: true
+          type: boolean
+        ordered_approvers:
+          description: 'When enabled, Approvers are requested to approve sequentially.
+
+            Each Approver will be invited to approve only once the previous one has completed their approval.
+
+            '
+          example: true
+          type: boolean
+        custom_recipient_order:
+          description: 'When enabled, Approvers and Signers are requested to approve depending of a sequence composed of stages.
+
+            Every recipients present in a stage will be invited to approve or sign parallelly, and stages are sequential each other.
+
+            When `custom_recipient_order` is enabled, `ordered_approvers` and `ordered_signers` are ignored.
+
+            '
+          example: true
+          type: boolean
+        reminder_settings:
+          $ref: '#/components/schemas/New_Signature_Request_From_Scratch_reminder_settings'
+        timezone:
+          $ref: '#/components/schemas/SignatureRequestTimeZone'
+        email_custom_note:
+          deprecated: true
+          description: 'A custom note added to emails sent to signers.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+
+            '
+          example: Please sign these documents as soon as possible.
+          format: safe-string
+          maxLength: 500
+          nullable: true
+          type: string
+        expiration_date:
+          description: 'Due date of the Signature Request (yyyy-mm-dd). Defaults to 6 months after initiation.
+
+            The date cannot be in the past and cannot be more than one year after initiation.
+
+            '
+          format: date
+          pattern: ^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$
+          type: string
+        template_id:
+          description: Create a Signature Request from an existing template.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+        external_id:
+          description: Store a custom id that will be added to webhooks & appended to redirect urls.
+          maxLength: 255
+          nullable: true
+          pattern: ^[\w\-@.%+]+$
+          type: string
+        branding_id:
+          deprecated: true
+          description: Use a specific branding to customize the signature experience.
+          example: 3a93d3b5-fb3b-4abf-9e70-26315b33506b
+          format: uuid
+          nullable: true
+          type: string
+        custom_experience_id:
+          description: Use a specific Custom Experience to customize the signature experience.
+          example: 3a93d3b5-fb3b-4abf-9e70-26315b33506b
+          format: uuid
+          nullable: true
+          type: string
+        documents:
+          deprecated: true
+          description: You can directly attach orphan Documents to the Signature Request.
+          items:
+            example: 89120884-d29a-4b1a-ac7b-a9e73a872795
+            format: uuid
+            type: string
+          maxItems: 5
+          type: array
+          uniqueItems: true
+        signers:
+          deprecated: true
+          description: Can only be used if you add documents at the same time.
+          items:
+            $ref: '#/components/schemas/New_Signature_Request_From_Scratch_signers_inner'
+          type: array
+        workspace_id:
+          description: Scope the signature request to a specific workspace. If template_id is filled and Template is already linked to a Workspace, keep this field to null ; the created Signature Request will be scoped to Template's Workspace.
+          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
+          format: uuid
+          nullable: true
+          type: string
+        audit_trail_locale:
+          allOf:
+          - $ref: '#/components/schemas/AuditTrailLocale'
+          description: Define the locale for the generated audit trail.
+          nullable: true
+          type: string
+        signers_allowed_to_decline:
+          default: false
+          description: Allowing signers to decline to sign.
+          example: true
+          type: boolean
+        email_notification:
+          $ref: '#/components/schemas/SignatureRequest_EmailNotification'
+        template_placeholders:
+          $ref: '#/components/schemas/New_Signature_Request_From_Scratch_template_placeholders'
+        archiving:
+          $ref: '#/components/schemas/Archiving'
+        labels:
+          description: List of Labels to associate with the Signature Request. Labels are identified by their ID.
+          example:
+          - 3a93d3b5-fb3b-4abf-9e70-26315b33506b
+          - 89120884-d29a-4b1a-ac7b-a9e73a872795
+          items:
+            format: uuid
+            type: string
+          maxItems: 50
+          type: array
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+      required:
+      - delivery_mode
+      - name
+      title: New Signature Request From Scratch
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    SignatureRequestInList_approvers_inner:
+      properties:
+        id:
+          type: string
+        status:
+          enum:
+          - initiated
+          - notified
+          - approved
+          - rejected
+          type: string
+      required:
+      - id
+      - status
+      type: object
+    post_signature_requests_signatureRequestId_reactivate_request:
+      properties:
+        expiration_date:
+          description: 'Due date of the Signature Request (yyyy-mm-dd).
+
+            The date cannot be in the past and cannot be more than one year after initiation.
+
+            '
+          format: date
+          pattern: ^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$
+          type: string
+      required:
+      - expiration_date
+      type: object
+    SignatureRequest:
+      properties:
+        id:
+          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
+          minLength: 1
+          type: string
+        status:
+          $ref: '#/components/schemas/SignatureRequestStatus'
+        name:
+          example: signature request name
+          maxLength: 128
+          minLength: 1
+          type: string
+        delivery_mode:
+          enum:
+          - email
+          - none
+          type: string
+        created_at:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          minLength: 1
+          type: string
+        activated_at:
+          description: 'Timestamp indicating when the Signature Request was activated and made available to its recipients.\
+
+            Returns `null` if the Signature Request is still in `draft`.
+
+            '
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        completed_at:
+          description: 'Timestamp indicating when the Signature Request reached the `done` status, i.e. all required Signers have signed and all Approvers have approved.\
+
+            Returns `null` if the Signature Request is not yet complete.
+
+            '
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        approved_at:
+          description: 'Timestamp indicating when all Approvers have approved the Signature Request when custom recipient flow is not enabled.\
+
+            Returns `null` if no approvers are configured, or if at least one approver has not yet approved, or when `custom_recipient_order` is enabled.
+
+            '
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        ordered_signers:
+          description: Enable an ordered workflow, each Signer will be requested to sign in a sequential order
+          type: boolean
+        ordered_approvers:
+          description: Enable an ordered workflow, each Approver will be requested to approve in a sequential order
+          type: boolean
+        reminder_settings:
+          $ref: '#/components/schemas/SignatureRequestInList_reminder_settings'
+        timezone:
+          $ref: '#/components/schemas/SignatureRequestTimeZone'
+        email_custom_note:
+          deprecated: true
+          example: Please sign these documents as soon as possible.
+          maxLength: 500
+          nullable: true
+          type: string
+        expiration_date:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+        source:
+          enum:
+          - app
+          - public_api
+          - hubspot_integration
+          - connector_salesforce_api
+          - connector_google_api
+          - connector_zapier_api
+          type: string
+        signers:
+          items:
+            $ref: '#/components/schemas/SignatureRequestInList_signers_inner'
+          type: array
+        approvers:
+          items:
+            $ref: '#/components/schemas/SignatureRequestInList_approvers_inner'
+          type: array
+        labels:
+          description: Labels associated to the Signature Request
+          items:
+            $ref: '#/components/schemas/SignatureRequestLabel'
+          type: array
+        documents:
+          items:
+            $ref: '#/components/schemas/SignatureRequestInList_documents_inner'
+          type: array
+        sender:
+          $ref: '#/components/schemas/SignatureRequestInList_sender'
+        external_id:
+          example: An_external-ID
+          nullable: true
+          type: string
+        branding_id:
+          deprecated: true
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          nullable: true
+          type: string
+        custom_experience_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          nullable: true
+          type: string
+        signers_allowed_to_decline:
+          example: true
+          type: boolean
+        workspace_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+        audit_trail_locale:
+          $ref: '#/components/schemas/AuditTrailLocale'
+        email_notification:
+          $ref: '#/components/schemas/SignatureRequest_email_notification'
+        bulk_send_batch_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          nullable: true
+          type: string
+        decline_information:
+          $ref: '#/components/schemas/SignatureRequest_decline_information'
+        rejection_information:
+          $ref: '#/components/schemas/SignatureRequest_rejection_information'
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        custom_recipient_order:
+          description: Enable a custom recipients order
+          type: boolean
+        custom_properties:
+          description: Custom properties associated with the Signature Request.
+          items:
+            $ref: '#/components/schemas/CustomPropertyValue'
+          type: array
+      required:
+      - activated_at
+      - approved_at
+      - audit_trail_locale
+      - branding_id
+      - bulk_send_batch_id
+      - completed_at
+      - created_at
+      - custom_experience_id
+      - custom_recipient_order
+      - delivery_mode
+      - documents
+      - email_custom_note
+      - email_notification
+      - expiration_date
+      - external_id
+      - id
+      - name
+      - ordered_approvers
+      - ordered_signers
+      - previous_attempt_id
+      - rejection_information
+      - reminder_settings
+      - sender
+      - signers
+      - signers_allowed_to_decline
+      - source
+      - status
+      - timezone
+      - workflow_session_id
+      title: SignatureRequest
+      type: object
+    FieldsInput:
+      oneOf:
+      - $ref: '#/components/schemas/Signature_2'
+      - $ref: '#/components/schemas/Mention_2'
+      - $ref: '#/components/schemas/Text_2'
+      - $ref: '#/components/schemas/Checkbox_2'
+      - $ref: '#/components/schemas/RadioGroup_2'
+      type: object
+    SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_info:
+      additionalProperties: false
+      description: Create new signer
+      properties:
+        first_name:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          example: John
+          maxLength: 255
+          minLength: 1
+          type: string
+        last_name:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          example: Doe
+          maxLength: 255
+          minLength: 1
+          type: string
+        email:
+          format: email
+          maxLength: 100
+          minLength: 1
+          type: string
+        phone_number:
+          description: E.164 format. Becomes mandatory if `signature_authentication_mode` requires a phone number.
+          example: '+41446667700'
+          minLength: 1
+          nullable: true
+          type: string
+        locale:
+          $ref: '#/components/schemas/Locale'
+      required:
+      - email
+      - first_name
+      - last_name
+      - locale
+      type: object
+    Locale:
+      description: Locale settings used for communication.
+      enum:
+      - en
+      - fr
+      - de
+      - it
+      - nl
+      - es
+      - pl
+      minLength: 1
+      title: Locale
+      type: string
+    SignatureRequest_PlaceholderSignerSubstituteFromInfoInput:
+      additionalProperties: false
+      description: Create a placeholder signer substitute from info
+      properties:
+        label:
+          example: Employee
+          maxLength: 64
+          minLength: 1
+          type: string
+        info:
+          $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_info'
+        signature_level:
+          default: electronic_signature
+          enum:
+          - electronic_signature
+          - advanced_electronic_signature
+          - qualified_electronic_signature
+          type: string
+        signature_authentication_mode:
+          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
+          enum:
+          - null
+          - otp_email
+          - otp_sms
+          - no_otp
+          nullable: true
+          type: string
+        redirect_urls:
+          $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_redirect_urls'
+        custom_text:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
+        delivery_mode:
+          $ref: '#/components/schemas/SignerDeliveryMode'
+      required:
+      - info
+      - label
+      title: From Scratch
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    SignatureRequest_rejection_information:
+      description: Information related to the rejection of a Signature Request by an Approver.
+      nullable: true
+      properties:
+        approver_id:
+          description: Id of the Approver who rejected the Signature Request.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+        reason:
+          description: Reason provided by the Approver explaining why they rejected the Signature Request.
+          example: I don't agree with the terms in the document.
+          type: string
+        rejected_at:
+          description: Timestamp indicating when the Approver rejected the Signature Request.
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+      readOnly: true
+      type: object
+    get_signature_requests_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/SignatureRequestInList'
+          type: array
+      type: object
+    SignatureRequestInList_sender:
+      nullable: true
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+      type: object
+    SignatureRequestInList_documents_inner:
+      properties:
+        id:
+          type: string
+        nature:
+          enum:
+          - attachment
+          - signable_document
+          type: string
+      required:
+      - id
+      - nature
+      type: object
+    SignatureRequest_PlaceholderSignerSubstituteFromUserIdInput:
+      additionalProperties: false
+      description: Create a placeholder signer substitute from a user
+      properties:
+        label:
+          example: Employee
+          maxLength: 64
+          minLength: 1
+          type: string
+        user_id:
+          description: Create signer from an existing user
+          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
+          format: uuid
+          type: string
+        signature_level:
+          default: electronic_signature
+          enum:
+          - electronic_signature
+          - advanced_electronic_signature
+          - qualified_electronic_signature
+          type: string
+        signature_authentication_mode:
+          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
+          enum:
+          - null
+          - otp_email
+          - otp_sms
+          - no_otp
+          nullable: true
+          type: string
+        redirect_urls:
+          $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_redirect_urls'
+        custom_text:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
+        delivery_mode:
+          $ref: '#/components/schemas/SignerDeliveryMode'
+      required:
+      - label
+      - user_id
+      title: From Existing User
+      type: object
+    SignerDeliveryMode:
+      description: Override the delivery mode of the Signature Request for this Signer
+      enum:
+      - email
+      - none
+      nullable: true
+      type: string
+    SignatureRequest_SignerFromInfoInput_info:
+      additionalProperties: false
+      description: create new signer
+      properties:
+        first_name:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          example: John
+          maxLength: 255
+          minLength: 1
+          type: string
+        last_name:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          example: Doe
+          maxLength: 255
+          minLength: 1
+          type: string
+        email:
+          format: email
+          maxLength: 100
+          minLength: 1
+          type: string
+        phone_number:
+          description: E.164 format. Becomes mandatory if `signature_authentication_mode` requires a phone number.
+          example: '+41446667700'
+          minLength: 1
+          nullable: true
+          type: string
+        locale:
+          $ref: '#/components/schemas/Locale'
+      required:
+      - email
+      - first_name
+      - last_name
+      - locale
+      type: object
+    Text_2:
+      properties:
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - text
+          type: string
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        width:
+          description: If not set, the width is automatically calculated with the max_length value
+          example: 90
+          format: int32
+          minimum: 24
+          type: integer
+        height:
+          description: The height must be 24 or a multiple of 15 greater than 24.
+          example: 150
+          format: int32
+          minimum: 24
+          type: integer
+        max_length:
+          maximum: 32767
+          minimum: 1
+          type: integer
+        question:
+          example: What is your job title?
+          maxLength: 255
+          type: string
+        instruction:
+          example: Your position in the company
+          nullable: true
+          type: string
+        optional:
+          type: boolean
+        name:
+          description: Name of the Field.
+          example: Job Title
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        default_value:
+          description: If a default value is provided, the Field will be pre-filled with this value. The Signer can modify it before signing unless the Field is set to `read-only`.
+          example: Software Engineer
+          maxLength: 32767
+          minLength: 1
+          nullable: true
+          type: string
+        read_only:
+          default: false
+          description: If set to `true`, the Signer cannot modify the Field and the default value (if provided) will remain unchanged.
+          type: boolean
+      required:
+      - document_id
+      - max_length
+      - optional
+      - page
+      - question
+      - type
+      - x
+      - y
+      title: Text
+      type: object
+    SignatureRequest_PlaceholderReadOnlyTextFieldSubstituteInput:
+      additionalProperties: false
+      description: Create a placeholder read_only_text field substitute
+      properties:
+        label:
+          example: Employee
+          maxLength: 64
+          minLength: 1
+          type: string
+        text:
+          example: This is my read_only_text
+          maxLength: 5000
+          minLength: 1
+          type: string
+      required:
+      - label
+      - text
+      type: object
+    CustomPropertyValue:
+      properties:
+        id:
+          description: ID of the Custom Property.
+          format: uuid
+          type: string
+        name:
+          description: Name of the Custom Property.
+          type: string
+        type:
+          enum:
+          - text
+          - list
+          type: string
+        value:
+          description: Text value for text properties.
+          nullable: true
+          type: string
+        value_ids:
+          description: Array of option ids for list properties.
+          items:
+            format: uuid
+            type: string
+          nullable: true
+          type: array
+        values:
+          description: Array of option values for list properties.
+          items:
+            type: string
+          nullable: true
+          type: array
+      required:
+      - id
+      - name
+      - type
+      title: CustomPropertyValue
+      type: object
+    AuditTrailLocale:
+      enum:
+      - de
+      - en
+      - es
+      - fr
+      - it
+      - pt
+      - ro
+      example: en
+      type: string
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    SignatureRequest_SignerFromInfoInput:
+      additionalProperties: false
+      description: Create a signer from info
+      properties:
+        info:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_info'
+        fields:
+          items:
+            $ref: '#/components/schemas/FieldsInput'
+          type: array
+        signature_level:
+          default: electronic_signature
+          enum:
+          - electronic_signature
+          - advanced_electronic_signature
+          - qualified_electronic_signature
+          type: string
+        signature_authentication_mode:
+          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
+          enum:
+          - null
+          - otp_email
+          - otp_sms
+          - no_otp
+          nullable: true
+          type: string
+        redirect_urls:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_redirect_urls'
+        custom_text:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
+        pre_identity_verification_required:
+          description: Defines the way the Signer's Identity Documents will be uploaded for Verification. If set to `true`, `signature_level`should be equal to `advanced_electronic_signature` and `delivery_mode` set to `none`.
+          type: boolean
+      required:
+      - info
+      - signature_level
+      title: From Scratch
+      type: object
+    Mention_2:
+      properties:
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - mention
+          type: string
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        width:
+          description: If not set, the width is automatically calculated with the mention length
+          format: int32
+          minimum: 24
+          type: integer
+        height:
+          description: The height must be 24 or a multiple of 15 greater than 24. If height is not provided, it will be calculated depending on the number of newlines in the mention
+          example: 150
+          format: int32
+          minimum: 24
+          nullable: true
+          type: integer
+        mention:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email.
+          format: safe-string
+          type: string
+        name:
+          description: Name of the Field.
+          example: Job Title
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - document_id
+      - mention
+      - page
+      - type
+      - x
+      - y
+      title: Mention
+      type: object
+    SignatureRequest_EmailNotification:
+      additionalProperties: false
+      minProperties: 1
+      nullable: true
+      properties:
+        sender:
+          $ref: '#/components/schemas/SignatureRequest_EmailNotification_Sender'
+        custom_note:
+          deprecated: true
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          example: Please sign these documents as soon as possible.
+          format: safe-string
+          maxLength: 2000
+          nullable: true
+          type: string
+        custom_text:
+          $ref: '#/components/schemas/SignatureRequest_EmailNotification_custom_text'
+      title: SignatureRequest_EmailNotification
+      type: object
+    New_Signature_Request_From_Scratch_template_placeholders:
+      additionalProperties: false
+      description: When creating a signature request from a template, all substituting data for placeholders defined in the given template.
+      nullable: true
+      properties:
+        signers:
+          description: Substituting data for placeholder signers.
+          items:
+            $ref: '#/components/schemas/New_Signature_Request_From_Scratch_template_placeholders_signers_inner'
+          maxItems: 100
+          type: array
+        read_only_text_fields:
+          description: Substituting data for placeholder read_only_text fields.
+          items:
+            $ref: '#/components/schemas/SignatureRequest_PlaceholderReadOnlyTextFieldSubstituteInput'
+          maxItems: 500
+          type: array
+      type: object
+    ApproverToNotify:
+      description: ''
+      properties:
+        id:
+          format: uuid
+          minLength: 1
+          type: string
+        status:
+          enum:
+          - initiated
+          - notified
+          - approved
+          - rejected
+          minLength: 1
+          type: string
+        approval_link:
+          format: uri
+          minLength: 1
+          nullable: true
+          type: string
+        approval_link_expiration_date:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - approval_link
+      - approval_link_expiration_date
+      - id
+      - status
+      type: object
+    ActivateSignatureRequest:
+      properties:
+        sender_id:
+          description: 'The Id of the User that should be considered as the Signature Request sender.
+
+            They must be part of the Workspace of the Signature Request and be active.
+
+            Mandatory with `sender_type: "user"`, must be omitted otherwise.
+
+            '
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+      type: object
+    RadioGroup_2:
+      properties:
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - radio_group
+          type: string
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        optional:
+          type: boolean
+        name:
+          description: Radio group's name
+          example: radio_group_name_1
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        read_only:
+          default: false
+          description: If set to `true`, the radio button cannot be modified by the Signer.
+          type: boolean
+        radios:
+          items:
+            $ref: '#/components/schemas/RadioGroup_2_radios_inner'
+          type: array
+      required:
+      - document_id
+      - optional
+      - page
+      - radios
+      - type
+      title: RadioGroup
+      type: object
+    UpdateSignatureRequest_reminder_settings:
+      nullable: true
+      properties:
+        interval_in_days:
+          enum:
+          - 1
+          - 2
+          - 7
+          - 14
+          format: int32
+          type: integer
+        max_occurrences:
+          example: 5
+          format: int32
+          maximum: 10
+          minimum: 1
+          type: integer
+      required:
+      - interval_in_days
+      - max_occurrences
+      type: object
+    CustomPropertyOption:
+      properties:
+        id:
+          description: Unique identifier of the option
+          format: uuid
+          type: string
+        value:
+          description: Display text of the option
+          type: string
+        is_default:
+          description: Whether this option is pre-selected on new SRs
+          type: boolean
+        position:
+          description: Sort order
+          type: integer
+      required:
+      - id
+      - is_default
+      - position
+      - value
+      title: CustomPropertyOption
+      type: object
+    WorkflowSessionId:
+      description: 'Unique identifier of a Workflow Session. When provided, an Action is created in the Workflow Session, and this resource is associated with that Action.
+
+        '
+      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+      format: uuid
+      nullable: true
+      title: Workflow Session identifier
+      type: string
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - next_cursor
+      type: object
+    New_Signature_Request_From_Scratch_template_placeholders_signers_inner:
+      anyOf:
+      - $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput'
+      - $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromUserIdInput'
+      - $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromContactIdInput'
+    SignatureRequestLabel:
+      properties:
+        id:
+          description: Unique identifier of the Label.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          nullable: false
+          readOnly: true
+          type: string
+        name:
+          description: Name of the Label.
+          example: Contracts
+          maxLength: 128
+          minLength: 1
+          nullable: false
+          type: string
+      required:
+      - id
+      - name
+      type: object
+    SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_redirect_urls:
+      additionalProperties: false
+      properties:
+        success:
+          example: https://example.com/success
+          format: uri
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+        error:
+          example: https://example.com/error
+          format: uri
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+        decline:
+          example: https://example.com/decline
+          format: uri
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+      type: object
+    HumanName:
+      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
+      type: string
+    SignatureRequest_SignerFromInfoInput_redirect_urls:
+      additionalProperties: false
+      properties:
+        success:
+          example: https://example.com/success
+          format: uri
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+        error:
+          example: https://example.com/error
+          format: uri
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+      type: object
+    Archiving:
+      deprecated: true
+      description: Once the signature request completed, archive its documents in a secure digital safe
+      enum:
+      - archive
+      - archive_y
+      nullable: true
+      title: Archiving
+      type: string
+    SignatureRequest_email_notification:
+      properties:
+        sender:
+          $ref: '#/components/schemas/SignatureRequest_email_notification_sender'
+        custom_note:
+          example: Please sign these documents as soon as possible.
+          maxLength: 2000
+          nullable: true
+          type: string
+      required:
+      - custom_note
+      - sender
+      type: object
+    New_Signature_Request_From_Scratch_signers_inner:
+      anyOf:
+      - $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput'
+      - $ref: '#/components/schemas/SignatureRequest_SignerFromUserIdInput'
+      - $ref: '#/components/schemas/SignatureRequest_SignerFromContactIdInput'
+      description: Create signers
+    SignatureRequest_PlaceholderSignerSubstituteFromContactIdInput:
+      additionalProperties: false
+      description: Create a placeholder signer substitute from a contact
+      properties:
+        label:
+          example: Employee
+          maxLength: 64
+          minLength: 1
+          type: string
+        contact_id:
+          description: Create signer from an existing contact
+          example: ddecfb85-8a45-4254-b940-6171b8df0a90
+          format: uuid
+          type: string
+        signature_level:
+          default: electronic_signature
+          enum:
+          - electronic_signature
+          - advanced_electronic_signature
+          - qualified_electronic_signature
+          type: string
+        signature_authentication_mode:
+          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
+          enum:
+          - null
+          - otp_email
+          - otp_sms
+          - no_otp
+          nullable: true
+          type: string
+        redirect_urls:
+          $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_redirect_urls'
+        custom_text:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
+        delivery_mode:
+          $ref: '#/components/schemas/SignerDeliveryMode'
+      required:
+      - contact_id
+      - label
+      title: From Existing Contact
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    SignatureRequest_decline_information:
+      nullable: true
+      properties:
+        signer_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+        reason:
+          type: string
+        declined_at:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    post_signature_requests_signatureRequestId_cancel_request:
+      properties:
+        reason:
+          enum:
+          - contractualization_aborted
+          - errors_in_document
+          - other
+          type: string
+        custom_note:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          format: safe-string
+          maxLength: 500
+          nullable: true
+          type: string
+      required:
+      - reason
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    SignatureRequestActivated_documents_inner:
+      properties:
+        id:
+          type: string
+        nature:
+          type: string
+      required:
+      - id
+      - nature
+      type: object
+    SignatureRequestActivated:
+      properties:
+        id:
+          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
+          minLength: 1
+          type: string
+        status:
+          enum:
+          - ongoing
+          - approval
+          type: string
+        name:
+          example: signature request name
+          maxLength: 128
+          minLength: 1
+          type: string
+        delivery_mode:
+          enum:
+          - email
+          - none
+          type: string
+        created_at:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          minLength: 1
+          type: string
+        activated_at:
+          description: 'Timestamp indicating when the Signature Request was activated and made available to its recipients.\
+
+            Returns `null` if the Signature Request is still in `draft`.
+
+            '
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        completed_at:
+          description: 'Timestamp indicating when the Signature Request reached the `done` status, i.e. all required Signers have signed and all Approvers have approved.\
+
+            Returns `null` if the Signature Request is not yet complete.
+
+            '
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        approved_at:
+          description: 'Timestamp indicating when all Approvers have approved the Signature Request when custom recipient flow is not enabled.\
+
+            Returns `null` if no approvers are configured, or if at least one approver has not yet approved, or when `custom_recipient_order` is enabled.
+
+            '
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        ordered_signers:
+          description: Enable an ordered workflow, each Signer will be requested to sign in a sequential order
+          example: true
+          type: boolean
+        ordered_approvers:
+          description: Enable an ordered workflow, each Approver will be requested to approve in a sequential order
+          example: true
+          type: boolean
+        reminder_settings:
+          $ref: '#/components/schemas/SignatureRequestInList_reminder_settings'
+        timezone:
+          $ref: '#/components/schemas/SignatureRequestTimeZone'
+        email_custom_note:
+          deprecated: true
+          example: Please sign these documents as soon as possible.
+          nullable: true
+          type: string
+        expiration_date:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+        signers:
+          items:
+            $ref: '#/components/schemas/EmbeddedSignerWithSignatureLink'
+          minItems: 1
+          type: array
+          uniqueItems: true
+        approvers:
+          items:
+            $ref: '#/components/schemas/ApproverToNotify'
+          type: array
+          uniqueItems: true
+        labels:
+          description: Labels associated to the Signature Request
+          items:
+            $ref: '#/components/schemas/SignatureRequestLabel'
+          type: array
+        documents:
+          items:
+            $ref: '#/components/schemas/SignatureRequestActivated_documents_inner'
+          type: array
+        external_id:
+          maxLength: 255
+          nullable: true
+          pattern: ^[\w\-@.%+]+$
+          type: string
+        branding_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          nullable: true
+          type: string
+        custom_experience_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          nullable: true
+          type: string
+        audit_trail_locale:
+          $ref: '#/components/schemas/AuditTrailLocale'
+        signers_allowed_to_decline:
+          type: boolean
+        rejection_information:
+          $ref: '#/components/schemas/SignatureRequest_rejection_information'
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        custom_recipient_order:
+          description: Enable a custom recipients order
+          type: boolean
+      required:
+      - activated_at
+      - approved_at
+      - audit_trail_locale
+      - branding_id
+      - completed_at
+      - created_at
+      - custom_experience_id
+      - custom_recipient_order
+      - delivery_mode
+      - documents
+      - email_custom_note
+      - expiration_date
+      - external_id
+      - id
+      - name
+      - ordered_approvers
+      - ordered_signers
+      - previous_attempt_id
+      - rejection_information
+      - reminder_settings
+      - signers
+      - signers_allowed_to_decline
+      - status
+      - timezone
+      - workflow_session_id
+      title: SignatureRequestActivated
+      type: object
+    Duplicate_a_Signature_Request:
+      description: Duplicate a Signature Request. It will be added to the same workspace as the original.
+      properties:
+        signature_request_id:
+          description: ID of the signature request to duplicate.
+          example: 6c82bd7a-d7f7-45e0-82f4-b92222567346
+          format: uuid
+          title: Signature Request ID
+          type: string
+        name:
+          description: The name of the new Signature Request.
+          example: My duplicated Signature Request
+          maxLength: 128
+          minLength: 1
+          type: string
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+      required:
+      - signature_request_id
+      title: Duplicate a Signature Request
+      type: object
+    RadioGroup_2_radios_inner:
+      properties:
+        name:
+          description: Radio button's name
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        size:
+          description: The omission of size parameter is considered as deprecated. The size determines both the width and height of the checkbox.
+          format: int32
+          maximum: 240
+          minimum: 8
+          type: integer
+        default_checked:
+          default: false
+          description: Indicates whether the radio is initially checked (`true`) or unchecked (`false`).
+          type: boolean
+      required:
+      - x
+      - y
+      type: object
+    SignatureRequest_EmailNotification_Sender:
+      properties:
+        type:
+          enum:
+          - organization
+          - workspace
+          - custom
+          - user
+          type: string
+        custom_name:
+          description: 'To use in association with sender type custom to precise the name.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+
+            '
+          format: safe-string
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+      title: SignatureRequest_Sender
+      type: object
+    SignatureRequestTimeZone:
+      default: Europe/Paris
+      description: 'Time zone of the dates and times displayed in emails, the Signature Request expiration date, and the PDF Audit Trail. Format: tz database. Default is set to Europe/Paris.'
+      example: Europe/Paris
+      type: string
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    SignatureRequestInList:
+      properties:
+        id:
+          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
+          minLength: 1
+          type: string
+        status:
+          $ref: '#/components/schemas/SignatureRequestStatus'
+        name:
+          example: signature request name
+          maxLength: 128
+          minLength: 1
+          type: string
+        delivery_mode:
+          enum:
+          - email
+          - none
+          type: string
+        created_at:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          minLength: 1
+          type: string
+        activated_at:
+          description: 'Timestamp indicating when the Signature Request was activated and made available to its recipients.\
+
+            Returns `null` if the Signature Request is still in `draft`.
+
+            '
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        completed_at:
+          description: 'Timestamp indicating when the Signature Request reached the `done` status, i.e. all required Signers have signed and all Approvers have approved.\
+
+            Returns `null` if the Signature Request is not yet complete.
+
+            '
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        approved_at:
+          description: 'Timestamp indicating when all Approvers have approved the Signature Request when custom recipient flow is not enabled.\
+
+            Returns `null` if no approvers are configured, or if at least one approver has not yet approved, or when `custom_recipient_order` is enabled.
+
+            '
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        ordered_signers:
+          description: Enable an ordered workflow, each Signer will be requested to sign in a sequential order
+          type: boolean
+        ordered_approvers:
+          description: Enable an ordered workflow, each Approver will be requested to approve in a sequential order
+          type: boolean
+        reminder_settings:
+          $ref: '#/components/schemas/SignatureRequestInList_reminder_settings'
+        timezone:
+          $ref: '#/components/schemas/SignatureRequestTimeZone'
+        email_custom_note:
+          deprecated: true
+          example: Please sign these documents as soon as possible.
+          nullable: true
+          type: string
+        expiration_date:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+        source:
+          enum:
+          - app
+          - public_api
+          - hubspot_integration
+          - connector_salesforce_api
+          - connector_google_api
+          - connector_zapier_api
+          type: string
+        signers:
+          items:
+            $ref: '#/components/schemas/SignatureRequestInList_signers_inner'
+          type: array
+        approvers:
+          items:
+            $ref: '#/components/schemas/SignatureRequestInList_approvers_inner'
+          type: array
+        labels:
+          description: Labels associated to the Signature Request
+          items:
+            $ref: '#/components/schemas/SignatureRequestLabel'
+          type: array
+        documents:
+          items:
+            $ref: '#/components/schemas/SignatureRequestInList_documents_inner'
+          type: array
+        sender:
+          $ref: '#/components/schemas/SignatureRequestInList_sender'
+        external_id:
+          example: An_external-ID
+          nullable: true
+          type: string
+        branding_id:
+          deprecated: true
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          nullable: true
+          type: string
+        custom_experience_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          nullable: true
+          type: string
+        signers_allowed_to_decline:
+          example: true
+          type: boolean
+        workspace_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+        audit_trail_locale:
+          $ref: '#/components/schemas/AuditTrailLocale'
+        bulk_send_batch_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          nullable: true
+          type: string
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        custom_recipient_order:
+          description: Enable a custom recipients order
+          type: boolean
+        custom_properties:
+          description: Custom properties associated with the Signature Request.
+          items:
+            $ref: '#/components/schemas/CustomPropertyInList'
+          type: array
+      required:
+      - activated_at
+      - approved_at
+      - audit_trail_locale
+      - branding_id
+      - bulk_send_batch_id
+      - completed_at
+      - created_at
+      - custom_experience_id
+      - custom_recipient_order
+      - delivery_mode
+      - documents
+      - email_custom_note
+      - expiration_date
+      - external_id
+      - id
+      - name
+      - ordered_approvers
+      - ordered_signers
+      - previous_attempt_id
+      - reminder_settings
+      - sender
+      - signers
+      - signers_allowed_to_decline
+      - source
+      - status
+      - timezone
+      - workflow_session_id
+      title: SignatureRequest
+      type: object
+    SignatureRequest_SignerFromUserIdInput:
+      additionalProperties: false
+      description: Create a signer from a user
+      properties:
+        user_id:
+          description: Create signer from an existing user
+          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
+          format: uuid
+          type: string
+        fields:
+          items:
+            $ref: '#/components/schemas/FieldsInput'
+          type: array
+        signature_level:
+          default: electronic_signature
+          enum:
+          - electronic_signature
+          - advanced_electronic_signature
+          - qualified_electronic_signature
+          type: string
+        signature_authentication_mode:
+          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
+          enum:
+          - null
+          - otp_email
+          - otp_sms
+          - no_otp
+          nullable: true
+          type: string
+        redirect_urls:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_redirect_urls'
+        custom_text:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
+        pre_identity_verification_required:
+          description: Defines the way the Signer's Identity Documents will be uploaded for Verification. If set to `true`, `signature_level`should be equal to `advanced_electronic_signature` and `delivery_mode` set to `none`.
+          type: boolean
+      required:
+      - signature_level
+      - user_id
+      title: From Existing User
+      type: object
+    Checkbox_2:
+      properties:
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - checkbox
+          type: string
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        size:
+          description: The omission of size parameter is considered as deprecated. The size determines both the width and height of the checkbox.
+          format: int32
+          maximum: 240
+          minimum: 8
+          type: integer
+        optional:
+          type: boolean
+        name:
+          example: Checkbox 1
+          nullable: true
+          type: string
+        checked:
+          type: boolean
+        default_checked:
+          type: boolean
+        read_only:
+          default: false
+          description: If set to `true`, the checkbox cannot be modified by the signer.
+          type: boolean
+      required:
+      - checked
+      - document_id
+      - optional
+      - page
+      - type
+      - x
+      - y
+      title: Checkbox
+      type: object
+    New_Signature_Request_From_Scratch_reminder_settings:
+      additionalProperties: false
+      description: Enable automatic reminders for pending Signers.
+      nullable: true
+      properties:
+        interval_in_days:
+          enum:
+          - 1
+          - 2
+          - 7
+          - 14
+          format: int32
+          type: integer
+        max_occurrences:
+          example: 5
+          format: int32
+          maximum: 10
+          minimum: 1
+          type: integer
+      required:
+      - interval_in_days
+      - max_occurrences
+      type: object
+    CustomPropertyInList:
+      properties:
+        id:
+          description: Unique identifier of the custom property.
+          format: uuid
+          type: string
+        name:
+          description: Display name of the property.
+          type: string
+        type:
+          $ref: '#/components/schemas/CustomPropertyType'
+        required:
+          description: Whether users must fill this property before sending the SR via the application (not enforced via API).
+          type: boolean
+        multiple_answer_allowed:
+          description: For list type only — whether multiple options can be selected. Null for text type.
+          nullable: true
+          type: boolean
+        workspace_ids:
+          description: List of workspace IDs where this property is applicable. Null means org-wide.
+          items:
+            $ref: '#/components/schemas/UUID'
+          nullable: true
+          type: array
+        default_value:
+          description: For text type only — default text pre-filled on new signature requests. Null for list type.
+          nullable: true
+          type: string
+        options:
+          description: 'For list type only: selectable options.
+
+            Null for text type.
+
+            '
+          items:
+            $ref: '#/components/schemas/CustomPropertyOption'
+          nullable: true
+          type: array
+      required:
+      - id
+      - name
+      - type
+      title: CustomPropertyInList
+      type: object
+    SignatureRequest_email_notification_sender:
+      properties:
+        type:
+          enum:
+          - organization
+          - workspace
+          - user
+          - custom
+          type: string
+        custom_name:
+          description: To use in association with sender type custom to precise the name
+          maxLength: 128
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - custom_name
+      - type
+      type: object
+    Signature_2:
+      properties:
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - signature
+          type: string
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        height:
+          description: Default value is 37
+          format: int32
+          maximum: 1000
+          minimum: 37
+          type: integer
+        width:
+          description: Default value is 85
+          format: int32
+          maximum: 2000
+          minimum: 85
+          type: integer
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          description: 'Provide extra context to explain why the Document is being signed. Once the Document is signed, the custom reason is stored in the Audit Trail and is included in the signature certificate.
+
+            The default value is: "Signed by [Signer first name] [Signer last name]".
+
+            '
+          example: Signed by John Doe
+          maxLength: 150
+          nullable: true
+          type: string
+      required:
+      - document_id
+      - page
+      - type
+      - x
+      - y
+      title: Signature
+      type: object
+    SignatureRequestStatus:
+      enum:
+      - draft
+      - ongoing
+      - done
+      - deleted
+      - expired
+      - canceled
+      - approval
+      - rejected
+      - declined
+      - paused
+      type: string
+    SignatureRequestInList_signers_inner:
+      properties:
+        id:
+          type: string
+        status:
+          enum:
+          - initiated
+          - declined
+          - notified
+          - verified
+          - processing
+          - consent_given
+          - signed
+          - aborted
+          - error
+          type: string
+      required:
+      - id
+      - status
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    CreateSignatureRequest:
+      additionalProperties: false
+      oneOf:
+      - $ref: '#/components/schemas/New_Signature_Request_From_Scratch'
+      - $ref: '#/components/schemas/Duplicate_a_Signature_Request'
+      type: object
+    SignatureRequest_SignerFromContactIdInput:
+      additionalProperties: false
+      description: Create signer from a contact
+      properties:
+        contact_id:
+          description: Create signer from an existing contact
+          example: ddecfb85-8a45-4254-b940-6171b8df0a90
+          format: uuid
+          type: string
+        fields:
+          items:
+            $ref: '#/components/schemas/FieldsInput'
+          type: array
+        signature_level:
+          default: electronic_signature
+          enum:
+          - electronic_signature
+          - advanced_electronic_signature
+          - qualified_electronic_signature
+          type: string
+        signature_authentication_mode:
+          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
+          enum:
+          - null
+          - otp_email
+          - otp_sms
+          - no_otp
+          nullable: true
+          type: string
+        redirect_urls:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_redirect_urls'
+        custom_text:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
+        pre_identity_verification_required:
+          description: Defines the way the Signer's Identity Documents will be uploaded for Verification. If set to `true`, `signature_level`should be equal to `advanced_electronic_signature` and `delivery_mode` set to `none`.
+          type: boolean
+      required:
+      - contact_id
+      - signature_level
+      title: From Existing Contact
+      type: object
+    SignatureRequest_SignerFromInfoInput_custom_text:
+      additionalProperties: false
+      properties:
+        request_subject:
+          maxLength: 512
+          minLength: 1
+          nullable: true
+          type: string
+        request_body:
+          maxLength: 2000
+          minLength: 1
+          nullable: true
+          type: string
+        reminder_subject:
+          maxLength: 512
+          minLength: 1
+          nullable: true
+          type: string
+        reminder_body:
+          maxLength: 2000
+          minLength: 1
+          nullable: true
+          type: string
+      type: object
+    PreviousAttemptId:
+      description: 'ID of the previous attempt within the same `workflow_session_id`.
+
+        Allows continuity between multiple attempts of the same Action.
+
+        Null if this is the first attempt.
+
+        '
+      example: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde4
+      format: uuid
+      nullable: true
+      title: Previous Attempt identifier
+      type: string
+    SignatureRequestInList_reminder_settings:
+      nullable: true
+      properties:
+        interval_in_days:
+          enum:
+          - 1
+          - 2
+          - 7
+          - 14
+          format: int32
+          type: integer
+        max_occurrences:
+          format: int32
+          maximum: 10
+          minimum: 1
+          type: integer
+      required:
+      - interval_in_days
+      - max_occurrences
+      type: object
+    SignatureRequest_EmailNotification_custom_text:
+      additionalProperties: false
+      nullable: true
+      properties:
+        request_subject:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          format: safe-string
+          maxLength: 512
+          minLength: 1
+          nullable: true
+          type: string
+        request_body:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          format: safe-string
+          maxLength: 2000
+          minLength: 1
+          nullable: true
+          type: string
+        reminder_subject:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          format: safe-string
+          maxLength: 512
+          minLength: 1
+          nullable: true
+          type: string
+        reminder_body:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          format: safe-string
+          maxLength: 2000
+          minLength: 1
+          nullable: true
+          type: string
+      type: object
+  headers:
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

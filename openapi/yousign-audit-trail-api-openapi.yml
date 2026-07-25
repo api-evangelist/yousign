@@ -1,0 +1,997 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: contact@yousign.com
+    name: Support
+    url: https://yousign.com/contact
+  description: Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.
+  license:
+    name: proprietary
+    url: https://yousign.com/terms
+  title: Public Api v3 Applicant Audit Trail API
+  version: '3.0'
+servers:
+- description: Sandbox URL
+  url: https://api-sandbox.yousign.app/v3
+- description: Production URL
+  url: https://api.yousign.app/v3
+security:
+- bearerAuth: []
+tags:
+- description: Set of documents generated once a Signature Request is completed.
+  name: Audit Trail
+paths:
+  /signature_requests/{signatureRequestId}/audit_trails/download:
+    get:
+      description: Download the PDF version of all the Audit Trails attached to a given Signature Request. Each Audit Trail is bound to a different Signer. Only possible when the Signature Request status is `done`.
+      operationId: get-signature_requests-signatureRequestId-audit_trails-download
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: Download all Audit Trails merged as a single PDF file
+        in: query
+        name: merge
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/zip, application/pdf:
+              schema:
+                format: binary
+                type: string
+          description: Return an application/pdf or application/zip archive with all Audit Trails
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Download Signature Request Audit Trails
+      tags:
+      - Audit Trail
+  /signature_requests/{signatureRequestId}/signers/{signerId}/audit_trails:
+    get:
+      description: Retrieves the JSON version of the Audit Trail attached to a given Signer. Only possible when Signer status is `signed`.
+      operationId: get-signature_requests-signatureRequestId-signers-signerId-audit_trails
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: Signer Id
+        in: path
+        name: signerId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignerAuditTrail'
+          description: OK
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Get Signer Audit Trail
+      tags:
+      - Audit Trail
+  /signature_requests/{signatureRequestId}/signers/{signerId}/audit_trails/download:
+    get:
+      description: Download the PDF version of the Audit Trail attached to a given Signer. Only possible when Signer status is `signed`.
+      operationId: get-signers-signerId-audit_trails-download
+      parameters:
+      - description: Signature Request Id
+        in: path
+        name: signatureRequestId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      - description: Signer Id
+        in: path
+        name: signerId
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          content:
+            application/pdf:
+              schema:
+                format: binary
+                type: string
+          description: Audit Trail PDF
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+          description: Bad request
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+          description: Access unauthorized
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+          description: Access forbidden
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+          description: Resource not found
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MethodNotAllowed'
+          description: This method is not allowed
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsResponse'
+          description: Too Many Requests, please try again later.
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+            Retry-After:
+              $ref: '#/components/headers/retry-after'
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+          description: Internal Server Error
+          headers:
+            RateLimit-Limit:
+              $ref: '#/components/headers/rateLimit-limit'
+            X-RateLimit-Limit-Hour:
+              $ref: '#/components/headers/rateLimit-limit-hour'
+            X-RateLimit-Limit-Minute:
+              $ref: '#/components/headers/rateLimit-limit-minute'
+            RateLimit-Remaining:
+              $ref: '#/components/headers/rateLimit-remaining'
+            X-RateLimit-Remaining-Hour:
+              $ref: '#/components/headers/rateLimit-remaining-hour'
+            X-RateLimit-Remaining-Minute:
+              $ref: '#/components/headers/rateLimit-remaining-minute'
+            RateLimit-Reset:
+              $ref: '#/components/headers/rateLimit-reset'
+      summary: Download Audit Trail PDF
+      tags:
+      - Audit Trail
+components:
+  headers:
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+  schemas:
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    SignerAuditTrail:
+      example:
+        sender:
+          id: 3409ab3f-9295-4a69-9923-e9d32d9533d6
+          type: User
+          email: johnny.wallyday@example.com
+          last_name: Wallyday
+          first_name: Johnny
+          ip_address: 172.18.0.1
+          phone_number: '+447123456789'
+        signer:
+          id: 44e4b0f8-55c9-48a9-803f-d89957525270
+          last_name: Wallyday
+          first_name: Johnny
+          ip_address: 172.18.0.1
+          phone_number: '+447123456789'
+          email_address: johnny.wallyday@example.com
+          consent_given_at: '2021-07-05T12:21:42+00:00'
+          signature_process_completed_at: '2021-07-05T12:21:43+00:00'
+        version: 5
+        documents:
+        - id: a9534a42-bbc1-4355-b270-58f315eda779
+          name: sample.pdf
+          mime_type: application/pdf
+          signatures:
+          - hash: 4396f6a9f0554928f7bcc8e645a6441cb432c1606137ac8f3a735aef83946974
+            reason: Signed by Johnny Wallyday
+            certificate:
+              dn: CN=Yousign, C=FR, O=Yousign, OU=794513986, serialNumber=2019-02-15 10:07:35:938
+              oid: 1.2.250.1.302.1.7.1.0
+              hash: 69570e2d5cc2b352b2249ba32b16195722099a89aa35de71ee1e745f771d66c5
+              content: '-----BEGIN CERTIFICATE-----
+
+                MIIF8DCCA9igAwIBAgIIdfWiF8OAJo0wDQYJKoZIhvcNAQELBQAwfzEkMCIGA1UE
+
+                AwwbWU9VU0lHTiBTQVMgLSBTSUdOMiBURVNUIENBMRIwEAYDVQQLDAk3OTQ1MTM5
+
+                ODYxFDASBgNVBAoMC1lPVVNJR04gU0FTMQ0wCwYDVQQHDARDQUVOMREwDwYDVQQI
+
+                DAhDQUxWQURPUzELMAkGA1UEBhMCRlIwHhcNMTkwMjE1MDg1NzM2WhcNMjIwMjE0
+
+                MDkwNzAwWjBnMRAwDgYDVQQDDAdZb3VzaWduMSAwHgYDVQQFExcyMDE5LTAyLTE1
+
+                IDEwOjA3OjM1OjkzODESMBAGA1UECwwJNzk0NTEzOTg2MRAwDgYDVQQKDAdZb3Vz
+
+                aWduMQswCQYDVQQGEwJGUjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
+
+                AIWI+w9xQ9uSt4Lb/l14Yu8yRvCWer06bzm5RFvqgZRiD2Cq2Vx8LNzi0pGCxBdI
+
+                Q9nlWcxCAh67Lp/OygCKpUN2DnNiIiORK5b283VKASlGMy5frVOCKiq2YCz0vA6k
+
+                pIqzBP7DKV/CsZ3EqP0uw9C12EH3PrBJGQq4WOZI1Q5Fs2JAhOwfq/wq2orG424y
+
+                0A9+smh8J3DjwSCoMQZrdHd/obK3w8AaTGI535dqWIZ0wKTZBZ7xahGAPGXo9cy9
+
+                UXFtazxWGIcu5uYjRLtlUyialcUgB0db1eyOzFoRJCsaE6s7QgBhQUUfDkXs1UIp
+
+                D0BfB/K2kPxGENm2Uk6WAfcCAwEAAaOCAYYwggGCMAwGA1UdEwEB/wQCMAAwHwYD
+
+                VR0jBBgwFoAUzmRTx3jf2iI16mJGhB48l67NzPUwSwYDVR0gBEQwQjBABgoqgXoB
+
+                gi4BBwEAMDIwMAYIKwYBBQUHAgEWJGh0dHA6Ly95b3VzaWduLmZyL2ZyL3B1Ymxp
+
+                Yy9kb2N1bWVudDAgBgNVHSUEGTAXBgorBgEEAYI3CgMMBgkqhkiG9y8BAQUwgbIG
+
+                A1UdHwSBqjCBpzA1oDOgMYYvaHR0cDovL3RtcC55b3VzaWduLmZyL2NybC95b3Vz
+
+                aWduc2Fzc2lnbjJjYS5jcmwwNqA0oDKGMGh0dHA6Ly90bXAyLnlvdXNpZ24uZnIv
+
+                Y3JsL3lvdXNpZ25zYXNzaWduMmNhLmNybDA2oDSgMoYwaHR0cDovL3RtcDMueW91
+
+                c2lnbi5mci9jcmwveW91c2lnbnNhc3NpZ24yY2EuY3JsMB0GA1UdDgQWBBTgXAE8
+
+                ONE89UOu8TjrtBH9cbd92jAOBgNVHQ8BAf8EBAMCBkAwDQYJKoZIhvcNAQELBQAD
+
+                ggIBAAF+VPpcphjyoU8RvQO14ojWV51wJxsx5ShsvtXPsQ7dBws8XmthuTyyYxtM
+
+                E3dldkJsaQt8vK7/AUURwO7YX7PHVlwIqm2kpNThZ4+sEib3SOivP8vpfIP3mD0+
+
+                IFREI/8adIWYyiYzp1xjuuAoZ6lyg2JsOQ/67nyS+y7sUQ++GfQulb5yjkMytmYs
+
+                PJ0uyjnNAI/+hy4okIY7qgHFZaDGBSqdGU28NZcCEeBLwjcH4ET2Q1LvJ7nkKQMM
+
+                cxw+TXdy7cgIAjdfCymjJ701s43JKI01NFrNZ0I20jTOuh2qB4Kf8fQFwmutTnRM
+
+                P4ZglXsXZkyL9snUWwMSAP9QP13fPD6EDTTshyijvwHb6zbrFg3U7J0m/Sjmqp2A
+
+                zD+pj777dQ2jg0zTJ3WLOosE1/tt60ygK3HhiVnnyM8sdjTrZ6ca9++TgnRthKss
+
+                R35c/1Be3RJtYnar2yn3bA2pklLcjnV8Q3ZSks4ll7XnEI9V8EQSNHkmno7k+asl
+
+                WeQ8eC82fkwCwzXMLBTt1kN+0qXfpvVoSITPSVlOvdCsFCRSC3JMYHUY6c9oUUlV
+
+                CCEBWxe/Vm8R+AG4i3zk9wIoLDLW2eeOx1G61QFtIlgJPbKRLiDZhaGZq1PN8T2o
+
+                D/1S7m9PMISw1hrWHpJM+gZpRLsfRp5EH3ieRFzt24fpIosf
+
+                -----END CERTIFICATE-----
+
+                -----BEGIN CERTIFICATE-----
+
+                MIIGnDCCBISgAwIBAgIIfVpT4jgxW6cwDQYJKoZIhvcNAQELBQAwfzEkMCIGA1UE
+
+                AwwbWU9VU0lHTiBTQVMgLSBST09UMiBURVNUIENBMRIwEAYDVQQLDAk3OTQ1MTM5
+
+                ODYxFDASBgNVBAoMC1lPVVNJR04gU0FTMQ0wCwYDVQQHDARDQUVOMREwDwYDVQQI
+
+                DAhDQUxWQURPUzELMAkGA1UEBhMCRlIwHhcNMTYwMTI3MTYyODExWhcNMjYwMTI3
+
+                MTYyODExWjB/MSQwIgYDVQQDDBtZT1VTSUdOIFNBUyAtIFNJR04yIFRFU1QgQ0Ex
+
+                EjAQBgNVBAsMCTc5NDUxMzk4NjEUMBIGA1UECgwLWU9VU0lHTiBTQVMxDTALBgNV
+
+                BAcMBENBRU4xETAPBgNVBAgMCENBTFZBRE9TMQswCQYDVQQGEwJGUjCCAiIwDQYJ
+
+                KoZIhvcNAQEBBQADggIPADCCAgoCggIBALUsirI2GYG9qu3U2S4V4JI0V9ohNP3W
+
+                EpssSBcepPBV4UPtwAbFGvJqtGO/0nNZO0J7UwUb0sZBnedFl96tRQff3PECyO9k
+
+                1B1/8rK1TbLPQPhTYWlrvX69wHXJFPxf/JkL4l4Lp6nFS80SYlaRj2RHHJ8HDj8S
+
+                P1oULnhW2f2i8AlJwFe34eLJbWgeI5D7UAo59GMQ6bO4aVMaaDWvXsKOn8qmCUwF
+
+                gtQNOqtYyLgURr4qivbjsZEv5H4Ee+wR5J+U6wd9dpIoTV2g1mExNlKVoj9qX9rh
+
+                4al4G80fKNUT8bVnzxmdkDZzuzKm+rNIN6Fnc5CTHu2IcMHcuvKMRvsSJ+0fiz1E
+
+                b/xsKO18Aiy5XOEQFqDrXRKC5AMmF/zB9Fh1Xe7Bi6IQo15NOjOCHLiBTARsMBJ8
+
+                RWTuTv89qnL1lECogFusbptDG4Gu7Y7M13V8gOoGAxBs6uALjoseFZcnLQlIjZCV
+
+                L0xyhrXFCLFnv4gy2+xY1bJNueD3cLFkzaxiCJ4WKesmRIfc6vHaQNl5NpU+9tFb
+
+                U6o01c3fjZUdIh/MR3GFIXNpPsilhl///5aT5h2L98Gmb2q7tqSbFqm5z17MG3uS
+
+                e4zCt+UD7MI8oCF2CELo79xMjtmqEwIf0IU8MxaLaLSZ0J164ZyHwvfIewgBp8XF
+
+                qLn0jrZNiocXAgMBAAGjggEaMIIBFjAPBgNVHRMBAf8EBTADAQH/MB8GA1UdIwQY
+
+                MBaAFGXEFaTuRlW+zr11R8A0QEYcGvuRMIGyBgNVHR8EgaowgacwNaAzoDGGL2h0
+
+                dHA6Ly90bXAueW91c2lnbi5mci9jcmwveW91c2lnbnNhc3Jvb3QyY2EuY3JsMDag
+
+                NKAyhjBodHRwOi8vdG1wMi55b3VzaWduLmZyL2NybC95b3VzaWduc2Fzcm9vdDJj
+
+                YS5jcmwwNqA0oDKGMGh0dHA6Ly90bXAzLnlvdXNpZ24uZnIvY3JsL3lvdXNpZ25z
+
+                YXNyb290MmNhLmNybDAdBgNVHQ4EFgQUzmRTx3jf2iI16mJGhB48l67NzPUwDgYD
+
+                VR0PAQH/BAQDAgEGMA0GCSqGSIb3DQEBCwUAA4ICAQBZ8ru8LEQ1qzQqG/Rx420f
+
+                cN4YNM1cXV+DwpWOw46Oh9U7BG1i/wYPy6uEZvj/n+nm/MkbajrzTViZnKMRs7Wy
+
+                CWBqvAfl4gcbWvrRzdVwsbd3UbsxD5UD1CkJYl5/4gPvCae6YVCF9WtnH2lSy/Gv
+
+                5bbIfyXF++iNQn+lLe59EhA3WinTql/yk/SPUNVn4/IZ0UWrw1IPS3kmnIal1mk7
+
+                pL45n5G51qAHpSbAoTsCeRBJZ6jr38n+FimZahnBZTu4+XycDVicrydpsopQiTt8
+
+                ry+mP1b9Nd4eoHR4/F/82w1rNfAM0NJKL8w3qr8lMdxsbANMvW0ixgjRnBpuRRB4
+
+                5iUA5Mb2DbiYJARBoruYqYGya317Gcvtk4w0O48CXR+HPXygHh/63De1JdOUjSc2
+
+                Hagr6jp7NKbn/XmWBjWuoG9J9d9sC5U/mgjw5Xjf9jKGuUGz46EtlzzpojVB7fJA
+
+                E2Ye0kOuLANpoTFAI4EJe5nTJz0HsFG3nDshsD9Mb1/kUBSGUDWijL5f0LDqf562
+
+                kTioMpkK7ivZxQksF8+bMId5sUNrDVA/6lhn8tD5gzGacSU7IMfIH3EUKcI1NoWm
+
+                hV+aI8EbXP6251cF74y/tejTUQLdOQ9ut3PsxYmTTDqr8RPI6UZeh2yibzSmgGwU
+
+                fylsTiF/gVGm5cpWCrULCw==
+
+                -----END CERTIFICATE-----
+
+                -----BEGIN CERTIFICATE-----
+
+                MIIGnDCCBISgAwIBAgIIT0TY3eM9ut0wDQYJKoZIhvcNAQELBQAwfzEkMCIGA1UE
+
+                AwwbWU9VU0lHTiBTQVMgLSBST09UMiBURVNUIENBMRIwEAYDVQQLDAk3OTQ1MTM5
+
+                ODYxFDASBgNVBAoMC1lPVVNJR04gU0FTMQ0wCwYDVQQHDARDQUVOMREwDwYDVQQI
+
+                DAhDQUxWQURPUzELMAkGA1UEBhMCRlIwHhcNMTYwMTI3MTYyNjE2WhcNMzYwMTI3
+
+                MTYyNjE2WjB/MSQwIgYDVQQDDBtZT1VTSUdOIFNBUyAtIFJPT1QyIFRFU1QgQ0Ex
+
+                EjAQBgNVBAsMCTc5NDUxMzk4NjEUMBIGA1UECgwLWU9VU0lHTiBTQVMxDTALBgNV
+
+                BAcMBENBRU4xETAPBgNVBAgMCENBTFZBRE9TMQswCQYDVQQGEwJGUjCCAiIwDQYJ
+
+                KoZIhvcNAQEBBQADggIPADCCAgoCggIBALXMHUFwSacaI5TjtMRw4kJ9o1ve/IZo
+
+                oj+2HOpW3iqs74cmsYjpHbJD0UAdh3SpdlLFK1/WBf0uEbzn6z7gRfUkEAo5EnHs
+
+                M1iTfCXWDtA+xd9X4h2UAVEdXRzglvOvT275fjI1uj9Zi4Rz95drhlGkZVCDIMuv
+
+                7fazkT868grWSfGSUc2C8d9+kOL4pCKuSanOc/nwD61F+oQ6KeEMtmpbr57Yy+qY
+
+                taF6ieKiDGn0aDj3yImnA9YqfFlX4mCyn+LmiqrXyEn0Z5iYLbO0wXkyPqhcO9c9
+
+                gS1Y8Y/1AEvxnaLlV3eG402ZYUS6tT27o+tpdCAIx+3zMhNsPI9wXUjlVr/8ts+/
+
+                uOUUCUWoBK3J6R1zG3urCdnuor8xAaWK/OHtvg8rXoXEfi8ujWV3EbiwIwiUHVh4
+
+                rJIE1vhsVPW/sTM9yEjRFks0swyoX6QupEuaZLV4DbmcEbmZ2XIH5Cw2c1qwUTk2
+
+                8vQzKHszLdRb9scnjd3yHsef5ZAHS9hUoFIfG+MzINGm3U6v4exspSw/EshSavVj
+
+                R+gL0l+sdK4L6xe++K++Gpp5xn5cZUJeg4YtdgGju7lMdGpJVVwl0Y8UAEJt9xgC
+
+                MvGctrkoaUuBjOhrGQQITDMsNrtgi28s7rUB6k+yxcaGBBp2PyAIsIe0e1wKGm1N
+
+                HjGtqY0IV1tFAgMBAAGjggEaMIIBFjAPBgNVHRMBAf8EBTADAQH/MB8GA1UdIwQY
+
+                MBaAFGXEFaTuRlW+zr11R8A0QEYcGvuRMIGyBgNVHR8EgaowgacwNaAzoDGGL2h0
+
+                dHA6Ly90bXAueW91c2lnbi5mci9jcmwveW91c2lnbnNhc3Jvb3QyY2EuY3JsMDag
+
+                NKAyhjBodHRwOi8vdG1wMi55b3VzaWduLmZyL2NybC95b3VzaWduc2Fzcm9vdDJj
+
+                YS5jcmwwNqA0oDKGMGh0dHA6Ly90bXAzLnlvdXNpZ24uZnIvY3JsL3lvdXNpZ25z
+
+                YXNyb290MmNhLmNybDAdBgNVHQ4EFgQUZcQVpO5GVb7OvXVHwDRARhwa+5EwDgYD
+
+                VR0PAQH/BAQDAgEGMA0GCSqGSIb3DQEBCwUAA4ICAQCuxOXQDSYF0RpYQWonRDlU
+
+                Z64IaGJ5buU4tGzf7rAgIQdXbO/VjjfF9UsjnLopNwWkuSJvINm21obYHcoSwvpz
+
+                lwS/3uJCLxaw5q4SVJ4x5rajh/2qtFzcThSh48rcXcqoxAmc6BzQuIOm9cFUD2Ri
+
+                qUJmg5O+CoLuE1b4i+CsCFL3AoWnBHFZ4YtInQBFIRBhMNPICvYOCF6jjgmMxkWU
+
+                M8SEp7FSFfsy/oPI1dt+k9JjHCXhtWO9ndLvvwvLcjqRO3ItiF9IazsNcNLhaIMA
+
+                lvYiQ+jLpckAuTxj7XHQyJSEofTMPr+ZSgQwUc337MJyxPhTDkch5cQBfnC20Usk
+
+                yjdwwaeiwnNMhESwgDa4Oqw5IOmq+VmqtR+9F9yxACrpyph593F1zYwv7ikik5dI
+
+                IYACb2fKLQrcnCfhm0k1Nt9UXoc9mQzFUK0DWJNLeGJo0rfRQh5ZqhcBG2U0KZFQ
+
+                RtQQEf3zXJxQJGlCn1UMZMJswAzfhMTdGPNzyDI2u+9Q8WT7M2f59Idiae2m79uG
+
+                uStRwN7Vnrpa399YXixOpNTz6d0NFBOAq1Nfwy5cnQDCnT9JkrKidrFKyA21b67m
+
+                SfJIpMSPfFbt3g0h7JPWK7OC4Ydydh92e7/IUhtkudKMoazlwSJ7484dE7NyTpol
+
+                62H0sW/1gmFzE6/QmCUR+w==
+
+                -----END CERTIFICATE-----'
+              generated_at: '2019-02-15T09:07:36+00:00'
+          initial_hash: 8decc8571946d4cd70a024949e033a2a2a54377fe9f1c1b944c20f9ee11a9e51
+          initial_storage_id: fdad7bcf-73d5-4a73-945d-ba7b738c530b
+        organization:
+          id: d89a0f7b-bd3f-494d-ab61-71b69f24a3d9
+          name: Universalt Music
+        authentication:
+          mode: sms
+          message: 'eSIGNATURE: 791994 is your security code to confirm the signature of your documents.'
+          validated_at: '2021-07-05T12:21:40+00:00'
+        signature_request:
+          id: 4d164217-60e7-4733-b56c-65ad637eadce
+          name: My new request
+          sent_at: '2021-07-05T12:21:21+00:00'
+          expired_at: '2022-01-05T22:59:00+00:00'
+        electronic_signature_level:
+          level: Simple electronic signature
+      properties:
+        version:
+          type: number
+        signature_request:
+          type: object
+        sender:
+          type: object
+        signer:
+          type: object
+        documents:
+          items:
+            type: object
+          minItems: 1
+          type: array
+          uniqueItems: true
+        organization:
+          type: object
+        authentication:
+          type: object
+        electronic_signature_level:
+          type: object
+      required:
+      - authentication
+      - documents
+      - organization
+      - sender
+      - signature_request
+      - signer
+      - version
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
