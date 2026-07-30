@@ -2,7 +2,20 @@ aid: yousign
 name: YouSign
 description: European e-signature platform compliant with eIDAS with a REST API for creating signature requests, managing signers, sending documents, and tracking signing workflows across simple, advanced, and qualified signature levels.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/yousign.png
 url: https://raw.githubusercontent.com/api-evangelist/yousign/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -17,43 +30,1157 @@ tags:
   - REST API
   - Signature Workflows
 apis:
-  - name: Yousign Public API v3
-    description: RESTful API for creating and managing signature requests, adding signers, uploading documents, and tracking signing workflows. Supports simple, advanced, and qualified electronic signatures compliant with eIDAS regulation.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developers.yousign.com/
-    baseURL: https://api.yousign.com/v3
-    tags:
-      - E-Signature
-      - Electronic Signature
-      - eIDAS
-      - Document Signing
-      - Signature Requests
-      - Signers
-    properties:
-      - type: Documentation
-        url: https://developers.yousign.com/docs/introduction-new
-      - type: OpenAPI
-        url: https://developers.yousign.com/openapi/6759d057a53fa9006fec9ff0
-      - type: OASSpecification
-        url: https://developers.yousign.com/reference/oas-specification
-      - type: Sandbox
-        url: https://developers.yousign.com/docs/environments-new
-      - type: ChangeLog
-        url: https://developers.yousign.com/changelog
-      - type: RateLimits
-        url: https://developers.yousign.com/docs/limits-new
-      - type: PostmanWorkspace
-        url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
-      - type: OpenAPI
-        url: openapi/yousign-public-api-v3-openapi.yml
-      - type: JSONSchema
-        url: json-schema/yousign-json-schema.yml
-      - type: Examples
-        url: examples/yousign-examples.yml
-      - type: Vocabulary
-        url: vocabulary/yousign-vocabulary.yml
-      - type: JSONLDContext
-        url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-applicant-api
+  name: YouSign Applicant API
+  description: An applicant associated with a Workflow Session.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Applicant
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-applicant-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-approver-api
+  name: YouSign Approver API
+  description: Person responsible for validating a Signature Request.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Approver
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-approver-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-archive-api
+  name: YouSign Archive API
+  description: >-
+    A feature allowing to store and retrieve documents on Arkhineo for some customers migrated from v2
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Archive
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-archive-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-audit-trail-api
+  name: YouSign Audit Trail API
+  description: Set of documents generated once a Signature Request is completed.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Audit Trail
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-audit-trail-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-bank-account-lookup-verification-api
+  name: YouSign Bank Account Lookup Verification API
+  description: >-
+    KYC Process of verifying a person’s or company’s banking information via the Sepamail DIAMOND network.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Bank Account Lookup Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-bank-account-lookup-verification-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-bank-account-verification-api
+  name: YouSign Bank Account Verification API
+  description: KYC Process of verifying the identity associated with a bank account document.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Bank Account Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-bank-account-verification-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-company-verification-api
+  name: YouSign Company Verification API
+  description: Retrieve structured and official data about a company.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Company Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-company-verification-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-consumption-api
+  name: YouSign Consumption API
+  description: This resource provides tracking of the API usage.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Consumption
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-consumption-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-contact-api
+  name: YouSign Contact API
+  description: >-
+    A saved profile containing some information (name, language, email address, etc.) that can be re-used
+    to create a Signer, Approver, or Follower.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Contact
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-contact-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-custom-experience-api
+  name: YouSign Custom Experience API
+  description: Allows to customize the look and feel of the signature experience.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Custom Experience
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-custom-experience-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-custom-property-api
+  name: YouSign Custom Property API
+  description: >-
+    A configurable field (list or text) allowing to tag Signature Requests with structured values.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Custom Property
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-custom-property-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-deprecated-api
+  name: YouSign Deprecated API
+  description: Operations that are no longer recommended for use.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Deprecated
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-deprecated-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-document-analysis-api
+  name: YouSign Document Analysis API
+  description: Analyze a document and extract structured data.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Document Analysis
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-document-analysis-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-document-api
+  name: YouSign Document API
+  description: Document that is attached to the Signature Request.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Document
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-document-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-electronic-seal-api
+  name: YouSign Electronic Seal API
+  description: This resource is the digital version of the company stamp.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Electronic Seal
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-electronic-seal-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-electronic-seal-audit-trail-api
+  name: YouSign Electronic Seal Audit Trail API
+  description: Set of documents generated once a Electronic Seal is completed.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Electronic Seal Audit Trail
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-electronic-seal-audit-trail-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-electronic-seal-document-api
+  name: YouSign Electronic Seal Document API
+  description: Document that is attached to the Electronic Seal.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Electronic Seal Document
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-electronic-seal-document-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-electronic-seal-image-api
+  name: YouSign Electronic Seal Image API
+  description: Set of Image which can be used in Electronic Seal.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Electronic Seal Image
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-electronic-seal-image-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-field-api
+  name: YouSign Field API
+  description: Dynamic content that will appear on a Document.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Field
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-field-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-follower-api
+  name: YouSign Follower API
+  description: >-
+    Person who is kept informed about the progress of the signing process without being an Approver or
+    a Signer.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Follower
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-follower-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-identity-document-verification-api
+  name: YouSign Identity Document Verification API
+  description: KYC Process of verifying the identity associated with an identity document.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Identity Document Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-identity-document-verification-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-identity-video-verification-api
+  name: YouSign Identity Video Verification API
+  description: KYC Process of verifying the identity associated with a document.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Identity Video Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-identity-video-verification-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-label-api
+  name: YouSign Label API
+  description: Categorization tag that can be added to a Signature Request.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Label
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-label-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-metadata-api
+  name: YouSign Metadata API
+  description: Extra information attached to a Signature Request.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-proof-of-address-verification-api
+  name: YouSign Proof of Address Verification API
+  description: KYC Process of verifying a proof of address document.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Proof of Address Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-proof-of-address-verification-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-signature-request-api
+  name: YouSign Signature Request API
+  description: Process of inviting Signers to sign a Document.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Signature Request
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-signature-request-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-signer-api
+  name: YouSign Signer API
+  description: Person who will sign a Signature Request.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Signer
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-signer-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-signer-consent-request-api
+  name: YouSign Signer Consent Request API
+  description: Process of asking signers to consent to specific needs during the signature process.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Signer Consent Request
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-signer-consent-request-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-signer-document-request-api
+  name: YouSign Signer Document Request API
+  description: Process of asking signers to upload specific documents during the signature process.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Signer Document Request
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-signer-document-request-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-template-api
+  name: YouSign Template API
+  description: >-
+    Pre-configuration of all elements of a Signature Request, such as Documents, Signers, Approvers, Fields,
+    and settings.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Template
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-template-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-user-api
+  name: YouSign User API
+  description: A person who can access the Yousign web app of your organization.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-user-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-user-invitation-api
+  name: YouSign User Invitation API
+  description: The Invitation of a new User to join the Yousign organization.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - User Invitation
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-user-invitation-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-verification-audit-trail-api
+  name: YouSign Verification Audit Trail API
+  description: Set of documents generated once a Verification is completed.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Verification Audit Trail
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-verification-audit-trail-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-watchlist-verification-api
+  name: YouSign Watchlist Verification API
+  description: >-
+    Check if individuals appear on international sanctions lists or as politically exposed persons (PEPs).
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Watchlist Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-watchlist-verification-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-webhook-api
+  name: YouSign Webhook API
+  description: >-
+    Webhook subscription; enables real-time notifications about events that happen in your Yousign organization.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-webhook-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-workflow-session-api
+  name: YouSign Workflow Session API
+  description: Instance of a workflow created each time a customer goes through it.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Workflow Session
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-workflow-session-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-workflow-template-api
+  name: YouSign Workflow Template API
+  description: Structure of a workflow defined by the type of Actions a customer must complete.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Workflow Template
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-workflow-template-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
+- aid: yousign:yousign-workspace-api
+  name: YouSign Workspace API
+  description: A way to partition your Yousign organization into separate entities.
+  humanURL: https://developers.yousign.com/
+  baseURL: https://api.yousign.com/v3
+  tags:
+  - Workspace
+  properties:
+  - type: OpenAPI
+    url: openapi/yousign-workspace-api-openapi.yml
+  - type: Documentation
+    url: https://developers.yousign.com/docs/introduction-new
+  - type: OASSpecification
+    url: https://developers.yousign.com/reference/oas-specification
+  - type: Sandbox
+    url: https://developers.yousign.com/docs/environments-new
+  - type: ChangeLog
+    url: https://developers.yousign.com/changelog
+  - type: RateLimits
+    url: https://developers.yousign.com/docs/limits-new
+  - type: PostmanWorkspace
+    url: https://www.postman.com/yousign/yousign-api-v3/documentation/p4jlu5q/yousign-api-v3
+  - type: JSONSchema
+    url: json-schema/yousign-json-schema.yml
+  - type: Examples
+    url: examples/yousign-examples.yml
+  - type: Vocabulary
+    url: vocabulary/yousign-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/yousign-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/yousign-agentic-access.yml
