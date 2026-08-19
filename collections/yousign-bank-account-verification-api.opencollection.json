@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Bank Account Verification API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bank Account Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Bank Account Verifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/bank_accounts",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "status",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `status`. Allowed operators: `eq`.\nExample: `status[eq]=verified`\n"
+              },
+              {
+                "name": "workspace_id",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `workspace_id`. Allowed operators: `eq`.\nExample: `workspace_id[eq]=9b6ed2f3-244f-487a-baa1-bbe4f51c8748`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of all Bank Account Verifications within your organization. You can limit the number of items returned by using filters and pagination. Consult our [guide](https://developers.yousign.com/docs/bank-account-details-verification) for more details and examples."
+        },
+        {
+          "info": {
+            "name": "Initiate a new Bank Account Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/bank_accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ask for a Bank Account Verification by sending the file containing the bank account details, such as IBAN and BIC.\n\nA Bank Account Verification can be requested as follows:\n- **Bank Account verification**: This option only checks the validity of the Bank Account document.\n- **Bank Account verification with legal person**: This option checks both:\n  - the validity of the Bank Account document\n  - the coherence between the provided **legal person** names and those on the document.\n- **Bank Account"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Bank Account Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/bank_accounts/:bankAccountVerificationId",
+            "params": [
+              {
+                "name": "bankAccountVerificationId",
+                "value": "",
+                "type": "path",
+                "description": "Bank Account Verification Id"
+              }
+            ]
+          },
+          "docs": "Get the detailed results of a Bank Account Verification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

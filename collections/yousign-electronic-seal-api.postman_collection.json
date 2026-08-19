@@ -1,0 +1,2277 @@
+{
+  "item": [
+    {
+      "id": "ad60c368-8432-4710-91a3-419c01c11bbf",
+      "name": "Electronic Seal",
+      "description": {
+        "content": "This resource is the digital version of the company stamp.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b7fe1631-c312-49ff-84b1-61192ec74df2",
+          "name": "List Electronic Seal Images",
+          "request": {
+            "name": "List Electronic Seal Images",
+            "description": {
+              "content": "Lists Electronic Seal Images.\nThe list is paginated and can be filtered by the `after` cursor.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "electronic_seal_images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "After cursor (pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "The limit of items count to retrieve."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d1b3806-0fd4-4650-bf4a-65efef351e17",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seal_images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"next_cursor\": \"string\"\n  },\n  \"data\": [\n    {\n      \"created_at\": \"2024-01-18T22:59:00Z\",\n      \"id\": \"1365283d-0ba5-4a08-9a58-9818ef428320\",\n      \"name\": \"My seal image\",\n      \"workspace_id\": \"ea11f308-4531-42f9-8218-96b37b7ebb19\"\n    },\n    {\n      \"created_at\": \"2024-01-18T22:59:00Z\",\n      \"id\": \"1365283d-0ba5-4a08-9a58-9818ef428320\",\n      \"name\": \"My seal image\",\n      \"workspace_id\": \"ea11f308-4531-42f9-8218-96b37b7ebb19\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "832ca5c2-49f9-4a7f-b9b4-05990371cb72",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seal_images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3347915-8aa2-4bc1-9d1d-9e6e70a46624",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seal_images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca7b2e79-a431-477b-9f6f-ad0a9b90afef",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seal_images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42d7f532-17bd-4a75-a09d-9a74c653c692",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seal_images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32ea62a9-733c-479e-93c8-3214cc91cdba",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seal_images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48700850-7831-4dd4-88c6-1ea522748183",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seal_images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34fe0f02-042d-4450-84b5-a20bd38e0bea",
+          "name": "Create an Electronic Seal",
+          "request": {
+            "name": "Create an Electronic Seal",
+            "description": {
+              "content": "Create a new Electronic Seal",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "electronic_seals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document_id\": \"<uuid>\",\n  \"fields\": [\n    {\n      \"height\": \"<integer>\",\n      \"page\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"height\": \"<integer>\",\n      \"page\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"width\": \"<integer>\",\n      \"x\": \"<integer>\",\n      \"y\": \"<integer>\",\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"image_id\": \"<uuid>\",\n  \"external_id\": \"<string>\",\n  \"signature_level\": \"<string>\",\n  \"certificate_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ea2d8ca4-f871-4e8b-8aa5-d0b7f75eb91f",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document_id\": \"160473f9-156f-4583-848c-cbc3dec49b4a\",\n  \"fields\": [\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"image_id\": \"333fa90a-a629-4708-8fe9-160dcb055a9b\",\n  \"external_id\": \"externalId-123\",\n  \"signature_level\": \"<string>\",\n  \"certificate_id\": \"a3d84df7-b45e-4321-ae9e-7f5397acb225\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2024-01-18T22:59:00Z\",\n  \"document_id\": \"37646975-7e73-41f1-be7f-f4d85d181d03\",\n  \"external_id\": \"externalId-123\",\n  \"id\": \"1365283d-0ba5-4a08-9a58-9818ef428320\",\n  \"image_id\": \"6c82bd7a-d7f7-45e0-82f4-b92222567346\",\n  \"signature_level\": \"electronic_signature\",\n  \"status\": \"pending\",\n  \"timestamp\": false,\n  \"workspace_id\": \"6c82bd7a-d7f7-45e0-82f4-b92222567346\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00fd9d8b-2bf9-4b1c-be15-52a1afc7344f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document_id\": \"160473f9-156f-4583-848c-cbc3dec49b4a\",\n  \"fields\": [\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"image_id\": \"333fa90a-a629-4708-8fe9-160dcb055a9b\",\n  \"external_id\": \"externalId-123\",\n  \"signature_level\": \"<string>\",\n  \"certificate_id\": \"a3d84df7-b45e-4321-ae9e-7f5397acb225\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bfbb94f-896a-40ef-bdd5-4ada8a647bca",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document_id\": \"160473f9-156f-4583-848c-cbc3dec49b4a\",\n  \"fields\": [\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"image_id\": \"333fa90a-a629-4708-8fe9-160dcb055a9b\",\n  \"external_id\": \"externalId-123\",\n  \"signature_level\": \"<string>\",\n  \"certificate_id\": \"a3d84df7-b45e-4321-ae9e-7f5397acb225\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6425b919-3d08-481c-9b18-a35b667ab0b1",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document_id\": \"160473f9-156f-4583-848c-cbc3dec49b4a\",\n  \"fields\": [\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"image_id\": \"333fa90a-a629-4708-8fe9-160dcb055a9b\",\n  \"external_id\": \"externalId-123\",\n  \"signature_level\": \"<string>\",\n  \"certificate_id\": \"a3d84df7-b45e-4321-ae9e-7f5397acb225\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7a38f62-287f-47d3-a5d4-2acf97e8d85d",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document_id\": \"160473f9-156f-4583-848c-cbc3dec49b4a\",\n  \"fields\": [\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"image_id\": \"333fa90a-a629-4708-8fe9-160dcb055a9b\",\n  \"external_id\": \"externalId-123\",\n  \"signature_level\": \"<string>\",\n  \"certificate_id\": \"a3d84df7-b45e-4321-ae9e-7f5397acb225\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c71c3176-dd9e-4da2-b053-6626a1299750",
+              "name": "UnsupportedMediaType",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document_id\": \"160473f9-156f-4583-848c-cbc3dec49b4a\",\n  \"fields\": [\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"image_id\": \"333fa90a-a629-4708-8fe9-160dcb055a9b\",\n  \"external_id\": \"externalId-123\",\n  \"signature_level\": \"<string>\",\n  \"certificate_id\": \"a3d84df7-b45e-4321-ae9e-7f5397acb225\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ca4867a-50fe-41ad-bede-40e1b541f044",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document_id\": \"160473f9-156f-4583-848c-cbc3dec49b4a\",\n  \"fields\": [\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"image_id\": \"333fa90a-a629-4708-8fe9-160dcb055a9b\",\n  \"external_id\": \"externalId-123\",\n  \"signature_level\": \"<string>\",\n  \"certificate_id\": \"a3d84df7-b45e-4321-ae9e-7f5397acb225\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3391a5dc-8c43-4d9d-8d12-5463a9435cc3",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"document_id\": \"160473f9-156f-4583-848c-cbc3dec49b4a\",\n  \"fields\": [\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"height\": 200,\n      \"page\": 1,\n      \"type\": \"seal\",\n      \"width\": 250,\n      \"x\": 0,\n      \"y\": 0,\n      \"reason\": \"<string>\",\n      \"captions\": [\n        {\n          \"text\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"image_id\": \"333fa90a-a629-4708-8fe9-160dcb055a9b\",\n  \"external_id\": \"externalId-123\",\n  \"signature_level\": \"<string>\",\n  \"certificate_id\": \"a3d84df7-b45e-4321-ae9e-7f5397acb225\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f4d1520-d0da-42d5-b52b-b3a7597c9c05",
+          "name": "Get an Electronic Seal",
+          "request": {
+            "name": "Get an Electronic Seal",
+            "description": {
+              "content": "Retrieves a given Electronic Seal.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "electronic_seals",
+                ":electronicSealId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "electronicSealId",
+                  "description": "(Required) Electronic Seal Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00cdb14e-67e5-4841-87e7-6c13ce325c4c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals",
+                    ":electronicSealId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "electronicSealId",
+                      "description": "(Required) Electronic Seal Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2024-01-18T22:59:00Z\",\n  \"document_id\": \"37646975-7e73-41f1-be7f-f4d85d181d03\",\n  \"external_id\": \"externalId-123\",\n  \"id\": \"1365283d-0ba5-4a08-9a58-9818ef428320\",\n  \"image_id\": \"6c82bd7a-d7f7-45e0-82f4-b92222567346\",\n  \"signature_level\": \"electronic_signature\",\n  \"status\": \"pending\",\n  \"timestamp\": false,\n  \"workspace_id\": \"6c82bd7a-d7f7-45e0-82f4-b92222567346\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6da0c1b4-91f2-4a02-b19d-48e25329eb86",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals",
+                    ":electronicSealId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "electronicSealId",
+                      "description": "(Required) Electronic Seal Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2cce217-221d-42d2-93ca-408f6f3d9334",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals",
+                    ":electronicSealId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "electronicSealId",
+                      "description": "(Required) Electronic Seal Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02a3bbc8-19f5-4062-b8c4-8ed4a5a17e48",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals",
+                    ":electronicSealId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "electronicSealId",
+                      "description": "(Required) Electronic Seal Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9bb7e02-a87f-4e3c-b66d-1cbc9304aa6d",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals",
+                    ":electronicSealId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "electronicSealId",
+                      "description": "(Required) Electronic Seal Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1efdadd5-752d-4abb-9e69-3ecf624c6e39",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals",
+                    ":electronicSealId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "electronicSealId",
+                      "description": "(Required) Electronic Seal Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc3730e0-ac09-4c5f-8d9f-064b14108337",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "electronic_seals",
+                    ":electronicSealId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "electronicSealId",
+                      "description": "(Required) Electronic Seal Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "1889"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "1889"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.yousign.app/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "84e39fc4-6cc1-45d3-b8d7-fbc139f3675e",
+    "name": "Public Api v3 Applicant Electronic Seal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.\n\nContact Support:\n Name: Support\n Email: contact@yousign.com",
+      "type": "text/plain"
+    }
+  }
+}

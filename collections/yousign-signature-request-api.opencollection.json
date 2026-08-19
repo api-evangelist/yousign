@@ -1,0 +1,272 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Signature Request API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Signature Request",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Signature Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "status",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `status`. Allowed operators: `eq`, `in`.\nExample: `status[in]=draft,done`\n"
+              },
+              {
+                "name": "created_at",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `created_at`. Allowed operators: `eq`, `between`, `before`, `after`.\nFormat: the date format required is `yyyy-mm-dd`\nExample: `created_at[between]=2025-03-02,2025-03-04`\n"
+              },
+              {
+                "name": "activated_at",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `activated_at`. Allowed operators: `eq`, `between`, `before`, `after`.\nFormat: the date format required is `yyyy-mm-dd`\nExample: `activated_at[after]=2025-03-01`\n"
+              },
+              {
+                "name": "completed_at",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `completed_at`. Allowed operators: `eq`, `between`, `before`, `after`.\nFormat: the date format required is `yyyy-mm-dd`\nExample: `completed_at[between]=2025-03-01,2025-03-31`\n"
+              },
+              {
+                "name": "approved_at",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `approved_at`. Allowed operators: `eq`, `between`, `before`, `after`.\nFormat: the date format required is `yyyy-mm-dd`\nExample: `approved_at[after]=2025-03-01`\n"
+              },
+              {
+                "name": "rejected_at",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `rejected_at`. Allowed operators: `eq`, `between`, `before`, `after`.\nFormat: the date format required is `yyyy-mm-dd`\nExample: `rejected_at[before]=2025-04-01`\n"
+              },
+              {
+                "name": "declined_at",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `declined_at`. Allowed operators: `eq`, `between`, `before`, `after`.\nFormat: the date format required is `yyyy-mm-dd`\nExample: `declined_at[after]=2025-01-01`\n"
+              },
+              {
+                "name": "workspace_id",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `workspace_id`. Allowed operators: `eq`.\nExample: `workspace_id[eq]=9b6ed2f3-244f-487a-baa1-bbe4f51c8748`\n"
+              },
+              {
+                "name": "external_id",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `external_id`. Allowed operators: `eq`.\nExample: `external_id[eq]=an-external-id`\n"
+              },
+              {
+                "name": "source",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `source`. Allowed operators: `eq`, `in`.\nDefault value: `source[eq]=public_api`. If not specified, only Signature Requests created via the Public API are returned.\nExample: `source[in]=public_api,app`\n"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search on name"
+              },
+              {
+                "name": "label.name",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by Label's `name`. Allowed operators: `eq`, `in`.\nExample: `label.name[in]=To Sign,Miscellaneous`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of all Signatures Requests in your organization. You can limit the number of items returned by using filters and pagination. Consult our guide for more details and examples."
+        },
+        {
+          "info": {
+            "name": "Initiate a new Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Signature Request resource."
+        },
+        {
+          "info": {
+            "name": "Fetch a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a given Signature Request."
+        },
+        {
+          "info": {
+            "name": "Update a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given Signature Request. Any parameters not provided are left unchanged."
+        },
+        {
+          "info": {
+            "name": "Delete a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "permanent_delete",
+                "value": "",
+                "type": "query",
+                "description": "If true it will permanently delete the Signature Request. It will no longer be retrievable."
+              }
+            ]
+          },
+          "docs": "Deletes a given Signature Request, not possible if the Signature Request is in `approval` and `ongoing` status."
+        },
+        {
+          "info": {
+            "name": "Activate a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/activate",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activates a Signature request, so it is not in `draft` status anymore.\nIf the `delivery_mode` is not `null`, activating the Signature Request will trigger the notifications to Approvers/Followers/Signers.\n"
+        },
+        {
+          "info": {
+            "name": "Cancel a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/cancel",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels a Signature Request when it is in `approval` or `ongoing` status. A canceled Signature Request cannot be reactivated."
+        },
+        {
+          "info": {
+            "name": "Reactivate an expired Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/reactivate",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reactivates a Signature Request when it is in `expired` status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant User API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/users",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "email",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `email`. Allowed operators: `eq`.\nExample: `email[eq]=user@example.com`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of all the Users within your Organization."
+        },
+        {
+          "info": {
+            "name": "Create a new User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new application User and sends them an invitation email."
+        },
+        {
+          "info": {
+            "name": "Get a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a given User within your Organization."
+        },
+        {
+          "info": {
+            "name": "Update a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.yousign.app/v3/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given User.\nAny parameters not provided are left unchanged.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User Id"
+              }
+            ]
+          },
+          "docs": "Deletes a given User and its Invitation, only possible when the User is in `invited` status."
+        },
+        {
+          "info": {
+            "name": "Associate a user to a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.yousign.app/v3/workspaces/:workspaceId/users/:userId",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace Id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User Id"
+              }
+            ]
+          },
+          "docs": "Associates a User with a given Workspace."
+        },
+        {
+          "info": {
+            "name": "Remove a user from a workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/workspaces/:workspaceId/users/:userId",
+            "params": [
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "path",
+                "description": "Workspace Id"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User Id"
+              }
+            ]
+          },
+          "docs": "Removes a User from a given Workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

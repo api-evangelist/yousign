@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant User Invitation API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Invitation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List User Invitations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/users/invitations",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "email",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `email`. Allowed operators: `eq`.\nExample: `email[eq]=user@example.com`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of all the Users Invitations within your Organization."
+        },
+        {
+          "info": {
+            "name": "Get an Invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/users/invitations/:invitationId",
+            "params": [
+              {
+                "name": "invitationId",
+                "value": "",
+                "type": "path",
+                "description": "Invitation Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a given User Invitation."
+        },
+        {
+          "info": {
+            "name": "Get a User Invitation via the User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/users/:userId/invitation",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User Id"
+              }
+            ]
+          },
+          "docs": "Retrieves the Invitation of a given User. The Invitation only exists when the User is in `invited` status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

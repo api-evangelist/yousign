@@ -1,0 +1,263 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Signer Document Request API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Signer Document Request",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Signer Document Requests of the Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/document_requests",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ]
+          },
+          "docs": "Returns a list of Signer Document Requests for a given Signature Request."
+        },
+        {
+          "info": {
+            "name": "Add Signer Document Request to a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/document_requests",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a Signer Document Request to a given Signature Request."
+        },
+        {
+          "info": {
+            "name": "Update a Signer Document Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/document_requests/:documentRequestId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Document Request Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given Signer Document Request.\nAny parameters not provided are left unchanged.\nThis action is only permitted when the Signature Request is a draft.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Signer Document Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/document_requests/:documentRequestId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Document Request Id"
+              }
+            ]
+          },
+          "docs": "Delete a Signer Document Request from signature request. This action is only permitted when the Signature Request is a draft."
+        },
+        {
+          "info": {
+            "name": "Adds a Signer to a given Signer Document Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/document_requests/:documentRequestId/signers/:signerId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Document Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Adds a Signer to a given Signer Document Request. This action is only permitted when the Signature Request is a draft."
+        },
+        {
+          "info": {
+            "name": "Remove a Signer to a given Signer Document Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/document_requests/:documentRequestId/signers/:signerId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Document Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Remove a Signer to a given Signer Document Request. This action is only permitted when the Signature Request is a draft."
+        },
+        {
+          "info": {
+            "name": "List the Signer Documents of a Signer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId/documents",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Returns a list of Documents uploaded by a given Signer.\nOnly possible when Signer status is `signed`.\n"
+        },
+        {
+          "info": {
+            "name": "Delete the Documents uploaded by a Signer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId/documents",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Deletes all documents uploaded by a given Signer for a specific Signature Request.\nDeletion is only possible when Signer status is `signed`.\n"
+        },
+        {
+          "info": {
+            "name": "Download a Signer Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId/documents/:signerDocumentId/download",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              },
+              {
+                "name": "signerDocumentId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Document Id"
+              }
+            ]
+          },
+          "docs": "Downloads a Document uploaded by a given Signer.\nOnly possible when Signer status is `signed`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

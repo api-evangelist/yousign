@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Custom Property API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Property",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Custom Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/custom_properties",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter properties applicable to a specific workspace.\nReturns org-wide properties plus properties scoped to the specified workspace.\n"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by field type."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              }
+            ]
+          },
+          "docs": "Returns all custom properties for the organization.\nResults are paginated using cursor-based pagination.\nSupports filtering by workspace and type.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Custom Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/custom_properties",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new custom property for the organization.\nThe property type (text or list) cannot be changed after creation.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Custom Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/custom_properties/:customPropertyId",
+            "params": [
+              {
+                "name": "customPropertyId",
+                "value": "",
+                "type": "path",
+                "description": "Custom Property Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a specific custom property by its ID.\nReturns the complete property definition including all options for list types.\n"
+        },
+        {
+          "info": {
+            "name": "Update a Custom Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.yousign.app/v3/custom_properties/:customPropertyId",
+            "params": [
+              {
+                "name": "customPropertyId",
+                "value": "",
+                "type": "path",
+                "description": "Custom Property Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given custom property. Any parameters not provided are left unchanged.\nThe property type cannot be changed after creation.\nFor list properties, the options array must be sent in full to replace all options.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Custom Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/custom_properties/:customPropertyId",
+            "params": [
+              {
+                "name": "customPropertyId",
+                "value": "",
+                "type": "path",
+                "description": "Custom Property Id"
+              }
+            ]
+          },
+          "docs": "Deletes a given Custom Property."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

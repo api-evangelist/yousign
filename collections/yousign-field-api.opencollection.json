@@ -1,0 +1,209 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Field API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Field",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lists the Fields of a Signature Request Document.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents/:documentId/fields",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document ID"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "type",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `type`. Allowed operators: `eq`, `in`.\nExample: `type[in]=text,checkbox`\n"
+              },
+              {
+                "name": "signer_id",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `signer_id`. Allowed operators: `eq`.\nExample: `signer_id[eq]=500800fc-3f91-4e86-a9c9-866809a1e3c9`\n"
+              },
+              {
+                "name": "name",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `name`. Allowed operators: `eq`.\nExample: `name[eq]=text 1`\n"
+              }
+            ]
+          },
+          "docs": "Returns a list of Fields for a given Document. You can limit the number of items returned by using filters."
+        },
+        {
+          "info": {
+            "name": "Create a new Field on a Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents/:documentId/fields",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a Field to a given Document."
+        },
+        {
+          "info": {
+            "name": "Update a Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents/:documentId/fields/:fieldId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document Id"
+              },
+              {
+                "name": "fieldId",
+                "value": "",
+                "type": "path",
+                "description": "Field Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given Field. Any parameters not provided are left unchanged."
+        },
+        {
+          "info": {
+            "name": "Delete a Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents/:documentId/fields/:fieldId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document Id"
+              },
+              {
+                "name": "fieldId",
+                "value": "",
+                "type": "path",
+                "description": "Field Id"
+              }
+            ]
+          },
+          "docs": "Deletes a given Field from a Document."
+        },
+        {
+          "info": {
+            "name": "Answer a Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents/:documentId/fields/:fieldId/answer",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document Id"
+              },
+              {
+                "name": "fieldId",
+                "value": "",
+                "type": "path",
+                "description": "Field Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint can be used on ongoing Signature Requests only.\nIt aims to fill a Field value with a Signer input collected in your custom signing interface. The Fields compatible are Text Fields, Checkboxes and Radio Groups.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

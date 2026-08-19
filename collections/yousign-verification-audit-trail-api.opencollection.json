@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Verification Audit Trail API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Verification Audit Trail",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download Verification Audit Trail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/:verificationType/:verificationId/audit_trail",
+            "params": [
+              {
+                "name": "verificationType",
+                "value": "",
+                "type": "path",
+                "description": "Type of the Verification for which to download the audit trail."
+              },
+              {
+                "name": "verificationId",
+                "value": "9a93d3b5-fb3b-4abf-9e70-26315b33506c",
+                "type": "path",
+                "description": "Unique identifier of the Verification."
+              }
+            ]
+          },
+          "docs": "Downloads the Audit Trail of a given Verification. Only possible when the Verification status is `verified` or `failed`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

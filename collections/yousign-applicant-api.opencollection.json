@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applicant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Applicants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/workflow_sessions/:workflowSessionId/applicants",
+            "params": [
+              {
+                "name": "workflowSessionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow Session Id"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter Applicants by status."
+              }
+            ]
+          },
+          "docs": "Returns the list of all Applicants for a given Workflow Session.\n"
+        },
+        {
+          "info": {
+            "name": "Create a new Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/workflow_sessions/:workflowSessionId/applicants",
+            "params": [
+              {
+                "name": "workflowSessionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow Session Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Applicant for a given Workflow Session.\n"
+        },
+        {
+          "info": {
+            "name": "Get an Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/workflow_sessions/:workflowSessionId/applicants/:applicantId",
+            "params": [
+              {
+                "name": "workflowSessionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow Session Id"
+              },
+              {
+                "name": "applicantId",
+                "value": "",
+                "type": "path",
+                "description": "Applicant Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a given Applicant for a Workflow Session.\n"
+        },
+        {
+          "info": {
+            "name": "Update an Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.yousign.app/v3/workflow_sessions/:workflowSessionId/applicants/:applicantId",
+            "params": [
+              {
+                "name": "workflowSessionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow Session Id"
+              },
+              {
+                "name": "applicantId",
+                "value": "",
+                "type": "path",
+                "description": "Applicant Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given Applicant for a Workflow Session.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

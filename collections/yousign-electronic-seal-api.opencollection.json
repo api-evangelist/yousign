@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Electronic Seal API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Electronic Seal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Electronic Seal Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/electronic_seal_images",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              }
+            ]
+          },
+          "docs": "Lists Electronic Seal Images.\nThe list is paginated and can be filtered by the `after` cursor.\n"
+        },
+        {
+          "info": {
+            "name": "Create an Electronic Seal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/electronic_seals",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Electronic Seal"
+        },
+        {
+          "info": {
+            "name": "Get an Electronic Seal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/electronic_seals/:electronicSealId",
+            "params": [
+              {
+                "name": "electronicSealId",
+                "value": "",
+                "type": "path",
+                "description": "Electronic Seal Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a given Electronic Seal."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

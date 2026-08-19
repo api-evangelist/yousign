@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Audit Trail API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audit Trail",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download Signature Request Audit Trails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/audit_trails/download",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "merge",
+                "value": "",
+                "type": "query",
+                "description": "Download all Audit Trails merged as a single PDF file"
+              }
+            ]
+          },
+          "docs": "Download the PDF version of all the Audit Trails attached to a given Signature Request. Each Audit Trail is bound to a different Signer. Only possible when the Signature Request status is `done`."
+        },
+        {
+          "info": {
+            "name": "Get Signer Audit Trail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId/audit_trails",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Retrieves the JSON version of the Audit Trail attached to a given Signer. Only possible when Signer status is `signed`."
+        },
+        {
+          "info": {
+            "name": "Download Audit Trail PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId/audit_trails/download",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Download the PDF version of the Audit Trail attached to a given Signer. Only possible when Signer status is `signed`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

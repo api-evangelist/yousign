@@ -1,0 +1,247 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Consumption API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Consumption",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Consumptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/consumptions",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The \"from\" date must not be more than 1 year in the past"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The \"to\" date must be more recent than the \"from\" date"
+              },
+              {
+                "name": "authentication_key",
+                "value": "",
+                "type": "query",
+                "description": "The API authentication key to use to retrieve the data"
+              }
+            ]
+          },
+          "docs": "Get signatures Consumption by source"
+        },
+        {
+          "info": {
+            "name": "Get detailed addon consumption.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/consumptions/addons",
+            "params": [
+              {
+                "name": "addons",
+                "value": "",
+                "type": "query",
+                "description": "A list of add-ons to filter the results on."
+              }
+            ]
+          },
+          "docs": "Retrieves detailed addon consumption for the current subscription period."
+        },
+        {
+          "info": {
+            "name": "Get detailed Consumption data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/consumptions/detail",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The starting date for data retrieval."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The end date for data retrieval. The `to` date must be later than the `from` date and within one year of the `from` date."
+              },
+              {
+                "name": "breakdown_type",
+                "value": "",
+                "type": "query",
+                "description": "Specifies how data is grouped. By default, it returns the total consumption for the entire organization. If set to `workspace`, the data will be grouped by Workspace."
+              },
+              {
+                "name": "workspace_ids",
+                "value": "",
+                "type": "query",
+                "description": "A list of Workspace IDs to filter the results."
+              }
+            ]
+          },
+          "docs": "Returns the consumption of your organization over a specified period."
+        },
+        {
+          "info": {
+            "name": "Export Consumption data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/consumptions/export",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "The \"from\" date must not be more than 1 year in the past"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "The \"to\" date must be more recent than the \"from\" date"
+              },
+              {
+                "name": "authentication_key",
+                "value": "",
+                "type": "query",
+                "description": "The API authentication key to use to retrieve the data"
+              }
+            ]
+          },
+          "docs": "Get a binary .csv file containing all the Consumption data of the underlying signatures"
+        },
+        {
+          "info": {
+            "name": "Get Electronic Seals consumption records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/consumptions/records/electronic_seals",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "created_at",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `created_at`. Allowed operators: `between`, `before`, `after`.\nFormat: `yyyy-mm-dd`\nExamples:\n  - `created_at[between]=2025-03-02,2025-03-04`\n  - `created_at[after]=2025-03-02`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of Electronic Seal consumption records."
+        },
+        {
+          "info": {
+            "name": "Get Identifications consumption records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/consumptions/records/identifications",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "created_at",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `created_at`. Allowed operators: `between`, `before`, `after`.\nFormat: `yyyy-mm-dd`\nExamples:\n  - `created_at[between]=2025-03-02,2025-03-04`\n  - `created_at[after]=2025-03-02`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of Identifications consumption records."
+        },
+        {
+          "info": {
+            "name": "Get Invited signers consumption records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/consumptions/records/invited_signers",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "created_at",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `created_at`. Allowed operators: `between`, `before`, `after`.\nFormat: `yyyy-mm-dd`\nExamples:\n  - `created_at[between]=2025-03-02,2025-03-04`\n  - `created_at[after]=2025-03-02`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of Invited signers consumption records."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

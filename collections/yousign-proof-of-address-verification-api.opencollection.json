@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Proof of Address Verification API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Proof of Address Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Proof of Address Verifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/proofs_of_address",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "status",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `status`. Allowed operators: `eq`.\nExample: `status[eq]=verified`\n"
+              },
+              {
+                "name": "workspace_id",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `workspace_id`. Allowed operators: `eq`.\nExample: `workspace_id[eq]=9b6ed2f3-244f-487a-baa1-bbe4f51c8748`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of all Proof of Address Verifications within your organization.\nYou can limit the number of items returned by using filters and pagination.\nConsult our [guide](https://developers.yousign.com/docs/proof-of-address-verification) for more details and examples.\n"
+        },
+        {
+          "info": {
+            "name": "Initiate a new Proof of Address Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/proofs_of_address",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ask for a Proof of Address Verification by sending a supported document type (see our [guide](https://developers.yousign.com/docs/proof-of-address-verification) for more info).\n\n**ℹ️ This endpoint accepts two request body formats — pick the one that matches your use case:**\n- 📁 `multipart/form-data` — upload a binary file containing the proof of address.\n- 📝 `application/json` — reference an existing Workflow Session Applicant by ID.\n\n**🔓 Endpoint access**\n- Environments: `production`, `sandb"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Proof of Address Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/proofs_of_address/:proofOfAddressVerificationId",
+            "params": [
+              {
+                "name": "proofOfAddressVerificationId",
+                "value": "",
+                "type": "path",
+                "description": "Proof of Address Verification Id"
+              }
+            ]
+          },
+          "docs": "Get the detailed results of a Proof of Address Verification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

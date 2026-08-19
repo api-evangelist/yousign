@@ -1,0 +1,3622 @@
+{
+  "item": [
+    {
+      "id": "9b4332bf-f6ff-4974-94bc-17da1d748288",
+      "name": "Applicant",
+      "description": {
+        "content": "An applicant associated with a Workflow Session.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "23b17888-80c2-4c8e-bcc2-f0620d504018",
+          "name": "List Applicants",
+          "request": {
+            "name": "List Applicants",
+            "description": {
+              "content": "Returns the list of all Applicants for a given Workflow Session.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow_sessions",
+                ":workflowSessionId",
+                "applicants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "After cursor (pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "The limit of items count to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter Applicants by status."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "workflowSessionId",
+                  "description": "(Required) Workflow Session Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b4d5364-ca99-4a6e-81a6-967792c49740",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"next_cursor\": \"string\"\n  },\n  \"data\": [\n    {\n      \"created_at\": \"2024-01-18T22:59:00Z\",\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n      \"label\": \"John Doe\",\n      \"reference_id\": \"REF-12345\",\n      \"status\": \"initiated\",\n      \"type\": \"natural_person\",\n      \"updated_at\": \"2024-01-18T22:59:00Z\",\n      \"workflow_session_id\": \"0ef334d2-7f36-4643-8a2a-4283b4a3e4a4\"\n    },\n    {\n      \"created_at\": \"2024-01-18T22:59:00Z\",\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n      \"label\": \"John Doe\",\n      \"reference_id\": \"REF-12345\",\n      \"status\": \"initiated\",\n      \"type\": \"natural_person\",\n      \"updated_at\": \"2024-01-18T22:59:00Z\",\n      \"workflow_session_id\": \"0ef334d2-7f36-4643-8a2a-4283b4a3e4a4\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "358eb324-9293-444b-93bc-120c30efb3cc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f9f6009-8843-4b66-9a2a-7b09a576e10a",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f69e53d9-3a51-4e6e-9af2-5db739b13e82",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a28eeb82-56e4-46d1-864c-afae0e3bf156",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fe8c3dc-3f3f-4bd3-b2ca-72e367ba6a65",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35914db9-d714-4cbf-af21-e7dcd8878833",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7415996a-046a-4b8e-bbff-496103e4f230",
+          "name": "Create a new Applicant",
+          "request": {
+            "name": "Create a new Applicant",
+            "description": {
+              "content": "Creates a new Applicant for a given Workflow Session.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow_sessions",
+                ":workflowSessionId",
+                "applicants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "workflowSessionId",
+                  "description": "(Required) Workflow Session Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"type\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\"\n    },\n    \"address\": {\n      \"city\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"line2\": \"<string>\"\n    },\n    \"bank_account\": {\n      \"iban\": \"<string>\",\n      \"bic\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "973c2bb1-7bf2-47e9-b72e-0dd07b219bf1",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"type\": \"<string>\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2024-01-18T22:59:00Z\",\n  \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n  \"label\": \"John Doe\",\n  \"natural_person\": {\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    },\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    }\n  },\n  \"reference_id\": \"REF-12345\",\n  \"status\": \"initiated\",\n  \"type\": \"natural_person\",\n  \"updated_at\": \"2024-01-18T22:59:00Z\",\n  \"workflow_session_id\": \"0ef334d2-7f36-4643-8a2a-4283b4a3e4a4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1750992-ed07-4364-9bfb-882707a91fa6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"type\": \"<string>\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bfd885b-0bd8-4550-8702-fbb78e76a00b",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"type\": \"<string>\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e213438-7aa9-4e23-9910-15736815210b",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"type\": \"<string>\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "190c4139-74f1-4c2b-9677-417911f974e6",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"type\": \"<string>\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90f0a108-9400-4f8b-a292-1f56a4bbc283",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"type\": \"<string>\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7451aee-0789-4362-b7d0-0d2582050758",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"type\": \"<string>\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "624e52d4-8b76-45c9-b8e1-950ead26bbaa",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"type\": \"<string>\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61bf5058-8da4-457c-b10c-7869309b51e1",
+          "name": "Get an Applicant",
+          "request": {
+            "name": "Get an Applicant",
+            "description": {
+              "content": "Retrieves a given Applicant for a Workflow Session.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow_sessions",
+                ":workflowSessionId",
+                "applicants",
+                ":applicantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "workflowSessionId",
+                  "description": "(Required) Workflow Session Id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "applicantId",
+                  "description": "(Required) Applicant Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dbc61076-e972-477c-88f2-ec624018873c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2024-01-18T22:59:00Z\",\n  \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n  \"label\": \"John Doe\",\n  \"natural_person\": {\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    },\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    }\n  },\n  \"reference_id\": \"REF-12345\",\n  \"status\": \"initiated\",\n  \"type\": \"natural_person\",\n  \"updated_at\": \"2024-01-18T22:59:00Z\",\n  \"workflow_session_id\": \"0ef334d2-7f36-4643-8a2a-4283b4a3e4a4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "324f5eb0-8d48-474b-a24f-830e8c70c1f1",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ac0bfba-2904-48a5-983c-ece9fa7f8d0d",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2a14e06-9136-44e4-898a-e29ef8153450",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5227b5d0-0f8f-4e15-bf14-fbfcc4a992da",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79618a55-e218-40f3-958f-752c0a13b18a",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b68a2c2-313c-4217-9b0b-4f9302142a79",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c87569a-c538-4f0a-aa5a-013f5abfddb8",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "395bc501-ede1-44e6-9376-cb77330442c8",
+          "name": "Update an Applicant",
+          "request": {
+            "name": "Update an Applicant",
+            "description": {
+              "content": "Updates a given Applicant for a Workflow Session.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow_sessions",
+                ":workflowSessionId",
+                "applicants",
+                ":applicantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "workflowSessionId",
+                  "description": "(Required) Workflow Session Id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "applicantId",
+                  "description": "(Required) Applicant Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"reference_id\": \"<string>\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\"\n    },\n    \"address\": {\n      \"city\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"line2\": \"<string>\"\n    },\n    \"bank_account\": {\n      \"iban\": \"<string>\",\n      \"bic\": \"<string>\"\n    }\n  },\n  \"legal_person\": {\n    \"company_name\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"bank_account\": {\n      \"iban\": \"<string>\",\n      \"bic\": \"<string>\"\n    },\n    \"legal_representatives\": [\n      {\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\"\n      },\n      {\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9feb09b-8d50-49cb-87d8-bdf2ce709017",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  },\n  \"legal_person\": {\n    \"company_name\": \"Acme\",\n    \"country_code\": \"FR\",\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    },\n    \"legal_representatives\": [\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2024-01-18T22:59:00Z\",\n  \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n  \"label\": \"John Doe\",\n  \"natural_person\": {\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    },\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    }\n  },\n  \"reference_id\": \"REF-12345\",\n  \"status\": \"initiated\",\n  \"type\": \"natural_person\",\n  \"updated_at\": \"2024-01-18T22:59:00Z\",\n  \"workflow_session_id\": \"0ef334d2-7f36-4643-8a2a-4283b4a3e4a4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fbfce9e-dd3c-4e80-985d-62c6a7722c97",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  },\n  \"legal_person\": {\n    \"company_name\": \"Acme\",\n    \"country_code\": \"FR\",\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    },\n    \"legal_representatives\": [\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b4a30ea-50d6-41c5-8a8a-a1ed8313c218",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  },\n  \"legal_person\": {\n    \"company_name\": \"Acme\",\n    \"country_code\": \"FR\",\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    },\n    \"legal_representatives\": [\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "625395d9-d4cd-4ced-9352-bffa79f47bb1",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  },\n  \"legal_person\": {\n    \"company_name\": \"Acme\",\n    \"country_code\": \"FR\",\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    },\n    \"legal_representatives\": [\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6501ca2-d4ba-4212-a4cc-3aa164094624",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  },\n  \"legal_person\": {\n    \"company_name\": \"Acme\",\n    \"country_code\": \"FR\",\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    },\n    \"legal_representatives\": [\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae5417c9-32fc-4bec-91fd-6741c344b8e0",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  },\n  \"legal_person\": {\n    \"company_name\": \"Acme\",\n    \"country_code\": \"FR\",\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    },\n    \"legal_representatives\": [\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "089e8ecd-7694-4d89-94df-5feff0d10739",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  },\n  \"legal_person\": {\n    \"company_name\": \"Acme\",\n    \"country_code\": \"FR\",\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    },\n    \"legal_representatives\": [\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58edd484-74e3-4307-9b7c-886f3ba9c1fd",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow_sessions",
+                    ":workflowSessionId",
+                    "applicants",
+                    ":applicantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workflowSessionId",
+                      "description": "(Required) Workflow Session Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "applicantId",
+                      "description": "(Required) Applicant Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"John Doe\",\n  \"reference_id\": \"REF-12345\",\n  \"natural_person\": {\n    \"identity\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\"\n    },\n    \"address\": {\n      \"city\": \"Paris\",\n      \"line1\": \"1 rue de la Paix\",\n      \"postal_code\": \"75002\",\n      \"line2\": null\n    },\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    }\n  },\n  \"legal_person\": {\n    \"company_name\": \"Acme\",\n    \"country_code\": \"FR\",\n    \"bank_account\": {\n      \"iban\": \"FR7630001007941234567890185\",\n      \"bic\": \"BDFEFR2L\"\n    },\n    \"legal_representatives\": [\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "9621"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "9621"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.yousign.app/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5a2980a3-34ed-450c-a295-207a92ad50fa",
+    "name": "Public Api v3 Applicant API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.\n\nContact Support:\n Name: Support\n Email: contact@yousign.com",
+      "type": "text/plain"
+    }
+  }
+}

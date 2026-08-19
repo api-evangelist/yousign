@@ -1,0 +1,2239 @@
+{
+  "item": [
+    {
+      "id": "745ad77e-bc84-423c-a906-b4714e3545b9",
+      "name": "User Invitation",
+      "description": {
+        "content": "The Invitation of a new User to join the Yousign organization.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f6da1d3d-7dae-48ff-8d21-e30dbfb56c3b",
+          "name": "List User Invitations",
+          "request": {
+            "name": "List User Invitations",
+            "description": {
+              "content": "Returns the list of all the Users Invitations within your Organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "invitations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<string>",
+                  "description": "After cursor (pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "The limit of items count to retrieve."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a6be280-5783-46d6-b4e6-1c16be20822d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "email[eq][0]",
+                      "value": "user@example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"next_cursor\": \"string\"\n  },\n  \"data\": [\n    {\n      \"created_at\": \"2024-01-18T22:59:00Z\",\n      \"email\": \"email@example.com\",\n      \"expired_at\": \"2024-01-18T22:59:00Z\",\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n      \"role\": \"admin\",\n      \"workspaces\": [\n        {\n          \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n        },\n        {\n          \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n        }\n      ]\n    },\n    {\n      \"created_at\": \"2024-01-18T22:59:00Z\",\n      \"email\": \"email@example.com\",\n      \"expired_at\": \"2024-01-18T22:59:00Z\",\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n      \"role\": \"member\",\n      \"workspaces\": [\n        {\n          \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n        },\n        {\n          \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f33d6f2-7866-4a1d-8e0c-07a9066bfdfa",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "email[eq][0]",
+                      "value": "user@example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f549ff22-6826-4e85-9442-46f8d8cac857",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "email[eq][0]",
+                      "value": "user@example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f51f8fa2-183b-4638-ae0a-57acc8d292b0",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "email[eq][0]",
+                      "value": "user@example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "673155ca-13d1-4acf-813e-cbbbc5252cb4",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "email[eq][0]",
+                      "value": "user@example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9b053ff-edba-4422-9ed4-6c31478b4d15",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "email[eq][0]",
+                      "value": "user@example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9abd6de1-6d59-4269-8aac-391f60046cef",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "email[eq][0]",
+                      "value": "user@example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd96c3b8-ea47-4024-8e93-262b082350c4",
+          "name": "Get an Invitation",
+          "request": {
+            "name": "Get an Invitation",
+            "description": {
+              "content": "Retrieves a given User Invitation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "invitations",
+                ":invitationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "invitationId",
+                  "description": "(Required) Invitation Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0dc290cf-a7c8-445b-a8db-ec377cedf036",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invitationId",
+                      "description": "(Required) Invitation Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2024-01-18T22:59:00Z\",\n  \"email\": \"email@example.com\",\n  \"expired_at\": \"2024-01-18T22:59:00Z\",\n  \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n  \"role\": \"admin\",\n  \"workspaces\": [\n    {\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n    },\n    {\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21fb111a-e736-409a-bd9c-545877f3140d",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invitationId",
+                      "description": "(Required) Invitation Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "714ebe82-6a91-4b50-9e8d-bc56acb5e835",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invitationId",
+                      "description": "(Required) Invitation Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f56d335-2091-45ce-a710-a979836df074",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invitationId",
+                      "description": "(Required) Invitation Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d8f7c7c-1be5-43e7-8d21-2a3f6be7e4a5",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invitationId",
+                      "description": "(Required) Invitation Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b081c14-3778-4f6a-b326-d7dbc55d242b",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invitationId",
+                      "description": "(Required) Invitation Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cf49299-5ff7-4d8c-a319-e368cee8a916",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "invitations",
+                    ":invitationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invitationId",
+                      "description": "(Required) Invitation Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e64085d2-1733-4e53-a328-dc01c997ca5f",
+          "name": "Get a User Invitation via the User",
+          "request": {
+            "name": "Get a User Invitation via the User",
+            "description": {
+              "content": "Retrieves the Invitation of a given User. The Invitation only exists when the User is in `invited` status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":userId",
+                "invitation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) User Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e98ee2b-8124-44f6-be48-a82cb2b9bf4f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) User Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2024-01-18T22:59:00Z\",\n  \"email\": \"email@example.com\",\n  \"expired_at\": \"2024-01-18T22:59:00Z\",\n  \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n  \"role\": \"admin\",\n  \"workspaces\": [\n    {\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n    },\n    {\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fe45677-6e58-4df4-913f-6458889f8cc6",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) User Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42d56838-ec4c-427e-8279-bfaee7bd94ce",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) User Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a16ac980-bd77-4a43-94ab-ce90fd921033",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) User Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af3335a2-14e8-4674-9846-732dadf16cd6",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) User Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f02c6a41-af34-4334-8bea-d437b5e9b306",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) User Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd21d94d-0310-489c-a600-916ba431bfde",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) User Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "7203"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "7203"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.yousign.app/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "15943d1e-89ad-4844-9371-ce424f42cfec",
+    "name": "Public Api v3 Applicant User Invitation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.\n\nContact Support:\n Name: Support\n Email: contact@yousign.com",
+      "type": "text/plain"
+    }
+  }
+}

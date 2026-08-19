@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Follower API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Follower",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the Signature Request's Followers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/followers",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ]
+          },
+          "docs": "Returns a list of Followers for a given Signature Request."
+        },
+        {
+          "info": {
+            "name": "Create new Followers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/followers",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a Follower to a given Signature Request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

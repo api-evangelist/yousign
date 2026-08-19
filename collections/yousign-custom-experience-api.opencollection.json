@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Custom Experience API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Experience",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Custom Experiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/custom_experiences",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              }
+            ]
+          },
+          "docs": "Returns the list of all Custom Experiences in your Organization.\nYou can limit the number of items returned by using pagination.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Custom Experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/custom_experiences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Custom Experience."
+        },
+        {
+          "info": {
+            "name": "Get a Custom Experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/custom_experiences/:customExperienceId",
+            "params": [
+              {
+                "name": "customExperienceId",
+                "value": "",
+                "type": "path",
+                "description": "Custom Experience Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a given Custom Experience."
+        },
+        {
+          "info": {
+            "name": "Update a Custom Experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.yousign.app/v3/custom_experiences/:customExperienceId",
+            "params": [
+              {
+                "name": "customExperienceId",
+                "value": "",
+                "type": "path",
+                "description": "Custom Experience Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given Custom Experience.\nAny parameters not provided are left unchanged.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Custom Experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/custom_experiences/:customExperienceId",
+            "params": [
+              {
+                "name": "customExperienceId",
+                "value": "",
+                "type": "path",
+                "description": "Custom Experience Id"
+              }
+            ]
+          },
+          "docs": "Deletes a given Custom Experience."
+        },
+        {
+          "info": {
+            "name": "Update a Custom Experience logo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/custom_experiences/:customExperienceId/logo",
+            "params": [
+              {
+                "name": "customExperienceId",
+                "value": "",
+                "type": "path",
+                "description": "Custom Experience Id"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Updates the logo of a given Custom Experience by uploading the image of your choice."
+        },
+        {
+          "info": {
+            "name": "Delete a Custom Experience logo",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/custom_experiences/:customExperienceId/logo",
+            "params": [
+              {
+                "name": "customExperienceId",
+                "value": "",
+                "type": "path",
+                "description": "Custom Experience Id"
+              }
+            ]
+          },
+          "docs": "Deletes the logo of a Custom Experience."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Workflow Session API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Session",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workflow Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/workflow_sessions"
+          },
+          "docs": "Returns the list of all Workflow Sessions in your organization. You can limit the number of items returned by using filters and pagination.\n"
+        },
+        {
+          "info": {
+            "name": "Create a new Workflow Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/workflow_sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Workflow Session resource.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Workflow Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/workflow_sessions/:workflowSessionId",
+            "params": [
+              {
+                "name": "workflowSessionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow Session Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a given Workflow Session.\n"
+        },
+        {
+          "info": {
+            "name": "Generate Workflow Session Links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/workflow_sessions/:workflowSessionId/links",
+            "params": [
+              {
+                "name": "workflowSessionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow Session Id"
+              }
+            ]
+          },
+          "docs": "Generates portal links for all Applicants in a given Workflow Session.\n"
+        },
+        {
+          "info": {
+            "name": "Resolve an Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/workflow_sessions/:workflowSessionId/resolve_action",
+            "params": [
+              {
+                "name": "workflowSessionId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow Session Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resolve an Action in a Workflow Session. Once resolved, the Action is treated as having a `verified` status within the Action Group.\nThis is only allowed if the related resource is in a `pending`, `failed`, or `inconclusive` status.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

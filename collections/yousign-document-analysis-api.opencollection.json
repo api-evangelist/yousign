@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Document Analysis API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Document Analysis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Document Analyses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/document_analyses",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "status",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `status`. Allowed operators: `eq`.\nExample: `status[eq]=done`\n"
+              },
+              {
+                "name": "type",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `type`. Allowed operators: `eq`.\nExample: `type[eq]=social_security`\n"
+              },
+              {
+                "name": "workspace_id",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `workspace_id`. Allowed operators: `eq`.\nExample: `workspace_id[eq]=9b6ed2f3-244f-487a-baa1-bbe4f51c8748`\n"
+              },
+              {
+                "name": "workflow_session_id",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `workflow_session_id`. Allowed operators: `eq`.\nExample: `workflow_session_id[eq]=18a5e211-ff33-48e2-810c-a0397b558611`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of all Document Analyses within your organization.\nYou can limit the number of items returned by using filters and pagination.\nConsult our [guide](https://developers.yousign.com/docs/document-analysis) for more details and examples.\n"
+        },
+        {
+          "info": {
+            "name": "Initiate a new Document Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/document_analyses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a new Document Analysis to extract data from a given document type.\n\nRelated guide: [Document Analysis](https://developers.yousign.com/docs/document-analysis)\n\n**ℹ️ This endpoint accepts two request body formats — pick the one that matches your use case:**\n- 📁 `multipart/form-data` — upload a binary file containing the document to analyse.\n- 📝 `application/json` — reference an existing Workflow Session Applicant by ID.\n\n**🔎 Analysis type (`analysis_type`)**\n- `extraction: true` (defa"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Document Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/document_analyses/:documentAnalysisId",
+            "params": [
+              {
+                "name": "documentAnalysisId",
+                "value": "",
+                "type": "path",
+                "description": "Document Analysis Id"
+              }
+            ]
+          },
+          "docs": "Get the detailed results of a Document Analysis."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

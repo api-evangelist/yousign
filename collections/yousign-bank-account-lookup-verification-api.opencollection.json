@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Bank Account Lookup Verification API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bank Account Lookup Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Bank Account Lookup Verifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/bank_account_lookups",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "status",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `status`. Allowed operators: `eq`.\nExample: `status[eq]=verified`\n"
+              },
+              {
+                "name": "workspace_id",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `workspace_id`. Allowed operators: `eq`.\nExample: `workspace_id[eq]=9b6ed2f3-244f-487a-baa1-bbe4f51c8748`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of all Bank Account Lookup Verifications within your organization.\nYou can limit the number of items returned by using filters and pagination.\nConsult our [guide](https://developers.yousign.com/docs/bank-account-lookup-verification) for more details and examples.\n"
+        },
+        {
+          "info": {
+            "name": "Initiate a new Bank Account Lookup Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/bank_account_lookups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate a new Bank Account Lookup Verification to check if a bank account exists and belongs to the specified person or company.\n\nRelated guide: [Bank Account Verification](https://developers.yousign.com/docs/bank-account-lookup-verification)\n\n**ℹ️ This endpoint accepts two request body formats — pick the one that matches your use case:**\n- 📝 `application/json` — provide the natural person's bank account details directly, or reference an existing Workflow Session Applicant by ID.\n- 📁 `multipa"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Bank Account Lookup Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/bank_account_lookups/:bankAccountLookupVerificationId",
+            "params": [
+              {
+                "name": "bankAccountLookupVerificationId",
+                "value": "",
+                "type": "path",
+                "description": "Bank Account Lookup Verification Id"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific Bank Account Lookup Verification by its ID.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

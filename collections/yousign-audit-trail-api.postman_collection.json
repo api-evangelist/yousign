@@ -1,0 +1,2618 @@
+{
+  "item": [
+    {
+      "id": "cae4cc77-71aa-4149-8c68-176653d24d9e",
+      "name": "Audit Trail",
+      "description": {
+        "content": "Set of documents generated once a Signature Request is completed.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eafa80c5-ac0b-473c-94df-891995fc34e8",
+          "name": "Download Signature Request Audit Trails",
+          "request": {
+            "name": "Download Signature Request Audit Trails",
+            "description": {
+              "content": "Download the PDF version of all the Audit Trails attached to a given Signature Request. Each Audit Trail is bound to a different Signer. Only possible when the Signature Request status is `done`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "signature_requests",
+                ":signatureRequestId",
+                "audit_trails",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merge",
+                  "value": "false",
+                  "description": "Download all Audit Trails merged as a single PDF file"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "signatureRequestId",
+                  "description": "(Required) Signature Request Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/zip, application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "acb7f917-0be5-43ae-85c0-5062884ab83e",
+              "name": "Return an application/pdf or application/zip archive with all Audit Trails",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merge",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/zip, application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/zip, application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d2bf6e3-e7dd-4d33-9aed-dd5494095bb8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merge",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f23fbe81-08da-473b-b255-1e237bf8acec",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merge",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8145f7f-2dc8-45af-8feb-befc0e92428c",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merge",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13a6a80d-342c-4ee0-bd47-bffc517ab916",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merge",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2133ab7f-6e3f-4cd0-8e35-0552a23efa4f",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merge",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69c4f492-be57-4cab-9fcf-1da3ce4d80ea",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merge",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "347b3c77-14c9-48d4-8fdd-25af17104940",
+          "name": "Get Signer Audit Trail",
+          "request": {
+            "name": "Get Signer Audit Trail",
+            "description": {
+              "content": "Retrieves the JSON version of the Audit Trail attached to a given Signer. Only possible when Signer status is `signed`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "signature_requests",
+                ":signatureRequestId",
+                "signers",
+                ":signerId",
+                "audit_trails"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "signatureRequestId",
+                  "description": "(Required) Signature Request Id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "signerId",
+                  "description": "(Required) Signer Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "243bb260-c341-4ee9-ae46-c17cbbae9f0d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sender\": {\n    \"type\": \"User\",\n    \"email\": \"johnny.wallyday@example.com\",\n    \"last_name\": \"Wallyday\",\n    \"first_name\": \"Johnny\",\n    \"ip_address\": \"172.18.0.1\",\n    \"phone_number\": \"+447123456789\"\n  },\n  \"signer\": {\n    \"last_name\": \"Wallyday\",\n    \"first_name\": \"Johnny\",\n    \"ip_address\": \"172.18.0.1\",\n    \"phone_number\": \"+447123456789\",\n    \"email_address\": \"johnny.wallyday@example.com\",\n    \"consent_given_at\": \"2021-07-05T12:21:42+00:00\",\n    \"signature_process_completed_at\": \"2021-07-05T12:21:43+00:00\"\n  },\n  \"version\": 5,\n  \"documents\": [\n    {\n      \"name\": \"sample.pdf\",\n      \"mime_type\": \"application/pdf\",\n      \"signatures\": [\n        {\n          \"hash\": \"4396f6a9f0554928f7bcc8e645a6441cb432c1606137ac8f3a735aef83946974\",\n          \"reason\": \"Signed by Johnny Wallyday\",\n          \"certificate\": {\n            \"dn\": \"CN=Yousign, C=FR, O=Yousign, OU=794513986, serialNumber=2019-02-15 10:07:35:938\",\n            \"oid\": \"1.2.250.1.302.1.7.1.0\",\n            \"hash\": \"69570e2d5cc2b352b2249ba32b16195722099a89aa35de71ee1e745f771d66c5\",\n            \"content\": \"-----BEGIN CERTIFICATE-----\\nMIIF8DCCA9igAwIBAgIIdfWiF8OAJo0wDQYJKoZIhvcNAQELBQAwfzEkMCIGA1UE\\nAwwbWU9VU0lHTiBTQVMgLSBTSUdOMiBURVNUIENBMRIwEAYDVQQLDAk3OTQ1MTM5\\nODYxFDASBgNVBAoMC1lPVVNJR04gU0FTMQ0wCwYDVQQHDARDQUVOMREwDwYDVQQI\\nDAhDQUxWQURPUzELMAkGA1UEBhMCRlIwHhcNMTkwMjE1MDg1NzM2WhcNMjIwMjE0\\nMDkwNzAwWjBnMRAwDgYDVQQDDAdZb3VzaWduMSAwHgYDVQQFExcyMDE5LTAyLTE1\\nIDEwOjA3OjM1OjkzODESMBAGA1UECwwJNzk0NTEzOTg2MRAwDgYDVQQKDAdZb3Vz\\naWduMQswCQYDVQQGEwJGUjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\\nAIWI+w9xQ9uSt4Lb/l14Yu8yRvCWer06bzm5RFvqgZRiD2Cq2Vx8LNzi0pGCxBdI\\nQ9nlWcxCAh67Lp/OygCKpUN2DnNiIiORK5b283VKASlGMy5frVOCKiq2YCz0vA6k\\npIqzBP7DKV/CsZ3EqP0uw9C12EH3PrBJGQq4WOZI1Q5Fs2JAhOwfq/wq2orG424y\\n0A9+smh8J3DjwSCoMQZrdHd/obK3w8AaTGI535dqWIZ0wKTZBZ7xahGAPGXo9cy9\\nUXFtazxWGIcu5uYjRLtlUyialcUgB0db1eyOzFoRJCsaE6s7QgBhQUUfDkXs1UIp\\nD0BfB/K2kPxGENm2Uk6WAfcCAwEAAaOCAYYwggGCMAwGA1UdEwEB/wQCMAAwHwYD\\nVR0jBBgwFoAUzmRTx3jf2iI16mJGhB48l67NzPUwSwYDVR0gBEQwQjBABgoqgXoB\\ngi4BBwEAMDIwMAYIKwYBBQUHAgEWJGh0dHA6Ly95b3VzaWduLmZyL2ZyL3B1Ymxp\\nYy9kb2N1bWVudDAgBgNVHSUEGTAXBgorBgEEAYI3CgMMBgkqhkiG9y8BAQUwgbIG\\nA1UdHwSBqjCBpzA1oDOgMYYvaHR0cDovL3RtcC55b3VzaWduLmZyL2NybC95b3Vz\\naWduc2Fzc2lnbjJjYS5jcmwwNqA0oDKGMGh0dHA6Ly90bXAyLnlvdXNpZ24uZnIv\\nY3JsL3lvdXNpZ25zYXNzaWduMmNhLmNybDA2oDSgMoYwaHR0cDovL3RtcDMueW91\\nc2lnbi5mci9jcmwveW91c2lnbnNhc3NpZ24yY2EuY3JsMB0GA1UdDgQWBBTgXAE8\\nONE89UOu8TjrtBH9cbd92jAOBgNVHQ8BAf8EBAMCBkAwDQYJKoZIhvcNAQELBQAD\\nggIBAAF+VPpcphjyoU8RvQO14ojWV51wJxsx5ShsvtXPsQ7dBws8XmthuTyyYxtM\\nE3dldkJsaQt8vK7/AUURwO7YX7PHVlwIqm2kpNThZ4+sEib3SOivP8vpfIP3mD0+\\nIFREI/8adIWYyiYzp1xjuuAoZ6lyg2JsOQ/67nyS+y7sUQ++GfQulb5yjkMytmYs\\nPJ0uyjnNAI/+hy4okIY7qgHFZaDGBSqdGU28NZcCEeBLwjcH4ET2Q1LvJ7nkKQMM\\ncxw+TXdy7cgIAjdfCymjJ701s43JKI01NFrNZ0I20jTOuh2qB4Kf8fQFwmutTnRM\\nP4ZglXsXZkyL9snUWwMSAP9QP13fPD6EDTTshyijvwHb6zbrFg3U7J0m/Sjmqp2A\\nzD+pj777dQ2jg0zTJ3WLOosE1/tt60ygK3HhiVnnyM8sdjTrZ6ca9++TgnRthKss\\nR35c/1Be3RJtYnar2yn3bA2pklLcjnV8Q3ZSks4ll7XnEI9V8EQSNHkmno7k+asl\\nWeQ8eC82fkwCwzXMLBTt1kN+0qXfpvVoSITPSVlOvdCsFCRSC3JMYHUY6c9oUUlV\\nCCEBWxe/Vm8R+AG4i3zk9wIoLDLW2eeOx1G61QFtIlgJPbKRLiDZhaGZq1PN8T2o\\nD/1S7m9PMISw1hrWHpJM+gZpRLsfRp5EH3ieRFzt24fpIosf\\n-----END CERTIFICATE-----\\n-----BEGIN CERTIFICATE-----\\nMIIGnDCCBISgAwIBAgIIfVpT4jgxW6cwDQYJKoZIhvcNAQELBQAwfzEkMCIGA1UE\\nAwwbWU9VU0lHTiBTQVMgLSBST09UMiBURVNUIENBMRIwEAYDVQQLDAk3OTQ1MTM5\\nODYxFDASBgNVBAoMC1lPVVNJR04gU0FTMQ0wCwYDVQQHDARDQUVOMREwDwYDVQQI\\nDAhDQUxWQURPUzELMAkGA1UEBhMCRlIwHhcNMTYwMTI3MTYyODExWhcNMjYwMTI3\\nMTYyODExWjB/MSQwIgYDVQQDDBtZT1VTSUdOIFNBUyAtIFNJR04yIFRFU1QgQ0Ex\\nEjAQBgNVBAsMCTc5NDUxMzk4NjEUMBIGA1UECgwLWU9VU0lHTiBTQVMxDTALBgNV\\nBAcMBENBRU4xETAPBgNVBAgMCENBTFZBRE9TMQswCQYDVQQGEwJGUjCCAiIwDQYJ\\nKoZIhvcNAQEBBQADggIPADCCAgoCggIBALUsirI2GYG9qu3U2S4V4JI0V9ohNP3W\\nEpssSBcepPBV4UPtwAbFGvJqtGO/0nNZO0J7UwUb0sZBnedFl96tRQff3PECyO9k\\n1B1/8rK1TbLPQPhTYWlrvX69wHXJFPxf/JkL4l4Lp6nFS80SYlaRj2RHHJ8HDj8S\\nP1oULnhW2f2i8AlJwFe34eLJbWgeI5D7UAo59GMQ6bO4aVMaaDWvXsKOn8qmCUwF\\ngtQNOqtYyLgURr4qivbjsZEv5H4Ee+wR5J+U6wd9dpIoTV2g1mExNlKVoj9qX9rh\\n4al4G80fKNUT8bVnzxmdkDZzuzKm+rNIN6Fnc5CTHu2IcMHcuvKMRvsSJ+0fiz1E\\nb/xsKO18Aiy5XOEQFqDrXRKC5AMmF/zB9Fh1Xe7Bi6IQo15NOjOCHLiBTARsMBJ8\\nRWTuTv89qnL1lECogFusbptDG4Gu7Y7M13V8gOoGAxBs6uALjoseFZcnLQlIjZCV\\nL0xyhrXFCLFnv4gy2+xY1bJNueD3cLFkzaxiCJ4WKesmRIfc6vHaQNl5NpU+9tFb\\nU6o01c3fjZUdIh/MR3GFIXNpPsilhl///5aT5h2L98Gmb2q7tqSbFqm5z17MG3uS\\ne4zCt+UD7MI8oCF2CELo79xMjtmqEwIf0IU8MxaLaLSZ0J164ZyHwvfIewgBp8XF\\nqLn0jrZNiocXAgMBAAGjggEaMIIBFjAPBgNVHRMBAf8EBTADAQH/MB8GA1UdIwQY\\nMBaAFGXEFaTuRlW+zr11R8A0QEYcGvuRMIGyBgNVHR8EgaowgacwNaAzoDGGL2h0\\ndHA6Ly90bXAueW91c2lnbi5mci9jcmwveW91c2lnbnNhc3Jvb3QyY2EuY3JsMDag\\nNKAyhjBodHRwOi8vdG1wMi55b3VzaWduLmZyL2NybC95b3VzaWduc2Fzcm9vdDJj\\nYS5jcmwwNqA0oDKGMGh0dHA6Ly90bXAzLnlvdXNpZ24uZnIvY3JsL3lvdXNpZ25z\\nYXNyb290MmNhLmNybDAdBgNVHQ4EFgQUzmRTx3jf2iI16mJGhB48l67NzPUwDgYD\\nVR0PAQH/BAQDAgEGMA0GCSqGSIb3DQEBCwUAA4ICAQBZ8ru8LEQ1qzQqG/Rx420f\\ncN4YNM1cXV+DwpWOw46Oh9U7BG1i/wYPy6uEZvj/n+nm/MkbajrzTViZnKMRs7Wy\\nCWBqvAfl4gcbWvrRzdVwsbd3UbsxD5UD1CkJYl5/4gPvCae6YVCF9WtnH2lSy/Gv\\n5bbIfyXF++iNQn+lLe59EhA3WinTql/yk/SPUNVn4/IZ0UWrw1IPS3kmnIal1mk7\\npL45n5G51qAHpSbAoTsCeRBJZ6jr38n+FimZahnBZTu4+XycDVicrydpsopQiTt8\\nry+mP1b9Nd4eoHR4/F/82w1rNfAM0NJKL8w3qr8lMdxsbANMvW0ixgjRnBpuRRB4\\n5iUA5Mb2DbiYJARBoruYqYGya317Gcvtk4w0O48CXR+HPXygHh/63De1JdOUjSc2\\nHagr6jp7NKbn/XmWBjWuoG9J9d9sC5U/mgjw5Xjf9jKGuUGz46EtlzzpojVB7fJA\\nE2Ye0kOuLANpoTFAI4EJe5nTJz0HsFG3nDshsD9Mb1/kUBSGUDWijL5f0LDqf562\\nkTioMpkK7ivZxQksF8+bMId5sUNrDVA/6lhn8tD5gzGacSU7IMfIH3EUKcI1NoWm\\nhV+aI8EbXP6251cF74y/tejTUQLdOQ9ut3PsxYmTTDqr8RPI6UZeh2yibzSmgGwU\\nfylsTiF/gVGm5cpWCrULCw==\\n-----END CERTIFICATE-----\\n-----BEGIN CERTIFICATE-----\\nMIIGnDCCBISgAwIBAgIIT0TY3eM9ut0wDQYJKoZIhvcNAQELBQAwfzEkMCIGA1UE\\nAwwbWU9VU0lHTiBTQVMgLSBST09UMiBURVNUIENBMRIwEAYDVQQLDAk3OTQ1MTM5\\nODYxFDASBgNVBAoMC1lPVVNJR04gU0FTMQ0wCwYDVQQHDARDQUVOMREwDwYDVQQI\\nDAhDQUxWQURPUzELMAkGA1UEBhMCRlIwHhcNMTYwMTI3MTYyNjE2WhcNMzYwMTI3\\nMTYyNjE2WjB/MSQwIgYDVQQDDBtZT1VTSUdOIFNBUyAtIFJPT1QyIFRFU1QgQ0Ex\\nEjAQBgNVBAsMCTc5NDUxMzk4NjEUMBIGA1UECgwLWU9VU0lHTiBTQVMxDTALBgNV\\nBAcMBENBRU4xETAPBgNVBAgMCENBTFZBRE9TMQswCQYDVQQGEwJGUjCCAiIwDQYJ\\nKoZIhvcNAQEBBQADggIPADCCAgoCggIBALXMHUFwSacaI5TjtMRw4kJ9o1ve/IZo\\noj+2HOpW3iqs74cmsYjpHbJD0UAdh3SpdlLFK1/WBf0uEbzn6z7gRfUkEAo5EnHs\\nM1iTfCXWDtA+xd9X4h2UAVEdXRzglvOvT275fjI1uj9Zi4Rz95drhlGkZVCDIMuv\\n7fazkT868grWSfGSUc2C8d9+kOL4pCKuSanOc/nwD61F+oQ6KeEMtmpbr57Yy+qY\\ntaF6ieKiDGn0aDj3yImnA9YqfFlX4mCyn+LmiqrXyEn0Z5iYLbO0wXkyPqhcO9c9\\ngS1Y8Y/1AEvxnaLlV3eG402ZYUS6tT27o+tpdCAIx+3zMhNsPI9wXUjlVr/8ts+/\\nuOUUCUWoBK3J6R1zG3urCdnuor8xAaWK/OHtvg8rXoXEfi8ujWV3EbiwIwiUHVh4\\nrJIE1vhsVPW/sTM9yEjRFks0swyoX6QupEuaZLV4DbmcEbmZ2XIH5Cw2c1qwUTk2\\n8vQzKHszLdRb9scnjd3yHsef5ZAHS9hUoFIfG+MzINGm3U6v4exspSw/EshSavVj\\nR+gL0l+sdK4L6xe++K++Gpp5xn5cZUJeg4YtdgGju7lMdGpJVVwl0Y8UAEJt9xgC\\nMvGctrkoaUuBjOhrGQQITDMsNrtgi28s7rUB6k+yxcaGBBp2PyAIsIe0e1wKGm1N\\nHjGtqY0IV1tFAgMBAAGjggEaMIIBFjAPBgNVHRMBAf8EBTADAQH/MB8GA1UdIwQY\\nMBaAFGXEFaTuRlW+zr11R8A0QEYcGvuRMIGyBgNVHR8EgaowgacwNaAzoDGGL2h0\\ndHA6Ly90bXAueW91c2lnbi5mci9jcmwveW91c2lnbnNhc3Jvb3QyY2EuY3JsMDag\\nNKAyhjBodHRwOi8vdG1wMi55b3VzaWduLmZyL2NybC95b3VzaWduc2Fzcm9vdDJj\\nYS5jcmwwNqA0oDKGMGh0dHA6Ly90bXAzLnlvdXNpZ24uZnIvY3JsL3lvdXNpZ25z\\nYXNyb290MmNhLmNybDAdBgNVHQ4EFgQUZcQVpO5GVb7OvXVHwDRARhwa+5EwDgYD\\nVR0PAQH/BAQDAgEGMA0GCSqGSIb3DQEBCwUAA4ICAQCuxOXQDSYF0RpYQWonRDlU\\nZ64IaGJ5buU4tGzf7rAgIQdXbO/VjjfF9UsjnLopNwWkuSJvINm21obYHcoSwvpz\\nlwS/3uJCLxaw5q4SVJ4x5rajh/2qtFzcThSh48rcXcqoxAmc6BzQuIOm9cFUD2Ri\\nqUJmg5O+CoLuE1b4i+CsCFL3AoWnBHFZ4YtInQBFIRBhMNPICvYOCF6jjgmMxkWU\\nM8SEp7FSFfsy/oPI1dt+k9JjHCXhtWO9ndLvvwvLcjqRO3ItiF9IazsNcNLhaIMA\\nlvYiQ+jLpckAuTxj7XHQyJSEofTMPr+ZSgQwUc337MJyxPhTDkch5cQBfnC20Usk\\nyjdwwaeiwnNMhESwgDa4Oqw5IOmq+VmqtR+9F9yxACrpyph593F1zYwv7ikik5dI\\nIYACb2fKLQrcnCfhm0k1Nt9UXoc9mQzFUK0DWJNLeGJo0rfRQh5ZqhcBG2U0KZFQ\\nRtQQEf3zXJxQJGlCn1UMZMJswAzfhMTdGPNzyDI2u+9Q8WT7M2f59Idiae2m79uG\\nuStRwN7Vnrpa399YXixOpNTz6d0NFBOAq1Nfwy5cnQDCnT9JkrKidrFKyA21b67m\\nSfJIpMSPfFbt3g0h7JPWK7OC4Ydydh92e7/IUhtkudKMoazlwSJ7484dE7NyTpol\\n62H0sW/1gmFzE6/QmCUR+w==\\n-----END CERTIFICATE-----\",\n            \"generated_at\": \"2019-02-15T09:07:36+00:00\"\n          }\n        }\n      ],\n      \"initial_hash\": \"8decc8571946d4cd70a024949e033a2a2a54377fe9f1c1b944c20f9ee11a9e51\",\n      \"initial_storage_id\": \"fdad7bcf-73d5-4a73-945d-ba7b738c530b\"\n    }\n  ],\n  \"organization\": {\n    \"name\": \"Universalt Music\"\n  },\n  \"authentication\": {\n    \"mode\": \"sms\",\n    \"message\": \"eSIGNATURE: 791994 is your security code to confirm the signature of your documents.\",\n    \"validated_at\": \"2021-07-05T12:21:40+00:00\"\n  },\n  \"signature_request\": {\n    \"name\": \"My new request\",\n    \"sent_at\": \"2021-07-05T12:21:21+00:00\",\n    \"expired_at\": \"2022-01-05T22:59:00+00:00\"\n  },\n  \"electronic_signature_level\": {\n    \"level\": \"Simple electronic signature\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c669c1c-d6e5-49b1-931d-ca3b17945cd2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "149b7463-928a-4e89-a143-7a93509b7082",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d366be50-2475-4292-8e3e-70e6cd111187",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc05b4e8-b8e0-4f51-9b2b-709a89eec78d",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b48bf173-b92b-4bb1-be5a-5b3e4eb9ad43",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dff7fee4-643e-4675-b729-78634a940929",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36c44880-8b7f-498c-ba7a-3467a9bc061a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d55bd3e7-b1d8-41c7-b55d-966743fef514",
+          "name": "Download Audit Trail PDF",
+          "request": {
+            "name": "Download Audit Trail PDF",
+            "description": {
+              "content": "Download the PDF version of the Audit Trail attached to a given Signer. Only possible when Signer status is `signed`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "signature_requests",
+                ":signatureRequestId",
+                "signers",
+                ":signerId",
+                "audit_trails",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "signatureRequestId",
+                  "description": "(Required) Signature Request Id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "signerId",
+                  "description": "(Required) Signer Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "865415d4-538f-49bf-9146-2cf8d435d1d8",
+              "name": "Audit Trail PDF",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d60aa4a4-7afa-41e0-8491-539e10538279",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a0d6c56-9753-4cb5-b1f5-c2ff4245d787",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79074d62-422d-463f-b114-f1f5437189d5",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91145c37-efec-41eb-b0e4-c19eede4d1e9",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42674c54-302d-4902-8092-f1b896cdf5f0",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ed95a2e-d1ba-4f9f-a82a-0f4d20c4e7b7",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5103bf3-8c3f-4f4f-a7fd-475dfd0c5693",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "signature_requests",
+                    ":signatureRequestId",
+                    "signers",
+                    ":signerId",
+                    "audit_trails",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signatureRequestId",
+                      "description": "(Required) Signature Request Id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "signerId",
+                      "description": "(Required) Signer Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "8273"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "8273"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.yousign.app/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3172bdd4-0b5f-4ea9-a7fe-1d5fe93b8a9a",
+    "name": "Public Api v3 Applicant Audit Trail API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.\n\nContact Support:\n Name: Support\n Email: contact@yousign.com",
+      "type": "text/plain"
+    }
+  }
+}

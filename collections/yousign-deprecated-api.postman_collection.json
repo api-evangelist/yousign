@@ -1,0 +1,1510 @@
+{
+  "item": [
+    {
+      "id": "f0347d65-4de0-41ca-9208-3b3e933bc2ff",
+      "name": "Deprecated",
+      "description": {
+        "content": "Operations that are no longer recommended for use.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d247b38e-f158-4e4d-9d30-276d5101d9ac",
+          "name": "[DEPRECATED] Upload a Document",
+          "request": {
+            "name": "[DEPRECATED] Upload a Document",
+            "description": {
+              "content": "Deprecated endpoint, do not use.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) Binary file. Accepted formats: `PDF`, `DOCX`, `JPEG`, `JPG` and `PNG`. All files are converted to PDF upon upload."
+                },
+                {
+                  "key": "nature",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Can take two values: `signable_document` or `attachment`. Files in `JPEG`, `JPG`, and `PNG` format can only be of `attachment` nature. (This can only be one of attachment,signable_document)"
+                },
+                {
+                  "key": "insert_after_id",
+                  "value": "<uuid>",
+                  "type": "text",
+                  "description": "Insert just after the position of the specified document id."
+                },
+                {
+                  "key": "password",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The document name. If not set, will use the uploaded document name. This value should contain any characters except \"\\\", \"/\" and can\\'t start and finish with a space."
+                },
+                {
+                  "key": "initials",
+                  "value": "<object>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "parse_anchors",
+                  "value": "false",
+                  "type": "text",
+                  "description": "If true, the system will parse the document exclusively for Signature-type Smart Anchors and automatically generate the required fields."
+                },
+                {
+                  "key": "excluded_approvers",
+                  "value": "[\"<uuid>\",\"<uuid>\"]",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "excluded_signers",
+                  "value": "[\"<uuid>\",\"<uuid>\"]",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "654c98ff-d855-4eb4-abc8-f27689d231d3",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Binary file. Accepted formats: `PDF`, `DOCX`, `JPEG`, `JPG` and `PNG`. All files are converted to PDF upon upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Can take two values: `signable_document` or `attachment`. Files in `JPEG`, `JPG`, and `PNG` format can only be of `attachment` nature. (This can only be one of attachment,signable_document)",
+                        "type": "text/plain"
+                      },
+                      "key": "nature",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Insert just after the position of the specified document id.",
+                        "type": "text/plain"
+                      },
+                      "key": "insert_after_id",
+                      "value": "8b6ed2f3-244f-487a-baa1-bbe4f51c8744",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "MyPa$$word",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The document name. If not set, will use the uploaded document name. This value should contain any characters except \"\\\", \"/\" and can\\'t start and finish with a space.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "file1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "initials",
+                      "value": "{\"alignment\":\"<string>\",\"y\":10}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "If true, the system will parse the document exclusively for Signature-type Smart Anchors and automatically generate the required fields.",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_anchors",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_approvers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_signers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "842"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content_type\": \"application/pdf\",\n  \"created_at\": \"2024-01-18T22:59:00Z\",\n  \"excluded_approvers\": [\n    \"b00b375f-853f-fc3e-67c6-395dc4e64597\",\n    \"2704d737-472e-18b3-29f2-8e0b5ad174b0\"\n  ],\n  \"excluded_signers\": [\n    \"8f53c281-49c8-80a4-91d3-e1499c6d04ef\",\n    \"7c93992f-da16-289e-c3c8-66d1d74a9372\"\n  ],\n  \"filename\": \"string\",\n  \"id\": \"89120884-d29a-4b1a-ac7b-a9e73a872796\",\n  \"initials\": {\n    \"alignment\": \"right\",\n    \"per_page\": [\n      {\n        \"page\": 2319,\n        \"y\": 8076\n      },\n      {\n        \"page\": 833,\n        \"y\": 1426\n      }\n    ],\n    \"y\": 129\n  },\n  \"is_locked\": false,\n  \"is_protected\": true,\n  \"is_signed\": false,\n  \"nature\": \"attachment\",\n  \"sha256\": \"string\",\n  \"total_anchors\": 986,\n  \"total_pages\": 7459\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f14a7b22-f3d9-4082-b71b-ee58233d4515",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Binary file. Accepted formats: `PDF`, `DOCX`, `JPEG`, `JPG` and `PNG`. All files are converted to PDF upon upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Can take two values: `signable_document` or `attachment`. Files in `JPEG`, `JPG`, and `PNG` format can only be of `attachment` nature. (This can only be one of attachment,signable_document)",
+                        "type": "text/plain"
+                      },
+                      "key": "nature",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Insert just after the position of the specified document id.",
+                        "type": "text/plain"
+                      },
+                      "key": "insert_after_id",
+                      "value": "8b6ed2f3-244f-487a-baa1-bbe4f51c8744",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "MyPa$$word",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The document name. If not set, will use the uploaded document name. This value should contain any characters except \"\\\", \"/\" and can\\'t start and finish with a space.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "file1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "initials",
+                      "value": "{\"alignment\":\"<string>\",\"y\":10}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "If true, the system will parse the document exclusively for Signature-type Smart Anchors and automatically generate the required fields.",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_anchors",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_approvers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_signers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "842"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04165e4d-a11e-4f2a-8964-cf2f40e0d03f",
+              "name": "Access unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Binary file. Accepted formats: `PDF`, `DOCX`, `JPEG`, `JPG` and `PNG`. All files are converted to PDF upon upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Can take two values: `signable_document` or `attachment`. Files in `JPEG`, `JPG`, and `PNG` format can only be of `attachment` nature. (This can only be one of attachment,signable_document)",
+                        "type": "text/plain"
+                      },
+                      "key": "nature",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Insert just after the position of the specified document id.",
+                        "type": "text/plain"
+                      },
+                      "key": "insert_after_id",
+                      "value": "8b6ed2f3-244f-487a-baa1-bbe4f51c8744",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "MyPa$$word",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The document name. If not set, will use the uploaded document name. This value should contain any characters except \"\\\", \"/\" and can\\'t start and finish with a space.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "file1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "initials",
+                      "value": "{\"alignment\":\"<string>\",\"y\":10}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "If true, the system will parse the document exclusively for Signature-type Smart Anchors and automatically generate the required fields.",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_anchors",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_approvers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_signers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "842"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f44cb81-0b4c-47bf-9d87-786009ae006f",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Binary file. Accepted formats: `PDF`, `DOCX`, `JPEG`, `JPG` and `PNG`. All files are converted to PDF upon upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Can take two values: `signable_document` or `attachment`. Files in `JPEG`, `JPG`, and `PNG` format can only be of `attachment` nature. (This can only be one of attachment,signable_document)",
+                        "type": "text/plain"
+                      },
+                      "key": "nature",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Insert just after the position of the specified document id.",
+                        "type": "text/plain"
+                      },
+                      "key": "insert_after_id",
+                      "value": "8b6ed2f3-244f-487a-baa1-bbe4f51c8744",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "MyPa$$word",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The document name. If not set, will use the uploaded document name. This value should contain any characters except \"\\\", \"/\" and can\\'t start and finish with a space.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "file1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "initials",
+                      "value": "{\"alignment\":\"<string>\",\"y\":10}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "If true, the system will parse the document exclusively for Signature-type Smart Anchors and automatically generate the required fields.",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_anchors",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_approvers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_signers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "842"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b0fd6bf-a532-4409-b8fb-964beddc00a7",
+              "name": "This method is not allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Binary file. Accepted formats: `PDF`, `DOCX`, `JPEG`, `JPG` and `PNG`. All files are converted to PDF upon upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Can take two values: `signable_document` or `attachment`. Files in `JPEG`, `JPG`, and `PNG` format can only be of `attachment` nature. (This can only be one of attachment,signable_document)",
+                        "type": "text/plain"
+                      },
+                      "key": "nature",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Insert just after the position of the specified document id.",
+                        "type": "text/plain"
+                      },
+                      "key": "insert_after_id",
+                      "value": "8b6ed2f3-244f-487a-baa1-bbe4f51c8744",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "MyPa$$word",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The document name. If not set, will use the uploaded document name. This value should contain any characters except \"\\\", \"/\" and can\\'t start and finish with a space.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "file1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "initials",
+                      "value": "{\"alignment\":\"<string>\",\"y\":10}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "If true, the system will parse the document exclusively for Signature-type Smart Anchors and automatically generate the required fields.",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_anchors",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_approvers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_signers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "842"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68892470-7f04-4611-89c3-6ddd356b613d",
+              "name": "UnsupportedMediaType",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Binary file. Accepted formats: `PDF`, `DOCX`, `JPEG`, `JPG` and `PNG`. All files are converted to PDF upon upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Can take two values: `signable_document` or `attachment`. Files in `JPEG`, `JPG`, and `PNG` format can only be of `attachment` nature. (This can only be one of attachment,signable_document)",
+                        "type": "text/plain"
+                      },
+                      "key": "nature",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Insert just after the position of the specified document id.",
+                        "type": "text/plain"
+                      },
+                      "key": "insert_after_id",
+                      "value": "8b6ed2f3-244f-487a-baa1-bbe4f51c8744",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "MyPa$$word",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The document name. If not set, will use the uploaded document name. This value should contain any characters except \"\\\", \"/\" and can\\'t start and finish with a space.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "file1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "initials",
+                      "value": "{\"alignment\":\"<string>\",\"y\":10}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "If true, the system will parse the document exclusively for Signature-type Smart Anchors and automatically generate the required fields.",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_anchors",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_approvers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_signers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "842"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14a4d391-27e1-47b6-8c19-c3e12f7e6e51",
+              "name": "Too Many Requests, please try again later.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Binary file. Accepted formats: `PDF`, `DOCX`, `JPEG`, `JPG` and `PNG`. All files are converted to PDF upon upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Can take two values: `signable_document` or `attachment`. Files in `JPEG`, `JPG`, and `PNG` format can only be of `attachment` nature. (This can only be one of attachment,signable_document)",
+                        "type": "text/plain"
+                      },
+                      "key": "nature",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Insert just after the position of the specified document id.",
+                        "type": "text/plain"
+                      },
+                      "key": "insert_after_id",
+                      "value": "8b6ed2f3-244f-487a-baa1-bbe4f51c8744",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "MyPa$$word",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The document name. If not set, will use the uploaded document name. This value should contain any characters except \"\\\", \"/\" and can\\'t start and finish with a space.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "file1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "initials",
+                      "value": "{\"alignment\":\"<string>\",\"y\":10}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "If true, the system will parse the document exclusively for Signature-type Smart Anchors and automatically generate the required fields.",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_anchors",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_approvers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_signers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "Retry the request after X seconds",
+                  "key": "Retry-After",
+                  "value": "842"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bff62846-4e0d-4c13-9c13-5d5ae3af3330",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Binary file. Accepted formats: `PDF`, `DOCX`, `JPEG`, `JPG` and `PNG`. All files are converted to PDF upon upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Can take two values: `signable_document` or `attachment`. Files in `JPEG`, `JPG`, and `PNG` format can only be of `attachment` nature. (This can only be one of attachment,signable_document)",
+                        "type": "text/plain"
+                      },
+                      "key": "nature",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Insert just after the position of the specified document id.",
+                        "type": "text/plain"
+                      },
+                      "key": "insert_after_id",
+                      "value": "8b6ed2f3-244f-487a-baa1-bbe4f51c8744",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "MyPa$$word",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The document name. If not set, will use the uploaded document name. This value should contain any characters except \"\\\", \"/\" and can\\'t start and finish with a space.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "file1",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "initials",
+                      "value": "{\"alignment\":\"<string>\",\"y\":10}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "If true, the system will parse the document exclusively for Signature-type Smart Anchors and automatically generate the required fields.",
+                        "type": "text/plain"
+                      },
+                      "key": "parse_anchors",
+                      "value": "true",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_approvers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "excluded_signers",
+                      "value": "[\"550e8400-e29b-41d4-a716-446655440000\",\"6ba7b810-9dad-11d1-80b4-00c04fd430c8\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
+                  "key": "RateLimit-Limit",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
+                  "key": "X-RateLimit-Limit-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
+                  "key": "X-RateLimit-Limit-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current rate limit window",
+                  "key": "RateLimit-Remaining",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current hour rate limit window",
+                  "key": "X-RateLimit-Remaining-Hour",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The number of requests remaining in the current minute rate limit window",
+                  "key": "X-RateLimit-Remaining-Minute",
+                  "value": "842"
+                },
+                {
+                  "disabled": false,
+                  "description": "The remaining time until the rate limit resets in seconds",
+                  "key": "RateLimit-Reset",
+                  "value": "842"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-sandbox.yousign.app/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ad7003ee-2215-484e-a75d-787a481f0cc3",
+    "name": "Public Api v3 Applicant Deprecated API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.\n\nContact Support:\n Name: Support\n Email: contact@yousign.com",
+      "type": "text/plain"
+    }
+  }
+}

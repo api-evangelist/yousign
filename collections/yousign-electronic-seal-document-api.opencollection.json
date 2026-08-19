@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Electronic Seal Document API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Electronic Seal Document",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an Electronic Seal Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/electronic_seal_documents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an Electronic Seal Document.\n\n**ℹ️ This endpoint accepts two request body formats — pick the one that matches your use case:**\n- 📁 `multipart/form-data` — upload a binary file.\n- 📝 `application/json` — create from a JSON payload referencing a previously sealed source document.\n\n**🔓 Endpoint access**\n- Environments: `production`, `sandbox`\n- API key scopes: `organization`, `workspace`\n- Plans: `pro`, `scale`\n- Add-ons (for production access): `Electronic Seal` or `Advanced Electronic Se"
+        },
+        {
+          "info": {
+            "name": "Delete an Electronic Seal Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/electronic_seal_documents/:electronicSealDocumentId",
+            "params": [
+              {
+                "name": "electronicSealDocumentId",
+                "value": "",
+                "type": "path",
+                "description": "Electronic Seal Document Id"
+              }
+            ]
+          },
+          "docs": "Permanently deletes an Electronic Seal Document attached to an Electronic Seal. This action is only possible when the eSeal is in done or error status. Not applicable to documents sealed with a Qualified eSeal. Warning: this operation is irreversible: once deleted, the document cannot be retrieved. The customer assumes full responsibility for this action.\n"
+        },
+        {
+          "info": {
+            "name": "Download an Electronic Seal Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/electronic_seal_documents/:electronicSealDocumentId/download",
+            "params": [
+              {
+                "name": "electronicSealDocumentId",
+                "value": "",
+                "type": "path",
+                "description": "Electronic Seal Document Id"
+              }
+            ]
+          },
+          "docs": "Download a given Electronic Seal Document."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

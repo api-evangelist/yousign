@@ -1,0 +1,236 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Document API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Document",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Signature Request's Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "nature",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `nature`. Allowed operators: `eq`.\nExample: `nature[eq]=attachment` or `nature[eq]=signable_document`.\n"
+              }
+            ]
+          },
+          "docs": "Returns a list of Documents for a given Signature Request."
+        },
+        {
+          "info": {
+            "name": "Add a Document to a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a Document to a given Signature Request.\n\n**Limits:** a maximum of 50 Documents can be added per Signature Request.\n\nRelated guide: [Document](https://developers.yousign.com/docs/document-1)\n\n**ℹ️ This endpoint accepts two request body formats — pick the one that matches your use case:**\n- 📁 `multipart/form-data` — upload a binary file (`PDF`, `DOCX`, `JPEG`, `JPG`, `PNG`).\n- 📝 `application/json` — reference an existing Electronic Seal Document by ID.\n\n**🔓 Endpoint access**\n- Environments"
+        },
+        {
+          "info": {
+            "name": "Download Signature Request's Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents/download",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Specify Documents version to download, `completed` is only available when the Signature Request status is `done`."
+              },
+              {
+                "name": "archive",
+                "value": "",
+                "type": "query",
+                "description": "Force zip archive download"
+              }
+            ]
+          },
+          "docs": "Downloads the PDF version of all Documents attached to a given Signature Request."
+        },
+        {
+          "info": {
+            "name": "Get a Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents/:documentId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a given Document."
+        },
+        {
+          "info": {
+            "name": "Update a Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents/:documentId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given Document. Any parameters not provided are left unchanged."
+        },
+        {
+          "info": {
+            "name": "Delete a Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents/:documentId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document Id"
+              }
+            ]
+          },
+          "docs": "Deletes a given Document from a Signature Request."
+        },
+        {
+          "info": {
+            "name": "Download a single Signature Request's Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents/:documentId/download",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document Id"
+              }
+            ]
+          },
+          "docs": "Downloads the PDF version of a given Document."
+        },
+        {
+          "info": {
+            "name": "Replace a Document in a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/documents/:documentId/replace",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "Document Id"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Replace the file of a given Document."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

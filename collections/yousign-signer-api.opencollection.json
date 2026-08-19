@@ -1,0 +1,303 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Signer API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Signer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Signature Request's Signers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ]
+          },
+          "docs": "Returns a list of Signers for a given Signature Request."
+        },
+        {
+          "info": {
+            "name": "Create a new Signer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a Signer to a given Signature Request."
+        },
+        {
+          "info": {
+            "name": "Get a Signer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a given Signer."
+        },
+        {
+          "info": {
+            "name": "Update a Signer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given Signer.\nAny parameters not provided are left unchanged.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Signer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Deletes a given Signer from a Signature Request."
+        },
+        {
+          "info": {
+            "name": "Pre-verify an identity document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId/identity_verification",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Verifying an identity document for a Signer to know if their document is valid before enabling them to sign using Advanced Electronic Signature."
+        },
+        {
+          "info": {
+            "name": "Send a One-Time Password (OTP) to a Signer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId/send_otp",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Send a One-Time Password (OTP) to a given Signer. Use this endpoint only if you use your own signing flow."
+        },
+        {
+          "info": {
+            "name": "Send manual reminder to a Signer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId/send_reminder",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Sends a reminder to a given signer to complete their Signature Request.\nOnly possible when the Signature Request status is `ongoing` and the Signer status is `notified`.\n"
+        },
+        {
+          "info": {
+            "name": "Sign a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId/sign",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sign a Signature Request on behalf of a given Signer.\n\nUse this endpoint if you are integrating [your own signing flow](https://developers.yousign.com/docs/building-your-own-signing-flow) (Signers won't go through Yousign's pre-made signing flow).\n\nTo use this endpoint, you must match the following conditions:\n- The Signature Request `delivery_mode` must be set to `none`.\n- The Signature Request must not have any Approver, Signer Document Request or Signer Consent Request.\n- The Signature Reques"
+        },
+        {
+          "info": {
+            "name": "Unblock Signer after an identity mismatch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId/unblock_identification",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Unblock a Signer during a Qualified Electronic Signature in cases where a mismatch was previously detected between the sender-provided first and/or last name and the information on the Signer's ID document."
+        },
+        {
+          "info": {
+            "name": "Download Verified Identity Proof PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/signers/:signerId/verified_identity_proof/download",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Download the Verified Identity Proof (PDF) attached to a given Signer for a Qualified e-Signature. Only possible when Signer identification status is accepted. The identification must be recent and a Video Identity Verification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

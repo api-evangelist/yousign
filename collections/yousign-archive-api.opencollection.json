@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Archive API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Archive",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Direct upload an archived file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/archives",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Archive a file in a secure digital safe for 10 years"
+        },
+        {
+          "info": {
+            "name": "Download archived file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/archives/:archivedFileId/download",
+            "params": [
+              {
+                "name": "archivedFileId",
+                "value": "",
+                "type": "path",
+                "description": "ArchivedFileId"
+              }
+            ]
+          },
+          "docs": "Download the archived file using the ArchivedFileId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Workflow Template API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow Template",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Workflow Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/workflow_templates"
+          },
+          "docs": "Returns the list of all Workflow Templates in your organization. You can limit the number of items returned by using filters and pagination.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

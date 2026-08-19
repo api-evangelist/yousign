@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Electronic Seal Image API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Electronic Seal Image",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload an Electronic Seal Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/electronic_seal_images",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload an Electronic Seal Image to use for creating an Electronic Seal (can be used for several Electronic Seals)."
+        },
+        {
+          "info": {
+            "name": "Generate an Electronic Seal Image Preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/electronic_seal_images/preview",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a PNG preview of an Electronic Seal Image based on the given field dimensions,\nan optional uploaded image, and an optional caption.\nThis allows integrators to visualize the seal rendering before creating an Electronic Seal.\n\n**This endpoint is only available in Sandbox environment.**\n"
+        },
+        {
+          "info": {
+            "name": "Delete an Electronic Seal Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/electronic_seal_images/:electronicSealImageId",
+            "params": [
+              {
+                "name": "electronicSealImageId",
+                "value": "",
+                "type": "path",
+                "description": "Electronic Seal Image Id"
+              }
+            ]
+          },
+          "docs": "Deletes a given Electronic Seal Image."
+        },
+        {
+          "info": {
+            "name": "Download an Electronic Seal Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/electronic_seal_images/:electronicSealImageId/download",
+            "params": [
+              {
+                "name": "electronicSealImageId",
+                "value": "",
+                "type": "path",
+                "description": "Electronic Seal Image Id"
+              }
+            ]
+          },
+          "docs": "Download a given Electronic Seal Image."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

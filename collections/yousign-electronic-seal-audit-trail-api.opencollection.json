@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Electronic Seal Audit Trail API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Electronic Seal Audit Trail",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an Electronic Seal Audit Trail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/electronic_seals/:electronicSealId/audit_trails",
+            "params": [
+              {
+                "name": "electronicSealId",
+                "value": "",
+                "type": "path",
+                "description": "Electronic Seal Id"
+              }
+            ]
+          },
+          "docs": "Electronic Seal Audit Trail is only available when the Electronic Seal is \"done\"."
+        },
+        {
+          "info": {
+            "name": "Download an Electronic Seal Audit Trail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/electronic_seals/:electronicSealId/audit_trails/download",
+            "params": [
+              {
+                "name": "electronicSealId",
+                "value": "",
+                "type": "path",
+                "description": "Electronic Seal Id"
+              }
+            ]
+          },
+          "docs": "Electronic Seal Audit Trail is only available when the Electronic Seal is \"done\"."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

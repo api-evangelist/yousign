@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Identity Document Verification API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity Document Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Identity Document Verifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/identity_documents",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "status",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `status`. Allowed operators: `eq`.\nExample: `status[eq]=verified`\n"
+              },
+              {
+                "name": "workspace_id",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `workspace_id`. Allowed operators: `eq`.\nExample: `workspace_id[eq]=9b6ed2f3-244f-487a-baa1-bbe4f51c8748`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of all Identity Document Verifications within your organization. You can limit the number of items returned by using filters and pagination. Consult our [guide](https://developers.yousign.com/docs/identity-document-verification) for more details and examples."
+        },
+        {
+          "info": {
+            "name": "Initiate a new Identity Document Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/identity_documents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Verify a person's Identity Document by sending the file containing their Identity Document (identity card, passport, residence permit or driving license).\n\nAn Image Identity Verification can be requested as follows:\n- **Verification with names**: This option checks both the validity of the ID document and the coherence between the names provided and those on the document.\n- **Verification without names**: This option only checks the validity of the ID document.\n\nRelated guide: [Image Identity Ve"
+        },
+        {
+          "info": {
+            "name": "Retrieve an Identity Document Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/identity_documents/:identityDocumentVerificationId",
+            "params": [
+              {
+                "name": "identityDocumentVerificationId",
+                "value": "",
+                "type": "path",
+                "description": "Identity Document Verification Id"
+              }
+            ]
+          },
+          "docs": "Get the detailed results of an Identity Document Verification, including the status of the verification, the reasons in case of rejection and the data extracted from the Identity Document."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

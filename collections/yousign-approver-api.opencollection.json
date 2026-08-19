@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Approver API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Approver",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new Approver",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/approvers",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds an Approver to a given Signature Request."
+        },
+        {
+          "info": {
+            "name": "Get an Approver",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/approvers/:approverId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "approverId",
+                "value": "",
+                "type": "path",
+                "description": "Approver Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a given Approver."
+        },
+        {
+          "info": {
+            "name": "Update an Approver",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/approvers/:approverId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "approverId",
+                "value": "",
+                "type": "path",
+                "description": "Approver Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given Approver. Any parameters not provided are left unchanged."
+        },
+        {
+          "info": {
+            "name": "Delete an Approver",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/approvers/:approverId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "approverId",
+                "value": "",
+                "type": "path",
+                "description": "Approver Id"
+              }
+            ]
+          },
+          "docs": "Deletes a given Approver from a Signature Request."
+        },
+        {
+          "info": {
+            "name": "Send manual reminder to an Approver",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/approvers/:approverId/send_reminder",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "approverId",
+                "value": "",
+                "type": "path",
+                "description": "Approver Id"
+              }
+            ]
+          },
+          "docs": "Sends a reminder to a given Approver to review their Signature Request.\nOnly possible when the Signature Request status is `approval` and the Approver status is `notified`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

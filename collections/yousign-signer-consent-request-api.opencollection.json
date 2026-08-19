@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Signer Consent Request API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Signer Consent Request",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Signer Consent Requests of the Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/consent_requests",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ]
+          },
+          "docs": "Returns a list of Signer Consent Requests for a given Signature Request."
+        },
+        {
+          "info": {
+            "name": "Add Signer Consent Request to a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/consent_requests",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a Signer Consent Request to a given Signature Request. This action is only permitted when the Signature Request is a draft."
+        },
+        {
+          "info": {
+            "name": "Update a Signer Consent Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/consent_requests/:consentRequestId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "consentRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Consent Request Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given Signer Consent Request.\nAny parameters not provided are left unchanged.\nThis action is only permitted when the Signature Request is a draft.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Signer Consent Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/consent_requests/:consentRequestId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "consentRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Consent Request Id"
+              }
+            ]
+          },
+          "docs": "Delete a Signer Consent Request from signature request. This action is only permitted when the Signature Request is a draft."
+        },
+        {
+          "info": {
+            "name": "Adds a Signer to a given Signer Consent Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/consent_requests/:consentRequestId/signers/:signerId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "consentRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Consent Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Adds a Signer to a given Signer Consent Request. This action is only permitted when the Signature Request is a draft."
+        },
+        {
+          "info": {
+            "name": "Remove a Signer from a given Signer Consent Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/consent_requests/:consentRequestId/signers/:signerId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "consentRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Consent Request Id"
+              },
+              {
+                "name": "signerId",
+                "value": "",
+                "type": "path",
+                "description": "Signer Id"
+              }
+            ]
+          },
+          "docs": "Remove a Signer from a given Signer Consent Request. This action is only permitted when the Signature Request is a draft."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

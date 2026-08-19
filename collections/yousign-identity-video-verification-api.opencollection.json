@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Identity Video Verification API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity Video Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Identity Video Verifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/identity_videos",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "status",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `status`. Allowed operators: `eq`.\nExample: `status[eq]=verified`\n"
+              },
+              {
+                "name": "workspace_id",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `workspace_id`. Allowed operators: `eq`.\nExample: `workspace_id[eq]=9b6ed2f3-244f-487a-baa1-bbe4f51c8748`\n"
+              },
+              {
+                "name": "face_recognition",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `face_recognition`. Allowed operators: `eq`.\nExample: `face_recognition[eq]=true`\n"
+              },
+              {
+                "name": "pvid",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `pvid`. Allowed operators: `eq`.\nExample: `pvid[eq]=true`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of all Identity Video Verifications within your organization. You can limit the number of items returned by using filters and pagination. Consult our [guide](https://developers.yousign.com/docs/video-based-identity-verification) for more details and examples."
+        },
+        {
+          "info": {
+            "name": "Initiate a new Identity Video Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/identity_videos",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request verification of a person's identity by recording their documents and/or themselves."
+        },
+        {
+          "info": {
+            "name": "Retrieve an Identity Video Verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/verifications/identity_videos/:identityVideoVerificationId",
+            "params": [
+              {
+                "name": "identityVideoVerificationId",
+                "value": "",
+                "type": "path",
+                "description": "Identity Video Verification Id"
+              }
+            ]
+          },
+          "docs": "Get the detailed results of an Identity Video Verification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Api v3 Applicant Label API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Label",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Labels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/labels",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "After cursor (pagination)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The limit of items count to retrieve."
+              },
+              {
+                "name": "name",
+                "value": "[object Object]",
+                "type": "query",
+                "description": "Filter by `name`. Allowed operators: `eq`, `in`.\nExample: `name[eq]=Miscellaneous`\n"
+              }
+            ]
+          },
+          "docs": "Returns the list of all the Labels within your organization."
+        },
+        {
+          "info": {
+            "name": "Create a new Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-sandbox.yousign.app/v3/labels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Label in the organization."
+        },
+        {
+          "info": {
+            "name": "Get a Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/labels/:labelId",
+            "params": [
+              {
+                "name": "labelId",
+                "value": "",
+                "type": "path",
+                "description": "Label Id"
+              }
+            ]
+          },
+          "docs": "Retrieves a given Label within your organization."
+        },
+        {
+          "info": {
+            "name": "Update a Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-sandbox.yousign.app/v3/labels/:labelId",
+            "params": [
+              {
+                "name": "labelId",
+                "value": "",
+                "type": "path",
+                "description": "Label Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a given Label.\nAny parameters not provided are left unchanged.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/labels/:labelId",
+            "params": [
+              {
+                "name": "labelId",
+                "value": "",
+                "type": "path",
+                "description": "Label Id"
+              }
+            ]
+          },
+          "docs": "Deletes a given Label. This will remove the Label from all Signature Requests it is associated with."
+        },
+        {
+          "info": {
+            "name": "List Labels of a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/labels",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              }
+            ]
+          },
+          "docs": "Returns the list of Labels associated with a given Signature Request."
+        },
+        {
+          "info": {
+            "name": "Associate a Label with a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/labels/:labelId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "labelId",
+                "value": "",
+                "type": "path",
+                "description": "Label Id"
+              }
+            ]
+          },
+          "docs": "Associates a Label with a given Signature Request."
+        },
+        {
+          "info": {
+            "name": "Remove Label from a Signature Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-sandbox.yousign.app/v3/signature_requests/:signatureRequestId/labels/:labelId",
+            "params": [
+              {
+                "name": "signatureRequestId",
+                "value": "",
+                "type": "path",
+                "description": "Signature Request Id"
+              },
+              {
+                "name": "labelId",
+                "value": "",
+                "type": "path",
+                "description": "Label Id"
+              }
+            ]
+          },
+          "docs": "Removes a Label from a given Signature Request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
