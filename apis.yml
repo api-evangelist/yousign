@@ -2,6 +2,18 @@ aid: yousign
 name: YouSign
 description: European e-signature platform compliant with eIDAS with a REST API for creating signature requests, managing signers, sending documents, and tracking signing workflows across simple, advanced, and qualified signature levels.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -1182,6 +1194,9 @@ apis:
   - type: JSONLDContext
     url: json-ld/yousign-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/yousign-capability-edges.yml
+    name: YouSign Business Capability Map
   - type: AgenticAccess
     url: agentic-access/yousign-agentic-access.yml
   - type: VulnerabilityDisclosure
