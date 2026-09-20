@@ -1,0 +1,46 @@
+slug: yousign
+provider: YouSign
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Webhook
+  spec_file: yousign-webhook-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.88
+  evidence: POST /webhooks — 'Create a Webhook subscription'; schemas 'WebhookSubscribedEvents', 'WebhookScopes'
+  reason: Full CRUD lifecycle over outbound webhook subscriptions and their subscribed event scopes, which
+    is exactly Webhook & Event Subscription Management in the developer-platform capability.
+- tag: Signature Request
+  spec_file: yousign-signature-request-api-openapi.yml
+  capability_id: BC-150.10
+  capability_id_l1: BC-150
+  capability_name: Contract Management
+  confidence: 0.7
+  evidence: Initiate a new Signature Request ... Activate a Signature Request ... Cancel a Signature Request
+  reason: The core object is an electronic signature request over documents with activation, cancellation
+    and expiry — the execution stage of contract lifecycle management. Mapped to Contract Management with
+    moderate confidence since the API is document-agnostic signing rather than full CLM.
+- tag: Watchlist Verification
+  spec_file: yousign-watchlist-verification-api-openapi.yml
+  capability_id: BC-130
+  capability_id_l1: BC-130
+  capability_name: Compliance Management
+  confidence: 0.7
+  evidence: POST /verifications/watchlists — 'Initiate a new Watchlist Verification'; schemas 'WatchlistFull_allOf_data_sanctions',
+    'WatchlistFull_allOf_data_politically_exposed_person_positions'
+  reason: Operations perform sanctions and politically-exposed-person screening of natural persons — regulatory
+    (AML/KYC) screening. The Software & Technology frame has no financial-crime capability, so mapping
+    at L1 Compliance Management; ambiguity between Regulatory Compliance and third-party due diligence
+    keeps L2 unset.
