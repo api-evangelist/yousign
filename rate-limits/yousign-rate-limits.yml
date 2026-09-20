@@ -1,65 +1,54 @@
-name: Yousign API Rate Limits
-description: Rate limiting policies for the Yousign API across sandbox and production environments. Limits are applied per API key and designed to encourage efficient integration patterns using webhooks rather than polling.
-url: https://developers.yousign.com/docs/limits-new
-specificationVersion: '0.1'
+# Rate limits transcribed from the provider's own documentation — see provenance. Quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://developers.youtrust.com/reference/rate-limits
+sources:
+- https://developers.youtrust.com/reference/rate-limits
+provenance:
+  tool: planning/api-economics/harvest_ratelimits.py
+  run: 20260920T133210
+  grounding: every limit_text was found verbatim in the fetched page text
+published: true
+note: Page documents per-minute and per-hour limits differing by Sandbox/Production environment, plus
+  a Sandbox trial daily signature request cap; limits table values appear as bare numbers.
+limit_count: 5
 limits:
-  - name: Sandbox Rate Limit - Per Minute
-    description: Maximum number of API queries allowed per minute in the sandbox (development) environment.
-    environment: sandbox
-    unit: requests
-    period: minute
-    limit: 30
-    url: https://developers.yousign.com/docs/limits-new
-  - name: Sandbox Rate Limit - Per Hour
-    description: Maximum number of API queries allowed per hour in the sandbox (development) environment.
-    environment: sandbox
-    unit: requests
-    period: hour
-    limit: 200
-    url: https://developers.yousign.com/docs/limits-new
-  - name: Sandbox Trial - Daily Signature Requests
-    description: Maximum number of Signature Requests that can be sent per day in the API trial/sandbox environment (limit introduced June 2025).
-    environment: sandbox
-    unit: signature-requests
-    period: day
-    limit: 100
-    url: https://developers.yousign.com/changelog/new-api-trial-limits
-  - name: Sandbox Trial - Signers Per Request
-    description: Maximum number of Signers allowed per Signature Request in the API trial/sandbox environment.
-    environment: sandbox
-    unit: signers
-    period: per-request
-    limit: 5
-    url: https://developers.yousign.com/changelog/new-api-trial-limits
-  - name: Sandbox Trial - Approvers Per Request
-    description: Maximum number of Approvers allowed per Signature Request in the API trial/sandbox environment.
-    environment: sandbox
-    unit: approvers
-    period: per-request
-    limit: 5
-    url: https://developers.yousign.com/changelog/new-api-trial-limits
-  - name: Sandbox Trial - Followers Per Request
-    description: Maximum number of Followers allowed per Signature Request in the API trial/sandbox environment.
-    environment: sandbox
-    unit: followers
-    period: per-request
-    limit: 5
-    url: https://developers.yousign.com/changelog/new-api-trial-limits
-  - name: Production Rate Limit
-    description: Production environment rate limits differ from sandbox limits. Exact production limits are determined by plan tier and may be customized upon request for customers with legitimate high-volume use cases.
-    environment: production
-    unit: requests
-    period: varies
-    limit: custom
-    url: https://developers.yousign.com/docs/limits-new
-notes:
-  - Rate limits may be customized upon request for production environments by contacting Yousign support. See https://developers.yousign.com/changelog/rate-limit-customisation-is-possible
-  - Yousign recommends using webhooks instead of polling to avoid hitting rate limits efficiently.
-  - Sandbox and production environments maintain separate rate limit values as of February 2024.
+- name: Sandbox requests per minute
+  limit_text: '30'
+  limit: 30
+  window: minute
+  scope: account
+  plan: Sandbox
+- name: Sandbox requests per hour
+  limit_text: '200'
+  limit: 200
+  window: hour
+  scope: account
+  plan: Sandbox
+- name: Production requests per minute
+  limit_text: '60'
+  limit: 60
+  window: minute
+  scope: account
+  plan: Production
+- name: Production requests per hour
+  limit_text: '1200'
+  limit: 1200
+  window: hour
+  scope: account
+  plan: Production
+- name: Sandbox trial daily signature requests
+  limit_text: An additional daily limit of 100 Signature Requests activated applies in the Sandbox environment
+    during the API trial period.
+  limit: 100
+  window: day
+  scope: account
+  plan: Sandbox (API trial period)
+  endpoint: Signature Requests activated
 headers:
-  - name: X-RateLimit-Limit
-    description: The maximum number of requests allowed in the current period.
-  - name: X-RateLimit-Remaining
-    description: The number of requests remaining in the current period.
-  - name: X-RateLimit-Reset
-    description: Unix timestamp when the current rate limit window resets.
+- x-ratelimit-limit-minute
+- x-ratelimit-remaining-minute
+- x-ratelimit-limit-hour
+- x-ratelimit-remaining-hour
+- Ratelimit-Reset
+exceeded_status: 429
