@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: contact@yousign.com
@@ -8,7 +8,7 @@ info:
   license:
     name: proprietary
     url: https://yousign.com/terms
-  title: Public Api v3 Applicant Signer Consent Request API
+  title: Public Api v3 Signer Consent Request API
   version: '3.0'
 servers:
 - description: Sandbox URL
@@ -593,9 +593,7 @@ paths:
 
         Any parameters not provided are left unchanged.
 
-        This action is only permitted when the Signature Request is a draft.
-
-        '
+        This action is only permitted when the Signature Request is a draft.'
       operationId: patch-signature_requests-signatureRequestId-consent_requests-consentRequestId
       parameters:
       - description: Signature Request Id
@@ -1181,40 +1179,12 @@ paths:
       tags:
       - Signer Consent Request
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
   schemas:
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
     InternalServerError:
       properties:
         type:
@@ -1228,17 +1198,33 @@ components:
       - type
       title: InternalServerError
       type: object
-    SignerConsentRequest_settings:
+    CreateSignerConsentRequest_settings:
       description: Settings relative to Signer Consent Request's type
       properties:
         text:
-          description: Text associated to the checkbox or text_to_copy
+          description: 'Text associated to the checkbox or the text_to_copy.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing URL.
+
+            '
           example: I agree with...
+          format: safe-string
           maxLength: 1000
           minLength: 1
           type: string
       required:
       - text
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
       type: object
     TooManyRequestsResponse:
       properties:
@@ -1247,6 +1233,17 @@ components:
       required:
       - message
       title: TooManyRequestsResponse
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
       type: object
     SignerConsentRequest:
       description: Signer Consent Request attached to a Signature Request
@@ -1284,8 +1281,9 @@ components:
           description: The Document id to which it is linked.
           example: 9658867a-d2f3-46f0-9bce-36c45f42644e
           format: uuid
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - document_id
       - id
@@ -1293,43 +1291,6 @@ components:
       - settings
       - signer_ids
       - type
-      type: object
-    get_signature_requests_signatureRequestId_signer_consent_requests_200_response:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/SignerConsentRequest'
-          type: array
-      type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
       type: object
     BadRequestResponse:
       properties:
@@ -1342,6 +1303,42 @@ components:
       - type
       title: BadRequestResponse
       type: object
+    SignerConsentRequest_settings:
+      description: Settings relative to Signer Consent Request's type
+      properties:
+        text:
+          description: Text associated to the checkbox or text_to_copy
+          example: I agree with...
+          maxLength: 1000
+          minLength: 1
+          type: string
+      required:
+      - text
+      type: object
+    UpdateSignerConsentRequest:
+      properties:
+        settings:
+          $ref: '#/components/schemas/CreateSignerConsentRequest_settings'
+        optional:
+          description: Define if the Signer Consent Request is optional for Signers
+          example: false
+          type: boolean
+        insert_after_id:
+          description: Insert just after the position of the specified Signer Consent Request id
+          format: uuid
+          type:
+          - string
+          - 'null'
+          example: null
+        document_id:
+          description: Link the Signer Consent Request to a given Document by its id.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+      title: UpdateSignerConsentRequest
+      type: object
     ForbiddenResponse:
       properties:
         type:
@@ -1353,38 +1350,20 @@ components:
       - type
       title: ForbiddenResponse
       type: object
-    UnauthorizedResponse:
+    get_signature_requests_signatureRequestId_signer_consent_requests_200_response:
       properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
+        data:
+          items:
+            $ref: '#/components/schemas/SignerConsentRequest'
+          type: array
       type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    CreateSignerConsentRequest_settings:
-      description: Settings relative to Signer Consent Request's type
+    MethodNotAllowed:
       properties:
-        text:
-          description: 'Text associated to the checkbox or the text_to_copy.\
-
-            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing URL.
-
-            '
-          example: I agree with...
-          format: safe-string
-          maxLength: 1000
-          minLength: 1
+        message:
           type: string
       required:
-      - text
+      - message
+      title: MethodNotAllowed
       type: object
     CreateSignerConsentRequest:
       properties:
@@ -1414,15 +1393,17 @@ components:
         insert_after_id:
           description: Insert just after the position of the specified Signer Consent Request id
           format: uuid
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           example: null
         document_id:
           description: Link the Signer Consent Request to a given Document by its id.
           example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
           format: uuid
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - optional
       - settings
@@ -1430,28 +1411,50 @@ components:
       - type
       title: CreateSignerConsentRequest
       type: object
-    UpdateSignerConsentRequest:
+    NotFoundResponse:
       properties:
-        settings:
-          $ref: '#/components/schemas/CreateSignerConsentRequest_settings'
-        optional:
-          description: Define if the Signer Consent Request is optional for Signers
-          example: false
-          type: boolean
-        insert_after_id:
-          description: Insert just after the position of the specified Signer Consent Request id
-          format: uuid
-          nullable: true
+        type:
           type: string
-          example: null
-        document_id:
-          description: Link the Signer Consent Request to a given Document by its id.
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          nullable: true
+        detail:
           type: string
-      title: UpdateSignerConsentRequest
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
       type: object
+  headers:
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

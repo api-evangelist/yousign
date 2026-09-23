@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: contact@yousign.com
@@ -8,7 +8,7 @@ info:
   license:
     name: proprietary
     url: https://yousign.com/terms
-  title: Public Api v3 Applicant Electronic Seal Image API
+  title: Public Api v3 Electronic Seal Image API
   version: '3.0'
 servers:
 - description: Sandbox URL
@@ -215,9 +215,7 @@ paths:
         This allows integrators to visualize the seal rendering before creating an Electronic Seal.
 
 
-        **This endpoint is only available in Sandbox environment.**
-
-        '
+        **This endpoint is only available in Sandbox environment.**'
       operationId: post-electronic_seal_images-preview
       requestBody:
         content:
@@ -740,201 +738,7 @@ paths:
       tags:
       - Electronic Seal Image
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
   schemas:
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    UploadElectronicSealImage:
-      properties:
-        file:
-          description: 'Seal Image to be displayed on a sealed Document. Accepted formats: PNG/JPG/GIF, max 500 Ko.'
-          format: binary
-          type: string
-        name:
-          description: 'Name of the Seal Image.\
-
-            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-
-            '
-          example: My seal image
-          format: safe-string
-          type: string
-      required:
-      - file
-      - name
-      type: object
-    CreateElectronicSealImagePreviewPayload_field:
-      additionalProperties: false
-      description: The seal field dimensions and optional caption.
-      properties:
-        width:
-          description: Width of the seal field in pixels.
-          example: 150
-          maximum: 32767
-          minimum: 1
-          type: integer
-        height:
-          description: Height of the seal field in pixels.
-          example: 100
-          maximum: 32767
-          minimum: 1
-          type: integer
-        captions:
-          description: Optional captions to display on the seal image. Limited to one caption per field.
-          items:
-            $ref: '#/components/schemas/CreateElectronicSealImagePreviewPayload_field_captions_inner'
-          maxItems: 1
-          nullable: true
-          type: array
-      required:
-      - height
-      - width
-      type: object
-    CreateElectronicSealImagePreviewPayload_field_captions_inner:
-      additionalProperties: false
-      properties:
-        text:
-          description: The caption text to display on the seal image.
-          example: Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          maxLength: 150
-          type: string
-      required:
-      - text
-      type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    CreateElectronicSealImagePreviewPayload:
-      additionalProperties: false
-      properties:
-        image_id:
-          description: The ID of an existing Electronic Seal Image to use as the visual stamp.
-          example: 04c9bf7e-e466-4204-97d2-d21cf5b314e4
-          format: uuid
-          nullable: true
-          type: string
-        field:
-          $ref: '#/components/schemas/CreateElectronicSealImagePreviewPayload_field'
-      required:
-      - field
-      title: CreateElectronicSealImagePreviewPayload
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
     ElectronicSealImage:
       properties:
         id:
@@ -959,6 +763,202 @@ components:
       - name
       - workspace_id
       type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    CreateElectronicSealImagePreviewPayload_field_captions_inner:
+      additionalProperties: false
+      properties:
+        text:
+          description: The caption text to display on the seal image.
+          example: Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          maxLength: 150
+          type: string
+      required:
+      - text
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    CreateElectronicSealImagePreviewPayload:
+      additionalProperties: false
+      properties:
+        image_id:
+          description: The ID of an existing Electronic Seal Image to use as the visual stamp.
+          example: 04c9bf7e-e466-4204-97d2-d21cf5b314e4
+          format: uuid
+          type:
+          - string
+          - 'null'
+        field:
+          $ref: '#/components/schemas/CreateElectronicSealImagePreviewPayload_field'
+      required:
+      - field
+      title: CreateElectronicSealImagePreviewPayload
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    CreateElectronicSealImagePreviewPayload_field:
+      additionalProperties: false
+      description: The seal field dimensions and optional caption.
+      properties:
+        width:
+          description: Width of the seal field in pixels.
+          example: 150
+          maximum: 32767
+          minimum: 1
+          type: integer
+        height:
+          description: Height of the seal field in pixels.
+          example: 100
+          maximum: 32767
+          minimum: 1
+          type: integer
+        captions:
+          description: Optional captions to display on the seal image. Limited to one caption per field.
+          items:
+            $ref: '#/components/schemas/CreateElectronicSealImagePreviewPayload_field_captions_inner'
+          maxItems: 1
+          type:
+          - array
+          - 'null'
+      required:
+      - height
+      - width
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    UploadElectronicSealImage:
+      properties:
+        file:
+          description: 'Seal Image to be displayed on a sealed Document. Accepted formats: PNG/JPG/GIF, max 500 Ko.'
+          format: binary
+          type: string
+        name:
+          description: 'Name of the Seal Image.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+
+            '
+          example: My seal image
+          format: safe-string
+          type: string
+      required:
+      - file
+      - name
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+  headers:
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

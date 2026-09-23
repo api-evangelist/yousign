@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: contact@yousign.com
@@ -8,7 +8,7 @@ info:
   license:
     name: proprietary
     url: https://yousign.com/terms
-  title: Public Api v3 Applicant Custom Experience API
+  title: Public Api v3 Custom Experience API
   version: '3.0'
 servers:
 - description: Sandbox URL
@@ -25,9 +25,7 @@ paths:
     get:
       description: 'Returns the list of all Custom Experiences in your Organization.
 
-        You can limit the number of items returned by using pagination.
-
-        '
+        You can limit the number of items returned by using pagination.'
       operationId: get-custom_experiences
       parameters:
       - description: After cursor (pagination)
@@ -757,9 +755,7 @@ paths:
     patch:
       description: 'Updates a given Custom Experience.
 
-        Any parameters not provided are left unchanged.
-
-        '
+        Any parameters not provided are left unchanged.'
       operationId: patch-custom_experiences-customExperienceId
       parameters:
       - description: Custom Experience Id
@@ -1346,64 +1342,25 @@ paths:
       tags:
       - Custom Experience
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
   schemas:
-    CreateCustomExperience_redirect_urls:
-      nullable: true
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    Pagination:
+      description: Metadata about the response.
       properties:
-        success:
-          example: https://example.com/success
-          format: uri
-          maxLength: 255
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
           minLength: 1
-          nullable: true
-          type: string
-        error:
-          example: https://example.com/error
-          format: uri
-          maxLength: 255
-          minLength: 1
-          nullable: true
-          type: string
-        decline:
-          example: https://example.com/decline
-          format: uri
-          maxLength: 255
-          minLength: 1
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
+      required:
+      - next_cursor
       type: object
     InternalServerError:
       properties:
@@ -1418,91 +1375,163 @@ components:
       - type
       title: InternalServerError
       type: object
-    CustomExperience:
+    UpdateCustomExperience:
       properties:
-        id:
-          format: uuid
-          readOnly: true
-          type: string
         name:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          format: safe-string
           type: string
         landing_page_disabled:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         side_panel_disabled:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         background_color:
-          nullable: true
-          type: string
+          description: Hexadecimal color value
+          example: '#ff0011'
+          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
+          type:
+          - string
+          - 'null'
         button_color:
-          nullable: true
-          type: string
+          description: Hexadecimal color value
+          example: '#ff0011'
+          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
+          type:
+          - string
+          - 'null'
         text_color:
-          nullable: true
-          type: string
+          description: Hexadecimal color value
+          example: '#ff0011'
+          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
+          type:
+          - string
+          - 'null'
         text_button_color:
-          nullable: true
-          type: string
+          description: Hexadecimal color value
+          example: '#ff0011'
+          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
+          type:
+          - string
+          - 'null'
         disabled_notifications:
           items:
             $ref: '#/components/schemas/CustomExperience_DisabledNotificationsType'
-          type: array
+          type:
+          - array
+          - 'null'
         email_logo_disabled:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         email_header_text_disabled:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         email_footer_signature_disabled:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         email_expiration_text_disabled:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         recipients_activity_disabled:
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         download_documents_disabled:
-          type: boolean
+          description: If true, signers won't be able to download documents before signing.
+          type:
+          - boolean
+          - 'null'
         document_navigation_disabled:
-          type: boolean
+          default: false
+          description: If true and the request contains more than 1 document, signers must read each document before moving to the next.
+          type:
+          - boolean
+          - 'null'
         redirect_urls:
-          $ref: '#/components/schemas/CustomExperience_redirect_urls'
-        logo:
-          example: https://yousign.com/custom_experience/89120884-d29a-4b1a-ac7b-a9e73a872795/logo
-          format: uri
-          nullable: true
-          type: string
-        source:
-          $ref: '#/components/schemas/CustomExperience_Source'
-        created_at:
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          type: string
-      required:
-      - background_color
-      - button_color
-      - created_at
-      - disabled_notifications
-      - document_navigation_disabled
-      - download_documents_disabled
-      - email_expiration_text_disabled
-      - email_footer_signature_disabled
-      - email_header_text_disabled
-      - email_logo_disabled
-      - id
-      - landing_page_disabled
-      - logo
-      - recipients_activity_disabled
-      - redirect_urls
-      - side_panel_disabled
-      - source
-      - text_button_color
-      - text_color
+          $ref: '#/components/schemas/UpdateCustomExperience_redirect_urls'
+        logo_layout:
+          $ref: '#/components/schemas/LogoLayout'
       type: object
-    patch_custom_experience_logo_request:
-      description: Upload a file
+    CreateCustomExperience_redirect_urls:
       properties:
-        file:
-          example: Binary file
-          format: binary
+        success:
+          example: https://example.com/success
+          format: uri
+          maxLength: 255
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        error:
+          example: https://example.com/error
+          format: uri
+          maxLength: 255
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        decline:
+          example: https://example.com/decline
+          format: uri
+          maxLength: 255
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      type:
+      - object
+      - 'null'
+    get_custom_experiences_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/CustomExperience'
+          type: array
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
           type: string
       required:
-      - file
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    CustomExperience_redirect_urls:
+      properties:
+        success:
+          example: https://example.com/success
+          format: uri
+          type:
+          - string
+          - 'null'
+        error:
+          example: https://example.com/error
+          format: uri
+          type:
+          - string
+          - 'null'
+        decline:
+          example: https://example.com/decline
+          format: uri
+          type:
+          - string
+          - 'null'
+      required:
+      - decline
+      - error
+      - success
       type: object
     TooManyRequestsResponse:
       properties:
@@ -1512,27 +1541,69 @@ components:
       - message
       title: TooManyRequestsResponse
       type: object
-    CustomExperience_redirect_urls:
+    UpdateCustomExperience_redirect_urls:
       properties:
         success:
           example: https://example.com/success
           format: uri
-          nullable: true
-          type: string
+          maxLength: 255
+          minLength: 1
+          type:
+          - string
+          - 'null'
         error:
           example: https://example.com/error
           format: uri
-          nullable: true
-          type: string
+          maxLength: 255
+          minLength: 1
+          type:
+          - string
+          - 'null'
         decline:
           example: https://example.com/decline
           format: uri
-          nullable: true
-          type: string
+          maxLength: 255
+          minLength: 1
+          type:
+          - string
+          - 'null'
       required:
       - decline
       - error
       - success
+      type:
+      - object
+      - 'null'
+    CustomExperience_Source:
+      description: Custom Experience Source
+      enum:
+      - app
+      - public_api
+      example: app
+      type:
+      - string
+      - 'null'
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
       type: object
     CreateCustomExperience:
       properties:
@@ -1544,71 +1615,85 @@ components:
           type: string
         landing_page_disabled:
           default: false
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         side_panel_disabled:
           default: false
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         background_color:
           description: Hexadecimal color value
           example: '#ff0011'
-          nullable: true
           pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
-          type: string
+          type:
+          - string
+          - 'null'
         button_color:
           description: Hexadecimal color value
           example: '#ff0011'
-          nullable: true
           pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
-          type: string
+          type:
+          - string
+          - 'null'
         text_color:
           description: Hexadecimal color value
           example: '#ff0011'
-          nullable: true
           pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
-          type: string
+          type:
+          - string
+          - 'null'
         text_button_color:
           description: Hexadecimal color value
           example: '#ff0011'
-          nullable: true
           pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
-          type: string
+          type:
+          - string
+          - 'null'
         disabled_notifications:
           items:
             $ref: '#/components/schemas/CustomExperience_DisabledNotificationsType'
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
         email_logo_disabled:
           default: false
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         email_header_text_disabled:
           default: false
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         email_footer_signature_disabled:
           default: false
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         email_expiration_text_disabled:
           default: false
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         recipients_activity_disabled:
           default: true
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         download_documents_disabled:
           default: false
           description: If true, signers won't be able to download documents before signing.
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         document_navigation_disabled:
           default: false
           description: If true and the request contains more than 1 document, signers must read each document before moving to the next.
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         redirect_urls:
           $ref: '#/components/schemas/CreateCustomExperience_redirect_urls'
         logo_layout:
@@ -1648,77 +1733,98 @@ components:
       - signer.declined
       example: approver.canceled
       type: string
-    UpdateCustomExperience:
+    patch_custom_experience_logo_request:
+      description: Upload a file
       properties:
+        file:
+          example: Binary file
+          format: binary
+          type: string
+      required:
+      - file
+      type: object
+    CustomExperience:
+      properties:
+        id:
+          format: uuid
+          readOnly: true
+          type: string
         name:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          format: safe-string
           type: string
         landing_page_disabled:
-          nullable: true
           type: boolean
         side_panel_disabled:
-          nullable: true
           type: boolean
         background_color:
-          description: Hexadecimal color value
-          example: '#ff0011'
-          nullable: true
-          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
-          type: string
+          type:
+          - string
+          - 'null'
         button_color:
-          description: Hexadecimal color value
-          example: '#ff0011'
-          nullable: true
-          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
-          type: string
+          type:
+          - string
+          - 'null'
         text_color:
-          description: Hexadecimal color value
-          example: '#ff0011'
-          nullable: true
-          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
-          type: string
+          type:
+          - string
+          - 'null'
         text_button_color:
-          description: Hexadecimal color value
-          example: '#ff0011'
-          nullable: true
-          pattern: ^(#[a-f0-9]{3}$)|(#[a-f0-9]{6}$)
-          type: string
+          type:
+          - string
+          - 'null'
         disabled_notifications:
           items:
             $ref: '#/components/schemas/CustomExperience_DisabledNotificationsType'
-          nullable: true
           type: array
         email_logo_disabled:
-          nullable: true
           type: boolean
         email_header_text_disabled:
-          nullable: true
           type: boolean
         email_footer_signature_disabled:
-          nullable: true
           type: boolean
         email_expiration_text_disabled:
-          nullable: true
           type: boolean
         recipients_activity_disabled:
-          nullable: true
           type: boolean
         download_documents_disabled:
-          description: If true, signers won't be able to download documents before signing.
-          nullable: true
           type: boolean
         document_navigation_disabled:
-          default: false
-          description: If true and the request contains more than 1 document, signers must read each document before moving to the next.
-          nullable: true
           type: boolean
         redirect_urls:
-          $ref: '#/components/schemas/UpdateCustomExperience_redirect_urls'
-        logo_layout:
-          $ref: '#/components/schemas/LogoLayout'
+          $ref: '#/components/schemas/CustomExperience_redirect_urls'
+        logo:
+          example: https://yousign.com/custom_experience/89120884-d29a-4b1a-ac7b-a9e73a872795/logo
+          format: uri
+          type:
+          - string
+          - 'null'
+        source:
+          $ref: '#/components/schemas/CustomExperience_Source'
+        created_at:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+      required:
+      - background_color
+      - button_color
+      - created_at
+      - disabled_notifications
+      - document_navigation_disabled
+      - download_documents_disabled
+      - email_expiration_text_disabled
+      - email_footer_signature_disabled
+      - email_header_text_disabled
+      - email_logo_disabled
+      - id
+      - landing_page_disabled
+      - logo
+      - recipients_activity_disabled
+      - redirect_urls
+      - side_panel_disabled
+      - source
+      - text_button_color
+      - text_color
       type: object
-    UnsupportedMediaTypeResponse:
+    ForbiddenResponse:
       properties:
         type:
           type: string
@@ -1727,8 +1833,22 @@ components:
       required:
       - detail
       - type
-      title: UnsupportedMediaTypeResponse
+      title: ForbiddenResponse
       type: object
+    LogoLayout:
+      description: 'Determines the display layout of the logo. Possible values are:
+
+        - `round`: Displays the logo in a circular format.
+
+        - `original`: Displays the logo in its original shape.
+
+        '
+      enum:
+      - round
+      - original
+      example: round
+      title: LogoLayout
+      type: string
     MethodNotAllowed:
       properties:
         message:
@@ -1748,117 +1868,39 @@ components:
       - type
       title: NotFoundResponse
       type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    LogoLayout:
-      description: 'Determines the display layout of the logo. Possible values are:
-
-        - `round`: Displays the logo in a circular format.
-
-        - `original`: Displays the logo in its original shape.
-
-        '
-      enum:
-      - round
-      - original
-      example: round
-      title: LogoLayout
-      type: string
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    CustomExperience_Source:
-      description: Custom Experience Source
-      enum:
-      - app
-      - public_api
-      example: app
-      nullable: true
-      type: string
-    get_custom_experiences_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/CustomExperience'
-          type: array
-      type: object
-    UpdateCustomExperience_redirect_urls:
-      nullable: true
-      properties:
-        success:
-          example: https://example.com/success
-          format: uri
-          maxLength: 255
-          minLength: 1
-          nullable: true
-          type: string
-        error:
-          example: https://example.com/error
-          format: uri
-          maxLength: 255
-          minLength: 1
-          nullable: true
-          type: string
-        decline:
-          example: https://example.com/decline
-          format: uri
-          maxLength: 255
-          minLength: 1
-          nullable: true
-          type: string
-      required:
-      - decline
-      - error
-      - success
-      type: object
-    Pagination:
-      description: Metadata about the response.
-      properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          nullable: true
-          type: string
-      required:
-      - next_cursor
-      type: object
+  headers:
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

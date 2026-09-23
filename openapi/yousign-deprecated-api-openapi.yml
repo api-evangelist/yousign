@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: contact@yousign.com
@@ -8,7 +8,7 @@ info:
   license:
     name: proprietary
     url: https://yousign.com/terms
-  title: Public Api v3 Applicant Deprecated API
+  title: Public Api v3 Deprecated API
   version: '3.0'
 servers:
 - description: Sandbox URL
@@ -212,97 +212,7 @@ paths:
         samples-enabled: false
         explorer-enabled: false
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
   schemas:
-    DocumentExcludedApprovers:
-      description: 'List of Approver IDs who cannot see this Document. When omitted, all Approvers can see it (default). Only available when the document_visibility feature is enabled on the organization.
-
-        '
-      example:
-      - 550e8400-e29b-41d4-a716-446655440000
-      - 6ba7b810-9dad-11d1-80b4-00c04fd430c8
-      items:
-        format: uuid
-        type: string
-      type: array
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    Document_initials_per_page_inner:
-      properties:
-        page:
-          description: Page number.
-          minimum: 1
-          type: integer
-        y:
-          description: Y-axis position of the initials on the page.
-          minimum: 0
-          type: integer
-      required:
-      - page
-      - y
-      type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
     CreateDocumentFromMultipart:
       properties:
         file:
@@ -319,8 +229,9 @@ components:
           description: Insert just after the position of the specified document id.
           example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
           format: uuid
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         password:
           example: MyPa$$word
           type: string
@@ -334,14 +245,16 @@ components:
         initials:
           allOf:
           - $ref: '#/components/schemas/InitialsArea'
-          nullable: true
-          type: object
+          type:
+          - object
+          - 'null'
         parse_anchors:
           default: false
           description: If true, the system will parse the document exclusively for Signature-type Smart Anchors and automatically generate the required fields.
           example: true
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
         excluded_approvers:
           $ref: '#/components/schemas/DocumentExcludedApprovers'
         excluded_signers:
@@ -350,38 +263,53 @@ components:
       - file
       - nature
       type: object
-    InitialsArea:
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    Document_initials:
       properties:
         alignment:
-          description: Alignment of the Initials on the document. The `left`, `right` and `center` options are aligned on top of the page by default.
+          description: Alignment of the initials on the document’s pages.
           enum:
           - left
-          - right
           - center
-          - top-left
-          - top-right
-          - top-center
-          - bottom-left
-          - bottom-right
-          - bottom-center
+          - right
           type: string
         y:
-          description: Offset of the initials from the edge of the page (in pixels). The offset is from the top or bottom of the page, depending on what has been defined in the `alignment` attribute.
-          example: 10
+          description: Y-axis position of the initials on the first page of the document.
           minimum: 0
           type: integer
+        per_page:
+          items:
+            $ref: '#/components/schemas/Document_initials_per_page_inner'
+          type: array
       required:
       - alignment
+      - per_page
       - y
-      title: InitialsArea
-      type: object
-    MethodNotAllowed:
+      type:
+      - object
+      - 'null'
+    UnsupportedMediaTypeResponse:
       properties:
-        message:
+        type:
+          type: string
+        detail:
           type: string
       required:
-      - message
-      title: MethodNotAllowed
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
       type: object
     Document:
       description: Document to attach to a Signature Request
@@ -416,8 +344,9 @@ components:
         total_pages:
           description: Number of pages for signable document
           minimum: 1
-          nullable: true
-          type: integer
+          type:
+          - integer
+          - 'null'
         is_locked:
           description: If protected by password and not yet unlocked
           type: boolean
@@ -459,29 +388,75 @@ components:
       - total_pages
       title: Document
       type: object
-    Document_initials:
-      nullable: true
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    InitialsArea:
       properties:
         alignment:
-          description: Alignment of the initials on the document’s pages.
+          description: Alignment of the Initials on the document. The `left`, `right` and `center` options are aligned on top of the page by default.
           enum:
           - left
-          - center
           - right
+          - center
+          - top-left
+          - top-right
+          - top-center
+          - bottom-left
+          - bottom-right
+          - bottom-center
           type: string
         y:
-          description: Y-axis position of the initials on the first page of the document.
+          description: Offset of the initials from the edge of the page (in pixels). The offset is from the top or bottom of the page, depending on what has been defined in the `alignment` attribute.
+          example: 10
           minimum: 0
           type: integer
-        per_page:
-          items:
-            $ref: '#/components/schemas/Document_initials_per_page_inner'
-          type: array
       required:
       - alignment
-      - per_page
+      - y
+      title: InitialsArea
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    Document_initials_per_page_inner:
+      properties:
+        page:
+          description: Page number.
+          minimum: 1
+          type: integer
+        y:
+          description: Y-axis position of the initials on the page.
+          minimum: 0
+          type: integer
+      required:
+      - page
       - y
       type: object
+    DocumentExcludedSigners:
+      description: 'List of Signer IDs who cannot see this Document. When omitted, all Signers can see it (default). Requires the document_visibility feature to be enabled on the organization.
+
+        '
+      example:
+      - 550e8400-e29b-41d4-a716-446655440000
+      - 6ba7b810-9dad-11d1-80b4-00c04fd430c8
+      items:
+        format: uuid
+        type: string
+      type: array
     BadRequestResponse:
       properties:
         type:
@@ -504,19 +479,8 @@ components:
       - type
       title: ForbiddenResponse
       type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    DocumentExcludedSigners:
-      description: 'List of Signer IDs who cannot see this Document. When omitted, all Signers can see it (default). Requires the document_visibility feature to be enabled on the organization.
+    DocumentExcludedApprovers:
+      description: 'List of Approver IDs who cannot see this Document. When omitted, all Approvers can see it (default). Only available when the document_visibility feature is enabled on the organization.
 
         '
       example:
@@ -526,6 +490,47 @@ components:
         format: uuid
         type: string
       type: array
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+  headers:
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

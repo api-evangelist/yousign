@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: contact@yousign.com
@@ -8,7 +8,7 @@ info:
   license:
     name: proprietary
     url: https://yousign.com/terms
-  title: Public Api v3 Applicant Identity Video Verification API
+  title: Public Api v3 Identity Video Verification API
   version: '3.0'
 servers:
 - description: Sandbox URL
@@ -23,7 +23,7 @@ tags:
 paths:
   /verifications/identity_videos:
     get:
-      description: Returns the list of all Identity Video Verifications within your organization. You can limit the number of items returned by using filters and pagination. Consult our [guide](https://developers.yousign.com/docs/video-based-identity-verification) for more details and examples.
+      description: Returns the list of all Identity Video Verifications within your organization. You can limit the number of items returned by using filters and pagination. Consult our guide for more details and examples.
       operationId: get-verifications-identity_videos
       parameters:
       - description: After cursor (pagination)
@@ -685,51 +685,6 @@ paths:
       - Identity Video Verification
 components:
   schemas:
-    IdentityVideoFull_allOf_data_evidence:
-      description: Documentary evidence captured during the verification process
-      properties:
-        document_front_image_url:
-          description: Temporary public link to the front image. Available for 10 minutes after the user completed the verification.
-          example: https://storage-b.env.ubble.ai/ubble-ai/88bf48f0-ce4a-449c-9af1-f138a7e09392/ae1f813a-02cf-4ffc-bf71-d823ed74dc8d/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/aaa.png?X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=xxx
-          format: uri
-          minLength: 1
-          nullable: true
-          type: string
-        document_back_image_url:
-          description: Temporary public link to the back image. Available for 10 minutes after the user completed the verification.
-          example: https://storage-b.env.ubble.ai/ubble-ai/88bf48f0-ce4a-449c-9af1-f138a7e09392/ae1f813a-02cf-4ffc-bf71-d823ed74dc8d/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/bbb.png?X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=xxx
-          format: uri
-          minLength: 1
-          nullable: true
-          type: string
-        face_image_url:
-          description: Temporary public link to the face image. Available for 10 minutes after the user completed the verification.
-          example: https://storage-b.ubble.ai/11-production-ubble-ai/CKQNCMWHRPGT/idv_01jezpmz01mvn7r1n9eg596v5k/9a873da8-2395-4b05-b9a6-56644dfe2e06/9dc6948e-23b8-4405-81f2-28dccc0d9a71/face_asset_generation_0_rtc_face_0_rtc_face/face_crop_41.png?response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=h6aivdggwQIvVyGWnAEw%2F20241216%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20241216T100820Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=xxx
-          format: uri
-          minLength: 1
-          nullable: true
-          type: string
-      required:
-      - document_back_image_url
-      - document_front_image_url
-      - face_image_url
-      type: object
-    HumanName:
-      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
-      type: string
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
     IdentityVideoMeta:
       properties:
         id:
@@ -787,60 +742,76 @@ components:
       - workspace_id
       title: IdentityVideoMeta
       type: object
-    IdentityVideoDocument:
-      additionalProperties: false
-      description: Includes all information that has been extracted from the document, as well as the best images of the document.
-      nullable: true
+    IdentityVideoFull:
+      allOf:
+      - $ref: '#/components/schemas/IdentityVideoMeta'
+      - properties:
+          verification_url:
+            description: The URL of the verification page that the user used to begin the verification process.
+            example: https://id.ubble.ai/2f3e833c-6cf8-4c39-9004-cfb0e048ef63
+            format: uri
+            minLength: 1
+            type:
+            - string
+            - 'null'
+          data:
+            $ref: '#/components/schemas/IdentityVideoFull_allOf_data'
+        required:
+        - data
+        - verification_url
+        type: object
+      title: IdentityVideoFull
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    Pagination:
+      description: Metadata about the response.
       properties:
-        full_name:
-          description: Full name of the document holder as it appears on the identity document
-          example: David Vincent
-          maxLength: 510
-          nullable: true
-          type: string
-        born_on:
-          description: Date of birth on the document
-          example: '2024-01-18'
-          format: date
-          nullable: true
-          type: string
-        type:
-          description: Type of document.
-          enum:
-          - null
-          - driver_license
-          - id_card
-          - passport
-          - residence_permit
-          - travel_document
-          nullable: true
-          type: string
-        issuing_country_code:
-          example: US
-          format: ISO 3166-1 alpha-2
-          nullable: true
-          pattern: ^[A-Z]{2}$
-          type: string
-        national_identification_number:
-          description: 'Some documents may contain a national identification number.
-
-            For example, Italian ID cards contain the Codice Fiscale on the back of the document.
-
-            When this data is available on the document, it will be returned here, otherwise it will be NULL.
-
-            Consult our [guide](https://developers.yousign.com/docs/video-based-identity-verification) for more details and examples.
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
 
             '
-          example: MLLSNT82P65Z404U
-          nullable: true
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - next_cursor
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
           type: string
       required:
-      - born_on
-      - full_name
-      - issuing_country_code
-      - national_identification_number
+      - detail
       - type
-      title: IdentityVideoDocument
+      title: InternalServerError
+      type: object
+    get_verifications_identity_videos_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/IdentityVideoMeta'
+          type: array
+      type: object
+    IdentityVideoFull_allOf_data:
+      properties:
+        extracted_from_document:
+          $ref: '#/components/schemas/IdentityVideoDocument'
+        evidence:
+          $ref: '#/components/schemas/IdentityVideoFull_allOf_data_evidence'
+      required:
+      - evidence
+      - extracted_from_document
       type: object
     TooManyRequestsResponse:
       properties:
@@ -849,56 +820,6 @@ components:
       required:
       - message
       title: TooManyRequestsResponse
-      type: object
-    IdentityVideoStatus:
-      description: Status of the Identity Video Verification
-      enum:
-      - pending
-      - verified
-      - failed
-      - inconclusive
-      example: verified
-      type: string
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
       type: object
     UnauthorizedResponse:
       properties:
@@ -911,49 +832,100 @@ components:
       - type
       title: UnauthorizedResponse
       type: object
-    IdentityVideoFull_allOf_data:
+    IdentityVideoDocument:
+      additionalProperties: false
+      description: Includes all information that has been extracted from the document, as well as the best images of the document.
       properties:
-        extracted_from_document:
-          $ref: '#/components/schemas/IdentityVideoDocument'
-        evidence:
-          $ref: '#/components/schemas/IdentityVideoFull_allOf_data_evidence'
+        full_name:
+          description: Full name of the document holder as it appears on the identity document
+          example: David Vincent
+          maxLength: 510
+          type:
+          - string
+          - 'null'
+        born_on:
+          description: Date of birth on the document
+          example: '2024-01-18'
+          format: date
+          type:
+          - string
+          - 'null'
+        type:
+          description: Type of document.
+          enum:
+          - null
+          - driver_license
+          - id_card
+          - passport
+          - residence_permit
+          - travel_document
+          type:
+          - string
+          - 'null'
+        issuing_country_code:
+          example: US
+          format: ISO 3166-1 alpha-2
+          pattern: ^[A-Z]{2}$
+          type:
+          - string
+          - 'null'
+        national_identification_number:
+          description: 'Some documents may contain a national identification number.
+
+            For example, Italian ID cards contain the Codice Fiscale on the back of the document.
+
+            When this data is available on the document, it will be returned here, otherwise it will be NULL.
+
+            Consult our [guide](https://developers.yousign.com/docs/video-based-identity-verification) for more details and examples.
+
+            '
+          example: MLLSNT82P65Z404U
+          type:
+          - string
+          - 'null'
       required:
-      - evidence
-      - extracted_from_document
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      - born_on
+      - full_name
+      - issuing_country_code
+      - national_identification_number
+      - type
+      title: IdentityVideoDocument
+      type:
+      - object
+      - 'null'
+    WorkflowSessionId:
+      description: 'Unique identifier of a Workflow Session. When provided, an Action is created in the Workflow Session, and this resource is associated with that Action.
+
+        '
+      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
       format: uuid
+      title: Workflow Session identifier
+      type:
+      - string
+      - 'null'
+    HumanName:
+      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
       type: string
-    get_verifications_identity_videos_200_response:
+    BadRequestResponse:
       properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/IdentityVideoMeta'
-          type: array
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
       type: object
-    IdentityVideoFull:
-      allOf:
-      - $ref: '#/components/schemas/IdentityVideoMeta'
-      - properties:
-          verification_url:
-            description: The URL of the verification page that the user used to begin the verification process.
-            example: https://id.ubble.ai/2f3e833c-6cf8-4c39-9004-cfb0e048ef63
-            format: uri
-            minLength: 1
-            nullable: true
-            type: string
-          data:
-            $ref: '#/components/schemas/IdentityVideoFull_allOf_data'
-        required:
-        - data
-        - verification_url
-        type: object
-      title: IdentityVideoFull
-      type: object
+    IdentityVideoStatus:
+      description: Status of the Identity Video Verification
+      enum:
+      - pending
+      - verified
+      - failed
+      - inconclusive
+      example: verified
+      type: string
     PreviousAttemptId:
       description: 'ID of the previous attempt within the same `workflow_session_id`.
 
@@ -964,9 +936,21 @@ components:
         '
       example: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde4
       format: uuid
-      nullable: true
       title: Previous Attempt identifier
-      type: string
+      type:
+      - string
+      - 'null'
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
     InitiateIdentityVideo:
       additionalProperties: false
       properties:
@@ -1011,8 +995,9 @@ components:
             '
           example: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde3
           format: uuid
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         workflow_session_id:
           $ref: '#/components/schemas/WorkflowSessionId'
         previous_attempt_id:
@@ -1021,14 +1006,16 @@ components:
           description: Minimum age required for the document holder.
           example: 18
           minimum: 1
-          nullable: true
-          type: integer
+          type:
+          - integer
+          - 'null'
         max_age:
           description: Maximum age allowed for the document holder.
           example: 65
           minimum: 1
-          nullable: true
-          type: integer
+          type:
+          - integer
+          - 'null'
         prohibited_countries:
           description: List of prohibited issuing countries (ISO 3166-1 alpha-2).
           example:
@@ -1038,22 +1025,25 @@ components:
             pattern: ^[A-Z]{2}$
             type: string
           minItems: 1
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
         pre_selected_residence_country_code:
           description: Pre-fill the residence country in the verification flow (ISO 3166-1 alpha-2, uppercase).
           example: FR
           format: ISO 3166-1 alpha-2
-          nullable: true
           pattern: ^[A-Z]{2}$
-          type: string
+          type:
+          - string
+          - 'null'
         pre_selected_document_issuing_country_code:
           description: Pre-fill the document issuing country in the verification flow (ISO 3166-1 alpha-2, uppercase).
           example: FR
           format: ISO 3166-1 alpha-2
-          nullable: true
           pattern: ^[A-Z]{2}$
-          type: string
+          type:
+          - string
+          - 'null'
         pre_selected_document_type:
           description: Pre-fill the document type in the verification flow.
           enum:
@@ -1063,70 +1053,101 @@ components:
           - driver_license
           - travel_document
           example: id_card
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         pre_selected_locale:
           description: Pre-fill the UI language of the verification flow (ISO 639-1, lowercase 2-letter code).
           example: fr
           format: ISO 639-1
-          nullable: true
           pattern: ^[a-z]{2}$
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - first_name
       - last_name
       - redirection_url
       title: Initiate Identity Video Verification
       type: object
-    WorkflowSessionId:
-      description: 'Unique identifier of a Workflow Session. When provided, an Action is created in the Workflow Session, and this resource is associated with that Action.
-
-        '
-      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
-      format: uuid
-      nullable: true
-      title: Workflow Session identifier
-      type: string
-    Pagination:
-      description: Metadata about the response.
+    MethodNotAllowed:
       properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          nullable: true
+        message:
           type: string
       required:
-      - next_cursor
+      - message
+      title: MethodNotAllowed
+      type: object
+    IdentityVideoFull_allOf_data_evidence:
+      description: Documentary evidence captured during the verification process
+      properties:
+        document_front_image_url:
+          description: Temporary public link to the front image. Available for 10 minutes after the user completed the verification.
+          example: https://storage-b.env.ubble.ai/ubble-ai/88bf48f0-ce4a-449c-9af1-f138a7e09392/ae1f813a-02cf-4ffc-bf71-d823ed74dc8d/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/aaa.png?X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=xxx
+          format: uri
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        document_back_image_url:
+          description: Temporary public link to the back image. Available for 10 minutes after the user completed the verification.
+          example: https://storage-b.env.ubble.ai/ubble-ai/88bf48f0-ce4a-449c-9af1-f138a7e09392/ae1f813a-02cf-4ffc-bf71-d823ed74dc8d/bb603e2f-5de9-40f2-9631-8285a33c24c0/tight_crops/bbb.png?X-Amz-Date=20230327T163228Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=xxx
+          format: uri
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        face_image_url:
+          description: Temporary public link to the face image. Available for 10 minutes after the user completed the verification.
+          example: https://storage-b.ubble.ai/11-production-ubble-ai/CKQNCMWHRPGT/idv_01jezpmz01mvn7r1n9eg596v5k/9a873da8-2395-4b05-b9a6-56644dfe2e06/9dc6948e-23b8-4405-81f2-28dccc0d9a71/face_asset_generation_0_rtc_face_0_rtc_face/face_crop_41.png?response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=h6aivdggwQIvVyGWnAEw%2F20241216%2Feu-west-2%2Fs3%2Faws4_request&X-Amz-Date=20241216T100820Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=xxx
+          format: uri
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - document_back_image_url
+      - document_front_image_url
+      - face_image_url
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
       type: object
   headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
       schema:
         type: integer
     retry-after:
       description: Retry the request after X seconds
       schema:
         type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
     rateLimit-remaining-minute:
       description: The number of requests remaining in the current minute rate limit window
       schema:
         type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
       schema:
         type: integer
     rateLimit-limit-hour:

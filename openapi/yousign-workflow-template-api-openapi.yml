@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: contact@yousign.com
@@ -8,7 +8,7 @@ info:
   license:
     name: proprietary
     url: https://yousign.com/terms
-  title: Public Api v3 Applicant Workflow Template API
+  title: Public Api v3 Workflow Template API
   version: '3.0'
 servers:
 - description: Sandbox URL
@@ -23,9 +23,7 @@ tags:
 paths:
   /workflow_templates:
     get:
-      description: 'Returns the list of all Workflow Templates in your organization. You can limit the number of items returned by using filters and pagination.
-
-        '
+      description: Returns the list of all Workflow Templates in your organization. You can limit the number of items returned by using filters and pagination.
       operationId: get-workflow_templates
       responses:
         '200':
@@ -183,40 +181,21 @@ paths:
       tags:
       - Workflow Template
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
   schemas:
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - next_cursor
+      type: object
     InternalServerError:
       properties:
         type:
@@ -230,6 +209,42 @@ components:
       - type
       title: InternalServerError
       type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    WorkflowTemplate_action_groups_inner:
+      properties:
+        type:
+          description: Type of the Action Group.
+          enum:
+          - signature_request
+          - identity_verification
+          - proof_of_address_verification
+          - company_verification
+          - watchlist_verification
+          - bank_account_verification
+          - document_analysis
+          example: identity_verification
+          type: string
+      required:
+      - type
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
     WorkflowTemplate_workspaces_inner:
       properties:
         id:
@@ -239,6 +254,45 @@ components:
           type: string
       required:
       - id
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    get_workflow_templates_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/WorkflowTemplate'
+          type: array
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
       type: object
     WorkflowTemplate:
       properties:
@@ -268,94 +322,39 @@ components:
       - workspaces
       title: A Workflow Template
       type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    WorkflowTemplate_action_groups_inner:
-      properties:
-        type:
-          description: Type of the Action Group.
-          enum:
-          - signature_request
-          - identity_verification
-          - proof_of_address_verification
-          - company_verification
-          - watchlist_verification
-          - bank_account_verification
-          - document_analysis
-          example: identity_verification
-          type: string
-      required:
-      - type
-      type: object
-    get_workflow_templates_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/WorkflowTemplate'
-          type: array
-      type: object
-    Pagination:
-      description: Metadata about the response.
-      properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          nullable: true
-          type: string
-      required:
-      - next_cursor
-      type: object
+  headers:
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

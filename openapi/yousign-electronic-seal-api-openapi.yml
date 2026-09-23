@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: contact@yousign.com
@@ -8,7 +8,7 @@ info:
   license:
     name: proprietary
     url: https://yousign.com/terms
-  title: Public Api v3 Applicant Electronic Seal API
+  title: Public Api v3 Electronic Seal API
   version: '3.0'
 servers:
 - description: Sandbox URL
@@ -25,9 +25,7 @@ paths:
     get:
       description: 'Lists Electronic Seal Images.
 
-        The list is paginated and can be filtered by the `after` cursor.
-
-        '
+        The list is paginated and can be filtered by the `after` cursor.'
       operationId: list-electronic_seal-images
       parameters:
       - description: After cursor (pagination)
@@ -553,99 +551,36 @@ paths:
       tags:
       - Electronic Seal
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
   schemas:
-    CreateElectronicSealPayload:
+    ElectronicSealImage:
       properties:
-        document_id:
-          description: Specify which Electronic Seal Document to use for creating an Electronic Seal.
-          example: 160473f9-156f-4583-848c-cbc3dec49b4a
+        id:
+          example: 1365283d-0ba5-4a08-9a58-9818ef428320
           format: uuid
           type: string
-        image_id:
-          description: Specify which Electronic Seal Image to use for creating an Electronic Seal.
-          example: 333fa90a-a629-4708-8fe9-160dcb055a9b
+        name:
+          example: My seal image
+          type: string
+        created_at:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+        workspace_id:
+          description: Unique identifier of the Workspace in which this Electronic Seal Image is scoped.
+          example: ea11f308-4531-42f9-8218-96b37b7ebb19
           format: uuid
-          nullable: true
-          type: string
-        external_id:
-          description: Store a custom id that will be added to webhooks
-          example: externalId-123
-          maxLength: 255
-          nullable: true
-          pattern: ^[\w\-@.%+]+$
-          type: string
-        fields:
-          description: Fields you want to add to your Document. At least one Seal Field is mandatory.
-          items:
-            $ref: '#/components/schemas/CreateElectronicSealPayload_fields_inner'
-          type: array
-        signature_level:
-          description: Level of Electronic Seal for your Document
-          enum:
-          - electronic_signature
-          - advanced_electronic_signature
-          nullable: true
-          type: string
-        certificate_id:
-          description: Specify which certificate to use for creating an Electronic Seal (only available for advanced_electronic_signature level).
-          example: a3d84df7-b45e-4321-ae9e-7f5397acb225
-          format: uuid
-          nullable: true
           type: string
       required:
-      - document_id
-      - fields
-      title: CreateElectronicSealPayload
+      - created_at
+      - id
+      - name
+      - workspace_id
       type: object
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
+    CreateElectronicSealPayload_fields_inner:
+      anyOf:
+      - $ref: '#/components/schemas/CreateElectronicSealFieldSealPayload'
+      - $ref: '#/components/schemas/CreateElectronicSealFieldReadOnlyTextPayload'
       type: object
-    HumanName:
-      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
-      type: string
     ElectronicSeal:
       properties:
         id:
@@ -673,15 +608,17 @@ components:
         image_id:
           example: 6c82bd7a-d7f7-45e0-82f4-b92222567346
           format: uuid
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         external_id:
           description: Store a custom id that will be added to webhooks
           example: externalId-123
           maxLength: 255
-          nullable: true
           pattern: ^[\w\-@.%+]+$
-          type: string
+          type:
+          - string
+          - 'null'
         signature_level:
           enum:
           - electronic_signature
@@ -705,100 +642,84 @@ components:
       - workspace_id
       title: ElectronicSeal
       type: object
-    TooManyRequestsResponse:
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    Pagination:
+      description: Metadata about the response.
       properties:
-        message:
-          type: string
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          type:
+          - string
+          - 'null'
       required:
-      - message
-      title: TooManyRequestsResponse
+      - next_cursor
       type: object
-    CreateElectronicSealFieldSealPayload_captions_inner:
-      additionalProperties: false
-      properties:
-        text:
-          description: The caption text to display on the seal image.
-          maxLength: 150
-          type: string
-      required:
-      - text
-      type: object
-    UnsupportedMediaTypeResponse:
+    InternalServerError:
       properties:
         type:
+          example: about:blank
           type: string
         detail:
+          example: Something wrong occurred.
           type: string
       required:
       - detail
       - type
-      title: UnsupportedMediaTypeResponse
+      title: InternalServerError
       type: object
-    MethodNotAllowed:
+    CreateElectronicSealPayload:
       properties:
-        message:
+        document_id:
+          description: Specify which Electronic Seal Document to use for creating an Electronic Seal.
+          example: 160473f9-156f-4583-848c-cbc3dec49b4a
+          format: uuid
           type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    list_electronic_seal_images_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
+        image_id:
+          description: Specify which Electronic Seal Image to use for creating an Electronic Seal.
+          example: 333fa90a-a629-4708-8fe9-160dcb055a9b
+          format: uuid
+          type:
+          - string
+          - 'null'
+        external_id:
+          description: Store a custom id that will be added to webhooks
+          example: externalId-123
+          maxLength: 255
+          pattern: ^[\w\-@.%+]+$
+          type:
+          - string
+          - 'null'
+        fields:
+          description: Fields you want to add to your Document. At least one Seal Field is mandatory.
           items:
-            $ref: '#/components/schemas/ElectronicSealImage'
+            $ref: '#/components/schemas/CreateElectronicSealPayload_fields_inner'
           type: array
-      type: object
-    CreateElectronicSealPayload_fields_inner:
-      anyOf:
-      - $ref: '#/components/schemas/CreateElectronicSealFieldSealPayload'
-      - $ref: '#/components/schemas/CreateElectronicSealFieldReadOnlyTextPayload'
+        signature_level:
+          description: Level of Electronic Seal for your Document
+          enum:
+          - electronic_signature
+          - advanced_electronic_signature
+          type:
+          - string
+          - 'null'
+        certificate_id:
+          description: Specify which certificate to use for creating an Electronic Seal (only available for advanced_electronic_signature level).
+          example: a3d84df7-b45e-4321-ae9e-7f5397acb225
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - document_id
+      - fields
+      title: CreateElectronicSealPayload
       type: object
     CreateElectronicSealFieldSealPayload:
       properties:
@@ -837,15 +758,17 @@ components:
           allOf:
           - $ref: '#/components/schemas/HumanName'
           maxLength: 200
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         captions:
           description: Optional captions to display on the seal image. Limited to one caption per field.
           items:
             $ref: '#/components/schemas/CreateElectronicSealFieldSealPayload_captions_inner'
           maxItems: 1
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
       required:
       - height
       - page
@@ -855,47 +778,34 @@ components:
       - y
       title: Seal
       type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    ElectronicSealImage:
+    UnsupportedMediaTypeResponse:
       properties:
-        id:
-          example: 1365283d-0ba5-4a08-9a58-9818ef428320
-          format: uuid
+        type:
           type: string
-        name:
-          example: My seal image
-          type: string
-        created_at:
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          type: string
-        workspace_id:
-          description: Unique identifier of the Workspace in which this Electronic Seal Image is scoped.
-          example: ea11f308-4531-42f9-8218-96b37b7ebb19
-          format: uuid
+        detail:
           type: string
       required:
-      - created_at
-      - id
-      - name
-      - workspace_id
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
       type: object
-    Pagination:
-      description: Metadata about the response.
+    CreateElectronicSealFieldSealPayload_captions_inner:
+      additionalProperties: false
       properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          nullable: true
+        text:
+          description: The caption text to display on the seal image.
+          maxLength: 150
           type: string
       required:
-      - next_cursor
+      - text
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
       type: object
     CreateElectronicSealFieldReadOnlyTextPayload:
       properties:
@@ -943,6 +853,103 @@ components:
       - y
       title: Read Only Text
       type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    HumanName:
+      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
+      type: string
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    list_electronic_seal_images_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/ElectronicSealImage'
+          type: array
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+  headers:
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

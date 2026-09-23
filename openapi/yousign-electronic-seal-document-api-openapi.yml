@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: contact@yousign.com
@@ -8,7 +8,7 @@ info:
   license:
     name: proprietary
     url: https://yousign.com/terms
-  title: Public Api v3 Applicant Electronic Seal Document API
+  title: Public Api v3 Electronic Seal Document API
   version: '3.0'
 servers:
 - description: Sandbox URL
@@ -41,9 +41,7 @@ paths:
 
         - Plans: `pro`, `scale`
 
-        - Add-ons (for production access): `Electronic Seal` or `Advanced Electronic Seal` or `Qualified Electronic Seal`
-
-        '
+        - Add-ons (for production access): `Electronic Seal` or `Advanced Electronic Seal` or `Qualified Electronic Seal`'
       operationId: upload-electronic_seal-document
       requestBody:
         content:
@@ -252,9 +250,7 @@ paths:
       - Electronic Seal Document
   /electronic_seal_documents/{electronicSealDocumentId}:
     delete:
-      description: 'Permanently deletes an Electronic Seal Document attached to an Electronic Seal. This action is only possible when the eSeal is in done or error status. Not applicable to documents sealed with a Qualified eSeal. Warning: this operation is irreversible: once deleted, the document cannot be retrieved. The customer assumes full responsibility for this action.
-
-        '
+      description: 'Permanently deletes an Electronic Seal Document attached to an Electronic Seal. This action is only possible when the eSeal is in done or error status. Not applicable to documents sealed with a Qualified eSeal. Warning: this operation is irreversible: once deleted, the document cannot be retrieved. The customer assumes full responsibility for this action.'
       operationId: delete-electronic_seal_documents-id
       parameters:
       - description: Electronic Seal Document Id
@@ -603,72 +599,7 @@ paths:
       tags:
       - Electronic Seal Document
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
   schemas:
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
     ElectronicSealDocument:
       properties:
         id:
@@ -693,6 +624,118 @@ components:
       - total_pages
       - workspace_id
       type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    From_Signature_Request_Document:
+      description: Create an Electronic Seal Document from a Signature Request Document already signed.
+      properties:
+        signature_request_document_id:
+          description: Id of the Signature Request Document, the Signature Request must be Done.
+          example: 672a5a0b-ac65-407e-9da9-d34402bae974
+          format: uuid
+          type: string
+      required:
+      - signature_request_document_id
+      title: From Signature Request Document
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    CreateElectronicSealDocumentFromJson:
+      oneOf:
+      - $ref: '#/components/schemas/From_Electronic_Seal_Document'
+      - $ref: '#/components/schemas/From_Signature_Request_Document'
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    CreateElectronicSealDocument:
+      properties:
+        file:
+          description: 'Binary file. Accepted formats: PDF.'
+          format: binary
+          type: string
+        password:
+          description: The password required to unlock the document if it is protected.
+          example: MyPa$$word
+          type: string
+      required:
+      - file
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    From_Electronic_Seal_Document:
+      description: Create an Electronic Seal Document from a previously sealed document.
+      properties:
+        electronic_seal_document_id:
+          description: Id of the Electronic Seal Document. The Electronic Seal must be done to use its Electronic Seal Document.
+          example: 672a5a0b-ac65-407e-9da9-d34402bae974
+          format: uuid
+          type: string
+      required:
+      - electronic_seal_document_id
+      title: From Electronic Seal Document
+      type: object
     MethodNotAllowed:
       properties:
         message:
@@ -712,86 +755,39 @@ components:
       - type
       title: NotFoundResponse
       type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    CreateElectronicSealDocument:
-      properties:
-        file:
-          description: 'Binary file. Accepted formats: PDF.'
-          format: binary
-          type: string
-        password:
-          description: The password required to unlock the document if it is protected.
-          example: MyPa$$word
-          type: string
-      required:
-      - file
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    CreateElectronicSealDocumentFromJson:
-      oneOf:
-      - $ref: '#/components/schemas/From_Electronic_Seal_Document'
-      - $ref: '#/components/schemas/From_Signature_Request_Document'
-      type: object
-    From_Signature_Request_Document:
-      description: Create an Electronic Seal Document from a Signature Request Document already signed.
-      properties:
-        signature_request_document_id:
-          description: Id of the Signature Request Document, the Signature Request must be Done.
-          example: 672a5a0b-ac65-407e-9da9-d34402bae974
-          format: uuid
-          type: string
-      required:
-      - signature_request_document_id
-      title: From Signature Request Document
-      type: object
-    From_Electronic_Seal_Document:
-      description: Create an Electronic Seal Document from a previously sealed document.
-      properties:
-        electronic_seal_document_id:
-          description: Id of the Electronic Seal Document. The Electronic Seal must be done to use its Electronic Seal Document.
-          example: 672a5a0b-ac65-407e-9da9-d34402bae974
-          format: uuid
-          type: string
-      required:
-      - electronic_seal_document_id
-      title: From Electronic Seal Document
-      type: object
+  headers:
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

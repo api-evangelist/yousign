@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: contact@yousign.com
@@ -8,7 +8,7 @@ info:
   license:
     name: proprietary
     url: https://yousign.com/terms
-  title: Public Api v3 Applicant Approver API
+  title: Public Api v3 Approver API
   version: '3.0'
 servers:
 - description: Sandbox URL
@@ -817,9 +817,7 @@ paths:
     post:
       description: 'Sends a reminder to a given Approver to review their Signature Request.
 
-        Only possible when the Signature Request status is `approval` and the Approver status is `notified`.
-
-        '
+        Only possible when the Signature Request status is `approval` and the Approver status is `notified`.'
       operationId: post-signature_requests-signatureRequestId-approvers-approverId-send_reminder
       parameters:
       - description: Signature Request Id
@@ -1007,49 +1005,25 @@ paths:
       tags:
       - Approver
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
   schemas:
-    New_Approver_From_Scratch:
-      description: Create a new Approver from scratch.
-      properties:
-        info:
-          $ref: '#/components/schemas/New_Approver_From_Scratch_info'
-      required:
-      - info
-      title: New Approver From Scratch
-      type: object
+    Locale:
+      description: Locale settings used for communication.
+      enum:
+      - en
+      - fr
+      - de
+      - it
+      - nl
+      - es
+      - pl
+      minLength: 1
+      title: Locale
+      type: string
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
     InternalServerError:
       properties:
         type:
@@ -1063,50 +1037,88 @@ components:
       - type
       title: InternalServerError
       type: object
-    New_Approver_From_Existing_Signer:
-      description: Create a new Approver from an existing Signer.
+    ExcludedDocuments:
+      description: 'List of Document IDs not visible to this Recipient. When omitted, the Recipient can see all Documents. Only available when the document_visibility feature is enabled on the organization.
+
+        '
+      example:
+      - 89120884-d29a-4b1a-ac7b-a9e73a872796
+      - 7c0c2d1e-3f4a-5b6c-8d9e-0f1a2b3c4d5e
+      items:
+        format: uuid
+        type: string
+      type: array
+    New_Approver_From_Existing_User:
+      description: Create a new Approver from an existing User.
       properties:
-        signer_id:
+        user_id:
           example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
           format: uuid
           type: string
       required:
-      - signer_id
-      title: New Approver From Existing Signer
+      - user_id
+      title: New Approver From Existing User
       type: object
-    CreateApprover:
-      oneOf:
-      - $ref: '#/components/schemas/New_Approver_From_Scratch'
-      - $ref: '#/components/schemas/New_Approver_From_Existing_User'
-      - $ref: '#/components/schemas/New_Approver_From_Existing_Contact'
-      - $ref: '#/components/schemas/New_Approver_From_Existing_Signer'
+    UnsupportedMediaTypeResponse:
       properties:
-        custom_text:
-          $ref: '#/components/schemas/CustomText'
-        insert_after_id:
-          description: 'ID of the recipient this one must follow in an ordered flow; they will only be asked to act after that recipient.
-
-            When `custom_recipient_order` is enabled, this can reference any approver or signer.
-
-            When `custom_recipient_order` is disabled, the referenced ID must be an approver. `ordered_approvers` must be enabled on the Signature Request.
-
-            '
-          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
-          format: uuid
-          nullable: true
+        type:
           type: string
-        group_with_id:
-          description: 'ID of another recipient (Approver or Signer); both will be allowed to act in parallel in an ordered flow.
-
-            Only available when `custom_recipient_order` is enabled.
-
-            '
-          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
-          format: uuid
-          nullable: true
+        detail:
           type: string
-        excluded_documents:
-          $ref: '#/components/schemas/ExcludedDocuments'
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    CustomText:
+      description: Custom Text
+      properties:
+        request_subject:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          format: safe-string
+          maxLength: 512
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        request_body:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          format: safe-string
+          maxLength: 2000
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        reminder_subject:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          format: safe-string
+          maxLength: 512
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        reminder_body:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          format: safe-string
+          maxLength: 2000
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - reminder_body
+      - reminder_subject
+      - request_body
+      - request_subject
+      type: object
+    New_Approver_From_Scratch:
+      description: Create a new Approver from scratch.
+      properties:
+        info:
+          $ref: '#/components/schemas/New_Approver_From_Scratch_info'
+      required:
+      - info
+      title: New Approver From Scratch
       type: object
     TooManyRequestsResponse:
       properties:
@@ -1115,6 +1127,33 @@ components:
       required:
       - message
       title: TooManyRequestsResponse
+      type: object
+    Approver_info:
+      properties:
+        first_name:
+          minLength: 1
+          type: string
+        last_name:
+          minLength: 1
+          type: string
+        email:
+          format: email
+          minLength: 1
+          type: string
+        phone_number:
+          description: E.164 format.
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        locale:
+          $ref: '#/components/schemas/Locale'
+      required:
+      - email
+      - first_name
+      - last_name
+      - locale
+      - phone_number
       type: object
     Approver:
       description: Approver
@@ -1136,20 +1175,23 @@ components:
         approval_link:
           format: uri
           minLength: 1
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         approval_link_expiration_date:
           example: '2024-01-18T22:59:00Z'
           format: date-time
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         custom_text:
           $ref: '#/components/schemas/CustomText'
         approved_at:
           example: '2024-01-18T22:59:00Z'
           format: date-time
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         recipient_stage_index:
           description: Position of the recipient in the signing flow. Recipients with the same index are notified simultaneously.
           type: integer
@@ -1171,18 +1213,40 @@ components:
       - status
       title: Approver
       type: object
-    ExcludedDocuments:
-      description: 'List of Document IDs not visible to this Recipient. When omitted, the Recipient can see all Documents. Only available when the document_visibility feature is enabled on the organization.
+    UpdateApprover:
+      properties:
+        info:
+          $ref: '#/components/schemas/UpdateApprover_info'
+        custom_text:
+          $ref: '#/components/schemas/CustomText'
+        insert_after_id:
+          description: 'ID of the recipient this one must follow in an ordered flow; they will only be asked to act after that recipient.
 
-        '
-      example:
-      - 89120884-d29a-4b1a-ac7b-a9e73a872796
-      - 7c0c2d1e-3f4a-5b6c-8d9e-0f1a2b3c4d5e
-      items:
-        format: uuid
-        type: string
-      type: array
-    UnsupportedMediaTypeResponse:
+            When `custom_recipient_order` is enabled, this can reference any approver or signer.
+
+            When `custom_recipient_order` is disabled, the referenced ID must be an approver. `ordered_approvers` must be enabled on the Signature Request.
+
+            '
+          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
+          format: uuid
+          type:
+          - string
+          - 'null'
+        group_with_id:
+          description: 'ID of another recipient (Approver or Signer); both will be allowed to act in parallel in an ordered flow.
+
+            Only available when `custom_recipient_order` is enabled.
+
+            '
+          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
+          format: uuid
+          type:
+          - string
+          - 'null'
+        excluded_documents:
+          $ref: '#/components/schemas/ExcludedDocuments'
+      type: object
+    UnauthorizedResponse:
       properties:
         type:
           type: string
@@ -1191,18 +1255,7 @@ components:
       required:
       - detail
       - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    New_Approver_From_Existing_User:
-      description: Create a new Approver from an existing User.
-      properties:
-        user_id:
-          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
-          format: uuid
-          type: string
-      required:
-      - user_id
-      title: New Approver From Existing User
+      title: UnauthorizedResponse
       type: object
     New_Approver_From_Scratch_info:
       properties:
@@ -1222,8 +1275,9 @@ components:
           description: E.164 format.
           example: '+41446667700'
           minLength: 1
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         locale:
           $ref: '#/components/schemas/Locale'
       required:
@@ -1231,69 +1285,6 @@ components:
       - first_name
       - last_name
       - locale
-      type: object
-    UpdateApprover:
-      properties:
-        info:
-          $ref: '#/components/schemas/UpdateApprover_info'
-        custom_text:
-          $ref: '#/components/schemas/CustomText'
-        insert_after_id:
-          description: 'ID of the recipient this one must follow in an ordered flow; they will only be asked to act after that recipient.
-
-            When `custom_recipient_order` is enabled, this can reference any approver or signer.
-
-            When `custom_recipient_order` is disabled, the referenced ID must be an approver. `ordered_approvers` must be enabled on the Signature Request.
-
-            '
-          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
-          format: uuid
-          nullable: true
-          type: string
-        group_with_id:
-          description: 'ID of another recipient (Approver or Signer); both will be allowed to act in parallel in an ordered flow.
-
-            Only available when `custom_recipient_order` is enabled.
-
-            '
-          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
-          format: uuid
-          nullable: true
-          type: string
-        excluded_documents:
-          $ref: '#/components/schemas/ExcludedDocuments'
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    Locale:
-      description: Locale settings used for communication.
-      enum:
-      - en
-      - fr
-      - de
-      - it
-      - nl
-      - es
-      - pl
-      minLength: 1
-      title: Locale
-      type: string
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
       type: object
     BadRequestResponse:
       properties:
@@ -1306,35 +1297,43 @@ components:
       - type
       title: BadRequestResponse
       type: object
-    ForbiddenResponse:
+    CreateApprover:
+      oneOf:
+      - $ref: '#/components/schemas/New_Approver_From_Scratch'
+      - $ref: '#/components/schemas/New_Approver_From_Existing_User'
+      - $ref: '#/components/schemas/New_Approver_From_Existing_Contact'
+      - $ref: '#/components/schemas/New_Approver_From_Existing_Signer'
       properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
+        custom_text:
+          $ref: '#/components/schemas/CustomText'
+        insert_after_id:
+          description: 'ID of the recipient this one must follow in an ordered flow; they will only be asked to act after that recipient.
+
+            When `custom_recipient_order` is enabled, this can reference any approver or signer.
+
+            When `custom_recipient_order` is disabled, the referenced ID must be an approver. `ordered_approvers` must be enabled on the Signature Request.
+
+            '
+          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
+          format: uuid
+          type:
+          - string
+          - 'null'
+        group_with_id:
+          description: 'ID of another recipient (Approver or Signer); both will be allowed to act in parallel in an ordered flow.
+
+            Only available when `custom_recipient_order` is enabled.
+
+            '
+          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
+          format: uuid
+          type:
+          - string
+          - 'null'
+        excluded_documents:
+          $ref: '#/components/schemas/ExcludedDocuments'
       type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
     UpdateApprover_info:
-      nullable: true
       properties:
         first_name:
           maxLength: 255
@@ -1353,10 +1352,24 @@ components:
           description: E.164 format
           example: '+41446667700'
           minLength: 1
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         locale:
           $ref: '#/components/schemas/Locale'
+      type:
+      - object
+      - 'null'
+    New_Approver_From_Existing_Signer:
+      description: Create a new Approver from an existing Signer.
+      properties:
+        signer_id:
+          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
+          format: uuid
+          type: string
+      required:
+      - signer_id
+      title: New Approver From Existing Signer
       type: object
     New_Approver_From_Existing_Contact:
       description: Create a new Approver from an existing Contact.
@@ -1369,69 +1382,69 @@ components:
       - contact_id
       title: New Approver From Existing Contact
       type: object
-    CustomText:
-      description: Custom Text
+    ForbiddenResponse:
       properties:
-        request_subject:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
-          format: safe-string
-          maxLength: 512
-          minLength: 1
-          nullable: true
+        type:
           type: string
-        request_body:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
-          format: safe-string
-          maxLength: 2000
-          minLength: 1
-          nullable: true
-          type: string
-        reminder_subject:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
-          format: safe-string
-          maxLength: 512
-          minLength: 1
-          nullable: true
-          type: string
-        reminder_body:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
-          format: safe-string
-          maxLength: 2000
-          minLength: 1
-          nullable: true
+        detail:
           type: string
       required:
-      - reminder_body
-      - reminder_subject
-      - request_body
-      - request_subject
+      - detail
+      - type
+      title: ForbiddenResponse
       type: object
-    Approver_info:
+    MethodNotAllowed:
       properties:
-        first_name:
-          minLength: 1
+        message:
           type: string
-        last_name:
-          minLength: 1
-          type: string
-        email:
-          format: email
-          minLength: 1
-          type: string
-        phone_number:
-          description: E.164 format.
-          minLength: 1
-          nullable: true
-          type: string
-        locale:
-          $ref: '#/components/schemas/Locale'
       required:
-      - email
-      - first_name
-      - last_name
-      - locale
-      - phone_number
+      - message
+      title: MethodNotAllowed
       type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+  headers:
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

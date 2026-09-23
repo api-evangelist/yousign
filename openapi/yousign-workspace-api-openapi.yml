@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: contact@yousign.com
@@ -8,7 +8,7 @@ info:
   license:
     name: proprietary
     url: https://yousign.com/terms
-  title: Public Api v3 Applicant Workspace API
+  title: Public Api v3 Workspace API
   version: '3.0'
 servers:
 - description: Sandbox URL
@@ -1160,9 +1160,7 @@ paths:
     patch:
       description: 'Updates a given Workspace.
 
-        Any parameters not provided are left unchanged.
-
-        '
+        Any parameters not provided are left unchanged.'
       operationId: patch-workspaces-workspaceId
       parameters:
       - description: Workspace Id
@@ -1374,40 +1372,34 @@ paths:
       tags:
       - Workspace
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
   schemas:
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    Workspace_users_inner:
+      properties:
+        id:
+          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - next_cursor
+      type: object
     InternalServerError:
       properties:
         type:
@@ -1431,23 +1423,16 @@ components:
       required:
       - workspace_id
       type: object
-    MarkWorkspaceAsDefault:
-      additionalProperties: false
+    UnsupportedMediaTypeResponse:
       properties:
-        workspace_id:
-          description: The workspace you want to mark as the default one
-          format: uuid
+        type:
+          type: string
+        detail:
           type: string
       required:
-      - workspace_id
-      type: object
-    Workspace_users_inner:
-      properties:
-        id:
-          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
-          format: uuid
-          readOnly: true
-          type: string
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
       type: object
     TooManyRequestsResponse:
       properties:
@@ -1457,21 +1442,25 @@ components:
       - message
       title: TooManyRequestsResponse
       type: object
-    UpdateWorkspace:
+    get_workspaces_200_response:
       properties:
-        name:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          example: Sales
-          format: safe-string
-          maxLength: 200
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/Workspace'
+          type: array
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
           type: string
-        external_name:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          example: UK Sales
-          format: safe-string
-          maxLength: 200
-          nullable: true
+        detail:
           type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
       type: object
     Workspace:
       properties:
@@ -1483,8 +1472,9 @@ components:
         name:
           type: string
         external_name:
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         default:
           type: boolean
         created_at:
@@ -1499,9 +1489,10 @@ components:
           type: string
         deleted_at:
           format: date-time
-          nullable: true
           readOnly: true
-          type: string
+          type:
+          - string
+          - 'null'
         users:
           items:
             $ref: '#/components/schemas/Workspace_users_inner'
@@ -1517,44 +1508,32 @@ components:
       - users
       title: Workspace
       type: object
-    get_workspaces_200_response:
+    MarkWorkspaceAsDefault:
+      additionalProperties: false
       properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/Workspace'
-          type: array
-      type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
+        workspace_id:
+          description: The workspace you want to mark as the default one
+          format: uuid
           type: string
       required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
+      - workspace_id
       type: object
-    MethodNotAllowed:
+    UpdateWorkspace:
       properties:
-        message:
+        name:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          example: Sales
+          format: safe-string
+          maxLength: 200
           type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
+        external_name:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          example: UK Sales
+          format: safe-string
+          maxLength: 200
+          type:
+          - string
+          - 'null'
       type: object
     BadRequestResponse:
       properties:
@@ -1578,22 +1557,14 @@ components:
       - type
       title: ForbiddenResponse
       type: object
-    UnauthorizedResponse:
+    MethodNotAllowed:
       properties:
-        type:
-          type: string
-        detail:
+        message:
           type: string
       required:
-      - detail
-      - type
-      title: UnauthorizedResponse
+      - message
+      title: MethodNotAllowed
       type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
     CreateWorkspace:
       additionalProperties: false
       properties:
@@ -1608,24 +1579,56 @@ components:
           example: UK Sales
           format: safe-string
           maxLength: 200
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - name
       type: object
-    Pagination:
-      description: Metadata about the response.
+    NotFoundResponse:
       properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          nullable: true
+        type:
+          type: string
+        detail:
           type: string
       required:
-      - next_cursor
+      - detail
+      - type
+      title: NotFoundResponse
       type: object
+  headers:
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

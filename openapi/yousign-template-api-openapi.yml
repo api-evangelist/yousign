@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   contact:
     email: contact@yousign.com
@@ -8,7 +8,7 @@ info:
   license:
     name: proprietary
     url: https://yousign.com/terms
-  title: Public Api v3 Applicant Template API
+  title: Public Api v3 Template API
   version: '3.0'
 servers:
 - description: Sandbox URL
@@ -198,100 +198,8 @@ paths:
       tags:
       - Template
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
   schemas:
-    Template:
-      properties:
-        id:
-          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
-          format: uuid
-          readOnly: true
-          type: string
-        name:
-          readOnly: true
-          type: string
-        description:
-          nullable: true
-          readOnly: true
-          type: string
-        status:
-          enum:
-          - draft
-          - active
-          readOnly: true
-          type: string
-        created_at:
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          readOnly: true
-          type: string
-        workspace_id:
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          nullable: true
-          type: string
-      required:
-      - created_at
-      - description
-      - id
-      - name
-      - status
-      title: Template
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
-    BadRequestResponse:
+    UnauthorizedResponse:
       properties:
         type:
           type: string
@@ -300,7 +208,7 @@ components:
       required:
       - detail
       - type
-      title: BadRequestResponse
+      title: UnauthorizedResponse
       type: object
     ForbiddenResponse:
       properties:
@@ -312,17 +220,6 @@ components:
       - detail
       - type
       title: ForbiddenResponse
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
       type: object
     get_templates_200_response:
       properties:
@@ -341,6 +238,78 @@ components:
       - message
       title: TooManyRequestsResponse
       type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    Template:
+      properties:
+        id:
+          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
+          format: uuid
+          readOnly: true
+          type: string
+        name:
+          readOnly: true
+          type: string
+        description:
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        status:
+          enum:
+          - draft
+          - active
+          readOnly: true
+          type: string
+        created_at:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          readOnly: true
+          type: string
+        workspace_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - created_at
+      - description
+      - id
+      - name
+      - status
+      title: Template
+      type: object
     Pagination:
       description: Metadata about the response.
       properties:
@@ -349,11 +318,45 @@ components:
 
             '
           minLength: 1
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - next_cursor
       type: object
+  headers:
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer
