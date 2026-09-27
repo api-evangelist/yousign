@@ -548,30 +548,31 @@ paths:
       - User Invitation
 components:
   schemas:
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    ManageableRole:
-      enum:
-      - admin
-      - member
-      title: Manageable Role
-      type: string
-    Pagination:
-      description: Metadata about the response.
+    get_invitations_200_response:
       properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          type:
-          - string
-          - 'null'
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/UserInvitation'
+          type: array
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
       required:
-      - next_cursor
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    User_workspaces_inner:
+      properties:
+        id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+      required:
+      - id
       type: object
     InternalServerError:
       properties:
@@ -586,22 +587,41 @@ components:
       - type
       title: InternalServerError
       type: object
-    TooManyRequestsResponse:
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    MethodNotAllowed:
       properties:
         message:
           type: string
       required:
       - message
-      title: TooManyRequestsResponse
+      title: MethodNotAllowed
       type: object
-    get_invitations_200_response:
+    ManageableRole:
+      enum:
+      - admin
+      - member
+      title: Manageable Role
+      type: string
+    ForbiddenResponse:
       properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/UserInvitation'
-          type: array
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
       type: object
     UnauthorizedResponse:
       properties:
@@ -613,6 +633,17 @@ components:
       - detail
       - type
       title: UnauthorizedResponse
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
       type: object
     UserInvitation:
       properties:
@@ -652,71 +683,40 @@ components:
       - workspaces
       title: Invitation
       type: object
-    BadRequestResponse:
+    Pagination:
+      description: Metadata about the response.
       properties:
-        type:
-          type: string
-        detail:
-          type: string
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          type:
+          - string
+          - 'null'
       required:
-      - detail
-      - type
-      title: BadRequestResponse
+      - next_cursor
       type: object
-    User_workspaces_inner:
-      properties:
-        id:
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type: string
-      required:
-      - id
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
   headers:
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
       schema:
         type: integer
     retry-after:
       description: Retry the request after X seconds
       schema:
         type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
       schema:
         type: integer
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
       schema:
         type: integer
     rateLimit-limit:
@@ -727,8 +727,8 @@ components:
       description: The number of requests remaining in the current minute rate limit window
       schema:
         type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
       schema:
         type: integer
     rateLimit-limit-hour:

@@ -1505,24 +1505,13 @@ paths:
       - Label
 components:
   schemas:
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    Pagination:
-      description: Metadata about the response.
+    TooManyRequestsResponse:
       properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          type:
-          - string
-          - 'null'
+        message:
+          type: string
       required:
-      - next_cursor
+      - message
+      title: TooManyRequestsResponse
       type: object
     InternalServerError:
       properties:
@@ -1537,23 +1526,93 @@ components:
       - type
       title: InternalServerError
       type: object
-    UpdateLabel:
+    UnsupportedMediaTypeResponse:
       properties:
-        name:
-          description: 'Name of the Label. Each Label name must be unique within the organization.\
-
-            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email, HTML and URL.
-
-            '
-          example: Contracts
-          format: safe-string
-          maxLength: 128
-          minLength: 1
-          title: The name of your Label
+        type:
+          type: string
+        detail:
           type: string
       required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    get_labels_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/Label'
+          type: array
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    get_signature_requests_id_labels_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/SignatureRequestLabel'
+          type: array
+      type: object
+    SignatureRequestLabel:
+      properties:
+        id:
+          description: Unique identifier of the Label.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          readOnly: true
+          type: string
+        name:
+          description: Name of the Label.
+          example: Contracts
+          maxLength: 128
+          minLength: 1
+          type: string
+      required:
+      - id
       - name
-      title: A Label object
       type: object
     Label:
       properties:
@@ -1581,25 +1640,25 @@ components:
       - name
       title: Label
       type: object
-    SignatureRequestLabel:
+    UpdateLabel:
       properties:
-        id:
-          description: Unique identifier of the Label.
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          readOnly: true
-          type: string
         name:
-          description: Name of the Label.
+          description: 'Name of the Label. Each Label name must be unique within the organization.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email, HTML and URL.
+
+            '
           example: Contracts
+          format: safe-string
           maxLength: 128
           minLength: 1
+          title: The name of your Label
           type: string
       required:
-      - id
       - name
+      title: A Label object
       type: object
-    UnsupportedMediaTypeResponse:
+    NotFoundResponse:
       properties:
         type:
           type: string
@@ -1608,57 +1667,21 @@ components:
       required:
       - detail
       - type
-      title: UnsupportedMediaTypeResponse
+      title: NotFoundResponse
       type: object
-    TooManyRequestsResponse:
+    Pagination:
+      description: Metadata about the response.
       properties:
-        message:
-          type: string
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          type:
+          - string
+          - 'null'
       required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    get_signature_requests_id_labels_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/SignatureRequestLabel'
-          type: array
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
+      - next_cursor
       type: object
     CreateLabel:
       properties:
@@ -1678,49 +1701,26 @@ components:
       - name
       title: A Label object
       type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    get_labels_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/Label'
-          type: array
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
   headers:
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
       schema:
         type: integer
     retry-after:
       description: Retry the request after X seconds
       schema:
         type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
       schema:
         type: integer
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
       schema:
         type: integer
     rateLimit-limit:
@@ -1731,8 +1731,8 @@ components:
       description: The number of requests remaining in the current minute rate limit window
       schema:
         type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
       schema:
         type: integer
     rateLimit-limit-hour:

@@ -404,29 +404,47 @@ paths:
       - Follower
 components:
   schemas:
-    Locale:
-      description: Locale settings used for communication.
-      enum:
-      - en
-      - fr
-      - de
-      - it
-      - nl
-      - es
-      - pl
-      minLength: 1
-      title: Locale
-      type: string
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    CreateFollowers:
-      description: A list of Follower objects to be added to the signature request.
-      items:
-        $ref: '#/components/schemas/CreateFollowers_inner'
-      type: array
+    Follower:
+      properties:
+        email:
+          example: john.doe@example.com
+          format: email
+          type: string
+        locale:
+          $ref: '#/components/schemas/Locale'
+        follower_link:
+          format: uri
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - email
+      - follower_link
+      - locale
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    CreateFollowers_inner:
+      properties:
+        email:
+          example: john.doe@example.com
+          format: email
+          maxLength: 100
+          minLength: 1
+          type: string
+        locale:
+          $ref: '#/components/schemas/Locale'
+      required:
+      - email
+      - locale
+      type: object
     InternalServerError:
       properties:
         type:
@@ -451,44 +469,6 @@ components:
       - type
       title: UnsupportedMediaTypeResponse
       type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    Follower:
-      properties:
-        email:
-          example: john.doe@example.com
-          format: email
-          type: string
-        locale:
-          $ref: '#/components/schemas/Locale'
-        follower_link:
-          format: uri
-          minLength: 1
-          type:
-          - string
-          - 'null'
-      required:
-      - email
-      - follower_link
-      - locale
-      type: object
     BadRequestResponse:
       properties:
         type:
@@ -499,6 +479,14 @@ components:
       - detail
       - type
       title: BadRequestResponse
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
       type: object
     ForbiddenResponse:
       properties:
@@ -511,35 +499,16 @@ components:
       - type
       title: ForbiddenResponse
       type: object
-    get_signature_requests_signatureRequestId_followers_200_response:
-      description: A list of Followers added to the Signature Request.
+    UnauthorizedResponse:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Follower'
-          type: array
-      type: object
-    CreateFollowers_inner:
-      properties:
-        email:
-          example: john.doe@example.com
-          format: email
-          maxLength: 100
-          minLength: 1
+        type:
           type: string
-        locale:
-          $ref: '#/components/schemas/Locale'
-      required:
-      - email
-      - locale
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
+        detail:
           type: string
       required:
-      - message
-      title: MethodNotAllowed
+      - detail
+      - type
+      title: UnauthorizedResponse
       type: object
     NotFoundResponse:
       properties:
@@ -552,21 +521,52 @@ components:
       - type
       title: NotFoundResponse
       type: object
+    get_signature_requests_signatureRequestId_followers_200_response:
+      description: A list of Followers added to the Signature Request.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Follower'
+          type: array
+      type: object
+    Locale:
+      description: Locale settings used for communication.
+      enum:
+      - en
+      - fr
+      - de
+      - it
+      - nl
+      - es
+      - pl
+      minLength: 1
+      title: Locale
+      type: string
+    CreateFollowers:
+      description: A list of Follower objects to be added to the signature request.
+      items:
+        $ref: '#/components/schemas/CreateFollowers_inner'
+      type: array
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
   headers:
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
       schema:
         type: integer
     retry-after:
       description: Retry the request after X seconds
       schema:
         type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
       schema:
         type: integer
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
       schema:
         type: integer
     rateLimit-limit:
@@ -577,8 +577,8 @@ components:
       description: The number of requests remaining in the current minute rate limit window
       schema:
         type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
       schema:
         type: integer
     rateLimit-limit-hour:

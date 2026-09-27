@@ -1396,47 +1396,38 @@ components:
       - workspaces
       title: A User object
       type: object
-    Locale:
-      description: Locale settings used for communication.
-      enum:
-      - en
-      - fr
-      - de
-      - it
-      - nl
-      - es
-      - pl
-      minLength: 1
-      title: Locale
-      type: string
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    UserStatus:
-      enum:
-      - invited
-      - signed_up
-      - verified
-      - completed
-      minLength: 1
-      title: User Status
-      type: string
-    Pagination:
-      description: Metadata about the response.
+    UpdateUser:
       properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          type:
-          - string
-          - 'null'
-      required:
-      - next_cursor
+        role:
+          description: New role assigned to the User. It can be `member` or `admin`.
+          enum:
+          - admin
+          - member
+          type: string
+        active:
+          description: If `true`, the User will be activated; if `false`, the User will be suspended.
+          type: boolean
       type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    User_workspaces_inner:
+      properties:
+        id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+      required:
+      - id
+      type: object
+    HumanName:
+      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
+      type: string
     InternalServerError:
       properties:
         type:
@@ -1450,48 +1441,13 @@ components:
       - type
       title: InternalServerError
       type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    UpdateUser:
-      properties:
-        role:
-          description: New role assigned to the User. It can be `member` or `admin`.
-          enum:
-          - admin
-          - member
-          type: string
-        active:
-          description: If `true`, the User will be activated; if `false`, the User will be suspended.
-          type: boolean
-      type: object
+    UserRole:
+      enum:
+      - owner
+      - admin
+      - member
+      title: User Role
+      type: string
     User:
       properties:
         id:
@@ -1570,9 +1526,17 @@ components:
       - workspaces
       title: User
       type: object
-    HumanName:
-      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
-      type: string
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
     BadRequestResponse:
       properties:
         type:
@@ -1584,14 +1548,35 @@ components:
       - type
       title: BadRequestResponse
       type: object
-    User_workspaces_inner:
+    MethodNotAllowed:
       properties:
-        id:
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
+        message:
           type: string
       required:
-      - id
+      - message
+      title: MethodNotAllowed
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
       type: object
     get_users_200_response:
       properties:
@@ -1605,32 +1590,15 @@ components:
       - data
       - meta
       type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    UserRole:
+    UserStatus:
       enum:
-      - owner
-      - admin
-      - member
-      title: User Role
+      - invited
+      - signed_up
+      - verified
+      - completed
+      minLength: 1
+      title: User Status
       type: string
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
     NotFoundResponse:
       properties:
         type:
@@ -1642,21 +1610,53 @@ components:
       - type
       title: NotFoundResponse
       type: object
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - next_cursor
+      type: object
+    Locale:
+      description: Locale settings used for communication.
+      enum:
+      - en
+      - fr
+      - de
+      - it
+      - nl
+      - es
+      - pl
+      minLength: 1
+      title: Locale
+      type: string
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
   headers:
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
       schema:
         type: integer
     retry-after:
       description: Retry the request after X seconds
       schema:
         type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
       schema:
         type: integer
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
       schema:
         type: integer
     rateLimit-limit:
@@ -1667,8 +1667,8 @@ components:
       description: The number of requests remaining in the current minute rate limit window
       schema:
         type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
       schema:
         type: integer
     rateLimit-limit-hour:

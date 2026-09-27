@@ -739,35 +739,14 @@ paths:
       - Electronic Seal Image
 components:
   schemas:
-    ElectronicSealImage:
+    TooManyRequestsResponse:
       properties:
-        id:
-          example: 1365283d-0ba5-4a08-9a58-9818ef428320
-          format: uuid
-          type: string
-        name:
-          example: My seal image
-          type: string
-        created_at:
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          type: string
-        workspace_id:
-          description: Unique identifier of the Workspace in which this Electronic Seal Image is scoped.
-          example: ea11f308-4531-42f9-8218-96b37b7ebb19
-          format: uuid
+        message:
           type: string
       required:
-      - created_at
-      - id
-      - name
-      - workspace_id
+      - message
+      title: TooManyRequestsResponse
       type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
     CreateElectronicSealImagePreviewPayload_field_captions_inner:
       additionalProperties: false
       properties:
@@ -778,19 +757,6 @@ components:
           type: string
       required:
       - text
-      type: object
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
       type: object
     CreateElectronicSealImagePreviewPayload:
       additionalProperties: false
@@ -808,24 +774,18 @@ components:
       - field
       title: CreateElectronicSealImagePreviewPayload
       type: object
-    UnsupportedMediaTypeResponse:
+    InternalServerError:
       properties:
         type:
+          example: about:blank
           type: string
         detail:
+          example: Something wrong occurred.
           type: string
       required:
       - detail
       - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
+      title: InternalServerError
       type: object
     CreateElectronicSealImagePreviewPayload_field:
       additionalProperties: false
@@ -855,7 +815,7 @@ components:
       - height
       - width
       type: object
-    UnauthorizedResponse:
+    UnsupportedMediaTypeResponse:
       properties:
         type:
           type: string
@@ -864,7 +824,7 @@ components:
       required:
       - detail
       - type
-      title: UnauthorizedResponse
+      title: UnsupportedMediaTypeResponse
       type: object
     BadRequestResponse:
       properties:
@@ -877,6 +837,14 @@ components:
       - type
       title: BadRequestResponse
       type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
     ForbiddenResponse:
       properties:
         type:
@@ -888,13 +856,27 @@ components:
       - type
       title: ForbiddenResponse
       type: object
-    MethodNotAllowed:
+    UnauthorizedResponse:
       properties:
-        message:
+        type:
+          type: string
+        detail:
           type: string
       required:
-      - message
-      title: MethodNotAllowed
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
       type: object
     UploadElectronicSealImage:
       properties:
@@ -915,32 +897,50 @@ components:
       - file
       - name
       type: object
-    NotFoundResponse:
+    ElectronicSealImage:
       properties:
-        type:
+        id:
+          example: 1365283d-0ba5-4a08-9a58-9818ef428320
+          format: uuid
           type: string
-        detail:
+        name:
+          example: My seal image
+          type: string
+        created_at:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+        workspace_id:
+          description: Unique identifier of the Workspace in which this Electronic Seal Image is scoped.
+          example: ea11f308-4531-42f9-8218-96b37b7ebb19
+          format: uuid
           type: string
       required:
-      - detail
-      - type
-      title: NotFoundResponse
+      - created_at
+      - id
+      - name
+      - workspace_id
       type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
   headers:
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
       schema:
         type: integer
     retry-after:
       description: Retry the request after X seconds
       schema:
         type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
       schema:
         type: integer
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
       schema:
         type: integer
     rateLimit-limit:
@@ -951,8 +951,8 @@ components:
       description: The number of requests remaining in the current minute rate limit window
       schema:
         type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
       schema:
         type: integer
     rateLimit-limit-hour:
