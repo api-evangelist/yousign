@@ -212,31 +212,100 @@ paths:
         samples-enabled: false
         explorer-enabled: false
 components:
+  headers:
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
   schemas:
-    InitialsArea:
+    CreateDocumentFromMultipart:
       properties:
-        alignment:
-          description: Alignment of the Initials on the document. The `left`, `right` and `center` options are aligned on top of the page by default.
-          enum:
-          - left
-          - right
-          - center
-          - top-left
-          - top-right
-          - top-center
-          - bottom-left
-          - bottom-right
-          - bottom-center
+        file:
+          description: 'Binary file. Accepted formats: `PDF`, `DOCX`, `JPEG`, `JPG` and `PNG`. All files are converted to PDF upon upload.'
+          format: binary
           type: string
-        y:
-          description: Offset of the initials from the edge of the page (in pixels). The offset is from the top or bottom of the page, depending on what has been defined in the `alignment` attribute.
-          example: 10
-          minimum: 0
-          type: integer
+        nature:
+          description: 'Can take two values: `signable_document` or `attachment`. Files in `JPEG`, `JPG`, and `PNG` format can only be of `attachment` nature.'
+          enum:
+          - attachment
+          - signable_document
+          type: string
+        insert_after_id:
+          description: Insert just after the position of the specified document id.
+          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
+          format: uuid
+          type:
+          - string
+          - 'null'
+        password:
+          example: MyPa$$word
+          type: string
+        name:
+          description: The document name. If not set, will use the uploaded document name. This value should contain any characters except "\", "/" and can\'t start and finish with a space.
+          example: file1
+          maxLength: 128
+          minLength: 1
+          pattern: ^(?!\s)[^\/\\]+(?<!\s)$
+          type: string
+        initials:
+          allOf:
+          - $ref: '#/components/schemas/InitialsArea'
+          type:
+          - object
+          - 'null'
+        parse_anchors:
+          default: false
+          description: If true, the system will parse the document exclusively for Signature-type Smart Anchors and automatically generate the required fields.
+          example: true
+          type:
+          - boolean
+          - 'null'
+        excluded_approvers:
+          $ref: '#/components/schemas/DocumentExcludedApprovers'
+        excluded_signers:
+          $ref: '#/components/schemas/DocumentExcludedSigners'
       required:
-      - alignment
-      - y
-      title: InitialsArea
+      - file
+      - nature
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
       type: object
     Document:
       description: Document to attach to a Signature Request
@@ -323,6 +392,53 @@ components:
       - message
       title: TooManyRequestsResponse
       type: object
+    InitialsArea:
+      properties:
+        alignment:
+          description: Alignment of the Initials on the document. The `left`, `right` and `center` options are aligned on top of the page by default.
+          enum:
+          - left
+          - right
+          - center
+          - top-left
+          - top-right
+          - top-center
+          - bottom-left
+          - bottom-right
+          - bottom-center
+          type: string
+        y:
+          description: Offset of the initials from the edge of the page (in pixels). The offset is from the top or bottom of the page, depending on what has been defined in the `alignment` attribute.
+          example: 10
+          minimum: 0
+          type: integer
+      required:
+      - alignment
+      - y
+      title: InitialsArea
+      type: object
+    DocumentExcludedApprovers:
+      description: 'List of Approver IDs who cannot see this Document. When omitted, all Approvers can see it (default). Only available when the document_visibility feature is enabled on the organization.
+
+        '
+      example:
+      - 550e8400-e29b-41d4-a716-446655440000
+      - 6ba7b810-9dad-11d1-80b4-00c04fd430c8
+      items:
+        format: uuid
+        type: string
+      type: array
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
     InternalServerError:
       properties:
         type:
@@ -336,144 +452,6 @@ components:
       - type
       title: InternalServerError
       type: object
-    CreateDocumentFromMultipart:
-      properties:
-        file:
-          description: 'Binary file. Accepted formats: `PDF`, `DOCX`, `JPEG`, `JPG` and `PNG`. All files are converted to PDF upon upload.'
-          format: binary
-          type: string
-        nature:
-          description: 'Can take two values: `signable_document` or `attachment`. Files in `JPEG`, `JPG`, and `PNG` format can only be of `attachment` nature.'
-          enum:
-          - attachment
-          - signable_document
-          type: string
-        insert_after_id:
-          description: Insert just after the position of the specified document id.
-          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
-          format: uuid
-          type:
-          - string
-          - 'null'
-        password:
-          example: MyPa$$word
-          type: string
-        name:
-          description: The document name. If not set, will use the uploaded document name. This value should contain any characters except "\", "/" and can\'t start and finish with a space.
-          example: file1
-          maxLength: 128
-          minLength: 1
-          pattern: ^(?!\s)[^\/\\]+(?<!\s)$
-          type: string
-        initials:
-          allOf:
-          - $ref: '#/components/schemas/InitialsArea'
-          type:
-          - object
-          - 'null'
-        parse_anchors:
-          default: false
-          description: If true, the system will parse the document exclusively for Signature-type Smart Anchors and automatically generate the required fields.
-          example: true
-          type:
-          - boolean
-          - 'null'
-        excluded_approvers:
-          $ref: '#/components/schemas/DocumentExcludedApprovers'
-        excluded_signers:
-          $ref: '#/components/schemas/DocumentExcludedSigners'
-      required:
-      - file
-      - nature
-      type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    DocumentExcludedApprovers:
-      description: 'List of Approver IDs who cannot see this Document. When omitted, all Approvers can see it (default). Only available when the document_visibility feature is enabled on the organization.
-
-        '
-      example:
-      - 550e8400-e29b-41d4-a716-446655440000
-      - 6ba7b810-9dad-11d1-80b4-00c04fd430c8
-      items:
-        format: uuid
-        type: string
-      type: array
-    Document_initials_per_page_inner:
-      properties:
-        page:
-          description: Page number.
-          minimum: 1
-          type: integer
-        y:
-          description: Y-axis position of the initials on the page.
-          minimum: 0
-          type: integer
-      required:
-      - page
-      - y
-      type: object
-    DocumentExcludedSigners:
-      description: 'List of Signer IDs who cannot see this Document. When omitted, all Signers can see it (default). Requires the document_visibility feature to be enabled on the organization.
-
-        '
-      example:
-      - 550e8400-e29b-41d4-a716-446655440000
-      - 6ba7b810-9dad-11d1-80b4-00c04fd430c8
-      items:
-        format: uuid
-        type: string
-      type: array
     Document_initials:
       properties:
         alignment:
@@ -498,39 +476,61 @@ components:
       type:
       - object
       - 'null'
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
+    Document_initials_per_page_inner:
+      properties:
+        page:
+          description: Page number.
+          minimum: 1
+          type: integer
+        y:
+          description: Y-axis position of the initials on the page.
+          minimum: 0
+          type: integer
+      required:
+      - page
+      - y
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    DocumentExcludedSigners:
+      description: 'List of Signer IDs who cannot see this Document. When omitted, all Signers can see it (default). Requires the document_visibility feature to be enabled on the organization.
+
+        '
+      example:
+      - 550e8400-e29b-41d4-a716-446655440000
+      - 6ba7b810-9dad-11d1-80b4-00c04fd430c8
+      items:
+        format: uuid
+        type: string
+      type: array
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
   securitySchemes:
     bearerAuth:
       scheme: bearer

@@ -1179,6 +1179,39 @@ paths:
       tags:
       - Signer Consent Request
 components:
+  headers:
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
   schemas:
     get_signature_requests_signatureRequestId_signer_consent_requests_200_response:
       properties:
@@ -1187,28 +1220,7 @@ components:
             $ref: '#/components/schemas/SignerConsentRequest'
           type: array
       type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
-    UnsupportedMediaTypeResponse:
+    NotFoundResponse:
       properties:
         type:
           type: string
@@ -1217,37 +1229,7 @@ components:
       required:
       - detail
       - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
+      title: NotFoundResponse
       type: object
     UnauthorizedResponse:
       properties:
@@ -1260,23 +1242,19 @@ components:
       - type
       title: UnauthorizedResponse
       type: object
-    CreateSignerConsentRequest_settings:
-      description: Settings relative to Signer Consent Request's type
+    TooManyRequestsResponse:
       properties:
-        text:
-          description: 'Text associated to the checkbox or the text_to_copy.\
-
-            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing URL.
-
-            '
-          example: I agree with...
-          format: safe-string
-          maxLength: 1000
-          minLength: 1
+        message:
           type: string
       required:
-      - text
+      - message
+      title: TooManyRequestsResponse
       type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
     SignerConsentRequest:
       description: Signer Consent Request attached to a Signature Request
       properties:
@@ -1324,7 +1302,31 @@ components:
       - signer_ids
       - type
       type: object
-    NotFoundResponse:
+    UpdateSignerConsentRequest:
+      properties:
+        settings:
+          $ref: '#/components/schemas/CreateSignerConsentRequest_settings'
+        optional:
+          description: Define if the Signer Consent Request is optional for Signers
+          example: false
+          type: boolean
+        insert_after_id:
+          description: Insert just after the position of the specified Signer Consent Request id
+          format: uuid
+          type:
+          - string
+          - 'null'
+          example: null
+        document_id:
+          description: Link the Signer Consent Request to a given Document by its id.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+      title: UpdateSignerConsentRequest
+      type: object
+    ForbiddenResponse:
       properties:
         type:
           type: string
@@ -1333,7 +1335,48 @@ components:
       required:
       - detail
       - type
-      title: NotFoundResponse
+      title: ForbiddenResponse
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    CreateSignerConsentRequest_settings:
+      description: Settings relative to Signer Consent Request's type
+      properties:
+        text:
+          description: 'Text associated to the checkbox or the text_to_copy.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing URL.
+
+            '
+          example: I agree with...
+          format: safe-string
+          maxLength: 1000
+          minLength: 1
+          type: string
+      required:
+      - text
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
       type: object
     CreateSignerConsentRequest:
       properties:
@@ -1381,6 +1424,17 @@ components:
       - type
       title: CreateSignerConsentRequest
       type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
     SignerConsentRequest_settings:
       description: Settings relative to Signer Consent Request's type
       properties:
@@ -1393,68 +1447,14 @@ components:
       required:
       - text
       type: object
-    UpdateSignerConsentRequest:
+    MethodNotAllowed:
       properties:
-        settings:
-          $ref: '#/components/schemas/CreateSignerConsentRequest_settings'
-        optional:
-          description: Define if the Signer Consent Request is optional for Signers
-          example: false
-          type: boolean
-        insert_after_id:
-          description: Insert just after the position of the specified Signer Consent Request id
-          format: uuid
-          type:
-          - string
-          - 'null'
-          example: null
-        document_id:
-          description: Link the Signer Consent Request to a given Document by its id.
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-      title: UpdateSignerConsentRequest
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
       type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

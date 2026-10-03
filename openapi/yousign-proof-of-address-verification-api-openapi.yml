@@ -726,14 +726,6 @@ components:
       - workspace_id
       title: ProofOfAddressMeta
       type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
     InitiateProofOfAddress_natural_person:
       additionalProperties: false
       properties:
@@ -772,6 +764,169 @@ components:
         address:
           $ref: '#/components/schemas/InitiateProofOfAddress_natural_person_address'
       type: object
+    WorkflowSessionId:
+      description: 'Unique identifier of a Workflow Session. When provided, an Action is created in the Workflow Session, and this resource is associated with that Action.
+
+        '
+      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+      format: uuid
+      title: Workflow Session identifier
+      type:
+      - string
+      - 'null'
+    ProofOfAddressFull_allOf_data:
+      properties:
+        extracted_from_document:
+          $ref: '#/components/schemas/ProofOfAddressFull_allOf_data_extracted_from_document'
+      required:
+      - extracted_from_document
+      type: object
+    WorkflowSessionApplicantId:
+      description: 'Unique identifier of an Applicant.
+
+        '
+      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+      format: uuid
+      title: Applicant
+      type:
+      - string
+      - 'null'
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    PreviousAttemptId:
+      description: 'ID of the previous attempt within the same `workflow_session_id`.
+
+        Allows continuity between multiple attempts of the same Action.
+
+        Null if this is the first attempt.
+
+        '
+      example: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde4
+      format: uuid
+      title: Previous Attempt identifier
+      type:
+      - string
+      - 'null'
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    InitiateProofOfAddress_natural_person_address:
+      additionalProperties: false
+      description: Provide the holder full address, exactly as it should appear on the proof of address document.
+      properties:
+        line1:
+          description: The first line of the address, typically the street name and number.
+          example: Rue De Suède
+          maxLength: 500
+          minLength: 1
+          type: string
+        line2:
+          description: If needed, the second line of the address, typically an apartment or suite number.
+          maxLength: 500
+          minLength: 1
+          type:
+          - string
+          - 'null'
+          example: null
+        postal_code:
+          description: The postal code of the address.
+          example: '14000'
+          maxLength: 10
+          minLength: 1
+          type: string
+        city:
+          description: The city of the address.
+          example: CAEN
+          maxLength: 200
+          minLength: 1
+          type: string
+      required:
+      - city
+      - line1
+      - postal_code
+      type:
+      - object
+      - 'null'
+    get_verifications_proofs_of_address_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/ProofOfAddressMeta'
+          type: array
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - next_cursor
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    ProofOfAddressFull_allOf_data_extracted_from_document_2d_doc:
+      description: Data extracted from the 2D-Doc if the document has one.
+      properties:
+        full_name:
+          description: If found, the full name extracted from the 2D-Doc.
+          example: John Doe
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        address:
+          $ref: '#/components/schemas/ProofOfAddressFull_allOf_data_extracted_from_document_2d_doc_address'
+      required:
+      - address
+      - full_name
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
     InternalServerError:
       properties:
         type:
@@ -784,6 +939,63 @@ components:
       - detail
       - type
       title: InternalServerError
+      type: object
+    InitiateProofOfAddress:
+      additionalProperties: false
+      properties:
+        file:
+          description: 'The proof of address document.
+
+            Accepted formats: PNG, JPEG, JPG, PDF.
+
+            Max size: 10 MB. Max resolution: 20 mpx.
+
+            '
+          format: binary
+          type: string
+        natural_person:
+          $ref: '#/components/schemas/InitiateProofOfAddress_natural_person'
+        workspace_id:
+          description: 'Scopes the verification to a specific workspace.
+
+            Defaults to the default workspace if not specified.
+
+            '
+          example: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde3
+          format: uuid
+          type:
+          - string
+          - 'null'
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+      required:
+      - file
+      title: Create Proof of Address Verification
+      type: object
+    ProofOfAddressFull:
+      allOf:
+      - $ref: '#/components/schemas/ProofOfAddressMeta'
+      - properties:
+          data:
+            $ref: '#/components/schemas/ProofOfAddressFull_allOf_data'
+        required:
+        - data
+        type: object
+      title: ProofOfAddressFull
+      type: object
+    InitiateProofOfAddressFromApplicant:
+      additionalProperties: false
+      properties:
+        applicant_id:
+          description: The Applicant ID linked to the Workflow Session.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+      required:
+      - applicant_id
+      title: Attach a new Proof of Address Verification to an Applicant
       type: object
     ProofOfAddressFull_allOf_data_extracted_from_document_2d_doc_address:
       description: If found, the address extracted from the 2D-Doc.
@@ -824,41 +1036,6 @@ components:
       - line1
       - postal_code
       type: object
-    PreviousAttemptId:
-      description: 'ID of the previous attempt within the same `workflow_session_id`.
-
-        Allows continuity between multiple attempts of the same Action.
-
-        Null if this is the first attempt.
-
-        '
-      example: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde4
-      format: uuid
-      title: Previous Attempt identifier
-      type:
-      - string
-      - 'null'
-    WorkflowSessionApplicantId:
-      description: 'Unique identifier of an Applicant.
-
-        '
-      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
-      format: uuid
-      title: Applicant
-      type:
-      - string
-      - 'null'
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
     BadRequestResponse:
       properties:
         type:
@@ -870,19 +1047,7 @@ components:
       - type
       title: BadRequestResponse
       type: object
-    InitiateProofOfAddressFromApplicant:
-      additionalProperties: false
-      properties:
-        applicant_id:
-          description: The Applicant ID linked to the Workflow Session.
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type: string
-      required:
-      - applicant_id
-      title: Attach a new Proof of Address Verification to an Applicant
-      type: object
-    ForbiddenResponse:
+    UnsupportedMediaTypeResponse:
       properties:
         type:
           type: string
@@ -891,90 +1056,7 @@ components:
       required:
       - detail
       - type
-      title: ForbiddenResponse
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    ProofOfAddressFull_allOf_data_extracted_from_document_2d_doc:
-      description: Data extracted from the 2D-Doc if the document has one.
-      properties:
-        full_name:
-          description: If found, the full name extracted from the 2D-Doc.
-          example: John Doe
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        address:
-          $ref: '#/components/schemas/ProofOfAddressFull_allOf_data_extracted_from_document_2d_doc_address'
-      required:
-      - address
-      - full_name
-      type: object
-    InitiateProofOfAddress_natural_person_address:
-      additionalProperties: false
-      description: Provide the holder full address, exactly as it should appear on the proof of address document.
-      properties:
-        line1:
-          description: The first line of the address, typically the street name and number.
-          example: Rue De Suède
-          maxLength: 500
-          minLength: 1
-          type: string
-        line2:
-          description: If needed, the second line of the address, typically an apartment or suite number.
-          maxLength: 500
-          minLength: 1
-          type:
-          - string
-          - 'null'
-          example: null
-        postal_code:
-          description: The postal code of the address.
-          example: '14000'
-          maxLength: 10
-          minLength: 1
-          type: string
-        city:
-          description: The city of the address.
-          example: CAEN
-          maxLength: 200
-          minLength: 1
-          type: string
-      required:
-      - city
-      - line1
-      - postal_code
-      type:
-      - object
-      - 'null'
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
+      title: UnsupportedMediaTypeResponse
       type: object
     ProofOfAddressFull_allOf_data_extracted_from_document:
       description: Data extracted from the provided proof of address document
@@ -1043,127 +1125,45 @@ components:
       - issued_on
       - last_name
       type: object
-    get_verifications_proofs_of_address_200_response:
+    MethodNotAllowed:
       properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/ProofOfAddressMeta'
-          type: array
-      type: object
-    Pagination:
-      description: Metadata about the response.
-      properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          type:
-          - string
-          - 'null'
-      required:
-      - next_cursor
-      type: object
-    ProofOfAddressFull:
-      allOf:
-      - $ref: '#/components/schemas/ProofOfAddressMeta'
-      - properties:
-          data:
-            $ref: '#/components/schemas/ProofOfAddressFull_allOf_data'
-        required:
-        - data
-        type: object
-      title: ProofOfAddressFull
-      type: object
-    InitiateProofOfAddress:
-      additionalProperties: false
-      properties:
-        file:
-          description: 'The proof of address document.
-
-            Accepted formats: PNG, JPEG, JPG, PDF.
-
-            Max size: 10 MB. Max resolution: 20 mpx.
-
-            '
-          format: binary
+        message:
           type: string
-        natural_person:
-          $ref: '#/components/schemas/InitiateProofOfAddress_natural_person'
-        workspace_id:
-          description: 'Scopes the verification to a specific workspace.
-
-            Defaults to the default workspace if not specified.
-
-            '
-          example: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde3
-          format: uuid
-          type:
-          - string
-          - 'null'
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
       required:
-      - file
-      title: Create Proof of Address Verification
+      - message
+      title: MethodNotAllowed
       type: object
-    ProofOfAddressFull_allOf_data:
-      properties:
-        extracted_from_document:
-          $ref: '#/components/schemas/ProofOfAddressFull_allOf_data_extracted_from_document'
-      required:
-      - extracted_from_document
-      type: object
-    WorkflowSessionId:
-      description: 'Unique identifier of a Workflow Session. When provided, an Action is created in the Workflow Session, and this resource is associated with that Action.
-
-        '
-      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
-      format: uuid
-      title: Workflow Session identifier
-      type:
-      - string
-      - 'null'
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
   headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
       schema:
         type: integer
     rateLimit-remaining-minute:
       description: The number of requests remaining in the current minute rate limit window
       schema:
         type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
     rateLimit-reset:
       description: The remaining time until the rate limit resets in seconds
       schema:
         type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
       schema:
         type: integer
   examples:

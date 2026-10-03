@@ -1793,6 +1793,39 @@ paths:
       tags:
       - Signer Document Request
 components:
+  headers:
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
   schemas:
     SignerDocumentRequest:
       description: Signer Document Request attached to a Signature Request
@@ -1824,6 +1857,35 @@ components:
       - signer_ids
       - title
       type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    get_signature_requests_signatureRequestId_signer_document_requests_200_response:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/SignerDocumentRequest'
+          type: array
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
     UpdateSignerDocumentRequest:
       properties:
         title:
@@ -1844,122 +1906,6 @@ components:
       - message
       title: TooManyRequestsResponse
       type: object
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    get_signature_requests_signatureRequestId_signer_document_requests_200_response:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/SignerDocumentRequest'
-          type: array
-      type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    CreateSignerDocumentRequest:
-      example:
-        title: Proof of address
-        optional: true
-        signer_ids:
-        - 29f6049b-9c9d-4d1d-893c-be24e7d98d13
-        - 7d938814-5492-4c02-806e-69c8fc1254ff
-      properties:
-        title:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          format: safe-string
-          maxLength: 255
-          minLength: 1
-          type: string
-        optional:
-          type: boolean
-        signer_ids:
-          items:
-            format: uuid
-            type: string
-          minItems: 1
-          type: array
-      required:
-      - optional
-      - signer_ids
-      - title
-      title: CreateSignerDocumentRequest
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
     Pagination:
       description: Metadata about the response.
       properties:
@@ -1974,6 +1920,11 @@ components:
       required:
       - next_cursor
       type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
     SignerDocument:
       description: Signer Document
       properties:
@@ -2008,39 +1959,88 @@ components:
             $ref: '#/components/schemas/SignerDocument'
           type: array
       type: object
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    CreateSignerDocumentRequest:
+      example:
+        title: Proof of address
+        optional: true
+        signer_ids:
+        - 29f6049b-9c9d-4d1d-893c-be24e7d98d13
+        - 7d938814-5492-4c02-806e-69c8fc1254ff
+      properties:
+        title:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          format: safe-string
+          maxLength: 255
+          minLength: 1
+          type: string
+        optional:
+          type: boolean
+        signer_ids:
+          items:
+            format: uuid
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - optional
+      - signer_ids
+      - title
+      title: CreateSignerDocumentRequest
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
   securitySchemes:
     bearerAuth:
       scheme: bearer

@@ -551,66 +551,118 @@ paths:
       tags:
       - Electronic Seal
 components:
+  headers:
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
   schemas:
-    CreateElectronicSealPayload_fields_inner:
-      anyOf:
-      - $ref: '#/components/schemas/CreateElectronicSealFieldSealPayload'
-      - $ref: '#/components/schemas/CreateElectronicSealFieldReadOnlyTextPayload'
-      type: object
-    CreateElectronicSealPayload:
+    CreateElectronicSealFieldSealPayload:
       properties:
-        document_id:
-          description: Specify which Electronic Seal Document to use for creating an Electronic Seal.
-          example: 160473f9-156f-4583-848c-cbc3dec49b4a
-          format: uuid
-          type: string
-        image_id:
-          description: Specify which Electronic Seal Image to use for creating an Electronic Seal.
-          example: 333fa90a-a629-4708-8fe9-160dcb055a9b
-          format: uuid
-          type:
-          - string
-          - 'null'
-        external_id:
-          description: Store a custom id that will be added to webhooks
-          example: externalId-123
-          maxLength: 255
-          pattern: ^[\w\-@.%+]+$
-          type:
-          - string
-          - 'null'
-        fields:
-          description: Fields you want to add to your Document. At least one Seal Field is mandatory.
-          items:
-            $ref: '#/components/schemas/CreateElectronicSealPayload_fields_inner'
-          type: array
-        signature_level:
-          description: Level of Electronic Seal for your Document
+        type:
           enum:
-          - electronic_signature
-          - advanced_electronic_signature
+          - seal
+          - read_only_text
+          example: seal
+          type: string
+        height:
+          example: 200
+          maximum: 32767
+          minimum: 1
+          type: integer
+        width:
+          example: 250
+          maximum: 32767
+          minimum: 1
+          type: integer
+        page:
+          example: 1
+          maximum: 32767
+          minimum: 1
+          type: integer
+        x:
+          example: 0
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 0
+          maximum: 32767
+          minimum: 0
+          type: integer
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          maxLength: 200
           type:
           - string
           - 'null'
-        certificate_id:
-          description: Specify which certificate to use for creating an Electronic Seal (only available for advanced_electronic_signature level).
-          example: a3d84df7-b45e-4321-ae9e-7f5397acb225
-          format: uuid
+        captions:
+          description: Optional captions to display on the seal image. Limited to one caption per field.
+          items:
+            $ref: '#/components/schemas/CreateElectronicSealFieldSealPayload_captions_inner'
+          maxItems: 1
           type:
-          - string
+          - array
           - 'null'
       required:
-      - document_id
-      - fields
-      title: CreateElectronicSealPayload
+      - height
+      - page
+      - type
+      - width
+      - x
+      - y
+      title: Seal
       type: object
-    TooManyRequestsResponse:
+    NotFoundResponse:
       properties:
-        message:
+        type:
+          type: string
+        detail:
           type: string
       required:
-      - message
-      title: TooManyRequestsResponse
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
       type: object
     CreateElectronicSealFieldReadOnlyTextPayload:
       properties:
@@ -658,93 +710,13 @@ components:
       - y
       title: Read Only Text
       type: object
-    HumanName:
-      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
-      type: string
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    MethodNotAllowed:
+    TooManyRequestsResponse:
       properties:
         message:
           type: string
       required:
       - message
-      title: MethodNotAllowed
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    list_electronic_seal_images_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/ElectronicSealImage'
-          type: array
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
+      title: TooManyRequestsResponse
       type: object
     Pagination:
       description: Metadata about the response.
@@ -760,6 +732,11 @@ components:
       required:
       - next_cursor
       type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
     ElectronicSeal:
       properties:
         id:
@@ -821,72 +798,30 @@ components:
       - workspace_id
       title: ElectronicSeal
       type: object
-    CreateElectronicSealFieldSealPayload:
+    CreateElectronicSealPayload_fields_inner:
+      anyOf:
+      - $ref: '#/components/schemas/CreateElectronicSealFieldSealPayload'
+      - $ref: '#/components/schemas/CreateElectronicSealFieldReadOnlyTextPayload'
+      type: object
+    ForbiddenResponse:
       properties:
         type:
-          enum:
-          - seal
-          - read_only_text
-          example: seal
           type: string
-        height:
-          example: 200
-          maximum: 32767
-          minimum: 1
-          type: integer
-        width:
-          example: 250
-          maximum: 32767
-          minimum: 1
-          type: integer
-        page:
-          example: 1
-          maximum: 32767
-          minimum: 1
-          type: integer
-        x:
-          example: 0
-          maximum: 32767
-          minimum: 0
-          type: integer
-        y:
-          example: 0
-          maximum: 32767
-          minimum: 0
-          type: integer
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/HumanName'
-          maxLength: 200
-          type:
-          - string
-          - 'null'
-        captions:
-          description: Optional captions to display on the seal image. Limited to one caption per field.
-          items:
-            $ref: '#/components/schemas/CreateElectronicSealFieldSealPayload_captions_inner'
-          maxItems: 1
-          type:
-          - array
-          - 'null'
+        detail:
+          type: string
       required:
-      - height
-      - page
+      - detail
       - type
-      - width
-      - x
-      - y
-      title: Seal
+      title: ForbiddenResponse
       type: object
-    CreateElectronicSealFieldSealPayload_captions_inner:
-      additionalProperties: false
+    list_electronic_seal_images_200_response:
       properties:
-        text:
-          description: The caption text to display on the seal image.
-          maxLength: 150
-          type: string
-      required:
-      - text
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/ElectronicSealImage'
+          type: array
       type: object
     ElectronicSealImage:
       properties:
@@ -912,44 +847,109 @@ components:
       - name
       - workspace_id
       type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
+    CreateElectronicSealPayload:
+      properties:
+        document_id:
+          description: Specify which Electronic Seal Document to use for creating an Electronic Seal.
+          example: 160473f9-156f-4583-848c-cbc3dec49b4a
+          format: uuid
+          type: string
+        image_id:
+          description: Specify which Electronic Seal Image to use for creating an Electronic Seal.
+          example: 333fa90a-a629-4708-8fe9-160dcb055a9b
+          format: uuid
+          type:
+          - string
+          - 'null'
+        external_id:
+          description: Store a custom id that will be added to webhooks
+          example: externalId-123
+          maxLength: 255
+          pattern: ^[\w\-@.%+]+$
+          type:
+          - string
+          - 'null'
+        fields:
+          description: Fields you want to add to your Document. At least one Seal Field is mandatory.
+          items:
+            $ref: '#/components/schemas/CreateElectronicSealPayload_fields_inner'
+          type: array
+        signature_level:
+          description: Level of Electronic Seal for your Document
+          enum:
+          - electronic_signature
+          - advanced_electronic_signature
+          type:
+          - string
+          - 'null'
+        certificate_id:
+          description: Specify which certificate to use for creating an Electronic Seal (only available for advanced_electronic_signature level).
+          example: a3d84df7-b45e-4321-ae9e-7f5397acb225
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - document_id
+      - fields
+      title: CreateElectronicSealPayload
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    HumanName:
+      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
       type: string
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    CreateElectronicSealFieldSealPayload_captions_inner:
+      additionalProperties: false
+      properties:
+        text:
+          description: The caption text to display on the seal image.
+          maxLength: 150
+          type: string
+      required:
+      - text
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
   securitySchemes:
     bearerAuth:
       scheme: bearer

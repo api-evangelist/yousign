@@ -1373,6 +1373,82 @@ paths:
       - Workspace
 components:
   schemas:
+    get_workspaces_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/Workspace'
+          type: array
+      type: object
+    Workspace_users_inner:
+      properties:
+        id:
+          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
+          format: uuid
+          readOnly: true
+          type: string
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - next_cursor
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    DeleteWorkspace:
+      additionalProperties: false
+      properties:
+        workspace_id:
+          description: The target workspace where resources are migrated in.
+          format: uuid
+          type: string
+      required:
+      - workspace_id
+      type: object
     UpdateWorkspace:
       properties:
         name:
@@ -1390,14 +1466,6 @@ components:
           - string
           - 'null'
       type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
     MarkWorkspaceAsDefault:
       additionalProperties: false
       properties:
@@ -1407,6 +1475,17 @@ components:
           type: string
       required:
       - workspace_id
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
       type: object
     InternalServerError:
       properties:
@@ -1420,57 +1499,6 @@ components:
       - detail
       - type
       title: InternalServerError
-      type: object
-    DeleteWorkspace:
-      additionalProperties: false
-      properties:
-        workspace_id:
-          description: The target workspace where resources are migrated in.
-          format: uuid
-          type: string
-      required:
-      - workspace_id
-      type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
       type: object
     CreateWorkspace:
       additionalProperties: false
@@ -1492,7 +1520,7 @@ components:
       required:
       - name
       type: object
-    UnauthorizedResponse:
+    BadRequestResponse:
       properties:
         type:
           type: string
@@ -1501,7 +1529,18 @@ components:
       required:
       - detail
       - type
-      title: UnauthorizedResponse
+      title: BadRequestResponse
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
       type: object
     Workspace:
       properties:
@@ -1549,84 +1588,45 @@ components:
       - users
       title: Workspace
       type: object
-    Workspace_users_inner:
+    MethodNotAllowed:
       properties:
-        id:
-          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
-          format: uuid
-          readOnly: true
-          type: string
-      type: object
-    get_workspaces_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/Workspace'
-          type: array
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
+        message:
           type: string
       required:
-      - detail
-      - type
-      title: NotFoundResponse
+      - message
+      title: MethodNotAllowed
       type: object
-    Pagination:
-      description: Metadata about the response.
-      properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          type:
-          - string
-          - 'null'
-      required:
-      - next_cursor
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
   headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
       schema:
         type: integer
     rateLimit-remaining-minute:
       description: The number of requests remaining in the current minute rate limit window
       schema:
         type: integer
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
     rateLimit-reset:
       description: The remaining time until the rate limit resets in seconds
       schema:
         type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
       schema:
         type: integer
   securitySchemes:
