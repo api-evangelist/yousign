@@ -682,20 +682,59 @@ paths:
       tags:
       - Watchlist Verification
 components:
+  headers:
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
   schemas:
-    WatchlistFull_allOf_data_sanctions:
-      description: List of sanctions against the person
+    get_verifications_watchlists_200_response:
       properties:
-        active:
-          description: Whether the person is currently sanctioned.
-          type: boolean
-        records:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
           items:
-            $ref: '#/components/schemas/WatchlistFull_allOf_data_sanctions_records'
+            $ref: '#/components/schemas/WatchlistMeta'
           type: array
+      type: object
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
       required:
-      - active
-      - records
+      - detail
+      - type
+      title: ForbiddenResponse
       type: object
     WatchlistFull_allOf_data_sanctions_records:
       properties:
@@ -748,27 +787,35 @@ components:
       - sources
       - started_on
       type: object
-    WatchlistFull_allOf_data_politically_exposed_person:
-      description: Information about politically exposed person status
+    WatchlistFull_allOf_data_politically_exposed_person_sources:
       properties:
-        active:
-          description: Whether the person is currently politically exposed
-          type: boolean
-        positions:
-          items:
-            $ref: '#/components/schemas/WatchlistFull_allOf_data_politically_exposed_person_positions'
-          type: array
+        name:
+          description: Name of the source
+          example: Wikidata Politically Exposed Persons
+          type:
+          - string
+          - 'null'
+        url:
+          description: URL of the source
+          example: https://www.opensanctions.org/datasets/wd_peps
+          type:
+          - string
+          - 'null'
       required:
-      - active
-      - positions
+      - name
+      - url
       type: object
-    WorkflowSessionId:
-      description: 'Unique identifier of a Workflow Session. When provided, an Action is created in the Workflow Session, and this resource is associated with that Action.
+    PreviousAttemptId:
+      description: 'ID of the previous attempt within the same `workflow_session_id`.
+
+        Allows continuity between multiple attempts of the same Action.
+
+        Null if this is the first attempt.
 
         '
-      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+      example: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde4
       format: uuid
-      title: Workflow Session identifier
+      title: Previous Attempt identifier
       type:
       - string
       - 'null'
@@ -796,68 +843,15 @@ components:
       - natural_person
       title: Initiate Watchlist Verification
       type: object
-    WatchlistFull_allOf_data_sanctions_sources:
-      properties:
-        name:
-          description: Name of the source
-          example: CIA World Factbook heads of state and government
-          type:
-          - string
-          - 'null'
-        url:
-          description: URL of the source
-          example: https://www.opensanctions.org/datasets/us_cia_world_factbook
-          type:
-          - string
-          - 'null'
-      required:
-      - name
-      - url
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
-    PreviousAttemptId:
-      description: 'ID of the previous attempt within the same `workflow_session_id`.
-
-        Allows continuity between multiple attempts of the same Action.
-
-        Null if this is the first attempt.
-
-        '
-      example: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde4
-      format: uuid
-      title: Previous Attempt identifier
-      type:
-      - string
-      - 'null'
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
+    WatchlistStatus:
+      description: Status of the Watchlist Verification.
+      enum:
+      - pending
+      - verified
+      - failed
+      - inconclusive
+      example: verified
+      type: string
     Pagination:
       description: Metadata about the response.
       properties:
@@ -872,85 +866,21 @@ components:
       required:
       - next_cursor
       type: object
-    WatchlistFull_allOf_data:
-      description: Verification result data
+    WatchlistFull_allOf_data_politically_exposed_person:
+      description: Information about politically exposed person status
       properties:
-        politically_exposed_person:
-          $ref: '#/components/schemas/WatchlistFull_allOf_data_politically_exposed_person'
-        sanctions:
-          $ref: '#/components/schemas/WatchlistFull_allOf_data_sanctions'
-      required:
-      - politically_exposed_person
-      - sanctions
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    get_verifications_watchlists_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/WatchlistMeta'
-          type: array
-      type: object
-    WatchlistStatus:
-      description: Status of the Watchlist Verification.
-      enum:
-      - pending
-      - verified
-      - failed
-      - inconclusive
-      example: verified
-      type: string
-    WatchlistFull_allOf_data_politically_exposed_person_positions:
-      properties:
-        title:
-          description: Title of the political position
-          example: Minister of Finance
-          type:
-          - string
-          - 'null'
         active:
           description: Whether the person is currently politically exposed
-          example: false
           type: boolean
-        country_code:
-          description: ISO country code where the position is held
-          example: FR
-          format: ISO 3166-1 alpha-2
-          type:
-          - string
-          - 'null'
-        started_on:
-          description: Date when the position started
-          example: '2020-01-01'
-          type:
-          - string
-          - 'null'
-        ended_on:
-          description: Date when the position ended − null if ongoing
-          example: '2021-01-01'
-          type:
-          - string
-          - 'null'
-        sources:
-          description: Sources of this information
+        positions:
           items:
-            $ref: '#/components/schemas/WatchlistFull_allOf_data_politically_exposed_person_sources'
+            $ref: '#/components/schemas/WatchlistFull_allOf_data_politically_exposed_person_positions'
           type: array
       required:
       - active
-      - country_code
-      - ended_on
-      - sources
-      - started_on
-      - title
+      - positions
       type: object
-    ForbiddenResponse:
+    UnauthorizedResponse:
       properties:
         type:
           type: string
@@ -959,31 +889,42 @@ components:
       required:
       - detail
       - type
-      title: ForbiddenResponse
+      title: UnauthorizedResponse
       type: object
-    InternalServerError:
+    WatchlistFull_allOf_data_sanctions:
+      description: List of sanctions against the person
       properties:
-        type:
-          example: about:blank
+        active:
+          description: Whether the person is currently sanctioned.
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/WatchlistFull_allOf_data_sanctions_records'
+          type: array
+      required:
+      - active
+      - records
+      type: object
+    InitiateWatchlist_natural_person:
+      description: Information about the person to check
+      properties:
+        first_name:
+          description: First name of the person
+          example: Emmanuel
           type: string
-        detail:
-          example: Something wrong occurred.
+        last_name:
+          description: Last name of the person
+          example: Macron
+          type: string
+        born_on:
+          description: Date of birth of the person (YYYY-MM-DD)
+          example: '1977-12-21'
+          format: date
           type: string
       required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
-    WatchlistFull:
-      allOf:
-      - $ref: '#/components/schemas/WatchlistMeta'
-      - properties:
-          data:
-            $ref: '#/components/schemas/WatchlistFull_allOf_data'
-        required:
-        - data
-        type: object
-      title: WatchlistFull
+      - born_on
+      - first_name
+      - last_name
       type: object
     WatchlistMeta:
       properties:
@@ -1029,44 +970,37 @@ components:
       - workspace_id
       title: WatchlistMeta
       type: object
-    WatchlistFull_allOf_data_politically_exposed_person_sources:
+    WatchlistFull_allOf_data:
+      description: Verification result data
       properties:
-        name:
-          description: Name of the source
-          example: Wikidata Politically Exposed Persons
-          type:
-          - string
-          - 'null'
-        url:
-          description: URL of the source
-          example: https://www.opensanctions.org/datasets/wd_peps
-          type:
-          - string
-          - 'null'
+        politically_exposed_person:
+          $ref: '#/components/schemas/WatchlistFull_allOf_data_politically_exposed_person'
+        sanctions:
+          $ref: '#/components/schemas/WatchlistFull_allOf_data_sanctions'
       required:
-      - name
-      - url
+      - politically_exposed_person
+      - sanctions
       type: object
-    InitiateWatchlist_natural_person:
-      description: Information about the person to check
+    WorkflowSessionId:
+      description: 'Unique identifier of a Workflow Session. When provided, an Action is created in the Workflow Session, and this resource is associated with that Action.
+
+        '
+      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+      format: uuid
+      title: Workflow Session identifier
+      type:
+      - string
+      - 'null'
+    UnsupportedMediaTypeResponse:
       properties:
-        first_name:
-          description: First name of the person
-          example: Emmanuel
+        type:
           type: string
-        last_name:
-          description: Last name of the person
-          example: Macron
-          type: string
-        born_on:
-          description: Date of birth of the person (YYYY-MM-DD)
-          example: '1977-12-21'
-          format: date
+        detail:
           type: string
       required:
-      - born_on
-      - first_name
-      - last_name
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
       type: object
     BadRequestResponse:
       properties:
@@ -1079,7 +1013,7 @@ components:
       - type
       title: BadRequestResponse
       type: object
-    UnsupportedMediaTypeResponse:
+    NotFoundResponse:
       properties:
         type:
           type: string
@@ -1088,7 +1022,20 @@ components:
       required:
       - detail
       - type
-      title: UnsupportedMediaTypeResponse
+      title: NotFoundResponse
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
       type: object
     MethodNotAllowed:
       properties:
@@ -1098,39 +1045,92 @@ components:
       - message
       title: MethodNotAllowed
       type: object
-  headers:
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
+    WatchlistFull_allOf_data_politically_exposed_person_positions:
+      properties:
+        title:
+          description: Title of the political position
+          example: Minister of Finance
+          type:
+          - string
+          - 'null'
+        active:
+          description: Whether the person is currently politically exposed
+          example: false
+          type: boolean
+        country_code:
+          description: ISO country code where the position is held
+          example: FR
+          format: ISO 3166-1 alpha-2
+          type:
+          - string
+          - 'null'
+        started_on:
+          description: Date when the position started
+          example: '2020-01-01'
+          type:
+          - string
+          - 'null'
+        ended_on:
+          description: Date when the position ended − null if ongoing
+          example: '2021-01-01'
+          type:
+          - string
+          - 'null'
+        sources:
+          description: Sources of this information
+          items:
+            $ref: '#/components/schemas/WatchlistFull_allOf_data_politically_exposed_person_sources'
+          type: array
+      required:
+      - active
+      - country_code
+      - ended_on
+      - sources
+      - started_on
+      - title
+      type: object
+    WatchlistFull:
+      allOf:
+      - $ref: '#/components/schemas/WatchlistMeta'
+      - properties:
+          data:
+            $ref: '#/components/schemas/WatchlistFull_allOf_data'
+        required:
+        - data
+        type: object
+      title: WatchlistFull
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    WatchlistFull_allOf_data_sanctions_sources:
+      properties:
+        name:
+          description: Name of the source
+          example: CIA World Factbook heads of state and government
+          type:
+          - string
+          - 'null'
+        url:
+          description: URL of the source
+          example: https://www.opensanctions.org/datasets/us_cia_world_factbook
+          type:
+          - string
+          - 'null'
+      required:
+      - name
+      - url
+      type: object
   securitySchemes:
     bearerAuth:
       scheme: bearer

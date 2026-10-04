@@ -924,197 +924,40 @@ paths:
       - Contact
 components:
   headers:
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
     rateLimit-remaining:
       description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
       schema:
         type: integer
     rateLimit-remaining-hour:
       description: The number of requests remaining in the current hour rate limit window
       schema:
         type: integer
-    retry-after:
-      description: Retry the request after X seconds
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
       schema:
         type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
       schema:
         type: integer
     rateLimit-limit-minute:
       description: The maximum number of requests that the consumer is permitted to make in an minute window
       schema:
         type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
   schemas:
-    Contact:
-      properties:
-        id:
-          format: uuid
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          format: email
-          type: string
-        locale:
-          type: string
-        phone_number:
-          description: E.164 format
-          type:
-          - string
-          - 'null'
-        company_name:
-          type:
-          - string
-          - 'null'
-        job_title:
-          type:
-          - string
-          - 'null'
-        address_line_1:
-          type:
-          - string
-          - 'null'
-        address_line_2:
-          type:
-          - string
-          - 'null'
-        address_city:
-          type:
-          - string
-          - 'null'
-        address_postal_code:
-          type:
-          - string
-          - 'null'
-        address_country:
-          type:
-          - string
-          - 'null'
-        workspace_id:
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-      required:
-      - address_city
-      - address_country
-      - address_line_1
-      - address_line_2
-      - address_postal_code
-      - company_name
-      - email
-      - first_name
-      - id
-      - job_title
-      - last_name
-      - locale
-      - phone_number
-      title: Contact
-      type: object
-    CreateContact:
-      properties:
-        first_name:
-          allOf:
-          - $ref: '#/components/schemas/HumanName'
-          example: John
-          maxLength: 255
-          minLength: 1
-          type: string
-        last_name:
-          allOf:
-          - $ref: '#/components/schemas/HumanName'
-          example: Doe
-          maxLength: 255
-          minLength: 1
-          type: string
-        email:
-          example: john.doe@example.com
-          format: email
-          type: string
-        locale:
-          $ref: '#/components/schemas/Locale'
-        phone_number:
-          description: E.164 format
-          example: '+41446667700'
-          minLength: 1
-          type: string
-        company_name:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          example: Yousign SAS
-          format: safe-string
-          maxLength: 255
-          minLength: 1
-          type: string
-        job_title:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          example: Developer
-          format: safe-string
-          maxLength: 255
-          minLength: 1
-          type: string
-        address_line_1:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          example: 34 Rue Malfilatre
-          format: safe-string
-          maxLength: 255
-          minLength: 1
-          type: string
-        address_line_2:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          example: 1st floor
-          format: safe-string
-          maxLength: 255
-          minLength: 1
-          type: string
-        address_city:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          example: Caen
-          format: safe-string
-          maxLength: 255
-          minLength: 1
-          type: string
-        address_postal_code:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          example: '14000'
-          format: safe-string
-          maxLength: 255
-          minLength: 1
-          type: string
-        address_country:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          example: France
-          format: safe-string
-          maxLength: 255
-          minLength: 1
-          type: string
-        workspace_id:
-          example: 69120884-d29a-4b1a-ac7b-a9e73a872795
-          format: uuid
-          type:
-          - string
-          - 'null'
-      required:
-      - email
-      - first_name
-      - last_name
-      - locale
-      type: object
-    NotFoundResponse:
+    ForbiddenResponse:
       properties:
         type:
           type: string
@@ -1123,49 +966,11 @@ components:
       required:
       - detail
       - type
-      title: NotFoundResponse
+      title: ForbiddenResponse
       type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    Locale:
-      description: Locale settings used for communication.
-      enum:
-      - en
-      - fr
-      - de
-      - it
-      - nl
-      - es
-      - pl
-      minLength: 1
-      title: Locale
+    HumanName:
+      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
       type: string
-    get_contacts_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/Contact'
-          type: array
-      type: object
     Pagination:
       description: Metadata about the response.
       properties:
@@ -1180,12 +985,20 @@ components:
       required:
       - next_cursor
       type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
+    Locale:
+      description: Locale settings used for communication.
+      enum:
+      - en
+      - fr
+      - de
+      - it
+      - nl
+      - es
+      - pl
+      minLength: 1
+      title: Locale
       type: string
-    ForbiddenResponse:
+    UnauthorizedResponse:
       properties:
         type:
           type: string
@@ -1194,45 +1007,7 @@ components:
       required:
       - detail
       - type
-      title: ForbiddenResponse
-      type: object
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
-    HumanName:
-      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
-      type: string
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
+      title: UnauthorizedResponse
       type: object
     UpdateContact:
       properties:
@@ -1333,6 +1108,209 @@ components:
           - string
           - 'null'
       type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    CreateContact:
+      properties:
+        first_name:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          example: John
+          maxLength: 255
+          minLength: 1
+          type: string
+        last_name:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          example: Doe
+          maxLength: 255
+          minLength: 1
+          type: string
+        email:
+          example: john.doe@example.com
+          format: email
+          type: string
+        locale:
+          $ref: '#/components/schemas/Locale'
+        phone_number:
+          description: E.164 format
+          example: '+41446667700'
+          minLength: 1
+          type: string
+        company_name:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          example: Yousign SAS
+          format: safe-string
+          maxLength: 255
+          minLength: 1
+          type: string
+        job_title:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          example: Developer
+          format: safe-string
+          maxLength: 255
+          minLength: 1
+          type: string
+        address_line_1:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          example: 34 Rue Malfilatre
+          format: safe-string
+          maxLength: 255
+          minLength: 1
+          type: string
+        address_line_2:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          example: 1st floor
+          format: safe-string
+          maxLength: 255
+          minLength: 1
+          type: string
+        address_city:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          example: Caen
+          format: safe-string
+          maxLength: 255
+          minLength: 1
+          type: string
+        address_postal_code:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          example: '14000'
+          format: safe-string
+          maxLength: 255
+          minLength: 1
+          type: string
+        address_country:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          example: France
+          format: safe-string
+          maxLength: 255
+          minLength: 1
+          type: string
+        workspace_id:
+          example: 69120884-d29a-4b1a-ac7b-a9e73a872795
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - email
+      - first_name
+      - last_name
+      - locale
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    Contact:
+      properties:
+        id:
+          format: uuid
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          format: email
+          type: string
+        locale:
+          type: string
+        phone_number:
+          description: E.164 format
+          type:
+          - string
+          - 'null'
+        company_name:
+          type:
+          - string
+          - 'null'
+        job_title:
+          type:
+          - string
+          - 'null'
+        address_line_1:
+          type:
+          - string
+          - 'null'
+        address_line_2:
+          type:
+          - string
+          - 'null'
+        address_city:
+          type:
+          - string
+          - 'null'
+        address_postal_code:
+          type:
+          - string
+          - 'null'
+        address_country:
+          type:
+          - string
+          - 'null'
+        workspace_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - address_city
+      - address_country
+      - address_line_1
+      - address_line_2
+      - address_postal_code
+      - company_name
+      - email
+      - first_name
+      - id
+      - job_title
+      - last_name
+      - locale
+      - phone_number
+      title: Contact
+      type: object
     MethodNotAllowed:
       properties:
         message:
@@ -1340,6 +1318,28 @@ components:
       required:
       - message
       title: MethodNotAllowed
+      type: object
+    get_contacts_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/Contact'
+          type: array
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
       type: object
   securitySchemes:
     bearerAuth:

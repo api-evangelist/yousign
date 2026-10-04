@@ -1794,171 +1794,39 @@ paths:
       - Signer Document Request
 components:
   headers:
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
     rateLimit-remaining:
       description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
       schema:
         type: integer
     rateLimit-remaining-hour:
       description: The number of requests remaining in the current hour rate limit window
       schema:
         type: integer
-    retry-after:
-      description: Retry the request after X seconds
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
       schema:
         type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
       schema:
         type: integer
     rateLimit-limit-minute:
       description: The maximum number of requests that the consumer is permitted to make in an minute window
       schema:
         type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
   schemas:
-    SignerDocumentRequest:
-      description: Signer Document Request attached to a Signature Request
-      properties:
-        id:
-          description: Unique identifier of the Signer Document Request
-          example: 69df8404-40d3-4686-887b-5678f46a0d9a
-          format: uuid
-          type: string
-        title:
-          description: Title of the document request
-          example: Proof of address
-          maxLength: 255
-          minLength: 1
-          type: string
-        optional:
-          description: Define if the document request is optional for the Signers
-          type: boolean
-        signer_ids:
-          description: Ids of Signers to request a document
-          items:
-            example: 2fd4a3fb-a886-4c9d-ac49-ea6f759c0c64
-            format: uuid
-            type: string
-          type: array
-      required:
-      - id
-      - optional
-      - signer_ids
-      - title
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
-    get_signature_requests_signatureRequestId_signer_document_requests_200_response:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/SignerDocumentRequest'
-          type: array
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    UpdateSignerDocumentRequest:
-      properties:
-        title:
-          description: Title of the Signer Document Request.
-          example: Proof of address
-          maxLength: 255
-          minLength: 1
-          type: string
-        optional:
-          description: Define if the document request is optional for the Signers
-          type: boolean
-      type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    Pagination:
-      description: Metadata about the response.
-      properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          type:
-          - string
-          - 'null'
-      required:
-      - next_cursor
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    SignerDocument:
-      description: Signer Document
-      properties:
-        id:
-          description: Unique identifier of the signer document
-          example: 69df8404-40d3-4686-887b-5678f46a0d9a
-          format: uuid
-          type: string
-        title:
-          description: Title of the document request
-          example: Proof of address
-          maxLength: 255
-          minLength: 1
-          type: string
-        filename:
-          maxLength: 255
-          minLength: 1
-          type:
-          - string
-          - 'null'
-      required:
-      - filename
-      - id
-      - title
-      type: object
-    get_signature_requests_signatureRequestId_signers_signerId_documents_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/SignerDocument'
-          type: array
-      type: object
     ForbiddenResponse:
       properties:
         type:
@@ -1969,19 +1837,6 @@ components:
       - detail
       - type
       title: ForbiddenResponse
-      type: object
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
       type: object
     CreateSignerDocumentRequest:
       example:
@@ -2011,7 +1866,40 @@ components:
       - title
       title: CreateSignerDocumentRequest
       type: object
-    BadRequestResponse:
+    UpdateSignerDocumentRequest:
+      properties:
+        title:
+          description: Title of the Signer Document Request.
+          example: Proof of address
+          maxLength: 255
+          minLength: 1
+          type: string
+        optional:
+          description: Define if the document request is optional for the Signers
+          type: boolean
+      type: object
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - next_cursor
+      type: object
+    get_signature_requests_signatureRequestId_signer_document_requests_200_response:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/SignerDocumentRequest'
+          type: array
+      type: object
+    UnauthorizedResponse:
       properties:
         type:
           type: string
@@ -2020,7 +1908,7 @@ components:
       required:
       - detail
       - type
-      title: BadRequestResponse
+      title: UnauthorizedResponse
       type: object
     UnsupportedMediaTypeResponse:
       properties:
@@ -2033,6 +1921,50 @@ components:
       - type
       title: UnsupportedMediaTypeResponse
       type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    get_signature_requests_signatureRequestId_signers_signerId_documents_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/SignerDocument'
+          type: array
+      type: object
     MethodNotAllowed:
       properties:
         message:
@@ -2040,6 +1972,74 @@ components:
       required:
       - message
       title: MethodNotAllowed
+      type: object
+    SignerDocument:
+      description: Signer Document
+      properties:
+        id:
+          description: Unique identifier of the signer document
+          example: 69df8404-40d3-4686-887b-5678f46a0d9a
+          format: uuid
+          type: string
+        title:
+          description: Title of the document request
+          example: Proof of address
+          maxLength: 255
+          minLength: 1
+          type: string
+        filename:
+          maxLength: 255
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - filename
+      - id
+      - title
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    SignerDocumentRequest:
+      description: Signer Document Request attached to a Signature Request
+      properties:
+        id:
+          description: Unique identifier of the Signer Document Request
+          example: 69df8404-40d3-4686-887b-5678f46a0d9a
+          format: uuid
+          type: string
+        title:
+          description: Title of the document request
+          example: Proof of address
+          maxLength: 255
+          minLength: 1
+          type: string
+        optional:
+          description: Define if the document request is optional for the Signers
+          type: boolean
+        signer_ids:
+          description: Ids of Signers to request a document
+          items:
+            example: 2fd4a3fb-a886-4c9d-ac49-ea6f759c0c64
+            format: uuid
+            type: string
+          type: array
+      required:
+      - id
+      - optional
+      - signer_ids
+      - title
       type: object
   securitySchemes:
     bearerAuth:

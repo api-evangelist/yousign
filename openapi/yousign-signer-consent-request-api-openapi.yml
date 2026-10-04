@@ -1180,152 +1180,39 @@ paths:
       - Signer Consent Request
 components:
   headers:
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
     rateLimit-remaining:
       description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
       schema:
         type: integer
     rateLimit-remaining-hour:
       description: The number of requests remaining in the current hour rate limit window
       schema:
         type: integer
-    retry-after:
-      description: Retry the request after X seconds
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
       schema:
         type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
       schema:
         type: integer
     rateLimit-limit-minute:
       description: The maximum number of requests that the consumer is permitted to make in an minute window
       schema:
         type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
   schemas:
-    get_signature_requests_signatureRequestId_signer_consent_requests_200_response:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/SignerConsentRequest'
-          type: array
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    SignerConsentRequest:
-      description: Signer Consent Request attached to a Signature Request
-      properties:
-        id:
-          description: Unique identifier of the Signer Consent Request
-          example: 69df8404-40d3-4686-887b-5678f46a0d9a
-          format: uuid
-          readOnly: true
-          type: string
-        type:
-          description: Type of the Signer Consent Request
-          enum:
-          - checkbox
-          - text_to_copy
-          example: checkbox
-          type: string
-        settings:
-          $ref: '#/components/schemas/SignerConsentRequest_settings'
-        optional:
-          description: Define if the Signer Consent Request is optional for Signers
-          example: false
-          type: boolean
-        signer_ids:
-          description: Ids of Signers to request a consent
-          example:
-          - 71517741-a4a8-4f25-8496-6e9c6d2b7791
-          - 0c42e1ae-1cac-457b-9a09-5fda5f735bd8
-          items:
-            format: uuid
-            type: string
-          minItems: 1
-          type: array
-        document_id:
-          description: The Document id to which it is linked.
-          example: 9658867a-d2f3-46f0-9bce-36c45f42644e
-          format: uuid
-          type:
-          - string
-          - 'null'
-      required:
-      - document_id
-      - id
-      - optional
-      - settings
-      - signer_ids
-      - type
-      type: object
-    UpdateSignerConsentRequest:
-      properties:
-        settings:
-          $ref: '#/components/schemas/CreateSignerConsentRequest_settings'
-        optional:
-          description: Define if the Signer Consent Request is optional for Signers
-          example: false
-          type: boolean
-        insert_after_id:
-          description: Insert just after the position of the specified Signer Consent Request id
-          format: uuid
-          type:
-          - string
-          - 'null'
-          example: null
-        document_id:
-          description: Link the Signer Consent Request to a given Document by its id.
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-      title: UpdateSignerConsentRequest
-      type: object
     ForbiddenResponse:
       properties:
         type:
@@ -1336,47 +1223,6 @@ components:
       - detail
       - type
       title: ForbiddenResponse
-      type: object
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
-    CreateSignerConsentRequest_settings:
-      description: Settings relative to Signer Consent Request's type
-      properties:
-        text:
-          description: 'Text associated to the checkbox or the text_to_copy.\
-
-            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing URL.
-
-            '
-          example: I agree with...
-          format: safe-string
-          maxLength: 1000
-          minLength: 1
-          type: string
-      required:
-      - text
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
       type: object
     CreateSignerConsentRequest:
       properties:
@@ -1424,16 +1270,46 @@ components:
       - type
       title: CreateSignerConsentRequest
       type: object
-    UnsupportedMediaTypeResponse:
+    UpdateSignerConsentRequest:
       properties:
-        type:
-          type: string
-        detail:
+        settings:
+          $ref: '#/components/schemas/CreateSignerConsentRequest_settings'
+        optional:
+          description: Define if the Signer Consent Request is optional for Signers
+          example: false
+          type: boolean
+        insert_after_id:
+          description: Insert just after the position of the specified Signer Consent Request id
+          format: uuid
+          type:
+          - string
+          - 'null'
+          example: null
+        document_id:
+          description: Link the Signer Consent Request to a given Document by its id.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+      title: UpdateSignerConsentRequest
+      type: object
+    CreateSignerConsentRequest_settings:
+      description: Settings relative to Signer Consent Request's type
+      properties:
+        text:
+          description: 'Text associated to the checkbox or the text_to_copy.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing URL.
+
+            '
+          example: I agree with...
+          format: safe-string
+          maxLength: 1000
+          minLength: 1
           type: string
       required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
+      - text
       type: object
     SignerConsentRequest_settings:
       description: Settings relative to Signer Consent Request's type
@@ -1447,6 +1323,117 @@ components:
       required:
       - text
       type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    get_signature_requests_signatureRequestId_signer_consent_requests_200_response:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/SignerConsentRequest'
+          type: array
+      type: object
+    SignerConsentRequest:
+      description: Signer Consent Request attached to a Signature Request
+      properties:
+        id:
+          description: Unique identifier of the Signer Consent Request
+          example: 69df8404-40d3-4686-887b-5678f46a0d9a
+          format: uuid
+          readOnly: true
+          type: string
+        type:
+          description: Type of the Signer Consent Request
+          enum:
+          - checkbox
+          - text_to_copy
+          example: checkbox
+          type: string
+        settings:
+          $ref: '#/components/schemas/SignerConsentRequest_settings'
+        optional:
+          description: Define if the Signer Consent Request is optional for Signers
+          example: false
+          type: boolean
+        signer_ids:
+          description: Ids of Signers to request a consent
+          example:
+          - 71517741-a4a8-4f25-8496-6e9c6d2b7791
+          - 0c42e1ae-1cac-457b-9a09-5fda5f735bd8
+          items:
+            format: uuid
+            type: string
+          minItems: 1
+          type: array
+        document_id:
+          description: The Document id to which it is linked.
+          example: 9658867a-d2f3-46f0-9bce-36c45f42644e
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - document_id
+      - id
+      - optional
+      - settings
+      - signer_ids
+      - type
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
     MethodNotAllowed:
       properties:
         message:
@@ -1454,6 +1441,19 @@ components:
       required:
       - message
       title: MethodNotAllowed
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
       type: object
   securitySchemes:
     bearerAuth:

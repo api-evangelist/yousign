@@ -1108,245 +1108,25 @@ paths:
       - Document Analysis
 components:
   schemas:
-    WorkflowSessionId:
-      description: 'Unique identifier of a Workflow Session. When provided, an Action is created in the Workflow Session, and this resource is associated with that Action.
-
-        '
-      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
-      format: uuid
-      title: Workflow Session identifier
-      type:
-      - string
-      - 'null'
-    CompanyCertificateExtraction_legal_representatives_inner:
+    InitiateAutoInsuranceClaimsHistory_checks_policy_holder:
+      description: Expected policy holder information.
       properties:
         type:
-          description: Type of the legal representative extracted from the list of legal representatives in the document.
-          enum:
-          - natural_person
-          - legal_person
-          type: string
-        function:
-          description: Function of the individual extracted from the list of legal representatives in the document.
-          type:
-          - string
-          - 'null'
-        first_name:
-          description: First name of the individual extracted from the list of legal representatives in the document.
-          type:
-          - string
-          - 'null'
-        last_name:
-          description: Last name of the individual extracted from the list of legal representatives in the document.
-          type:
-          - string
-          - 'null'
-        full_name:
-          description: Full name of the individual extracted from the list of legal representatives in the document.
-          type:
-          - string
-          - 'null'
-        company_name:
-          description: Company name extracted from the list of legal representatives in the document.
-          type:
-          - string
-          - 'null'
-        company_number:
-          description: Company number extracted from the list of legal representatives in the document.
-          type:
-          - string
-          - 'null'
-      required:
-      - company_name
-      - company_number
-      - first_name
-      - full_name
-      - function
-      - last_name
-      - type
-      type: object
-    InitiatePayslip_checks:
-      additionalProperties: false
-      description: Checks to perform on the document.
-      example:
-        full_name_check:
-          first_name: Marie
-          last_name: Dupont
-      properties:
-        full_name_check:
-          $ref: '#/components/schemas/InitiatePayslip_checks_full_name_check'
-      type:
-      - object
-      - 'null'
-    DocumentAnalysisType:
-      description: Type of document you want to analyze. Will be used to match the detected document type.
-      enum:
-      - social_security
-      - company_certificate
-      - business_registration_certificate
-      - driver_licence
-      - rne_certificate
-      - temporary_vehicle_registration_document
-      - vehicle_registration_document
-      - auto_insurance_claims_history
-      - tax_notice
-      - payslip
-      - invoice
-      example: social_security
-      type: string
-    PreviousAttemptId:
-      description: 'ID of the previous attempt within the same `workflow_session_id`.
-
-        Allows continuity between multiple attempts of the same Action.
-
-        Null if this is the first attempt.
-
-        '
-      example: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde4
-      format: uuid
-      title: Previous Attempt identifier
-      type:
-      - string
-      - 'null'
-    PayslipExtraction:
-      additionalProperties: false
-      description: Extracted data from the document.
-      properties:
-        first_name:
-          description: The employee first name extracted from the document.
-          example: Marie
-          type:
-          - string
-          - 'null'
-        last_name:
-          description: The employee last name extracted from the document.
-          example: DUPONT
-          type:
-          - string
-          - 'null'
-        full_name:
-          description: The employee full name extracted from the document.
-          example: MARIE DUPONT
-          type:
-          - string
-          - 'null'
-        employer_name:
-          description: The employer name extracted from the document.
-          example: SNCF Réseau
-          type:
-          - string
-          - 'null'
-        pay_period_start_date:
-          description: The pay period start date extracted from the document.
-          example: '2026-03-01'
-          format: date
-          type:
-          - string
-          - 'null'
-        pay_period_end_date:
-          description: The pay period end date extracted from the document.
-          example: '2026-03-31'
-          format: date
-          type:
-          - string
-          - 'null'
-        net_pay:
-          description: The net salary extracted from the document.
-          example: 2382.4
-          type:
-          - number
-          - 'null'
-        gross_pay:
-          description: The gross salary extracted from the document.
-          example: 3150
-          type:
-          - number
-          - 'null'
-        document_type:
-          description: The document type extracted from the document.
-          example: Payslip
-          type:
-          - string
-          - 'null'
-      required:
-      - document_type
-      - employer_name
-      - first_name
-      - full_name
-      - gross_pay
-      - last_name
-      - net_pay
-      - pay_period_end_date
-      - pay_period_start_date
-      title: Payslip Extraction
-      type: object
-    RNECertificateFull:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            enum:
-            - rne_certificate
-            type: string
-          extracted_from_document:
-            $ref: '#/components/schemas/RNECertificateExtraction'
-          checks:
-            $ref: '#/components/schemas/RNECertificateCheck'
-        type: object
-      required:
-      - checks
-      - country_code
-      - created_at
-      - data_anonymized
-      - extracted_from_document
-      - id
-      - previous_attempt_id
-      - status
-      - type
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: RNE Certificate
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    InitiateVehicleRegistrationDocument_checks_vehicle_owner:
-      additionalProperties: false
-      description: Vehicle owner information to check against the document.
-      properties:
-        type:
-          description: Type of the vehicle owner.
+          description: Type of the policy holder.
           enum:
           - natural_person
           - legal_person
           type: string
         first_name:
-          description: Expected first name of the vehicle owner. Required for natural persons.
-          type:
-          - string
-          - 'null'
+          description: Expected first name of the policy holder.
+          type: string
         last_name:
-          description: Expected last name of the vehicle owner. Required for natural persons.
-          type:
-          - string
-          - 'null'
+          description: Expected last name of the policy holder.
+          type: string
         company_name:
-          description: Expected company name of the vehicle owner. Required when type is `legal_person`.
-          type:
-          - string
-          - 'null'
+          description: Expected company name of the policy holder.
+          type: string
       required:
-      - first_name
-      - last_name
       - type
       type: object
     ItalianVehicleRegistrationDocumentExtraction:
@@ -1457,713 +1237,129 @@ components:
       - vehicle_total_mass
       title: Italian Vehicle Registration Document Extraction
       type: object
-    ItalianVehicleRegistrationDocumentExtraction_deed_informations_inner:
-      additionalProperties: false
+    ForbiddenResponse:
       properties:
-        deed_date:
-          description: Date of the deed.
-          type:
-          - string
-          - 'null'
-        deed_type:
-          description: Type of the deed.
-          type:
-          - string
-          - 'null'
-        liens_encumbrances:
-          description: Liens or encumbrances on the vehicle.
-          type:
-          - string
-          - 'null'
-        previous_owner_full_name:
-          description: Full name of the previous owner.
-          type:
-          - string
-          - 'null'
-      required:
-      - deed_date
-      - deed_type
-      - liens_encumbrances
-      - previous_owner_full_name
-      type: object
-    TooManyRequestsResponse:
-      properties:
-        message:
+        type:
+          type: string
+        detail:
           type: string
       required:
-      - message
-      title: TooManyRequestsResponse
+      - detail
+      - type
+      title: ForbiddenResponse
       type: object
-    TemporaryVehicleRegistrationDocumentExtraction_document_recipient_information:
-      description: Document recipient information extracted from the document.
+    CompanyCertificateExtraction_legal_representatives_inner:
       properties:
-        document_recipient_full_name:
-          description: Full name of the document recipient extracted from the document.
+        type:
+          description: Type of the legal representative extracted from the list of legal representatives in the document.
+          enum:
+          - natural_person
+          - legal_person
+          type: string
+        function:
+          description: Function of the individual extracted from the list of legal representatives in the document.
           type:
           - string
           - 'null'
-        document_recipient_address:
-          description: Address of the document recipient extracted from the document.
+        first_name:
+          description: First name of the individual extracted from the list of legal representatives in the document.
           type:
           - string
           - 'null'
-        document_recipient_birth_date:
-          description: Birth date of the document recipient extracted from the document.
+        last_name:
+          description: Last name of the individual extracted from the list of legal representatives in the document.
           type:
           - string
           - 'null'
-        document_recipient_birth_city:
-          description: Birth city of the document recipient extracted from the document.
-          type:
-          - string
-          - 'null'
-      required:
-      - document_recipient_address
-      - document_recipient_birth_city
-      - document_recipient_birth_date
-      - document_recipient_full_name
-      type: object
-    BusinessRegistrationCertificateExtraction:
-      additionalProperties: false
-      description: Extracted data from the document.
-      example:
-        issuance_date: '2025-01-01'
-        company_description:
-          active: true
-          legal_form: Entreprise individuelle
-          company_name: null
-          company_number: 123 4567 890
-          headquarter_company_number: 123 4567 890 12345
-          first_name: John
-          last_name: Doe
-          full_name: John Doe
-        branch_description:
-          active: true
-          branch_company_number: 123 4567 890 12345
-          address: 1 rue de la paix, 75000 Paris
-          city: Paris
-          postal_code: '75000'
-        document_type: Avis de situation
-      properties:
-        issuance_date:
-          description: Issuance date extracted from the document.
-          type:
-          - string
-          - 'null'
-        company_description:
-          $ref: '#/components/schemas/BusinessRegistrationCertificateExtraction_company_description'
-        branch_description:
-          $ref: '#/components/schemas/BusinessRegistrationCertificateExtraction_branch_description'
-        document_type:
-          description: Classification label extracted from the document.
-          type:
-          - string
-          - 'null'
-      required:
-      - branch_description
-      - company_description
-      - document_type
-      - issuance_date
-      title: Business Registration Certificate Extraction
-      type: object
-    BusinessRegistrationCertificateExtraction_company_description:
-      properties:
-        active:
-          description: Indicates whether the company is active or not.
-          type:
-          - boolean
-          - 'null'
-        legal_form:
-          description: Legal form extracted from the document.
+        full_name:
+          description: Full name of the individual extracted from the list of legal representatives in the document.
           type:
           - string
           - 'null'
         company_name:
-          description: Company name extracted from the document.
+          description: Company name extracted from the list of legal representatives in the document.
           type:
           - string
           - 'null'
         company_number:
-          description: Company number extracted from the document.
-          type:
-          - string
-          - 'null'
-        headquarter_company_number:
-          description: Headquarter company number extracted from the document.
-          type:
-          - string
-          - 'null'
-        first_name:
-          description: First name of the individual extracted from the document. Null if not a sole proprietor.
-          type:
-          - string
-          - 'null'
-        last_name:
-          description: Last name of the individual extracted from the document. Null if not a sole proprietor.
-          type:
-          - string
-          - 'null'
-        full_name:
-          description: Full name of the individual extracted from the document. Null if not a sole proprietor.
+          description: Company number extracted from the list of legal representatives in the document.
           type:
           - string
           - 'null'
       required:
-      - active
       - company_name
       - company_number
       - first_name
       - full_name
-      - headquarter_company_number
+      - function
       - last_name
-      - legal_form
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    InvoiceFull:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            enum:
-            - invoice
-            type: string
-          extracted_from_document:
-            $ref: '#/components/schemas/FrenchInvoiceExtraction'
-          checks:
-            $ref: '#/components/schemas/InvoiceFull_allOf_checks'
-        type: object
-      required:
-      - checks
-      - country_code
-      - created_at
-      - data_anonymized
-      - extracted_from_document
-      - id
-      - previous_attempt_id
-      - status
       - type
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: French Invoice Document
       type: object
-    InitiateTaxNotice_checks_full_name_check:
-      additionalProperties: false
-      description: Expected full name to check against the document.
-      properties:
-        first_name:
-          description: Expected first name to check against the document.
-          type: string
-        last_name:
-          description: Expected last name to check against the document.
-          type: string
-      required:
-      - first_name
-      - last_name
-      type: object
-    SocialSecurityFull:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            enum:
-            - social_security
-            type: string
-          extracted_from_document:
-            $ref: '#/components/schemas/SocialSecurityExtraction'
-          checks:
-            $ref: '#/components/schemas/SocialSecurityCheck'
-        type: object
-      required:
-      - checks
-      - country_code
-      - created_at
-      - data_anonymized
-      - extracted_from_document
-      - id
-      - previous_attempt_id
-      - status
-      - type
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: Social Security
-      type: object
-    CompanyCertificateFull:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            enum:
-            - company_certificate
-            type: string
-          extracted_from_document:
-            $ref: '#/components/schemas/CompanyCertificateExtraction'
-          checks:
-            $ref: '#/components/schemas/CompanyCertificateCheck'
-        type: object
-      required:
-      - checks
-      - country_code
-      - created_at
-      - data_anonymized
-      - extracted_from_document
-      - id
-      - previous_attempt_id
-      - status
-      - type
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: Company Certificate
-      type: object
-    FrenchVehicleRegistrationDocumentExtraction_vehicle_information:
+    ItalianVehicleRegistrationDocumentExtraction_owner_information:
       additionalProperties: false
       properties:
-        vehicle_brand:
-          description: Brand of the vehicle.
+        owner_full_name:
+          description: Full name of the vehicle owner.
           type:
           - string
           - 'null'
-        vehicle_version:
-          description: Version of the vehicle.
+        owner_address:
+          description: Address of the vehicle owner.
           type:
           - string
           - 'null'
-        vehicle_model:
-          description: Model of the vehicle.
-          type:
-          - string
-          - 'null'
-      required:
-      - vehicle_brand
-      - vehicle_model
-      - vehicle_version
-      type: object
-    InitiateDocumentAnalysisFromMultipart:
-      oneOf:
-      - $ref: '#/components/schemas/InitiateSocialSecurity'
-      - $ref: '#/components/schemas/InitiateCompanyCertificate'
-      - $ref: '#/components/schemas/InitiateBusinessRegistrationCertificate'
-      - $ref: '#/components/schemas/InitiateDriverLicence'
-      - $ref: '#/components/schemas/InitiateRNECertificate'
-      - $ref: '#/components/schemas/InitiateTemporaryVehicleRegistrationDocument'
-      - $ref: '#/components/schemas/InitiateVehicleRegistrationDocument'
-      - $ref: '#/components/schemas/InitiateAutoInsuranceClaimsHistory'
-      - $ref: '#/components/schemas/InitiateTaxNotice'
-      - $ref: '#/components/schemas/InitiatePayslip'
-      - $ref: '#/components/schemas/InitiateInvoice'
-      - $ref: '#/components/schemas/InitiateFraudOnly'
-      type: object
-    InitiateDocumentAnalysisFromApplicant_checks:
-      additionalProperties: false
-      description: 'Checks to perform on the document.
-
-        Only accepted when `type` is `tax_notice`.
-
-        '
-      properties:
-        income_year_check:
-          $ref: '#/components/schemas/InitiateDocumentAnalysisFromApplicant_checks_income_year_check'
-      type:
-      - object
-      - 'null'
-    SocialSecurityExtraction:
-      additionalProperties: false
-      description: Extracted data from the document.
-      example:
-        social_security_number: '1234567890123'
-        first_name: John
-        last_name: Doe
-        full_name: John Doe
-        document_type: carte vitale
-      properties:
-        social_security_number:
-          description: Social Security number extracted from the document.
-          type:
-          - string
-          - 'null'
-        first_name:
-          description: First name of the individual.
-          type:
-          - string
-          - 'null'
-        last_name:
-          description: Last name of the individual.
-          type:
-          - string
-          - 'null'
-        full_name:
-          description: Full name of the individual.
-          type:
-          - string
-          - 'null'
-        document_type:
-          description: Classification label extracted from the document.
-          type:
-          - string
-          - 'null'
-      required:
-      - document_type
-      - first_name
-      - full_name
-      - last_name
-      - social_security_number
-      title: Social Security Extraction
-      type: object
-    DocumentAnalysisMeta_1:
-      properties:
-        id:
-          $ref: '#/components/schemas/UUID'
-        workspace_id:
-          description: The Workspace ID in which the Document Analysis has been created.
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type: string
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
-        created_at:
-          description: Creation date of the Document Analysis.
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          type: string
-        updated_at:
-          description: Update date of the Document Analysis.
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          type: string
-        status:
-          $ref: '#/components/schemas/DocumentAnalysisStatus'
-        status_codes:
-          description: 'List of status codes. Indicates the cause when the status is `failed`.
-
-
-            `DA_1001` is **deprecated**: it is still emitted alongside more specific check-failure codes (e.g. `DA_2001`, `DA_2002`) for backward compatibility. New integrations should rely on the specific codes.
-
-            '
-          example: []
-          items:
-            enum:
-            - DA_1001
-            - DA_1002
-            - DA_1003
-            - DA_1004
-            - DA_1100
-            - DA_1201
-            - DA_1202
-            - DA_1301
-            - DA_1302
-            - DA_1303
-            - DA_1304
-            - DA_1401
-            - DA_1402
-            - DA_1403
-            - DA_2001
-            - DA_2002
-            - DA_2301
-            - DA_2302
-            - DA_2401
-            - DA_2402
-            - DA_3001
-            - DA_3003
-            - DA_3004
-            type: string
-          type: array
-        country_code:
-          description: 'The country code associated with the document analysis.
-
-            Null for document types that don''t require a country code.
-
-            '
-          type:
-          - string
-          - 'null'
-          example: null
-        applicant_id:
-          $ref: '#/components/schemas/WorkflowSessionApplicantId'
-        data_anonymized:
-          description: 'Indicates if the personal data extracted from the document has been anonymized.
-
-            If set to `true`, the personal data has been anonymized and most fields will be NULL.
-
-            '
-          example: false
-          type: boolean
-        analysis_type:
-          $ref: '#/components/schemas/AnalysisType'
-        fraud_risk_analysis:
-          $ref: '#/components/schemas/FraudRiskAnalysis'
-      required:
-      - applicant_id
-      - country_code
-      - created_at
-      - data_anonymized
-      - id
-      - previous_attempt_id
-      - status
-      - status_codes
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: DocumentAnalysisMeta
-      type: object
-    FraudOnlyFull:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            description: Always `null` for a fraud-only analysis (no document type).
-            type:
-            - string
-            - 'null'
-            example: null
-          analysis_type:
-            $ref: '#/components/schemas/FraudOnlyFull_allOf_analysis_type'
-          fraud_risk_analysis:
-            $ref: '#/components/schemas/FraudRiskAnalysis'
-        required:
-        - analysis_type
-        type: object
-      description: 'Document Analysis run in fraud-only mode (`analysis_type.extraction` is `false`).
-
-        No document `type` and no extracted data; only the fraud detection result is returned.
-
-        '
-      title: Fraud Only
-      type: object
-    InitiateCompanyCertificate_checks:
-      additionalProperties: false
-      description: Checks to perform on the document.
-      example:
-        legal_representatives:
-        - first_name: John
-          last_name: Doe
-      properties:
-        legal_representatives:
-          description: Expected list of legal representatives extracted from the document.
-          items:
-            $ref: '#/components/schemas/InitiateCompanyCertificate_checks_legal_representatives_inner'
-          type: array
-      required:
-      - legal_representatives
-      type:
-      - object
-      - 'null'
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    InitiateTaxNotice:
-      additionalProperties: false
-      properties:
-        file:
-          description: 'The file containing the data to extract.
-
-            Accepted formats: PDF, PNG, JPG, JPEG.
-
-            Max size: 25 MB.
-
-            Max number of pages per PDF: 10.
-
-            '
-          example: Binary file
-          format: binary
-          type: string
-        type:
-          description: Type of document you want to analyze. Will be used to match the detected document type.
+        owner_type:
+          description: Type of the vehicle owner.
           enum:
-          - tax_notice
-          example: tax_notice
-          type: string
-        country_code:
-          description: The country code of the tax notice.
-          enum:
-          - FR
-          example: FR
-          type: string
-        workspace_id:
-          description: 'Scopes the Document Analysis to a specific workspace.
-
-            Defaults to the default workspace if not specified.
-
-            '
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
+          - natural_person
+          - legal_person
           type:
           - string
           - 'null'
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
-        analysis_type:
-          $ref: '#/components/schemas/AnalysisTypeMultipart'
-        checks:
-          $ref: '#/components/schemas/InitiateTaxNotice_checks'
-      required:
-      - country_code
-      - file
-      - type
-      title: Initiate Tax Notice
-      type: object
-    InitiateBusinessRegistrationCertificate:
-      additionalProperties: false
-      properties:
-        file:
-          description: 'The file containing the data to extract.
-
-            Accepted formats: PDF, PNG, JPG, JPEG.
-
-            Max size: 25 MB.
-
-            Max number of pages per PDF: 10.
-
-            '
-          example: Binary file
-          format: binary
-          type: string
-        type:
-          description: Type of document you want to analyze. Will be used to match the detected document type.
-          enum:
-          - business_registration_certificate
-          example: business_registration_certificate
-          type: string
-        workspace_id:
-          description: 'Scopes the Document Analysis to a specific workspace.
-
-            Defaults to the default workspace if not specified.
-
-            '
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
-        analysis_type:
-          $ref: '#/components/schemas/AnalysisTypeMultipart'
-        checks:
-          $ref: '#/components/schemas/InitiateSocialSecurity_checks'
-      required:
-      - file
-      - type
-      title: Initiate Business Registration Certificate
-      type: object
-    TaxNoticeExtraction:
-      additionalProperties: false
-      description: Extracted data from the document.
-      properties:
-        full_name:
-          description: The holder full name extracted from the document.
-          example: Doe John
-          type:
-          - string
-          - 'null'
-        fiscal_number_1:
-          description: The fiscal number of the first declarant extracted from the document.
-          example: 0312345678901
-          type:
-          - string
-          - 'null'
-        fiscal_number_2:
-          description: The fiscal number of the second declarant extracted from the document.
-          example: 0398765432109
-          type:
-          - string
-          - 'null'
-        tax_notice_reference:
-          description: The tax notice reference number extracted from the document.
-          example: 2412B01234567
-          type:
-          - string
-          - 'null'
-        issuance_date:
-          description: The tax notice issuance date extracted from the document.
-          example: '2025-08-15'
+        owner_birth_date:
+          description: Birth date of the vehicle owner.
           format: date
           type:
           - string
           - 'null'
-        income_year:
-          description: Year of incomes (usually the year before document issuance) extracted from the document.
-          example: 2024
-          type:
-          - integer
-          - 'null'
-        reference_income:
-          description: The fiscal reference income extracted from the document.
-          example: 30000
-          type:
-          - integer
-          - 'null'
-        document_type:
-          description: The document type extracted from the document.
-          enum:
-          - Avis d'impôts sur le revenu
-          example: Avis d'impôts sur le revenu
-          type:
-          - string
-          - 'null'
-        2d_doc:
-          $ref: '#/components/schemas/TaxNoticeExtraction_2d_doc'
       required:
-      - 2d_doc
-      - document_type
-      - fiscal_number_1
-      - fiscal_number_2
-      - full_name
-      - income_year
-      - issuance_date
-      - reference_income
-      - tax_notice_reference
-      title: Tax Notice Extraction
+      - owner_address
+      - owner_birth_date
+      - owner_full_name
+      - owner_type
       type: object
-    AutoInsuranceClaimsHistoryCheck_policy_holder:
+    VehicleRegistrationDocumentCheck:
       additionalProperties: false
-      description: Check result for the policy holder.
-      properties:
-        owner_name:
-          $ref: '#/components/schemas/DocumentAnalysisCheck'
-      required:
-      - owner_name
-      type: object
-    DocumentAnalysisCheck:
-      additionalProperties: false
-      description: Represents the result of checking if an extracted value matches an expected value with different levels of match (exact, close, or no match).
+      description: Checks performed on the document.
       example:
-        extracted: John Doe
-        expected: John Doe
-        match_level: exact
+        vehicle_owner:
+          owner_name:
+            extracted: John Doe
+            expected: John Doe
+            match_level: exact
       properties:
-        extracted:
-          description: The extracted value from the document.
-          type:
-          - string
-          - 'null'
-        expected:
-          description: The expected value for the check.
-          type: string
-        match_level:
-          $ref: '#/components/schemas/DocumentAnalysisMatchLevel'
+        vehicle_owner:
+          $ref: '#/components/schemas/TemporaryVehicleRegistrationDocumentCheck_vehicle_owner'
       required:
-      - expected
-      - extracted
-      - match_level
-      title: Document Analysis Check
-      type: object
+      - vehicle_owner
+      title: Vehicle Registration Document Checks
+      type:
+      - object
+      - 'null'
+    PreviousAttemptId:
+      description: 'ID of the previous attempt within the same `workflow_session_id`.
+
+        Allows continuity between multiple attempts of the same Action.
+
+        Null if this is the first attempt.
+
+        '
+      example: 9412b83b-b4b9-4a94-97b5-2b43dfa4cde4
+      format: uuid
+      title: Previous Attempt identifier
+      type:
+      - string
+      - 'null'
     DocumentAnalysisMeta:
       properties:
         id:
@@ -2268,16 +1464,352 @@ components:
       - workspace_id
       title: DocumentAnalysisMeta
       type: object
-    InitiateTaxNotice_checks_income_year_check:
+    DocumentAnalysisCheck:
       additionalProperties: false
-      description: Expected income year to check against the document.
+      description: Represents the result of checking if an extracted value matches an expected value with different levels of match (exact, close, or no match).
+      example:
+        extracted: John Doe
+        expected: John Doe
+        match_level: exact
       properties:
-        income_year:
-          description: Expected income year to check against the document.
-          pattern: ^[0-9]{4}$
+        extracted:
+          description: The extracted value from the document.
+          type:
+          - string
+          - 'null'
+        expected:
+          description: The expected value for the check.
+          type: string
+        match_level:
+          $ref: '#/components/schemas/DocumentAnalysisMatchLevel'
+      required:
+      - expected
+      - extracted
+      - match_level
+      title: Document Analysis Check
+      type: object
+    CompanyCertificateFull:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            enum:
+            - company_certificate
+            type: string
+          extracted_from_document:
+            $ref: '#/components/schemas/CompanyCertificateExtraction'
+          checks:
+            $ref: '#/components/schemas/CompanyCertificateCheck'
+        type: object
+      required:
+      - checks
+      - country_code
+      - created_at
+      - data_anonymized
+      - extracted_from_document
+      - id
+      - previous_attempt_id
+      - status
+      - type
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: Company Certificate
+      type: object
+    InitiateTemporaryVehicleRegistrationDocument_checks:
+      additionalProperties: false
+      description: Checks to perform on the document.
+      example:
+        vehicle_owner:
+          type: natural_person
+          first_name: John
+          last_name: Doe
+      properties:
+        vehicle_owner:
+          $ref: '#/components/schemas/InitiateTemporaryVehicleRegistrationDocument_checks_vehicle_owner'
+      required:
+      - vehicle_owner
+      type:
+      - object
+      - 'null'
+    get_document_analyses_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/DocumentAnalysisMeta'
+          type: array
+      type: object
+    InitiateVehicleRegistrationDocument:
+      additionalProperties: false
+      properties:
+        file:
+          description: 'The file containing the data to extract.
+
+            Accepted formats: PDF, PNG, JPG, JPEG.
+
+            Max size: 25 MB.
+
+            Max number of pages per PDF: 10.
+
+            '
+          example: Binary file
+          format: binary
+          type: string
+        type:
+          description: Type of document you want to analyze. Will be used to match the detected document type.
+          enum:
+          - vehicle_registration_document
+          example: vehicle_registration_document
+          type: string
+        country_code:
+          description: The country code of the vehicle registration document.
+          enum:
+          - FR
+          - IT
+          example: FR
+          type: string
+        workspace_id:
+          description: 'Scopes the Document Analysis to a specific workspace.
+
+            Defaults to the default workspace if not specified.
+
+            '
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        analysis_type:
+          $ref: '#/components/schemas/AnalysisTypeMultipart'
+        checks:
+          $ref: '#/components/schemas/InitiateVehicleRegistrationDocument_checks'
+      required:
+      - country_code
+      - file
+      - type
+      title: Initiate Vehicle Registration Document
+      type: object
+    FraudRiskAnalysis_indicators_inner:
+      additionalProperties: false
+      properties:
+        indicator:
+          description: Machine-readable identifier of the detected indicator.
+          example: document_metadata_modified
+          type: string
+        type:
+          description: Type of the indicator.
+          example: metadata
+          type: string
+        category:
+          description: Category the indicator belongs to.
+          example: tampering
+          type: string
+        title:
+          description: Human-readable title of the indicator.
+          example: Document metadata has been modified
+          type: string
+        description:
+          description: Human-readable description of the indicator.
+          example: The document metadata shows signs of modification by an editing tool.
           type: string
       required:
-      - income_year
+      - category
+      - description
+      - indicator
+      - title
+      - type
+      type: object
+    WorkflowSessionId:
+      description: 'Unique identifier of a Workflow Session. When provided, an Action is created in the Workflow Session, and this resource is associated with that Action.
+
+        '
+      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+      format: uuid
+      title: Workflow Session identifier
+      type:
+      - string
+      - 'null'
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    AutoInsuranceClaimsHistoryFull:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            enum:
+            - auto_insurance_claims_history
+            type: string
+          extracted_from_document:
+            $ref: '#/components/schemas/AutoInsuranceClaimsHistoryExtraction'
+          checks:
+            $ref: '#/components/schemas/AutoInsuranceClaimsHistoryCheck'
+        type: object
+      required:
+      - checks
+      - country_code
+      - created_at
+      - data_anonymized
+      - extracted_from_document
+      - id
+      - previous_attempt_id
+      - status
+      - type
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: Auto Insurance Claims History
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    InitiateVehicleRegistrationDocument_checks_vehicle_owner:
+      additionalProperties: false
+      description: Vehicle owner information to check against the document.
+      properties:
+        type:
+          description: Type of the vehicle owner.
+          enum:
+          - natural_person
+          - legal_person
+          type: string
+        first_name:
+          description: Expected first name of the vehicle owner. Required for natural persons.
+          type:
+          - string
+          - 'null'
+        last_name:
+          description: Expected last name of the vehicle owner. Required for natural persons.
+          type:
+          - string
+          - 'null'
+        company_name:
+          description: Expected company name of the vehicle owner. Required when type is `legal_person`.
+          type:
+          - string
+          - 'null'
+      required:
+      - first_name
+      - last_name
+      - type
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    InvoiceFull_allOf_checks:
+      description: Checks performed on the document. Always null for invoices.
+      type:
+      - object
+      - 'null'
+    InitiateBusinessRegistrationCertificate:
+      additionalProperties: false
+      properties:
+        file:
+          description: 'The file containing the data to extract.
+
+            Accepted formats: PDF, PNG, JPG, JPEG.
+
+            Max size: 25 MB.
+
+            Max number of pages per PDF: 10.
+
+            '
+          example: Binary file
+          format: binary
+          type: string
+        type:
+          description: Type of document you want to analyze. Will be used to match the detected document type.
+          enum:
+          - business_registration_certificate
+          example: business_registration_certificate
+          type: string
+        workspace_id:
+          description: 'Scopes the Document Analysis to a specific workspace.
+
+            Defaults to the default workspace if not specified.
+
+            '
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        analysis_type:
+          $ref: '#/components/schemas/AnalysisTypeMultipart'
+        checks:
+          $ref: '#/components/schemas/InitiateSocialSecurity_checks'
+      required:
+      - file
+      - type
+      title: Initiate Business Registration Certificate
+      type: object
+    CompanyCertificateCheck_legal_representatives_inner:
+      properties:
+        full_name:
+          $ref: '#/components/schemas/DocumentAnalysisCheck'
+      required:
+      - full_name
+      type: object
+    InitiateDocumentAnalysisFromApplicant:
+      additionalProperties: false
+      properties:
+        applicant_id:
+          description: The Applicant ID linked to the Workflow Session.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+        type:
+          allOf:
+          - $ref: '#/components/schemas/DocumentAnalysisType'
+        analysis_type:
+          $ref: '#/components/schemas/AnalysisType'
+        country_code:
+          description: 'The country code of the document.
+
+            Required when `type` is `vehicle_registration_document` (accepted: `FR`, `IT`), `tax_notice` (accepted: `FR` only), `payslip` (accepted: `FR`, `IT`) or `invoice` (accepted: `FR` only).
+
+            '
+          enum:
+          - FR
+          - IT
+          example: FR
+          type: string
+        checks:
+          $ref: '#/components/schemas/InitiateDocumentAnalysisFromApplicant_checks'
+      required:
+      - applicant_id
+      title: Attach a new Document Analysis to an Applicant
       type: object
     AnalysisTypeMultipart:
       additionalProperties: false
@@ -2319,77 +1851,136 @@ components:
           - 'null'
       title: AnalysisType
       type: object
-    InitiateAutoInsuranceClaimsHistory_checks:
+    InitiatePayslip_checks:
       additionalProperties: false
       description: Checks to perform on the document.
       example:
-        policy_holder:
-          type: natural_person
-          first_name: John
-          last_name: Doe
+        full_name_check:
+          first_name: Marie
+          last_name: Dupont
       properties:
-        policy_holder:
-          $ref: '#/components/schemas/InitiateAutoInsuranceClaimsHistory_checks_policy_holder'
-      required:
-      - policy_holder
+        full_name_check:
+          $ref: '#/components/schemas/InitiatePayslip_checks_full_name_check'
       type:
       - object
       - 'null'
-    InitiatePayslip:
+    InitiateDocumentAnalysisFromApplicant_checks_income_year_check:
       additionalProperties: false
+      description: Expected income year to check against the document.
       properties:
-        file:
-          description: 'The file containing the data to extract.
-
-            Accepted formats: PDF, PNG, JPG, JPEG.
-
-            Max size: 25 MB.
-
-            Max number of pages per PDF: 10.
-
-            '
-          example: Binary file
-          format: binary
-          type: string
-        type:
-          description: Type of document you want to analyze. Will be used to match the detected document type.
-          enum:
-          - payslip
-          example: payslip
-          type: string
-        country_code:
-          description: The country code of the payslip.
-          enum:
-          - FR
-          - IT
-          example: FR
-          type: string
-        workspace_id:
-          description: 'Scopes the Document Analysis to a specific workspace.
-
-            Defaults to the default workspace if not specified.
-
-            '
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
-        analysis_type:
-          $ref: '#/components/schemas/AnalysisTypeMultipart'
-        checks:
-          $ref: '#/components/schemas/InitiatePayslip_checks'
+        income_year:
+          description: The expected income year to check against the tax notice document.
+          example: 2024
+          type: integer
       required:
-      - country_code
-      - file
-      - type
-      title: Initiate Payslip
+      - income_year
       type: object
-    InitiateAutoInsuranceClaimsHistory:
+    PayslipCheck:
+      additionalProperties: false
+      description: Checks performed on the document.
+      example:
+        full_name:
+          extracted: MARIE DUPONT
+          expected: Marie Dupont
+          match_level: exact
+      properties:
+        full_name:
+          $ref: '#/components/schemas/DocumentAnalysisCheck'
+      title: Payslip Checks
+      type:
+      - object
+      - 'null'
+    DriverLicenceFull:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            enum:
+            - driver_licence
+            type: string
+          extracted_from_document:
+            $ref: '#/components/schemas/DriverLicenceExtraction'
+          checks:
+            $ref: '#/components/schemas/DriverLicenceCheck'
+        type: object
+      required:
+      - checks
+      - country_code
+      - created_at
+      - data_anonymized
+      - extracted_from_document
+      - id
+      - previous_attempt_id
+      - status
+      - type
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: Driver Licence
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    AutoInsuranceClaimsHistoryCheck_policy_holder:
+      additionalProperties: false
+      description: Check result for the policy holder.
+      properties:
+        owner_name:
+          $ref: '#/components/schemas/DocumentAnalysisCheck'
+      required:
+      - owner_name
+      type: object
+    FrenchVehicleRegistrationDocumentExtraction_vehicle_information:
+      additionalProperties: false
+      properties:
+        vehicle_brand:
+          description: Brand of the vehicle.
+          type:
+          - string
+          - 'null'
+        vehicle_version:
+          description: Version of the vehicle.
+          type:
+          - string
+          - 'null'
+        vehicle_model:
+          description: Model of the vehicle.
+          type:
+          - string
+          - 'null'
+      required:
+      - vehicle_brand
+      - vehicle_model
+      - vehicle_version
+      type: object
+    InitiateTaxNotice_checks:
+      additionalProperties: false
+      description: Checks to perform on the document.
+      example:
+        full_name_check:
+          first_name: John
+          last_name: Doe
+        income_year_check:
+          income_year: '2024'
+      properties:
+        full_name_check:
+          $ref: '#/components/schemas/InitiateTaxNotice_checks_full_name_check'
+        income_year_check:
+          $ref: '#/components/schemas/InitiateTaxNotice_checks_income_year_check'
+      type:
+      - object
+      - 'null'
+    InitiateDriverLicence:
       additionalProperties: false
       properties:
         file:
@@ -2408,8 +1999,8 @@ components:
         type:
           description: Type of document you want to analyze. Will be used to match the detected document type.
           enum:
-          - auto_insurance_claims_history
-          example: auto_insurance_claims_history
+          - driver_licence
+          example: driver_licence
           type: string
         workspace_id:
           description: 'Scopes the Document Analysis to a specific workspace.
@@ -2429,11 +2020,114 @@ components:
         analysis_type:
           $ref: '#/components/schemas/AnalysisTypeMultipart'
         checks:
-          $ref: '#/components/schemas/InitiateAutoInsuranceClaimsHistory_checks'
+          $ref: '#/components/schemas/InitiateSocialSecurity_checks'
       required:
       - file
       - type
-      title: Initiate Auto Insurance Claims History
+      title: Initiate Driver Licence
+      type: object
+    AutoInsuranceClaimsHistoryExtraction_drivers_information_inner:
+      additionalProperties: false
+      properties:
+        driver_full_name:
+          description: Full name of the driver.
+          type:
+          - string
+          - 'null'
+        driver_birth_date:
+          description: Birth date of the driver.
+          format: date
+          type:
+          - string
+          - 'null'
+        coverage_start_date:
+          description: Start date of the driver's coverage.
+          format: date
+          type:
+          - string
+          - 'null'
+        coverage_end_date:
+          description: End date of the driver's coverage, if applicable.
+          format: date
+          type:
+          - string
+          - 'null'
+        driver_license_number:
+          description: License number of the driver.
+          type:
+          - string
+          - 'null'
+        driver_license_category:
+          description: License category of the driver.
+          type:
+          - string
+          - 'null'
+        driver_license_issuance_date:
+          description: Issuance date of the driver's license.
+          format: date
+          type:
+          - string
+          - 'null'
+      required:
+      - coverage_end_date
+      - coverage_start_date
+      - driver_birth_date
+      - driver_full_name
+      - driver_license_category
+      - driver_license_issuance_date
+      - driver_license_number
+      type: object
+    DocumentAnalysisMatchLevel:
+      description: Level of match between extracted and expected value.
+      enum:
+      - exact
+      - close
+      - no_match
+      example: exact
+      title: MatchLevel
+      type: string
+    InitiateFraudOnly:
+      additionalProperties: false
+      description: 'Fraud-only Document Analysis (no data extraction).
+
+        Send `analysis_type[extraction]=false` and `analysis_type[fraud_level]=advanced`, with no `type`.
+
+        '
+      properties:
+        file:
+          description: 'The file to run fraud detection on.
+
+            Accepted formats: PDF, PNG, JPG, JPEG.
+
+            Max size: 10 MB.
+
+            Max number of pages for PDF: 2.
+
+            '
+          example: Binary file
+          format: binary
+          type: string
+        analysis_type:
+          $ref: '#/components/schemas/InitiateFraudOnly_analysis_type'
+        workspace_id:
+          description: 'Scopes the Document Analysis to a specific workspace.
+
+            Defaults to the default workspace if not specified.
+
+            '
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+      required:
+      - analysis_type
+      - file
+      title: Initiate Fraud Only
       type: object
     FraudOnlyFull_allOf_analysis_type:
       properties:
@@ -2451,98 +2145,119 @@ components:
       - extraction
       - fraud_level
       type: object
-    ItalianVehicleRegistrationDocumentExtraction_vehicle_motor_information:
+    VehicleRegistrationDocumentFull:
+      oneOf:
+      - $ref: '#/components/schemas/French_Vehicle_Registration_Document'
+      - $ref: '#/components/schemas/Italian_Vehicle_Registration_Document'
+      title: Vehicle Registration Document
+    TaxNoticeCheck_income_year:
       additionalProperties: false
+      example:
+        extracted: 2024
+        expected: 2024
+        match_level: exact
       properties:
-        vehicle_fuel_type:
-          description: Type of fuel used by the vehicle.
+        extracted:
+          description: The extracted value from the document.
           type:
-          - string
+          - integer
           - 'null'
-        vehicle_max_power:
-          description: Maximum power of the vehicle engine.
-          type:
-          - number
-          - 'null'
-        vehicle_displacement_type:
-          description: Displacement type of the vehicle engine.
-          type:
-          - number
-          - 'null'
-      required:
-      - vehicle_displacement_type
-      - vehicle_fuel_type
-      - vehicle_max_power
-      type: object
-    InitiateDocumentAnalysisFromApplicant_checks_income_year_check:
-      additionalProperties: false
-      description: Expected income year to check against the document.
-      properties:
-        income_year:
-          description: The expected income year to check against the tax notice document.
-          example: 2024
+        expected:
+          description: The expected value for the check.
           type: integer
+        match_level:
+          $ref: '#/components/schemas/DocumentAnalysisMatchLevel'
       required:
-      - income_year
+      - expected
+      - extracted
+      - match_level
       type: object
-    BusinessRegistrationCertificateCheck:
+    TemporaryVehicleRegistrationDocumentCheck:
       additionalProperties: false
       description: Checks performed on the document.
       example:
-        full_name:
-          extracted: John Doe
-          expected: John Doe
-          match_level: exact
+        vehicle_owner:
+          owner_name:
+            extracted: DOE JOHN
+            expected: Doe John
+            match_level: exact
       properties:
-        full_name:
-          $ref: '#/components/schemas/DocumentAnalysisCheck'
+        vehicle_owner:
+          $ref: '#/components/schemas/TemporaryVehicleRegistrationDocumentCheck_vehicle_owner'
       required:
-      - full_name
-      title: Business Registration Certificate Checks
+      - vehicle_owner
+      title: Temporary Vehicle Registration Document Checks
       type:
       - object
       - 'null'
-    InitiateCompanyCertificate_checks_legal_representatives_inner:
-      properties:
-        first_name:
-          description: Expected first name extracted from the document.
-          type: string
-        last_name:
-          description: Expected last name extracted from the document.
-          type: string
-      required:
-      - first_name
-      - last_name
-      type: object
-    FraudRiskAnalysis_indicators_inner:
+    TaxNoticeExtraction:
       additionalProperties: false
+      description: Extracted data from the document.
       properties:
-        indicator:
-          description: Machine-readable identifier of the detected indicator.
-          example: document_metadata_modified
-          type: string
-        type:
-          description: Type of the indicator.
-          example: metadata
-          type: string
-        category:
-          description: Category the indicator belongs to.
-          example: tampering
-          type: string
-        title:
-          description: Human-readable title of the indicator.
-          example: Document metadata has been modified
-          type: string
-        description:
-          description: Human-readable description of the indicator.
-          example: The document metadata shows signs of modification by an editing tool.
-          type: string
+        full_name:
+          description: The holder full name extracted from the document.
+          example: Doe John
+          type:
+          - string
+          - 'null'
+        fiscal_number_1:
+          description: The fiscal number of the first declarant extracted from the document.
+          example: 0312345678901
+          type:
+          - string
+          - 'null'
+        fiscal_number_2:
+          description: The fiscal number of the second declarant extracted from the document.
+          example: 0398765432109
+          type:
+          - string
+          - 'null'
+        tax_notice_reference:
+          description: The tax notice reference number extracted from the document.
+          example: 2412B01234567
+          type:
+          - string
+          - 'null'
+        issuance_date:
+          description: The tax notice issuance date extracted from the document.
+          example: '2025-08-15'
+          format: date
+          type:
+          - string
+          - 'null'
+        income_year:
+          description: Year of incomes (usually the year before document issuance) extracted from the document.
+          example: 2024
+          type:
+          - integer
+          - 'null'
+        reference_income:
+          description: The fiscal reference income extracted from the document.
+          example: 30000
+          type:
+          - integer
+          - 'null'
+        document_type:
+          description: The document type extracted from the document.
+          enum:
+          - Avis d'impôts sur le revenu
+          example: Avis d'impôts sur le revenu
+          type:
+          - string
+          - 'null'
+        2d_doc:
+          $ref: '#/components/schemas/TaxNoticeExtraction_2d_doc'
       required:
-      - category
-      - description
-      - indicator
-      - title
-      - type
+      - 2d_doc
+      - document_type
+      - fiscal_number_1
+      - fiscal_number_2
+      - full_name
+      - income_year
+      - issuance_date
+      - reference_income
+      - tax_notice_reference
+      title: Tax Notice Extraction
       type: object
     TemporaryVehicleRegistrationDocumentExtraction:
       additionalProperties: false
@@ -2624,6 +2339,279 @@ components:
       - vehicle_purpose
       title: Temporary Vehicle Registration Document Extraction
       type: object
+    FraudOnlyFull:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            description: Always `null` for a fraud-only analysis (no document type).
+            type:
+            - string
+            - 'null'
+            example: null
+          analysis_type:
+            $ref: '#/components/schemas/FraudOnlyFull_allOf_analysis_type'
+          fraud_risk_analysis:
+            $ref: '#/components/schemas/FraudRiskAnalysis'
+        required:
+        - analysis_type
+        type: object
+      description: 'Document Analysis run in fraud-only mode (`analysis_type.extraction` is `false`).
+
+        No document `type` and no extracted data; only the fraud detection result is returned.
+
+        '
+      title: Fraud Only
+      type: object
+    DriverLicenceExtraction:
+      additionalProperties: false
+      example:
+        first_name: John
+        last_name: Doe
+        full_name: John Doe
+        born_on: '1990-01-15'
+        expired_on: '2030-12-31'
+        license_type:
+        - B
+        - A1
+        document_type: permis de conduire français
+      properties:
+        first_name:
+          description: First name of the individual.
+          type:
+          - string
+          - 'null'
+        last_name:
+          description: Last name of the individual.
+          type:
+          - string
+          - 'null'
+        full_name:
+          description: Full name of the individual.
+          type:
+          - string
+          - 'null'
+        born_on:
+          description: Date of birth of the individual.
+          format: date
+          type:
+          - string
+          - 'null'
+        expired_on:
+          description: Expiration date of the driver licence.
+          format: date
+          type:
+          - string
+          - 'null'
+        license_type:
+          description: List of license types.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        document_type:
+          description: Classification label extracted from the document.
+          type:
+          - string
+          - 'null'
+      required:
+      - born_on
+      - document_type
+      - expired_on
+      - first_name
+      - full_name
+      - last_name
+      - license_type
+      title: Driver Licence Extraction
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    InitiateCompanyCertificate_checks_legal_representatives_inner:
+      properties:
+        first_name:
+          description: Expected first name extracted from the document.
+          type: string
+        last_name:
+          description: Expected last name extracted from the document.
+          type: string
+      required:
+      - first_name
+      - last_name
+      type: object
+    FraudRiskAnalysis:
+      additionalProperties: false
+      description: 'Result of the fraud detection analysis. `null` when no fraud detection verdict is available
+
+        (e.g. fraud detection was not requested, or is still in progress).
+
+        '
+      properties:
+        risk_level:
+          description: Overall fraud risk level of the document. `null` when not yet determined.
+          enum:
+          - high
+          - medium
+          - low
+          - trusted
+          example: low
+          type:
+          - string
+          - 'null'
+        indicators:
+          description: List of fraud indicators detected on the document.
+          items:
+            $ref: '#/components/schemas/FraudRiskAnalysis_indicators_inner'
+          type: array
+      required:
+      - indicators
+      - risk_level
+      title: FraudRiskAnalysis
+      type:
+      - object
+      - 'null'
+    InvoiceFull:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            enum:
+            - invoice
+            type: string
+          extracted_from_document:
+            $ref: '#/components/schemas/FrenchInvoiceExtraction'
+          checks:
+            $ref: '#/components/schemas/InvoiceFull_allOf_checks'
+        type: object
+      required:
+      - checks
+      - country_code
+      - created_at
+      - data_anonymized
+      - extracted_from_document
+      - id
+      - previous_attempt_id
+      - status
+      - type
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: French Invoice Document
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    AnalysisType:
+      additionalProperties: false
+      description: 'Controls what the Document Analysis performs.
+
+
+        - When `extraction` is `true` (default), data is extracted from the document and a document `type` is **required**.
+
+        - When `extraction` is `false` (fraud-only), no `type` must be provided and `fraud_level` must be `advanced`.
+
+        '
+      properties:
+        extraction:
+          default: true
+          description: 'Whether to extract data from the document. Defaults to `true` when omitted.
+
+            Set to `false` to run a fraud-only analysis (no data extraction).
+
+            '
+          example: true
+          type: boolean
+        fraud_level:
+          description: 'Level of fraud detection to run. `null` (default) disables fraud detection.
+
+            Not supported for type `tax_notice`. Must be `advanced` when `extraction` is `false`.
+
+            '
+          enum:
+          - none
+          - advanced
+          example: advanced
+          type:
+          - string
+          - 'null'
+      title: AnalysisType
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    InitiateCompanyCertificate:
+      additionalProperties: false
+      properties:
+        file:
+          description: 'The file containing the data to extract.
+
+            Accepted formats: PDF, PNG, JPG, JPEG.
+
+            Max size: 25 MB.
+
+            Max number of pages per PDF: 10.
+
+            '
+          example: Binary file
+          format: binary
+          type: string
+        type:
+          description: Type of document you want to analyze. Will be used to match the detected document type.
+          enum:
+          - company_certificate
+          example: company_certificate
+          type: string
+        workspace_id:
+          description: 'Scopes the Document Analysis to a specific workspace.
+
+            Defaults to the default workspace if not specified.
+
+            '
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        analysis_type:
+          $ref: '#/components/schemas/AnalysisTypeMultipart'
+        checks:
+          $ref: '#/components/schemas/InitiateCompanyCertificate_checks'
+      required:
+      - file
+      - type
+      title: Initiate Company Certificate
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
     SocialSecurityCheck:
       additionalProperties: false
       description: Checks performed on the document.
@@ -2641,57 +2629,156 @@ components:
       type:
       - object
       - 'null'
-    TemporaryVehicleRegistrationDocumentExtraction_vehicle_owner_information:
-      description: Vehicle owner information extracted from the document.
+    InitiateTaxNotice_checks_full_name_check:
+      additionalProperties: false
+      description: Expected full name to check against the document.
       properties:
-        vehicle_owner_full_name:
-          description: Full name of the vehicle owner extracted from the document.
+        first_name:
+          description: Expected first name to check against the document.
+          type: string
+        last_name:
+          description: Expected last name to check against the document.
+          type: string
+      required:
+      - first_name
+      - last_name
+      type: object
+    TemporaryVehicleRegistrationDocumentExtraction_document_recipient_information:
+      description: Document recipient information extracted from the document.
+      properties:
+        document_recipient_full_name:
+          description: Full name of the document recipient extracted from the document.
           type:
           - string
           - 'null'
-        vehicle_owner_birth_date:
-          description: Birth date of the vehicle owner extracted from the document.
+        document_recipient_address:
+          description: Address of the document recipient extracted from the document.
           type:
           - string
           - 'null'
-        vehicle_owner_address:
-          description: Address of the vehicle owner extracted from the document.
+        document_recipient_birth_date:
+          description: Birth date of the document recipient extracted from the document.
+          type:
+          - string
+          - 'null'
+        document_recipient_birth_city:
+          description: Birth city of the document recipient extracted from the document.
           type:
           - string
           - 'null'
       required:
-      - vehicle_owner_address
-      - vehicle_owner_birth_date
-      - vehicle_owner_full_name
+      - document_recipient_address
+      - document_recipient_birth_city
+      - document_recipient_birth_date
+      - document_recipient_full_name
       type: object
-    InitiateTaxNotice_checks:
+    TemporaryVehicleRegistrationDocumentFull:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            enum:
+            - temporary_vehicle_registration_document
+            type: string
+          country_code:
+            enum:
+            - IT
+            type: string
+          extracted_from_document:
+            $ref: '#/components/schemas/TemporaryVehicleRegistrationDocumentExtraction'
+          checks:
+            $ref: '#/components/schemas/TemporaryVehicleRegistrationDocumentCheck'
+        type: object
+      required:
+      - checks
+      - country_code
+      - created_at
+      - data_anonymized
+      - extracted_from_document
+      - id
+      - previous_attempt_id
+      - status
+      - type
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: Temporary Vehicle Registration Document
+      type: object
+    FrenchVehicleRegistrationDocumentExtraction_vehicle_motor_information:
       additionalProperties: false
-      description: Checks to perform on the document.
-      example:
-        full_name_check:
-          first_name: John
-          last_name: Doe
-        income_year_check:
-          income_year: '2024'
       properties:
-        full_name_check:
-          $ref: '#/components/schemas/InitiateTaxNotice_checks_full_name_check'
+        vehicle_fuel_type:
+          description: Type of fuel used by the vehicle.
+          type:
+          - string
+          - 'null'
+        vehicle_fiscal_power:
+          description: Fiscal power of the vehicle.
+          type:
+          - number
+          - 'null'
+        vehicle_max_power:
+          description: Maximum power of the vehicle engine.
+          type:
+          - number
+          - 'null'
+        vehicle_power:
+          description: Power of the vehicle engine.
+          type:
+          - number
+          - 'null'
+      required:
+      - vehicle_fiscal_power
+      - vehicle_fuel_type
+      - vehicle_max_power
+      - vehicle_power
+      type: object
+    InitiateTaxNotice_checks_income_year_check:
+      additionalProperties: false
+      description: Expected income year to check against the document.
+      properties:
+        income_year:
+          description: Expected income year to check against the document.
+          pattern: ^[0-9]{4}$
+          type: string
+      required:
+      - income_year
+      type: object
+    InitiateDocumentAnalysisFromApplicant_checks:
+      additionalProperties: false
+      description: 'Checks to perform on the document.
+
+        Only accepted when `type` is `tax_notice`.
+
+        '
+      properties:
         income_year_check:
-          $ref: '#/components/schemas/InitiateTaxNotice_checks_income_year_check'
+          $ref: '#/components/schemas/InitiateDocumentAnalysisFromApplicant_checks_income_year_check'
       type:
       - object
       - 'null'
-    FrenchVehicleRegistrationDocumentExtraction_co_owner_information_inner:
+    CompanyCertificateCheck:
       additionalProperties: false
+      description: Checks performed on the document.
+      example:
+        legal_representatives:
+        - full_name:
+            extracted: John Doe
+            expected: John Doe
+            match_level: exact
       properties:
-        co_owner_full_name:
-          description: Full name of the co-owner.
+        legal_representatives:
+          items:
+            $ref: '#/components/schemas/CompanyCertificateCheck_legal_representatives_inner'
           type:
-          - string
+          - array
           - 'null'
       required:
-      - co_owner_full_name
-      type: object
+      - legal_representatives
+      title: Company Certificate Checks
+      type:
+      - object
+      - 'null'
     CompanyCertificateExtraction:
       additionalProperties: false
       description: Extracted data from the document.
@@ -2763,782 +2850,6 @@ components:
       - verification_number
       title: Company Certificate Extraction
       type: object
-    InitiateVehicleRegistrationDocument_checks:
-      additionalProperties: false
-      description: Checks to perform on the document.
-      example:
-        vehicle_owner:
-          type: natural_person
-          first_name: John
-          last_name: Doe
-      properties:
-        vehicle_owner:
-          $ref: '#/components/schemas/InitiateVehicleRegistrationDocument_checks_vehicle_owner'
-      required:
-      - vehicle_owner
-      type:
-      - object
-      - 'null'
-    VehicleRegistrationDocumentFull:
-      oneOf:
-      - $ref: '#/components/schemas/French_Vehicle_Registration_Document'
-      - $ref: '#/components/schemas/Italian_Vehicle_Registration_Document'
-      title: Vehicle Registration Document
-    RNECertificateCheck:
-      additionalProperties: false
-      description: Checks performed on the document.
-      example:
-        legal_representatives:
-        - full_name:
-            extracted: John Doe
-            expected: John Doe
-            match_level: exact
-      properties:
-        legal_representatives:
-          items:
-            $ref: '#/components/schemas/CompanyCertificateCheck_legal_representatives_inner'
-          type:
-          - array
-          - 'null'
-      required:
-      - legal_representatives
-      title: RNE Certificate Checks
-      type:
-      - object
-      - 'null'
-    InitiateCompanyCertificate:
-      additionalProperties: false
-      properties:
-        file:
-          description: 'The file containing the data to extract.
-
-            Accepted formats: PDF, PNG, JPG, JPEG.
-
-            Max size: 25 MB.
-
-            Max number of pages per PDF: 10.
-
-            '
-          example: Binary file
-          format: binary
-          type: string
-        type:
-          description: Type of document you want to analyze. Will be used to match the detected document type.
-          enum:
-          - company_certificate
-          example: company_certificate
-          type: string
-        workspace_id:
-          description: 'Scopes the Document Analysis to a specific workspace.
-
-            Defaults to the default workspace if not specified.
-
-            '
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
-        analysis_type:
-          $ref: '#/components/schemas/AnalysisTypeMultipart'
-        checks:
-          $ref: '#/components/schemas/InitiateCompanyCertificate_checks'
-      required:
-      - file
-      - type
-      title: Initiate Company Certificate
-      type: object
-    TaxNoticeCheck_income_year:
-      additionalProperties: false
-      example:
-        extracted: 2024
-        expected: 2024
-        match_level: exact
-      properties:
-        extracted:
-          description: The extracted value from the document.
-          type:
-          - integer
-          - 'null'
-        expected:
-          description: The expected value for the check.
-          type: integer
-        match_level:
-          $ref: '#/components/schemas/DocumentAnalysisMatchLevel'
-      required:
-      - expected
-      - extracted
-      - match_level
-      type: object
-    WorkflowSessionApplicantId:
-      description: 'Unique identifier of an Applicant.
-
-        '
-      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
-      format: uuid
-      title: Applicant
-      type:
-      - string
-      - 'null'
-    TaxNoticeExtraction_2d_doc:
-      additionalProperties: false
-      description: The 2D document extracted from the document.
-      properties:
-        full_name_1:
-          description: The holder full name of the first declarant extracted from the 2D document.
-          example: Doe John
-          type:
-          - string
-          - 'null'
-        fiscal_number_1:
-          description: The fiscal number of the first declarant extracted from the 2D document.
-          example: 0312345678901
-          type:
-          - string
-          - 'null'
-        full_name_2:
-          description: The holder full name of the second declarant extracted from the 2D document.
-          example: Doe Jane
-          type:
-          - string
-          - 'null'
-        fiscal_number_2:
-          description: The fiscal number of the second declarant extracted from the 2D document.
-          example: 0398765432109
-          type:
-          - string
-          - 'null'
-        tax_notice_reference:
-          description: The tax notice reference number extracted from the 2D document.
-          example: 2412B01234567
-          type:
-          - string
-          - 'null'
-        income_year:
-          description: Year of incomes (usually the year before document issuance) extracted from the 2D document.
-          example: 2024
-          type:
-          - integer
-          - 'null'
-        reference_income:
-          description: The fiscal reference income extracted from the 2D document.
-          example: 30000
-          type:
-          - integer
-          - 'null'
-        parts_count:
-          description: Number of parts in the household extracted from the 2D document.
-          example: 1
-          type:
-          - integer
-          - 'null'
-      required:
-      - fiscal_number_1
-      - fiscal_number_2
-      - full_name_1
-      - full_name_2
-      - income_year
-      - parts_count
-      - reference_income
-      - tax_notice_reference
-      type: object
-    InitiateTemporaryVehicleRegistrationDocument_checks:
-      additionalProperties: false
-      description: Checks to perform on the document.
-      example:
-        vehicle_owner:
-          type: natural_person
-          first_name: John
-          last_name: Doe
-      properties:
-        vehicle_owner:
-          $ref: '#/components/schemas/InitiateTemporaryVehicleRegistrationDocument_checks_vehicle_owner'
-      required:
-      - vehicle_owner
-      type:
-      - object
-      - 'null'
-    Pagination:
-      description: Metadata about the response.
-      properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          type:
-          - string
-          - 'null'
-      required:
-      - next_cursor
-      type: object
-    InvoiceFull_allOf_checks:
-      description: Checks performed on the document. Always null for invoices.
-      type:
-      - object
-      - 'null'
-    post_document_analyses_201_response:
-      oneOf:
-      - $ref: '#/components/schemas/SocialSecurityFull'
-      - $ref: '#/components/schemas/CompanyCertificateFull'
-      - $ref: '#/components/schemas/BusinessRegistrationCertificateFull'
-      - $ref: '#/components/schemas/DriverLicenceFull'
-      - $ref: '#/components/schemas/RNECertificateFull'
-      - $ref: '#/components/schemas/TemporaryVehicleRegistrationDocumentFull'
-      - $ref: '#/components/schemas/VehicleRegistrationDocumentFull'
-      - $ref: '#/components/schemas/AutoInsuranceClaimsHistoryFull'
-      - $ref: '#/components/schemas/TaxNoticeFull'
-      - $ref: '#/components/schemas/PayslipFull'
-      - $ref: '#/components/schemas/InvoiceFull'
-      - $ref: '#/components/schemas/FraudOnlyFull'
-    BusinessRegistrationCertificateExtraction_branch_description:
-      properties:
-        address:
-          description: Address extracted from the document.
-          type:
-          - string
-          - 'null'
-        city:
-          description: City extracted from the document.
-          type:
-          - string
-          - 'null'
-        postal_code:
-          description: Postal code extracted from the document.
-          type:
-          - string
-          - 'null'
-        active:
-          description: Indicates whether the branch is active or not.
-          type:
-          - boolean
-          - 'null'
-        branch_company_number:
-          description: Branch company number extracted from the document.
-          type:
-          - string
-          - 'null'
-      required:
-      - active
-      - address
-      - branch_company_number
-      - city
-      - postal_code
-      type: object
-    InitiateVehicleRegistrationDocument:
-      additionalProperties: false
-      properties:
-        file:
-          description: 'The file containing the data to extract.
-
-            Accepted formats: PDF, PNG, JPG, JPEG.
-
-            Max size: 25 MB.
-
-            Max number of pages per PDF: 10.
-
-            '
-          example: Binary file
-          format: binary
-          type: string
-        type:
-          description: Type of document you want to analyze. Will be used to match the detected document type.
-          enum:
-          - vehicle_registration_document
-          example: vehicle_registration_document
-          type: string
-        country_code:
-          description: The country code of the vehicle registration document.
-          enum:
-          - FR
-          - IT
-          example: FR
-          type: string
-        workspace_id:
-          description: 'Scopes the Document Analysis to a specific workspace.
-
-            Defaults to the default workspace if not specified.
-
-            '
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
-        analysis_type:
-          $ref: '#/components/schemas/AnalysisTypeMultipart'
-        checks:
-          $ref: '#/components/schemas/InitiateVehicleRegistrationDocument_checks'
-      required:
-      - country_code
-      - file
-      - type
-      title: Initiate Vehicle Registration Document
-      type: object
-    CompanyCertificateCheck_legal_representatives_inner:
-      properties:
-        full_name:
-          $ref: '#/components/schemas/DocumentAnalysisCheck'
-      required:
-      - full_name
-      type: object
-    TaxNoticeCheck:
-      additionalProperties: false
-      description: Checks performed on the document.
-      example:
-        full_name:
-          extracted: John Doe
-          expected: John Doe
-          match_level: exact
-        income_year:
-          extracted: 2024
-          expected: 2024
-          match_level: exact
-      properties:
-        full_name:
-          $ref: '#/components/schemas/DocumentAnalysisCheck'
-        income_year:
-          $ref: '#/components/schemas/TaxNoticeCheck_income_year'
-      title: Tax Notice Checks
-      type:
-      - object
-      - 'null'
-    ItalianVehicleRegistrationDocumentExtraction_owner_information:
-      additionalProperties: false
-      properties:
-        owner_full_name:
-          description: Full name of the vehicle owner.
-          type:
-          - string
-          - 'null'
-        owner_address:
-          description: Address of the vehicle owner.
-          type:
-          - string
-          - 'null'
-        owner_type:
-          description: Type of the vehicle owner.
-          enum:
-          - natural_person
-          - legal_person
-          type:
-          - string
-          - 'null'
-        owner_birth_date:
-          description: Birth date of the vehicle owner.
-          format: date
-          type:
-          - string
-          - 'null'
-      required:
-      - owner_address
-      - owner_birth_date
-      - owner_full_name
-      - owner_type
-      type: object
-    French_Vehicle_Registration_Document:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            enum:
-            - vehicle_registration_document
-            type: string
-          country_code:
-            enum:
-            - FR
-            type: string
-          extracted_from_document:
-            $ref: '#/components/schemas/FrenchVehicleRegistrationDocumentExtraction'
-          checks:
-            $ref: '#/components/schemas/VehicleRegistrationDocumentCheck'
-        type: object
-      required:
-      - checks
-      - country_code
-      - created_at
-      - data_anonymized
-      - extracted_from_document
-      - id
-      - previous_attempt_id
-      - status
-      - type
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: French Vehicle Registration Document
-      type: object
-    FrenchVehicleRegistrationDocumentExtraction:
-      additionalProperties: false
-      description: Extracted data from a French vehicle registration document.
-      properties:
-        licence_plate_number:
-          description: Licence plate number of the vehicle.
-          type:
-          - string
-          - 'null'
-        first_registration_date:
-          description: Date of first registration of the vehicle.
-          format: date
-          type:
-          - string
-          - 'null'
-        owner_information:
-          $ref: '#/components/schemas/FrenchVehicleRegistrationDocumentExtraction_owner_information'
-        co_owner_information:
-          description: List of co-owners of the vehicle.
-          items:
-            $ref: '#/components/schemas/FrenchVehicleRegistrationDocumentExtraction_co_owner_information_inner'
-          type: array
-        vehicle_information:
-          $ref: '#/components/schemas/FrenchVehicleRegistrationDocumentExtraction_vehicle_information'
-        vehicle_identification_number:
-          description: Vehicle Identification Number (VIN).
-          type:
-          - string
-          - 'null'
-        vehicle_max_weight:
-          description: Maximum weight of the vehicle.
-          type:
-          - number
-          - 'null'
-        vehicle_motor_information:
-          $ref: '#/components/schemas/FrenchVehicleRegistrationDocumentExtraction_vehicle_motor_information'
-        document_number:
-          description: Document number.
-          type:
-          - string
-          - 'null'
-        issuance_date:
-          description: Issuance date of the document.
-          format: date
-          type:
-          - string
-          - 'null'
-        vehicle_next_inspection_date:
-          description: Date of the next vehicle inspection.
-          format: date
-          type:
-          - string
-          - 'null'
-        mrz_line_1:
-          description: First line of the Machine Readable Zone (MRZ).
-          type:
-          - string
-          - 'null'
-        mrz_line_2:
-          description: Second line of the Machine Readable Zone (MRZ).
-          type:
-          - string
-          - 'null'
-        document_type:
-          description: Classification label extracted from the document.
-          type:
-          - string
-          - 'null'
-      required:
-      - co_owner_information
-      - document_number
-      - document_type
-      - first_registration_date
-      - issuance_date
-      - licence_plate_number
-      - mrz_line_1
-      - mrz_line_2
-      - owner_information
-      - vehicle_identification_number
-      - vehicle_information
-      - vehicle_max_weight
-      - vehicle_motor_information
-      - vehicle_next_inspection_date
-      title: French Vehicle Registration Document Extraction
-      type: object
-    DocumentAnalysisStatus:
-      description: Status of the Document Analysis.
-      enum:
-      - pending
-      - awaiting_data
-      - done
-      - inconclusive
-      - failed
-      example: done
-      type: string
-    InitiateSocialSecurity_checks:
-      additionalProperties: false
-      description: Checks to perform on the document.
-      example:
-        first_name: John
-        last_name: Doe
-      properties:
-        first_name:
-          description: Expected first name extracted from the document.
-          type: string
-        last_name:
-          description: Expected last name extracted from the document.
-          type: string
-      required:
-      - first_name
-      - last_name
-      type:
-      - object
-      - 'null'
-    BusinessRegistrationCertificateFull:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            enum:
-            - business_registration_certificate
-            type: string
-          extracted_from_document:
-            $ref: '#/components/schemas/BusinessRegistrationCertificateExtraction'
-          checks:
-            $ref: '#/components/schemas/BusinessRegistrationCertificateCheck'
-        type: object
-      required:
-      - checks
-      - country_code
-      - created_at
-      - data_anonymized
-      - extracted_from_document
-      - id
-      - previous_attempt_id
-      - status
-      - type
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: Business Registration Certificate
-      type: object
-    InitiateDocumentAnalysisFromApplicant:
-      additionalProperties: false
-      properties:
-        applicant_id:
-          description: The Applicant ID linked to the Workflow Session.
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type: string
-        type:
-          allOf:
-          - $ref: '#/components/schemas/DocumentAnalysisType'
-        analysis_type:
-          $ref: '#/components/schemas/AnalysisType'
-        country_code:
-          description: 'The country code of the document.
-
-            Required when `type` is `vehicle_registration_document` (accepted: `FR`, `IT`), `tax_notice` (accepted: `FR` only), `payslip` (accepted: `FR`, `IT`) or `invoice` (accepted: `FR` only).
-
-            '
-          enum:
-          - FR
-          - IT
-          example: FR
-          type: string
-        checks:
-          $ref: '#/components/schemas/InitiateDocumentAnalysisFromApplicant_checks'
-      required:
-      - applicant_id
-      title: Attach a new Document Analysis to an Applicant
-      type: object
-    TemporaryVehicleRegistrationDocumentFull:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            enum:
-            - temporary_vehicle_registration_document
-            type: string
-          country_code:
-            enum:
-            - IT
-            type: string
-          extracted_from_document:
-            $ref: '#/components/schemas/TemporaryVehicleRegistrationDocumentExtraction'
-          checks:
-            $ref: '#/components/schemas/TemporaryVehicleRegistrationDocumentCheck'
-        type: object
-      required:
-      - checks
-      - country_code
-      - created_at
-      - data_anonymized
-      - extracted_from_document
-      - id
-      - previous_attempt_id
-      - status
-      - type
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: Temporary Vehicle Registration Document
-      type: object
-    Italian_Vehicle_Registration_Document:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            enum:
-            - vehicle_registration_document
-            type: string
-          country_code:
-            enum:
-            - IT
-            type: string
-          extracted_from_document:
-            $ref: '#/components/schemas/ItalianVehicleRegistrationDocumentExtraction'
-          checks:
-            $ref: '#/components/schemas/VehicleRegistrationDocumentCheck'
-        type: object
-      required:
-      - checks
-      - country_code
-      - created_at
-      - data_anonymized
-      - extracted_from_document
-      - id
-      - previous_attempt_id
-      - status
-      - type
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: Italian Vehicle Registration Document
-      type: object
-    AutoInsuranceClaimsHistoryExtraction_drivers_information_inner:
-      additionalProperties: false
-      properties:
-        driver_full_name:
-          description: Full name of the driver.
-          type:
-          - string
-          - 'null'
-        driver_birth_date:
-          description: Birth date of the driver.
-          format: date
-          type:
-          - string
-          - 'null'
-        coverage_start_date:
-          description: Start date of the driver's coverage.
-          format: date
-          type:
-          - string
-          - 'null'
-        coverage_end_date:
-          description: End date of the driver's coverage, if applicable.
-          format: date
-          type:
-          - string
-          - 'null'
-        driver_license_number:
-          description: License number of the driver.
-          type:
-          - string
-          - 'null'
-        driver_license_category:
-          description: License category of the driver.
-          type:
-          - string
-          - 'null'
-        driver_license_issuance_date:
-          description: Issuance date of the driver's license.
-          format: date
-          type:
-          - string
-          - 'null'
-      required:
-      - coverage_end_date
-      - coverage_start_date
-      - driver_birth_date
-      - driver_full_name
-      - driver_license_category
-      - driver_license_issuance_date
-      - driver_license_number
-      type: object
-    DriverLicenceExtraction:
-      additionalProperties: false
-      example:
-        first_name: John
-        last_name: Doe
-        full_name: John Doe
-        born_on: '1990-01-15'
-        expired_on: '2030-12-31'
-        license_type:
-        - B
-        - A1
-        document_type: permis de conduire français
-      properties:
-        first_name:
-          description: First name of the individual.
-          type:
-          - string
-          - 'null'
-        last_name:
-          description: Last name of the individual.
-          type:
-          - string
-          - 'null'
-        full_name:
-          description: Full name of the individual.
-          type:
-          - string
-          - 'null'
-        born_on:
-          description: Date of birth of the individual.
-          format: date
-          type:
-          - string
-          - 'null'
-        expired_on:
-          description: Expiration date of the driver licence.
-          format: date
-          type:
-          - string
-          - 'null'
-        license_type:
-          description: List of license types.
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        document_type:
-          description: Classification label extracted from the document.
-          type:
-          - string
-          - 'null'
-      required:
-      - born_on
-      - document_type
-      - expired_on
-      - first_name
-      - full_name
-      - last_name
-      - license_type
-      title: Driver Licence Extraction
-      type: object
-    InitiatePayslip_checks_full_name_check:
-      additionalProperties: false
-      description: Expected full name to check against the document.
-      properties:
-        first_name:
-          description: Expected first name to check against the document.
-          type: string
-        last_name:
-          description: Expected last name to check against the document.
-          type: string
-      required:
-      - first_name
-      - last_name
-      type: object
     InitiateRNECertificate:
       additionalProperties: false
       properties:
@@ -3585,137 +2896,119 @@ components:
       - type
       title: Initiate RNE Certificate
       type: object
-    DocumentAnalysisMatchLevel:
-      description: Level of match between extracted and expected value.
-      enum:
-      - exact
-      - close
-      - no_match
-      example: exact
-      title: MatchLevel
-      type: string
-    FrenchVehicleRegistrationDocumentExtraction_vehicle_motor_information:
-      additionalProperties: false
-      properties:
-        vehicle_fuel_type:
-          description: Type of fuel used by the vehicle.
-          type:
-          - string
-          - 'null'
-        vehicle_fiscal_power:
-          description: Fiscal power of the vehicle.
-          type:
-          - number
-          - 'null'
-        vehicle_max_power:
-          description: Maximum power of the vehicle engine.
-          type:
-          - number
-          - 'null'
-        vehicle_power:
-          description: Power of the vehicle engine.
-          type:
-          - number
-          - 'null'
-      required:
-      - vehicle_fiscal_power
-      - vehicle_fuel_type
-      - vehicle_max_power
-      - vehicle_power
-      type: object
-    TaxNoticeFull:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            enum:
-            - tax_notice
-            type: string
-          extracted_from_document:
-            $ref: '#/components/schemas/TaxNoticeExtraction'
-          checks:
-            $ref: '#/components/schemas/TaxNoticeCheck'
-        type: object
-      required:
-      - checks
-      - country_code
-      - created_at
-      - data_anonymized
-      - extracted_from_document
-      - id
-      - previous_attempt_id
-      - status
-      - type
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: Tax Notice
-      type: object
-    RNECertificateExtraction:
+    SocialSecurityExtraction:
       additionalProperties: false
       description: Extracted data from the document.
       example:
-        company_name: ACME Corp
-        company_number: '123456789'
-        registered_address: 1 rue de la paix, 75000 Paris
-        issuance_date: '2024-01-15'
-        legal_representatives:
-        - type: natural_person
-          first_name: John
-          last_name: Doe
-          full_name: John Doe
-          function: President
-          company_name: null
-          company_number: null
-        - type: legal_person
-          first_name: null
-          last_name: null
-          full_name: null
-          company_name: ACME Studio
-          company_number: 0987654321
-          function: Statutory Auditor
-        document_type: Attestation RNE
+        social_security_number: '1234567890123'
+        first_name: John
+        last_name: Doe
+        full_name: John Doe
+        document_type: carte vitale
       properties:
-        company_name:
-          description: Company name extracted from the document.
+        social_security_number:
+          description: Social Security number extracted from the document.
           type:
           - string
           - 'null'
-        company_number:
-          description: Company number extracted from the document.
+        first_name:
+          description: First name of the individual.
           type:
           - string
           - 'null'
-        registered_address:
-          description: Registered address extracted from the document.
+        last_name:
+          description: Last name of the individual.
           type:
           - string
           - 'null'
-        issuance_date:
-          description: Issuance date extracted from the document.
-          format: date
+        full_name:
+          description: Full name of the individual.
           type:
           - string
           - 'null'
-        legal_representatives:
-          description: List of legal representatives extracted from the document.
-          items:
-            $ref: '#/components/schemas/CompanyCertificateExtraction_legal_representatives_inner'
-          type: array
         document_type:
           description: Classification label extracted from the document.
           type:
           - string
           - 'null'
       required:
-      - company_name
-      - company_number
       - document_type
-      - issuance_date
-      - legal_representatives
-      - registered_address
-      title: RNE Certificate Extraction
+      - first_name
+      - full_name
+      - last_name
+      - social_security_number
+      title: Social Security Extraction
       type: object
+    InitiatePayslip:
+      additionalProperties: false
+      properties:
+        file:
+          description: 'The file containing the data to extract.
+
+            Accepted formats: PDF, PNG, JPG, JPEG.
+
+            Max size: 25 MB.
+
+            Max number of pages per PDF: 10.
+
+            '
+          example: Binary file
+          format: binary
+          type: string
+        type:
+          description: Type of document you want to analyze. Will be used to match the detected document type.
+          enum:
+          - payslip
+          example: payslip
+          type: string
+        country_code:
+          description: The country code of the payslip.
+          enum:
+          - FR
+          - IT
+          example: FR
+          type: string
+        workspace_id:
+          description: 'Scopes the Document Analysis to a specific workspace.
+
+            Defaults to the default workspace if not specified.
+
+            '
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        analysis_type:
+          $ref: '#/components/schemas/AnalysisTypeMultipart'
+        checks:
+          $ref: '#/components/schemas/InitiatePayslip_checks'
+      required:
+      - country_code
+      - file
+      - type
+      title: Initiate Payslip
+      type: object
+    InitiateAutoInsuranceClaimsHistory_checks:
+      additionalProperties: false
+      description: Checks to perform on the document.
+      example:
+        policy_holder:
+          type: natural_person
+          first_name: John
+          last_name: Doe
+      properties:
+        policy_holder:
+          $ref: '#/components/schemas/InitiateAutoInsuranceClaimsHistory_checks_policy_holder'
+      required:
+      - policy_holder
+      type:
+      - object
+      - 'null'
     InitiateSocialSecurity:
       additionalProperties: false
       properties:
@@ -3761,523 +3054,6 @@ components:
       - file
       - type
       title: Initiate Social Security
-      type: object
-    PayslipCheck:
-      additionalProperties: false
-      description: Checks performed on the document.
-      example:
-        full_name:
-          extracted: MARIE DUPONT
-          expected: Marie Dupont
-          match_level: exact
-      properties:
-        full_name:
-          $ref: '#/components/schemas/DocumentAnalysisCheck'
-      title: Payslip Checks
-      type:
-      - object
-      - 'null'
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
-    InitiateTemporaryVehicleRegistrationDocument_checks_vehicle_owner:
-      description: Expected vehicle owner information.
-      properties:
-        type:
-          description: Type of the vehicle owner.
-          enum:
-          - natural_person
-          - legal_person
-          type: string
-        first_name:
-          description: Expected first name of the vehicle owner.
-          type: string
-        last_name:
-          description: Expected last name of the vehicle owner.
-          type: string
-        company_name:
-          description: Expected company name of the vehicle owner. Required when type is `legal_person`.
-          type: string
-      required:
-      - type
-      type: object
-    FrenchVehicleRegistrationDocumentExtraction_owner_information:
-      additionalProperties: false
-      properties:
-        owner_full_name:
-          description: Full name of the vehicle owner.
-          type:
-          - string
-          - 'null'
-        owner_address:
-          description: Address of the vehicle owner.
-          type:
-          - string
-          - 'null'
-        owner_type:
-          description: Type of the vehicle owner.
-          enum:
-          - natural_person
-          - legal_person
-          type:
-          - string
-          - 'null'
-      required:
-      - owner_address
-      - owner_full_name
-      - owner_type
-      type: object
-    InitiateTemporaryVehicleRegistrationDocument:
-      additionalProperties: false
-      properties:
-        file:
-          description: 'The file containing the data to extract.
-
-            Accepted formats: PDF, PNG, JPG, JPEG.
-
-            Max size: 25 MB.
-
-            Max number of pages per PDF: 10.
-
-            '
-          example: Binary file
-          format: binary
-          type: string
-        type:
-          description: Type of document you want to analyze. Will be used to match the detected document type.
-          enum:
-          - temporary_vehicle_registration_document
-          example: temporary_vehicle_registration_document
-          type: string
-        country_code:
-          description: 'The country code of the document.
-
-            Currently only Italian temporary vehicle registration documents are supported.
-
-            '
-          enum:
-          - IT
-          example: IT
-          type: string
-        workspace_id:
-          description: 'Scopes the Document Analysis to a specific workspace.
-
-            Defaults to the default workspace if not specified.
-
-            '
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
-        analysis_type:
-          $ref: '#/components/schemas/AnalysisTypeMultipart'
-        checks:
-          $ref: '#/components/schemas/InitiateTemporaryVehicleRegistrationDocument_checks'
-      required:
-      - country_code
-      - file
-      - type
-      title: Initiate Temporary Vehicle Registration Document
-      type: object
-    CompanyCertificateCheck:
-      additionalProperties: false
-      description: Checks performed on the document.
-      example:
-        legal_representatives:
-        - full_name:
-            extracted: John Doe
-            expected: John Doe
-            match_level: exact
-      properties:
-        legal_representatives:
-          items:
-            $ref: '#/components/schemas/CompanyCertificateCheck_legal_representatives_inner'
-          type:
-          - array
-          - 'null'
-      required:
-      - legal_representatives
-      title: Company Certificate Checks
-      type:
-      - object
-      - 'null'
-    FraudRiskAnalysis:
-      additionalProperties: false
-      description: 'Result of the fraud detection analysis. `null` when no fraud detection verdict is available
-
-        (e.g. fraud detection was not requested, or is still in progress).
-
-        '
-      properties:
-        risk_level:
-          description: Overall fraud risk level of the document. `null` when not yet determined.
-          enum:
-          - high
-          - medium
-          - low
-          - trusted
-          example: low
-          type:
-          - string
-          - 'null'
-        indicators:
-          description: List of fraud indicators detected on the document.
-          items:
-            $ref: '#/components/schemas/FraudRiskAnalysis_indicators_inner'
-          type: array
-      required:
-      - indicators
-      - risk_level
-      title: FraudRiskAnalysis
-      type:
-      - object
-      - 'null'
-    InitiateFraudOnly_analysis_type:
-      additionalProperties: false
-      properties:
-        extraction:
-          description: Must be `"false"` for a fraud-only analysis.
-          enum:
-          - 'false'
-          example: 'false'
-          type: string
-        fraud_level:
-          description: Must be `advanced` for a fraud-only analysis.
-          enum:
-          - advanced
-          example: advanced
-          type: string
-      required:
-      - extraction
-      - fraud_level
-      type: object
-    TemporaryVehicleRegistrationDocumentCheck:
-      additionalProperties: false
-      description: Checks performed on the document.
-      example:
-        vehicle_owner:
-          owner_name:
-            extracted: DOE JOHN
-            expected: Doe John
-            match_level: exact
-      properties:
-        vehicle_owner:
-          $ref: '#/components/schemas/TemporaryVehicleRegistrationDocumentCheck_vehicle_owner'
-      required:
-      - vehicle_owner
-      title: Temporary Vehicle Registration Document Checks
-      type:
-      - object
-      - 'null'
-    TemporaryVehicleRegistrationDocumentCheck_vehicle_owner:
-      additionalProperties: false
-      description: Check result for the vehicle owner.
-      properties:
-        owner_name:
-          $ref: '#/components/schemas/DocumentAnalysisCheck'
-      required:
-      - owner_name
-      type: object
-    DriverLicenceFull:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            enum:
-            - driver_licence
-            type: string
-          extracted_from_document:
-            $ref: '#/components/schemas/DriverLicenceExtraction'
-          checks:
-            $ref: '#/components/schemas/DriverLicenceCheck'
-        type: object
-      required:
-      - checks
-      - country_code
-      - created_at
-      - data_anonymized
-      - extracted_from_document
-      - id
-      - previous_attempt_id
-      - status
-      - type
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: Driver Licence
-      type: object
-    AutoInsuranceClaimsHistoryFull:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            enum:
-            - auto_insurance_claims_history
-            type: string
-          extracted_from_document:
-            $ref: '#/components/schemas/AutoInsuranceClaimsHistoryExtraction'
-          checks:
-            $ref: '#/components/schemas/AutoInsuranceClaimsHistoryCheck'
-        type: object
-      required:
-      - checks
-      - country_code
-      - created_at
-      - data_anonymized
-      - extracted_from_document
-      - id
-      - previous_attempt_id
-      - status
-      - type
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: Auto Insurance Claims History
-      type: object
-    PayslipFull:
-      allOf:
-      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
-      - properties:
-          type:
-            enum:
-            - payslip
-            type: string
-          extracted_from_document:
-            $ref: '#/components/schemas/PayslipExtraction'
-          checks:
-            $ref: '#/components/schemas/PayslipCheck'
-        type: object
-      required:
-      - checks
-      - country_code
-      - created_at
-      - data_anonymized
-      - extracted_from_document
-      - id
-      - previous_attempt_id
-      - status
-      - type
-      - updated_at
-      - workflow_session_id
-      - workspace_id
-      title: Payslip
-      type: object
-    AnalysisType:
-      additionalProperties: false
-      description: 'Controls what the Document Analysis performs.
-
-
-        - When `extraction` is `true` (default), data is extracted from the document and a document `type` is **required**.
-
-        - When `extraction` is `false` (fraud-only), no `type` must be provided and `fraud_level` must be `advanced`.
-
-        '
-      properties:
-        extraction:
-          default: true
-          description: 'Whether to extract data from the document. Defaults to `true` when omitted.
-
-            Set to `false` to run a fraud-only analysis (no data extraction).
-
-            '
-          example: true
-          type: boolean
-        fraud_level:
-          description: 'Level of fraud detection to run. `null` (default) disables fraud detection.
-
-            Not supported for type `tax_notice`. Must be `advanced` when `extraction` is `false`.
-
-            '
-          enum:
-          - none
-          - advanced
-          example: advanced
-          type:
-          - string
-          - 'null'
-      title: AnalysisType
-      type: object
-    InitiateAutoInsuranceClaimsHistory_checks_policy_holder:
-      description: Expected policy holder information.
-      properties:
-        type:
-          description: Type of the policy holder.
-          enum:
-          - natural_person
-          - legal_person
-          type: string
-        first_name:
-          description: Expected first name of the policy holder.
-          type: string
-        last_name:
-          description: Expected last name of the policy holder.
-          type: string
-        company_name:
-          description: Expected company name of the policy holder.
-          type: string
-      required:
-      - type
-      type: object
-    InitiateDriverLicence:
-      additionalProperties: false
-      properties:
-        file:
-          description: 'The file containing the data to extract.
-
-            Accepted formats: PDF, PNG, JPG, JPEG.
-
-            Max size: 25 MB.
-
-            Max number of pages per PDF: 10.
-
-            '
-          example: Binary file
-          format: binary
-          type: string
-        type:
-          description: Type of document you want to analyze. Will be used to match the detected document type.
-          enum:
-          - driver_licence
-          example: driver_licence
-          type: string
-        workspace_id:
-          description: 'Scopes the Document Analysis to a specific workspace.
-
-            Defaults to the default workspace if not specified.
-
-            '
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
-        analysis_type:
-          $ref: '#/components/schemas/AnalysisTypeMultipart'
-        checks:
-          $ref: '#/components/schemas/InitiateSocialSecurity_checks'
-      required:
-      - file
-      - type
-      title: Initiate Driver Licence
-      type: object
-    DriverLicenceCheck:
-      additionalProperties: false
-      description: Checks performed on the document.
-      example:
-        full_name:
-          extracted: John Doe
-          expected: John Doe
-          match_level: exact
-      properties:
-        full_name:
-          $ref: '#/components/schemas/DocumentAnalysisCheck'
-      required:
-      - full_name
-      title: Driver Licence Checks
-      type:
-      - object
-      - 'null'
-    VehicleRegistrationDocumentCheck:
-      additionalProperties: false
-      description: Checks performed on the document.
-      example:
-        vehicle_owner:
-          owner_name:
-            extracted: John Doe
-            expected: John Doe
-            match_level: exact
-      properties:
-        vehicle_owner:
-          $ref: '#/components/schemas/TemporaryVehicleRegistrationDocumentCheck_vehicle_owner'
-      required:
-      - vehicle_owner
-      title: Vehicle Registration Document Checks
-      type:
-      - object
-      - 'null'
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    InitiateFraudOnly:
-      additionalProperties: false
-      description: 'Fraud-only Document Analysis (no data extraction).
-
-        Send `analysis_type[extraction]=false` and `analysis_type[fraud_level]=advanced`, with no `type`.
-
-        '
-      properties:
-        file:
-          description: 'The file to run fraud detection on.
-
-            Accepted formats: PDF, PNG, JPG, JPEG.
-
-            Max size: 10 MB.
-
-            Max number of pages for PDF: 2.
-
-            '
-          example: Binary file
-          format: binary
-          type: string
-        analysis_type:
-          $ref: '#/components/schemas/InitiateFraudOnly_analysis_type'
-        workspace_id:
-          description: 'Scopes the Document Analysis to a specific workspace.
-
-            Defaults to the default workspace if not specified.
-
-            '
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
-      required:
-      - analysis_type
-      - file
-      title: Initiate Fraud Only
-      type: object
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
       type: object
     FrenchInvoiceExtraction:
       additionalProperties: false
@@ -4386,6 +3162,23 @@ components:
       - vat_identification_number
       title: French Invoice Extraction
       type: object
+    DriverLicenceCheck:
+      additionalProperties: false
+      description: Checks performed on the document.
+      example:
+        full_name:
+          extracted: John Doe
+          expected: John Doe
+          match_level: exact
+      properties:
+        full_name:
+          $ref: '#/components/schemas/DocumentAnalysisCheck'
+      required:
+      - full_name
+      title: Driver Licence Checks
+      type:
+      - object
+      - 'null'
     AutoInsuranceClaimsHistoryCheck:
       additionalProperties: false
       description: Checks performed on the document.
@@ -4404,36 +3197,919 @@ components:
       type:
       - object
       - 'null'
-    BadRequestResponse:
+    WorkflowSessionApplicantId:
+      description: 'Unique identifier of an Applicant.
+
+        '
+      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+      format: uuid
+      title: Applicant
+      type:
+      - string
+      - 'null'
+    BusinessRegistrationCertificateCheck:
+      additionalProperties: false
+      description: Checks performed on the document.
+      example:
+        full_name:
+          extracted: John Doe
+          expected: John Doe
+          match_level: exact
       properties:
-        type:
-          type: string
-        detail:
-          type: string
+        full_name:
+          $ref: '#/components/schemas/DocumentAnalysisCheck'
       required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    UnsupportedMediaTypeResponse:
+      - full_name
+      title: Business Registration Certificate Checks
+      type:
+      - object
+      - 'null'
+    BusinessRegistrationCertificateExtraction_branch_description:
       properties:
-        type:
-          type: string
-        detail:
-          type: string
+        address:
+          description: Address extracted from the document.
+          type:
+          - string
+          - 'null'
+        city:
+          description: City extracted from the document.
+          type:
+          - string
+          - 'null'
+        postal_code:
+          description: Postal code extracted from the document.
+          type:
+          - string
+          - 'null'
+        active:
+          description: Indicates whether the branch is active or not.
+          type:
+          - boolean
+          - 'null'
+        branch_company_number:
+          description: Branch company number extracted from the document.
+          type:
+          - string
+          - 'null'
       required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
+      - active
+      - address
+      - branch_company_number
+      - city
+      - postal_code
       type: object
-    get_document_analyses_200_response:
+    French_Vehicle_Registration_Document:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            enum:
+            - vehicle_registration_document
+            type: string
+          country_code:
+            enum:
+            - FR
+            type: string
+          extracted_from_document:
+            $ref: '#/components/schemas/FrenchVehicleRegistrationDocumentExtraction'
+          checks:
+            $ref: '#/components/schemas/VehicleRegistrationDocumentCheck'
+        type: object
+      required:
+      - checks
+      - country_code
+      - created_at
+      - data_anonymized
+      - extracted_from_document
+      - id
+      - previous_attempt_id
+      - status
+      - type
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: French Vehicle Registration Document
+      type: object
+    TemporaryVehicleRegistrationDocumentCheck_vehicle_owner:
+      additionalProperties: false
+      description: Check result for the vehicle owner.
       properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
+        owner_name:
+          $ref: '#/components/schemas/DocumentAnalysisCheck'
+      required:
+      - owner_name
+      type: object
+    ItalianVehicleRegistrationDocumentExtraction_deed_informations_inner:
+      additionalProperties: false
+      properties:
+        deed_date:
+          description: Date of the deed.
+          type:
+          - string
+          - 'null'
+        deed_type:
+          description: Type of the deed.
+          type:
+          - string
+          - 'null'
+        liens_encumbrances:
+          description: Liens or encumbrances on the vehicle.
+          type:
+          - string
+          - 'null'
+        previous_owner_full_name:
+          description: Full name of the previous owner.
+          type:
+          - string
+          - 'null'
+      required:
+      - deed_date
+      - deed_type
+      - liens_encumbrances
+      - previous_owner_full_name
+      type: object
+    InitiateAutoInsuranceClaimsHistory:
+      additionalProperties: false
+      properties:
+        file:
+          description: 'The file containing the data to extract.
+
+            Accepted formats: PDF, PNG, JPG, JPEG.
+
+            Max size: 25 MB.
+
+            Max number of pages per PDF: 10.
+
+            '
+          example: Binary file
+          format: binary
+          type: string
+        type:
+          description: Type of document you want to analyze. Will be used to match the detected document type.
+          enum:
+          - auto_insurance_claims_history
+          example: auto_insurance_claims_history
+          type: string
+        workspace_id:
+          description: 'Scopes the Document Analysis to a specific workspace.
+
+            Defaults to the default workspace if not specified.
+
+            '
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        analysis_type:
+          $ref: '#/components/schemas/AnalysisTypeMultipart'
+        checks:
+          $ref: '#/components/schemas/InitiateAutoInsuranceClaimsHistory_checks'
+      required:
+      - file
+      - type
+      title: Initiate Auto Insurance Claims History
+      type: object
+    BusinessRegistrationCertificateExtraction_company_description:
+      properties:
+        active:
+          description: Indicates whether the company is active or not.
+          type:
+          - boolean
+          - 'null'
+        legal_form:
+          description: Legal form extracted from the document.
+          type:
+          - string
+          - 'null'
+        company_name:
+          description: Company name extracted from the document.
+          type:
+          - string
+          - 'null'
+        company_number:
+          description: Company number extracted from the document.
+          type:
+          - string
+          - 'null'
+        headquarter_company_number:
+          description: Headquarter company number extracted from the document.
+          type:
+          - string
+          - 'null'
+        first_name:
+          description: First name of the individual extracted from the document. Null if not a sole proprietor.
+          type:
+          - string
+          - 'null'
+        last_name:
+          description: Last name of the individual extracted from the document. Null if not a sole proprietor.
+          type:
+          - string
+          - 'null'
+        full_name:
+          description: Full name of the individual extracted from the document. Null if not a sole proprietor.
+          type:
+          - string
+          - 'null'
+      required:
+      - active
+      - company_name
+      - company_number
+      - first_name
+      - full_name
+      - headquarter_company_number
+      - last_name
+      - legal_form
+      type: object
+    FrenchVehicleRegistrationDocumentExtraction_co_owner_information_inner:
+      additionalProperties: false
+      properties:
+        co_owner_full_name:
+          description: Full name of the co-owner.
+          type:
+          - string
+          - 'null'
+      required:
+      - co_owner_full_name
+      type: object
+    post_document_analyses_201_response:
+      oneOf:
+      - $ref: '#/components/schemas/SocialSecurityFull'
+      - $ref: '#/components/schemas/CompanyCertificateFull'
+      - $ref: '#/components/schemas/BusinessRegistrationCertificateFull'
+      - $ref: '#/components/schemas/DriverLicenceFull'
+      - $ref: '#/components/schemas/RNECertificateFull'
+      - $ref: '#/components/schemas/TemporaryVehicleRegistrationDocumentFull'
+      - $ref: '#/components/schemas/VehicleRegistrationDocumentFull'
+      - $ref: '#/components/schemas/AutoInsuranceClaimsHistoryFull'
+      - $ref: '#/components/schemas/TaxNoticeFull'
+      - $ref: '#/components/schemas/PayslipFull'
+      - $ref: '#/components/schemas/InvoiceFull'
+      - $ref: '#/components/schemas/FraudOnlyFull'
+    BusinessRegistrationCertificateFull:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            enum:
+            - business_registration_certificate
+            type: string
+          extracted_from_document:
+            $ref: '#/components/schemas/BusinessRegistrationCertificateExtraction'
+          checks:
+            $ref: '#/components/schemas/BusinessRegistrationCertificateCheck'
+        type: object
+      required:
+      - checks
+      - country_code
+      - created_at
+      - data_anonymized
+      - extracted_from_document
+      - id
+      - previous_attempt_id
+      - status
+      - type
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: Business Registration Certificate
+      type: object
+    FrenchVehicleRegistrationDocumentExtraction:
+      additionalProperties: false
+      description: Extracted data from a French vehicle registration document.
+      properties:
+        licence_plate_number:
+          description: Licence plate number of the vehicle.
+          type:
+          - string
+          - 'null'
+        first_registration_date:
+          description: Date of first registration of the vehicle.
+          format: date
+          type:
+          - string
+          - 'null'
+        owner_information:
+          $ref: '#/components/schemas/FrenchVehicleRegistrationDocumentExtraction_owner_information'
+        co_owner_information:
+          description: List of co-owners of the vehicle.
           items:
-            $ref: '#/components/schemas/DocumentAnalysisMeta'
+            $ref: '#/components/schemas/FrenchVehicleRegistrationDocumentExtraction_co_owner_information_inner'
           type: array
+        vehicle_information:
+          $ref: '#/components/schemas/FrenchVehicleRegistrationDocumentExtraction_vehicle_information'
+        vehicle_identification_number:
+          description: Vehicle Identification Number (VIN).
+          type:
+          - string
+          - 'null'
+        vehicle_max_weight:
+          description: Maximum weight of the vehicle.
+          type:
+          - number
+          - 'null'
+        vehicle_motor_information:
+          $ref: '#/components/schemas/FrenchVehicleRegistrationDocumentExtraction_vehicle_motor_information'
+        document_number:
+          description: Document number.
+          type:
+          - string
+          - 'null'
+        issuance_date:
+          description: Issuance date of the document.
+          format: date
+          type:
+          - string
+          - 'null'
+        vehicle_next_inspection_date:
+          description: Date of the next vehicle inspection.
+          format: date
+          type:
+          - string
+          - 'null'
+        mrz_line_1:
+          description: First line of the Machine Readable Zone (MRZ).
+          type:
+          - string
+          - 'null'
+        mrz_line_2:
+          description: Second line of the Machine Readable Zone (MRZ).
+          type:
+          - string
+          - 'null'
+        document_type:
+          description: Classification label extracted from the document.
+          type:
+          - string
+          - 'null'
+      required:
+      - co_owner_information
+      - document_number
+      - document_type
+      - first_registration_date
+      - issuance_date
+      - licence_plate_number
+      - mrz_line_1
+      - mrz_line_2
+      - owner_information
+      - vehicle_identification_number
+      - vehicle_information
+      - vehicle_max_weight
+      - vehicle_motor_information
+      - vehicle_next_inspection_date
+      title: French Vehicle Registration Document Extraction
+      type: object
+    RNECertificateFull:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            enum:
+            - rne_certificate
+            type: string
+          extracted_from_document:
+            $ref: '#/components/schemas/RNECertificateExtraction'
+          checks:
+            $ref: '#/components/schemas/RNECertificateCheck'
+        type: object
+      required:
+      - checks
+      - country_code
+      - created_at
+      - data_anonymized
+      - extracted_from_document
+      - id
+      - previous_attempt_id
+      - status
+      - type
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: RNE Certificate
+      type: object
+    RNECertificateExtraction:
+      additionalProperties: false
+      description: Extracted data from the document.
+      example:
+        company_name: ACME Corp
+        company_number: '123456789'
+        registered_address: 1 rue de la paix, 75000 Paris
+        issuance_date: '2024-01-15'
+        legal_representatives:
+        - type: natural_person
+          first_name: John
+          last_name: Doe
+          full_name: John Doe
+          function: President
+          company_name: null
+          company_number: null
+        - type: legal_person
+          first_name: null
+          last_name: null
+          full_name: null
+          company_name: ACME Studio
+          company_number: 0987654321
+          function: Statutory Auditor
+        document_type: Attestation RNE
+      properties:
+        company_name:
+          description: Company name extracted from the document.
+          type:
+          - string
+          - 'null'
+        company_number:
+          description: Company number extracted from the document.
+          type:
+          - string
+          - 'null'
+        registered_address:
+          description: Registered address extracted from the document.
+          type:
+          - string
+          - 'null'
+        issuance_date:
+          description: Issuance date extracted from the document.
+          format: date
+          type:
+          - string
+          - 'null'
+        legal_representatives:
+          description: List of legal representatives extracted from the document.
+          items:
+            $ref: '#/components/schemas/CompanyCertificateExtraction_legal_representatives_inner'
+          type: array
+        document_type:
+          description: Classification label extracted from the document.
+          type:
+          - string
+          - 'null'
+      required:
+      - company_name
+      - company_number
+      - document_type
+      - issuance_date
+      - legal_representatives
+      - registered_address
+      title: RNE Certificate Extraction
+      type: object
+    InitiateTemporaryVehicleRegistrationDocument_checks_vehicle_owner:
+      description: Expected vehicle owner information.
+      properties:
+        type:
+          description: Type of the vehicle owner.
+          enum:
+          - natural_person
+          - legal_person
+          type: string
+        first_name:
+          description: Expected first name of the vehicle owner.
+          type: string
+        last_name:
+          description: Expected last name of the vehicle owner.
+          type: string
+        company_name:
+          description: Expected company name of the vehicle owner. Required when type is `legal_person`.
+          type: string
+      required:
+      - type
+      type: object
+    InitiateSocialSecurity_checks:
+      additionalProperties: false
+      description: Checks to perform on the document.
+      example:
+        first_name: John
+        last_name: Doe
+      properties:
+        first_name:
+          description: Expected first name extracted from the document.
+          type: string
+        last_name:
+          description: Expected last name extracted from the document.
+          type: string
+      required:
+      - first_name
+      - last_name
+      type:
+      - object
+      - 'null'
+    Italian_Vehicle_Registration_Document:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            enum:
+            - vehicle_registration_document
+            type: string
+          country_code:
+            enum:
+            - IT
+            type: string
+          extracted_from_document:
+            $ref: '#/components/schemas/ItalianVehicleRegistrationDocumentExtraction'
+          checks:
+            $ref: '#/components/schemas/VehicleRegistrationDocumentCheck'
+        type: object
+      required:
+      - checks
+      - country_code
+      - created_at
+      - data_anonymized
+      - extracted_from_document
+      - id
+      - previous_attempt_id
+      - status
+      - type
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: Italian Vehicle Registration Document
+      type: object
+    AutoInsuranceClaimsHistoryExtraction_incidents_information_inner:
+      additionalProperties: false
+      properties:
+        incident_date:
+          description: Date of the incident.
+          format: date
+          type:
+          - string
+          - 'null'
+        incident_description:
+          description: Description of the incident.
+          type:
+          - string
+          - 'null'
+        incident_type:
+          description: Type of the incident.
+          type:
+          - string
+          - 'null'
+        incident_responsability:
+          description: Responsibility level for the incident.
+          type:
+          - string
+          - 'null'
+        drivers_full_name:
+          description: Full name of the driver involved in the incident.
+          type:
+          - string
+          - 'null'
+      required:
+      - drivers_full_name
+      - incident_date
+      - incident_description
+      - incident_responsability
+      - incident_type
+      type: object
+    FrenchVehicleRegistrationDocumentExtraction_owner_information:
+      additionalProperties: false
+      properties:
+        owner_full_name:
+          description: Full name of the vehicle owner.
+          type:
+          - string
+          - 'null'
+        owner_address:
+          description: Address of the vehicle owner.
+          type:
+          - string
+          - 'null'
+        owner_type:
+          description: Type of the vehicle owner.
+          enum:
+          - natural_person
+          - legal_person
+          type:
+          - string
+          - 'null'
+      required:
+      - owner_address
+      - owner_full_name
+      - owner_type
+      type: object
+    InitiatePayslip_checks_full_name_check:
+      additionalProperties: false
+      description: Expected full name to check against the document.
+      properties:
+        first_name:
+          description: Expected first name to check against the document.
+          type: string
+        last_name:
+          description: Expected last name to check against the document.
+          type: string
+      required:
+      - first_name
+      - last_name
+      type: object
+    InitiateTemporaryVehicleRegistrationDocument:
+      additionalProperties: false
+      properties:
+        file:
+          description: 'The file containing the data to extract.
+
+            Accepted formats: PDF, PNG, JPG, JPEG.
+
+            Max size: 25 MB.
+
+            Max number of pages per PDF: 10.
+
+            '
+          example: Binary file
+          format: binary
+          type: string
+        type:
+          description: Type of document you want to analyze. Will be used to match the detected document type.
+          enum:
+          - temporary_vehicle_registration_document
+          example: temporary_vehicle_registration_document
+          type: string
+        country_code:
+          description: 'The country code of the document.
+
+            Currently only Italian temporary vehicle registration documents are supported.
+
+            '
+          enum:
+          - IT
+          example: IT
+          type: string
+        workspace_id:
+          description: 'Scopes the Document Analysis to a specific workspace.
+
+            Defaults to the default workspace if not specified.
+
+            '
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        analysis_type:
+          $ref: '#/components/schemas/AnalysisTypeMultipart'
+        checks:
+          $ref: '#/components/schemas/InitiateTemporaryVehicleRegistrationDocument_checks'
+      required:
+      - country_code
+      - file
+      - type
+      title: Initiate Temporary Vehicle Registration Document
+      type: object
+    TaxNoticeFull:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            enum:
+            - tax_notice
+            type: string
+          extracted_from_document:
+            $ref: '#/components/schemas/TaxNoticeExtraction'
+          checks:
+            $ref: '#/components/schemas/TaxNoticeCheck'
+        type: object
+      required:
+      - checks
+      - country_code
+      - created_at
+      - data_anonymized
+      - extracted_from_document
+      - id
+      - previous_attempt_id
+      - status
+      - type
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: Tax Notice
+      type: object
+    ItalianVehicleRegistrationDocumentExtraction_vehicle_motor_information:
+      additionalProperties: false
+      properties:
+        vehicle_fuel_type:
+          description: Type of fuel used by the vehicle.
+          type:
+          - string
+          - 'null'
+        vehicle_max_power:
+          description: Maximum power of the vehicle engine.
+          type:
+          - number
+          - 'null'
+        vehicle_displacement_type:
+          description: Displacement type of the vehicle engine.
+          type:
+          - number
+          - 'null'
+      required:
+      - vehicle_displacement_type
+      - vehicle_fuel_type
+      - vehicle_max_power
+      type: object
+    TaxNoticeExtraction_2d_doc:
+      additionalProperties: false
+      description: The 2D document extracted from the document.
+      properties:
+        full_name_1:
+          description: The holder full name of the first declarant extracted from the 2D document.
+          example: Doe John
+          type:
+          - string
+          - 'null'
+        fiscal_number_1:
+          description: The fiscal number of the first declarant extracted from the 2D document.
+          example: 0312345678901
+          type:
+          - string
+          - 'null'
+        full_name_2:
+          description: The holder full name of the second declarant extracted from the 2D document.
+          example: Doe Jane
+          type:
+          - string
+          - 'null'
+        fiscal_number_2:
+          description: The fiscal number of the second declarant extracted from the 2D document.
+          example: 0398765432109
+          type:
+          - string
+          - 'null'
+        tax_notice_reference:
+          description: The tax notice reference number extracted from the 2D document.
+          example: 2412B01234567
+          type:
+          - string
+          - 'null'
+        income_year:
+          description: Year of incomes (usually the year before document issuance) extracted from the 2D document.
+          example: 2024
+          type:
+          - integer
+          - 'null'
+        reference_income:
+          description: The fiscal reference income extracted from the 2D document.
+          example: 30000
+          type:
+          - integer
+          - 'null'
+        parts_count:
+          description: Number of parts in the household extracted from the 2D document.
+          example: 1
+          type:
+          - integer
+          - 'null'
+      required:
+      - fiscal_number_1
+      - fiscal_number_2
+      - full_name_1
+      - full_name_2
+      - income_year
+      - parts_count
+      - reference_income
+      - tax_notice_reference
+      type: object
+    InitiateTaxNotice:
+      additionalProperties: false
+      properties:
+        file:
+          description: 'The file containing the data to extract.
+
+            Accepted formats: PDF, PNG, JPG, JPEG.
+
+            Max size: 25 MB.
+
+            Max number of pages per PDF: 10.
+
+            '
+          example: Binary file
+          format: binary
+          type: string
+        type:
+          description: Type of document you want to analyze. Will be used to match the detected document type.
+          enum:
+          - tax_notice
+          example: tax_notice
+          type: string
+        country_code:
+          description: The country code of the tax notice.
+          enum:
+          - FR
+          example: FR
+          type: string
+        workspace_id:
+          description: 'Scopes the Document Analysis to a specific workspace.
+
+            Defaults to the default workspace if not specified.
+
+            '
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        analysis_type:
+          $ref: '#/components/schemas/AnalysisTypeMultipart'
+        checks:
+          $ref: '#/components/schemas/InitiateTaxNotice_checks'
+      required:
+      - country_code
+      - file
+      - type
+      title: Initiate Tax Notice
+      type: object
+    InitiateDocumentAnalysisFromMultipart:
+      oneOf:
+      - $ref: '#/components/schemas/InitiateSocialSecurity'
+      - $ref: '#/components/schemas/InitiateCompanyCertificate'
+      - $ref: '#/components/schemas/InitiateBusinessRegistrationCertificate'
+      - $ref: '#/components/schemas/InitiateDriverLicence'
+      - $ref: '#/components/schemas/InitiateRNECertificate'
+      - $ref: '#/components/schemas/InitiateTemporaryVehicleRegistrationDocument'
+      - $ref: '#/components/schemas/InitiateVehicleRegistrationDocument'
+      - $ref: '#/components/schemas/InitiateAutoInsuranceClaimsHistory'
+      - $ref: '#/components/schemas/InitiateTaxNotice'
+      - $ref: '#/components/schemas/InitiatePayslip'
+      - $ref: '#/components/schemas/InitiateInvoice'
+      - $ref: '#/components/schemas/InitiateFraudOnly'
+      type: object
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - next_cursor
+      type: object
+    DocumentAnalysisStatus:
+      description: Status of the Document Analysis.
+      enum:
+      - pending
+      - awaiting_data
+      - done
+      - inconclusive
+      - failed
+      example: done
+      type: string
+    InitiateVehicleRegistrationDocument_checks:
+      additionalProperties: false
+      description: Checks to perform on the document.
+      example:
+        vehicle_owner:
+          type: natural_person
+          first_name: John
+          last_name: Doe
+      properties:
+        vehicle_owner:
+          $ref: '#/components/schemas/InitiateVehicleRegistrationDocument_checks_vehicle_owner'
+      required:
+      - vehicle_owner
+      type:
+      - object
+      - 'null'
+    PayslipFull:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            enum:
+            - payslip
+            type: string
+          extracted_from_document:
+            $ref: '#/components/schemas/PayslipExtraction'
+          checks:
+            $ref: '#/components/schemas/PayslipCheck'
+        type: object
+      required:
+      - checks
+      - country_code
+      - created_at
+      - data_anonymized
+      - extracted_from_document
+      - id
+      - previous_attempt_id
+      - status
+      - type
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: Payslip
       type: object
     InitiateInvoice:
       additionalProperties: false
@@ -4483,6 +4159,104 @@ components:
       - file
       - type
       title: Initiate Invoice Document
+      type: object
+    DocumentAnalysisMeta_1:
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          description: The Workspace ID in which the Document Analysis has been created.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        created_at:
+          description: Creation date of the Document Analysis.
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+        updated_at:
+          description: Update date of the Document Analysis.
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+        status:
+          $ref: '#/components/schemas/DocumentAnalysisStatus'
+        status_codes:
+          description: 'List of status codes. Indicates the cause when the status is `failed`.
+
+
+            `DA_1001` is **deprecated**: it is still emitted alongside more specific check-failure codes (e.g. `DA_2001`, `DA_2002`) for backward compatibility. New integrations should rely on the specific codes.
+
+            '
+          example: []
+          items:
+            enum:
+            - DA_1001
+            - DA_1002
+            - DA_1003
+            - DA_1004
+            - DA_1100
+            - DA_1201
+            - DA_1202
+            - DA_1301
+            - DA_1302
+            - DA_1303
+            - DA_1304
+            - DA_1401
+            - DA_1402
+            - DA_1403
+            - DA_2001
+            - DA_2002
+            - DA_2301
+            - DA_2302
+            - DA_2401
+            - DA_2402
+            - DA_3001
+            - DA_3003
+            - DA_3004
+            type: string
+          type: array
+        country_code:
+          description: 'The country code associated with the document analysis.
+
+            Null for document types that don''t require a country code.
+
+            '
+          type:
+          - string
+          - 'null'
+          example: null
+        applicant_id:
+          $ref: '#/components/schemas/WorkflowSessionApplicantId'
+        data_anonymized:
+          description: 'Indicates if the personal data extracted from the document has been anonymized.
+
+            If set to `true`, the personal data has been anonymized and most fields will be NULL.
+
+            '
+          example: false
+          type: boolean
+        analysis_type:
+          $ref: '#/components/schemas/AnalysisType'
+        fraud_risk_analysis:
+          $ref: '#/components/schemas/FraudRiskAnalysis'
+      required:
+      - applicant_id
+      - country_code
+      - created_at
+      - data_anonymized
+      - id
+      - previous_attempt_id
+      - status
+      - status_codes
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: DocumentAnalysisMeta
       type: object
     AutoInsuranceClaimsHistoryExtraction:
       additionalProperties: false
@@ -4591,49 +4365,271 @@ components:
       - vehicle_model
       title: Auto Insurance Claims History Extraction
       type: object
-    AutoInsuranceClaimsHistoryExtraction_incidents_information_inner:
+    DocumentAnalysisType:
+      description: Type of document you want to analyze. Will be used to match the detected document type.
+      enum:
+      - social_security
+      - company_certificate
+      - business_registration_certificate
+      - driver_licence
+      - rne_certificate
+      - temporary_vehicle_registration_document
+      - vehicle_registration_document
+      - auto_insurance_claims_history
+      - tax_notice
+      - payslip
+      - invoice
+      example: social_security
+      type: string
+    RNECertificateCheck:
       additionalProperties: false
+      description: Checks performed on the document.
+      example:
+        legal_representatives:
+        - full_name:
+            extracted: John Doe
+            expected: John Doe
+            match_level: exact
       properties:
-        incident_date:
-          description: Date of the incident.
-          format: date
+        legal_representatives:
+          items:
+            $ref: '#/components/schemas/CompanyCertificateCheck_legal_representatives_inner'
+          type:
+          - array
+          - 'null'
+      required:
+      - legal_representatives
+      title: RNE Certificate Checks
+      type:
+      - object
+      - 'null'
+    TaxNoticeCheck:
+      additionalProperties: false
+      description: Checks performed on the document.
+      example:
+        full_name:
+          extracted: John Doe
+          expected: John Doe
+          match_level: exact
+        income_year:
+          extracted: 2024
+          expected: 2024
+          match_level: exact
+      properties:
+        full_name:
+          $ref: '#/components/schemas/DocumentAnalysisCheck'
+        income_year:
+          $ref: '#/components/schemas/TaxNoticeCheck_income_year'
+      title: Tax Notice Checks
+      type:
+      - object
+      - 'null'
+    SocialSecurityFull:
+      allOf:
+      - $ref: '#/components/schemas/DocumentAnalysisMeta_1'
+      - properties:
+          type:
+            enum:
+            - social_security
+            type: string
+          extracted_from_document:
+            $ref: '#/components/schemas/SocialSecurityExtraction'
+          checks:
+            $ref: '#/components/schemas/SocialSecurityCheck'
+        type: object
+      required:
+      - checks
+      - country_code
+      - created_at
+      - data_anonymized
+      - extracted_from_document
+      - id
+      - previous_attempt_id
+      - status
+      - type
+      - updated_at
+      - workflow_session_id
+      - workspace_id
+      title: Social Security
+      type: object
+    BusinessRegistrationCertificateExtraction:
+      additionalProperties: false
+      description: Extracted data from the document.
+      example:
+        issuance_date: '2025-01-01'
+        company_description:
+          active: true
+          legal_form: Entreprise individuelle
+          company_name: null
+          company_number: 123 4567 890
+          headquarter_company_number: 123 4567 890 12345
+          first_name: John
+          last_name: Doe
+          full_name: John Doe
+        branch_description:
+          active: true
+          branch_company_number: 123 4567 890 12345
+          address: 1 rue de la paix, 75000 Paris
+          city: Paris
+          postal_code: '75000'
+        document_type: Avis de situation
+      properties:
+        issuance_date:
+          description: Issuance date extracted from the document.
           type:
           - string
           - 'null'
-        incident_description:
-          description: Description of the incident.
-          type:
-          - string
-          - 'null'
-        incident_type:
-          description: Type of the incident.
-          type:
-          - string
-          - 'null'
-        incident_responsability:
-          description: Responsibility level for the incident.
-          type:
-          - string
-          - 'null'
-        drivers_full_name:
-          description: Full name of the driver involved in the incident.
+        company_description:
+          $ref: '#/components/schemas/BusinessRegistrationCertificateExtraction_company_description'
+        branch_description:
+          $ref: '#/components/schemas/BusinessRegistrationCertificateExtraction_branch_description'
+        document_type:
+          description: Classification label extracted from the document.
           type:
           - string
           - 'null'
       required:
-      - drivers_full_name
-      - incident_date
-      - incident_description
-      - incident_responsability
-      - incident_type
+      - branch_description
+      - company_description
+      - document_type
+      - issuance_date
+      title: Business Registration Certificate Extraction
+      type: object
+    PayslipExtraction:
+      additionalProperties: false
+      description: Extracted data from the document.
+      properties:
+        first_name:
+          description: The employee first name extracted from the document.
+          example: Marie
+          type:
+          - string
+          - 'null'
+        last_name:
+          description: The employee last name extracted from the document.
+          example: DUPONT
+          type:
+          - string
+          - 'null'
+        full_name:
+          description: The employee full name extracted from the document.
+          example: MARIE DUPONT
+          type:
+          - string
+          - 'null'
+        employer_name:
+          description: The employer name extracted from the document.
+          example: SNCF Réseau
+          type:
+          - string
+          - 'null'
+        pay_period_start_date:
+          description: The pay period start date extracted from the document.
+          example: '2026-03-01'
+          format: date
+          type:
+          - string
+          - 'null'
+        pay_period_end_date:
+          description: The pay period end date extracted from the document.
+          example: '2026-03-31'
+          format: date
+          type:
+          - string
+          - 'null'
+        net_pay:
+          description: The net salary extracted from the document.
+          example: 2382.4
+          type:
+          - number
+          - 'null'
+        gross_pay:
+          description: The gross salary extracted from the document.
+          example: 3150
+          type:
+          - number
+          - 'null'
+        document_type:
+          description: The document type extracted from the document.
+          example: Payslip
+          type:
+          - string
+          - 'null'
+      required:
+      - document_type
+      - employer_name
+      - first_name
+      - full_name
+      - gross_pay
+      - last_name
+      - net_pay
+      - pay_period_end_date
+      - pay_period_start_date
+      title: Payslip Extraction
+      type: object
+    InitiateCompanyCertificate_checks:
+      additionalProperties: false
+      description: Checks to perform on the document.
+      example:
+        legal_representatives:
+        - first_name: John
+          last_name: Doe
+      properties:
+        legal_representatives:
+          description: Expected list of legal representatives extracted from the document.
+          items:
+            $ref: '#/components/schemas/InitiateCompanyCertificate_checks_legal_representatives_inner'
+          type: array
+      required:
+      - legal_representatives
+      type:
+      - object
+      - 'null'
+    InitiateFraudOnly_analysis_type:
+      additionalProperties: false
+      properties:
+        extraction:
+          description: Must be `"false"` for a fraud-only analysis.
+          enum:
+          - 'false'
+          example: 'false'
+          type: string
+        fraud_level:
+          description: Must be `advanced` for a fraud-only analysis.
+          enum:
+          - advanced
+          example: advanced
+          type: string
+      required:
+      - extraction
+      - fraud_level
+      type: object
+    TemporaryVehicleRegistrationDocumentExtraction_vehicle_owner_information:
+      description: Vehicle owner information extracted from the document.
+      properties:
+        vehicle_owner_full_name:
+          description: Full name of the vehicle owner extracted from the document.
+          type:
+          - string
+          - 'null'
+        vehicle_owner_birth_date:
+          description: Birth date of the vehicle owner extracted from the document.
+          type:
+          - string
+          - 'null'
+        vehicle_owner_address:
+          description: Address of the vehicle owner extracted from the document.
+          type:
+          - string
+          - 'null'
+      required:
+      - vehicle_owner_address
+      - vehicle_owner_birth_date
+      - vehicle_owner_full_name
       type: object
   headers:
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
       schema:
         type: integer
     rateLimit-limit-minute:
@@ -4644,16 +4640,20 @@ components:
       description: The remaining time until the rate limit resets in seconds
       schema:
         type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
     rateLimit-remaining:
       description: The number of requests remaining in the current rate limit window
       schema:
         type: integer
     rateLimit-remaining-hour:
       description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
       schema:
         type: integer
     retry-after:

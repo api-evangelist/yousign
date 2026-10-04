@@ -973,67 +973,40 @@ paths:
       - Custom Property
 components:
   headers:
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
     rateLimit-remaining:
       description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
       schema:
         type: integer
     rateLimit-remaining-hour:
       description: The number of requests remaining in the current hour rate limit window
       schema:
         type: integer
-    retry-after:
-      description: Retry the request after X seconds
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
       schema:
         type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
       schema:
         type: integer
     rateLimit-limit-minute:
       description: The maximum number of requests that the consumer is permitted to make in an minute window
       schema:
         type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
   schemas:
-    CustomPropertyOptionInput:
-      properties:
-        value:
-          description: Display text of the option.
-          example: Quote
-          maxLength: 255
-          minLength: 1
-          type: string
-        is_default:
-          default: false
-          description: 'Whether this option is pre-selected on new SRs.
-
-            Multiple defaults allowed if multiple_answer_allowed is true.
-
-            '
-          type: boolean
-        position:
-          description: 'Sort order (0-based). If omitted, values are ordered as provided.
-
-            '
-          example: 0
-          minimum: 0
-          type: integer
-      required:
-      - value
-      title: CustomPropertyOptionInput
-      type: object
-    NotFoundResponse:
+    ForbiddenResponse:
       properties:
         type:
           type: string
@@ -1042,7 +1015,61 @@ components:
       required:
       - detail
       - type
-      title: NotFoundResponse
+      title: ForbiddenResponse
+      type: object
+    CreateCustomProperty:
+      additionalProperties: false
+      properties:
+        name:
+          description: Display name of the property.
+          example: Document Type
+          maxLength: 255
+          minLength: 1
+          type: string
+        type:
+          description: 'Field type. Cannot be changed after creation.
+
+            '
+          enum:
+          - text
+          - list
+          example: list
+          type: string
+        multiple_answer_allowed:
+          default: false
+          description: 'For list type only. Whether multiple options can be selected.
+
+            '
+          type: boolean
+        default_value:
+          description: 'For text type only. Default text pre-filled on new SRs.
+
+            '
+          example: REF-001
+          type:
+          - string
+          - 'null'
+        options:
+          description: 'For list type only. Selectable options. At least one required.
+
+            '
+          items:
+            $ref: '#/components/schemas/CustomPropertyOptionInput'
+          minItems: 1
+          type: array
+        workspaces:
+          description: 'List of Workspaces that define where the Custom Property is scoped. If the array is empty, the Custom Property is available to all Workspaces.
+
+            '
+          items:
+            $ref: '#/components/schemas/UUID'
+          minItems: 0
+          type: array
+          uniqueItems: true
+      required:
+      - name
+      - type
+      title: CreateCustomProperty
       type: object
     CustomPropertyList:
       properties:
@@ -1064,6 +1091,28 @@ components:
       - data
       title: CustomPropertyList
       type: object
+    CustomPropertyOption:
+      properties:
+        id:
+          description: Unique identifier of the option
+          format: uuid
+          type: string
+        value:
+          description: Display text of the option
+          type: string
+        is_default:
+          description: Whether this option is pre-selected on new SRs
+          type: boolean
+        position:
+          description: Sort order
+          type: integer
+      required:
+      - id
+      - is_default
+      - position
+      - value
+      title: CustomPropertyOption
+      type: object
     UnauthorizedResponse:
       properties:
         type:
@@ -1075,6 +1124,33 @@ components:
       - type
       title: UnauthorizedResponse
       type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
     TooManyRequestsResponse:
       properties:
         message:
@@ -1083,17 +1159,6 @@ components:
       - message
       title: TooManyRequestsResponse
       type: object
-    CustomPropertyType:
-      enum:
-      - text
-      - list
-      example: text
-      type: string
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
     UpdateCustomProperty:
       additionalProperties: false
       properties:
@@ -1147,6 +1212,47 @@ components:
           uniqueItems: true
       title: UpdateCustomProperty
       type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    CustomPropertyType:
+      enum:
+      - text
+      - list
+      example: text
+      type: string
+    CustomPropertyOptionInput:
+      properties:
+        value:
+          description: Display text of the option.
+          example: Quote
+          maxLength: 255
+          minLength: 1
+          type: string
+        is_default:
+          default: false
+          description: 'Whether this option is pre-selected on new SRs.
+
+            Multiple defaults allowed if multiple_answer_allowed is true.
+
+            '
+          type: boolean
+        position:
+          description: 'Sort order (0-based). If omitted, values are ordered as provided.
+
+            '
+          example: 0
+          minimum: 0
+          type: integer
+      required:
+      - value
+      title: CustomPropertyOptionInput
+      type: object
     CustomPropertyOptionUpdate:
       properties:
         id:
@@ -1182,39 +1288,6 @@ components:
       required:
       - value
       title: CustomPropertyOptionUpdate
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    CustomPropertyOption:
-      properties:
-        id:
-          description: Unique identifier of the option
-          format: uuid
-          type: string
-        value:
-          description: Display text of the option
-          type: string
-        is_default:
-          description: Whether this option is pre-selected on new SRs
-          type: boolean
-        position:
-          description: Sort order
-          type: integer
-      required:
-      - id
-      - is_default
-      - position
-      - value
-      title: CustomPropertyOption
       type: object
     InternalServerError:
       properties:
@@ -1291,79 +1364,6 @@ components:
       - type
       - updated_at
       title: CustomProperty
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    CreateCustomProperty:
-      additionalProperties: false
-      properties:
-        name:
-          description: Display name of the property.
-          example: Document Type
-          maxLength: 255
-          minLength: 1
-          type: string
-        type:
-          description: 'Field type. Cannot be changed after creation.
-
-            '
-          enum:
-          - text
-          - list
-          example: list
-          type: string
-        multiple_answer_allowed:
-          default: false
-          description: 'For list type only. Whether multiple options can be selected.
-
-            '
-          type: boolean
-        default_value:
-          description: 'For text type only. Default text pre-filled on new SRs.
-
-            '
-          example: REF-001
-          type:
-          - string
-          - 'null'
-        options:
-          description: 'For list type only. Selectable options. At least one required.
-
-            '
-          items:
-            $ref: '#/components/schemas/CustomPropertyOptionInput'
-          minItems: 1
-          type: array
-        workspaces:
-          description: 'List of Workspaces that define where the Custom Property is scoped. If the array is empty, the Custom Property is available to all Workspaces.
-
-            '
-          items:
-            $ref: '#/components/schemas/UUID'
-          minItems: 0
-          type: array
-          uniqueItems: true
-      required:
-      - name
-      - type
-      title: CreateCustomProperty
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
       type: object
   securitySchemes:
     bearerAuth:

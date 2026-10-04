@@ -1832,21 +1832,65 @@ paths:
       - Signature Request
 components:
   schemas:
-    WorkflowSessionId:
-      description: 'Unique identifier of a Workflow Session. When provided, an Action is created in the Workflow Session, and this resource is associated with that Action.
-
-        '
-      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
-      format: uuid
-      title: Workflow Session identifier
-      type:
-      - string
-      - 'null'
-    SignatureRequestTimeZone:
-      default: Europe/Paris
-      description: 'Time zone of the dates and times displayed in emails, the Signature Request expiration date, and the PDF Audit Trail. Format: tz database. Default is set to Europe/Paris.'
-      example: Europe/Paris
-      type: string
+    ForbiddenResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: ForbiddenResponse
+      type: object
+    SignatureRequest_SignerFromInfoInput_redirect_urls:
+      additionalProperties: false
+      properties:
+        success:
+          example: https://example.com/success
+          format: uri
+          maxLength: 255
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        error:
+          example: https://example.com/error
+          format: uri
+          maxLength: 255
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      type: object
+    SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_redirect_urls:
+      additionalProperties: false
+      properties:
+        success:
+          example: https://example.com/success
+          format: uri
+          maxLength: 255
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        error:
+          example: https://example.com/error
+          format: uri
+          maxLength: 255
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        decline:
+          example: https://example.com/decline
+          format: uri
+          maxLength: 255
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      type: object
     PreviousAttemptId:
       description: 'ID of the previous attempt within the same `workflow_session_id`.
 
@@ -1861,7 +1905,34 @@ components:
       type:
       - string
       - 'null'
-    UnauthorizedResponse:
+    AuditTrailLocale:
+      enum:
+      - de
+      - en
+      - es
+      - fr
+      - it
+      - pt
+      - ro
+      example: en
+      type: string
+    CreateSignatureRequest:
+      additionalProperties: false
+      oneOf:
+      - $ref: '#/components/schemas/New_Signature_Request_From_Scratch'
+      - $ref: '#/components/schemas/Duplicate_a_Signature_Request'
+      type: object
+    WorkflowSessionId:
+      description: 'Unique identifier of a Workflow Session. When provided, an Action is created in the Workflow Session, and this resource is associated with that Action.
+
+        '
+      example: 0ef334d2-7f36-4643-8a2a-4283b4a3e4a4
+      format: uuid
+      title: Workflow Session identifier
+      type:
+      - string
+      - 'null'
+    BadRequestResponse:
       properties:
         type:
           type: string
@@ -1870,57 +1941,18 @@ components:
       required:
       - detail
       - type
-      title: UnauthorizedResponse
+      title: BadRequestResponse
       type: object
-    FieldsInput:
-      oneOf:
-      - $ref: '#/components/schemas/Signature_2'
-      - $ref: '#/components/schemas/Mention_2'
-      - $ref: '#/components/schemas/Text_2'
-      - $ref: '#/components/schemas/Checkbox_2'
-      - $ref: '#/components/schemas/RadioGroup_2'
-      type: object
-    SignatureRequest_PlaceholderSignerSubstituteFromUserIdInput:
-      additionalProperties: false
-      description: Create a placeholder signer substitute from a user
+    NotFoundResponse:
       properties:
-        label:
-          example: Employee
-          maxLength: 64
-          minLength: 1
+        type:
           type: string
-        user_id:
-          description: Create signer from an existing user
-          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
-          format: uuid
+        detail:
           type: string
-        signature_level:
-          default: electronic_signature
-          enum:
-          - electronic_signature
-          - advanced_electronic_signature
-          - qualified_electronic_signature
-          type: string
-        signature_authentication_mode:
-          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
-          enum:
-          - null
-          - otp_email
-          - otp_sms
-          - no_otp
-          type:
-          - string
-          - 'null'
-        redirect_urls:
-          $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_redirect_urls'
-        custom_text:
-          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
-        delivery_mode:
-          $ref: '#/components/schemas/SignerDeliveryMode'
       required:
-      - label
-      - user_id
-      title: From Existing User
+      - detail
+      - type
+      title: NotFoundResponse
       type: object
     TooManyRequestsResponse:
       properties:
@@ -1930,87 +1962,10 @@ components:
       - message
       title: TooManyRequestsResponse
       type: object
-    SignatureRequest_EmailNotification:
-      additionalProperties: false
-      minProperties: 1
+    post_signature_requests_signatureRequestId_reactivate_request:
       properties:
-        sender:
-          $ref: '#/components/schemas/SignatureRequest_EmailNotification_Sender'
-        custom_note:
-          deprecated: true
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
-          example: Please sign these documents as soon as possible.
-          format: safe-string
-          maxLength: 2000
-          type:
-          - string
-          - 'null'
-        custom_text:
-          $ref: '#/components/schemas/SignatureRequest_EmailNotification_custom_text'
-      title: SignatureRequest_EmailNotification
-      type:
-      - object
-      - 'null'
-    New_Signature_Request_From_Scratch:
-      description: Create a new Signature Request from scratch
-      properties:
-        name:
-          description: 'Name of the signature request.\
-
-            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-
-            '
-          format: safe-string
-          maxLength: 128
-          minLength: 1
-          type: string
-        delivery_mode:
-          description: Delivery mode to notify Signers.
-          enum:
-          - none
-          - email
-          type: string
-        ordered_signers:
-          description: Enable an ordered workflow, each Signer will be requested to sign in a sequential order
-          example: true
-          type: boolean
-        ordered_approvers:
-          description: 'When enabled, Approvers are requested to approve sequentially.
-
-            Each Approver will be invited to approve only once the previous one has completed their approval.
-
-            '
-          example: true
-          type: boolean
-        custom_recipient_order:
-          description: 'When enabled, Approvers and Signers are requested to approve depending of a sequence composed of stages.
-
-            Every recipients present in a stage will be invited to approve or sign parallelly, and stages are sequential each other.
-
-            When `custom_recipient_order` is enabled, `ordered_approvers` and `ordered_signers` are ignored.
-
-            '
-          example: true
-          type: boolean
-        reminder_settings:
-          $ref: '#/components/schemas/New_Signature_Request_From_Scratch_reminder_settings'
-        timezone:
-          $ref: '#/components/schemas/SignatureRequestTimeZone'
-        email_custom_note:
-          deprecated: true
-          description: 'A custom note added to emails sent to signers.\
-
-            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
-
-            '
-          example: Please sign these documents as soon as possible.
-          format: safe-string
-          maxLength: 500
-          type:
-          - string
-          - 'null'
         expiration_date:
-          description: 'Due date of the Signature Request (yyyy-mm-dd). Defaults to 6 months after initiation.
+          description: 'Due date of the Signature Request (yyyy-mm-dd).
 
             The date cannot be in the past and cannot be more than one year after initiation.
 
@@ -2018,398 +1973,60 @@ components:
           format: date
           pattern: ^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$
           type: string
-        template_id:
-          description: Create a Signature Request from an existing template.
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type: string
-        external_id:
-          description: Store a custom id that will be added to webhooks & appended to redirect urls.
-          maxLength: 255
-          pattern: ^[\w\-@.%+]+$
-          type:
-          - string
-          - 'null'
-        branding_id:
-          deprecated: true
-          description: Use a specific branding to customize the signature experience.
-          example: 3a93d3b5-fb3b-4abf-9e70-26315b33506b
-          format: uuid
-          type:
-          - string
-          - 'null'
-        custom_experience_id:
-          description: Use a specific Custom Experience to customize the signature experience.
-          example: 3a93d3b5-fb3b-4abf-9e70-26315b33506b
-          format: uuid
-          type:
-          - string
-          - 'null'
-        documents:
-          deprecated: true
-          description: You can directly attach orphan Documents to the Signature Request.
-          items:
-            example: 89120884-d29a-4b1a-ac7b-a9e73a872795
-            format: uuid
-            type: string
-          maxItems: 5
-          type: array
-          uniqueItems: true
-        signers:
-          deprecated: true
-          description: Can only be used if you add documents at the same time.
-          items:
-            $ref: '#/components/schemas/New_Signature_Request_From_Scratch_signers_inner'
-          type: array
-        workspace_id:
-          description: Scope the signature request to a specific workspace. If template_id is filled and Template is already linked to a Workspace, keep this field to null ; the created Signature Request will be scoped to Template's Workspace.
-          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
-          format: uuid
-          type:
-          - string
-          - 'null'
-        audit_trail_locale:
-          allOf:
-          - $ref: '#/components/schemas/AuditTrailLocale'
-          description: Define the locale for the generated audit trail.
-          type:
-          - string
-          - 'null'
-        signers_allowed_to_decline:
-          default: false
-          description: Allowing signers to decline to sign.
-          example: true
-          type: boolean
-        email_notification:
-          $ref: '#/components/schemas/SignatureRequest_EmailNotification'
-        template_placeholders:
-          $ref: '#/components/schemas/New_Signature_Request_From_Scratch_template_placeholders'
-        archiving:
-          $ref: '#/components/schemas/Archiving'
-        labels:
-          description: List of Labels to associate with the Signature Request. Labels are identified by their ID.
-          example:
-          - 3a93d3b5-fb3b-4abf-9e70-26315b33506b
-          - 89120884-d29a-4b1a-ac7b-a9e73a872795
-          items:
-            format: uuid
-            type: string
-          maxItems: 50
-          type: array
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
       required:
-      - delivery_mode
-      - name
-      title: New Signature Request From Scratch
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    SignatureRequestInList:
-      properties:
-        id:
-          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
-          minLength: 1
-          type: string
-        status:
-          $ref: '#/components/schemas/SignatureRequestStatus'
-        name:
-          example: signature request name
-          maxLength: 128
-          minLength: 1
-          type: string
-        delivery_mode:
-          enum:
-          - email
-          - none
-          type: string
-        created_at:
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          minLength: 1
-          type: string
-        activated_at:
-          description: 'Timestamp indicating when the Signature Request was activated and made available to its recipients.\
-
-            Returns `null` if the Signature Request is still in `draft`.
-
-            '
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          readOnly: true
-          type:
-          - string
-          - 'null'
-        completed_at:
-          description: 'Timestamp indicating when the Signature Request reached the `done` status, i.e. all required Signers have signed and all Approvers have approved.\
-
-            Returns `null` if the Signature Request is not yet complete.
-
-            '
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          readOnly: true
-          type:
-          - string
-          - 'null'
-        approved_at:
-          description: 'Timestamp indicating when all Approvers have approved the Signature Request when custom recipient flow is not enabled.\
-
-            Returns `null` if no approvers are configured, or if at least one approver has not yet approved, or when `custom_recipient_order` is enabled.
-
-            '
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          readOnly: true
-          type:
-          - string
-          - 'null'
-        ordered_signers:
-          description: Enable an ordered workflow, each Signer will be requested to sign in a sequential order
-          type: boolean
-        ordered_approvers:
-          description: Enable an ordered workflow, each Approver will be requested to approve in a sequential order
-          type: boolean
-        reminder_settings:
-          $ref: '#/components/schemas/SignatureRequestInList_reminder_settings'
-        timezone:
-          $ref: '#/components/schemas/SignatureRequestTimeZone'
-        email_custom_note:
-          deprecated: true
-          example: Please sign these documents as soon as possible.
-          type:
-          - string
-          - 'null'
-        expiration_date:
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          type: string
-        source:
-          enum:
-          - app
-          - public_api
-          - hubspot_integration
-          - connector_salesforce_api
-          - connector_google_api
-          - connector_zapier_api
-          type: string
-        signers:
-          items:
-            $ref: '#/components/schemas/SignatureRequestInList_signers_inner'
-          type: array
-        approvers:
-          items:
-            $ref: '#/components/schemas/SignatureRequestInList_approvers_inner'
-          type: array
-        labels:
-          description: Labels associated to the Signature Request
-          items:
-            $ref: '#/components/schemas/SignatureRequestLabel'
-          type: array
-        documents:
-          items:
-            $ref: '#/components/schemas/SignatureRequestInList_documents_inner'
-          type: array
-        sender:
-          $ref: '#/components/schemas/SignatureRequestInList_sender'
-        external_id:
-          example: An_external-ID
-          type:
-          - string
-          - 'null'
-        branding_id:
-          deprecated: true
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-        custom_experience_id:
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-        signers_allowed_to_decline:
-          example: true
-          type: boolean
-        workspace_id:
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type: string
-        audit_trail_locale:
-          $ref: '#/components/schemas/AuditTrailLocale'
-        bulk_send_batch_id:
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type:
-          - string
-          - 'null'
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
-        custom_recipient_order:
-          description: Enable a custom recipients order
-          type: boolean
-        custom_properties:
-          description: Custom properties associated with the Signature Request.
-          items:
-            $ref: '#/components/schemas/CustomPropertyInList'
-          type: array
-      required:
-      - activated_at
-      - approved_at
-      - audit_trail_locale
-      - branding_id
-      - bulk_send_batch_id
-      - completed_at
-      - created_at
-      - custom_experience_id
-      - custom_recipient_order
-      - delivery_mode
-      - documents
-      - email_custom_note
       - expiration_date
-      - external_id
-      - id
-      - name
-      - ordered_approvers
-      - ordered_signers
-      - previous_attempt_id
-      - reminder_settings
-      - sender
-      - signers
-      - signers_allowed_to_decline
-      - source
-      - status
-      - timezone
-      - workflow_session_id
-      title: SignatureRequest
       type: object
-    Checkbox_2:
-      properties:
-        document_id:
-          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
-          format: uuid
-          type: string
-        type:
-          enum:
-          - checkbox
-          type: string
-        page:
-          format: int32
-          minimum: 1
-          type: integer
-        x:
-          format: int32
-          maximum: 32767
-          minimum: 0
-          type: integer
-        y:
-          format: int32
-          maximum: 32767
-          minimum: 0
-          type: integer
-        size:
-          description: The omission of size parameter is considered as deprecated. The size determines both the width and height of the checkbox.
-          format: int32
-          maximum: 240
-          minimum: 8
-          type: integer
-        optional:
-          type: boolean
-        name:
-          example: Checkbox 1
-          type:
-          - string
-          - 'null'
-        checked:
-          type: boolean
-        default_checked:
-          type: boolean
-        read_only:
-          default: false
-          description: If set to `true`, the checkbox cannot be modified by the signer.
-          type: boolean
-      required:
-      - checked
-      - document_id
-      - optional
-      - page
-      - type
-      - x
-      - y
-      title: Checkbox
-      type: object
-    SignatureRequest_SignerFromContactIdInput:
+    SignatureRequestStatus:
+      enum:
+      - draft
+      - ongoing
+      - done
+      - deleted
+      - expired
+      - canceled
+      - approval
+      - rejected
+      - declined
+      - paused
+      type: string
+    SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_info:
       additionalProperties: false
-      description: Create signer from a contact
+      description: Create new signer
       properties:
-        contact_id:
-          description: Create signer from an existing contact
-          example: ddecfb85-8a45-4254-b940-6171b8df0a90
-          format: uuid
+        first_name:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          example: John
+          maxLength: 255
+          minLength: 1
           type: string
-        fields:
-          items:
-            $ref: '#/components/schemas/FieldsInput'
-          type: array
-        signature_level:
-          default: electronic_signature
-          enum:
-          - electronic_signature
-          - advanced_electronic_signature
-          - qualified_electronic_signature
+        last_name:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          example: Doe
+          maxLength: 255
+          minLength: 1
           type: string
-        signature_authentication_mode:
-          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
-          enum:
-          - null
-          - otp_email
-          - otp_sms
-          - no_otp
+        email:
+          format: email
+          maxLength: 100
+          minLength: 1
+          type: string
+        phone_number:
+          description: E.164 format. Becomes mandatory if `signature_authentication_mode` requires a phone number.
+          example: '+41446667700'
+          minLength: 1
           type:
           - string
           - 'null'
-        redirect_urls:
-          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_redirect_urls'
-        custom_text:
-          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
-        pre_identity_verification_required:
-          description: Defines the way the Signer's Identity Documents will be uploaded for Verification. If set to `true`, `signature_level`should be equal to `advanced_electronic_signature` and `delivery_mode` set to `none`.
-          type: boolean
+        locale:
+          $ref: '#/components/schemas/Locale'
       required:
-      - contact_id
-      - signature_level
-      title: From Existing Contact
+      - email
+      - first_name
+      - last_name
+      - locale
       type: object
-    SignatureRequestInList_reminder_settings:
-      properties:
-        interval_in_days:
-          enum:
-          - 1
-          - 2
-          - 7
-          - 14
-          format: int32
-          type: integer
-        max_occurrences:
-          format: int32
-          maximum: 10
-          minimum: 1
-          type: integer
-      required:
-      - interval_in_days
-      - max_occurrences
-      type:
-      - object
-      - 'null'
     SignatureRequest:
       properties:
         id:
@@ -2601,6 +2218,103 @@ components:
       - workflow_session_id
       title: SignatureRequest
       type: object
+    SignatureRequest_email_notification_sender:
+      properties:
+        type:
+          enum:
+          - organization
+          - workspace
+          - user
+          - custom
+          type: string
+        custom_name:
+          description: To use in association with sender type custom to precise the name
+          maxLength: 128
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - custom_name
+      - type
+      type: object
+    SignatureRequest_rejection_information:
+      description: Information related to the rejection of a Signature Request by an Approver.
+      properties:
+        approver_id:
+          description: Id of the Approver who rejected the Signature Request.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+        reason:
+          description: Reason provided by the Approver explaining why they rejected the Signature Request.
+          example: I don't agree with the terms in the document.
+          type: string
+        rejected_at:
+          description: Timestamp indicating when the Approver rejected the Signature Request.
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+      readOnly: true
+      type:
+      - object
+      - 'null'
+    SignatureRequest_SignerFromContactIdInput:
+      additionalProperties: false
+      description: Create signer from a contact
+      properties:
+        contact_id:
+          description: Create signer from an existing contact
+          example: ddecfb85-8a45-4254-b940-6171b8df0a90
+          format: uuid
+          type: string
+        fields:
+          items:
+            $ref: '#/components/schemas/FieldsInput'
+          type: array
+        signature_level:
+          default: electronic_signature
+          enum:
+          - electronic_signature
+          - advanced_electronic_signature
+          - qualified_electronic_signature
+          type: string
+        signature_authentication_mode:
+          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
+          enum:
+          - null
+          - otp_email
+          - otp_sms
+          - no_otp
+          type:
+          - string
+          - 'null'
+        redirect_urls:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_redirect_urls'
+        custom_text:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
+        pre_identity_verification_required:
+          description: Defines the way the Signer's Identity Documents will be uploaded for Verification. If set to `true`, `signature_level`should be equal to `advanced_electronic_signature` and `delivery_mode` set to `none`.
+          type: boolean
+      required:
+      - contact_id
+      - signature_level
+      title: From Existing Contact
+      type: object
+    ActivateSignatureRequest:
+      properties:
+        sender_id:
+          description: 'The Id of the User that should be considered as the Signature Request sender.
+
+            They must be part of the Workspace of the Signature Request and be active.
+
+            Mandatory with `sender_type: "user"`, must be omitted otherwise.
+
+            '
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+      type: object
     SignatureRequest_EmailNotification_Sender:
       properties:
         type:
@@ -2624,6 +2338,290 @@ components:
           - 'null'
       title: SignatureRequest_Sender
       type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    Duplicate_a_Signature_Request:
+      description: Duplicate a Signature Request. It will be added to the same workspace as the original.
+      properties:
+        signature_request_id:
+          description: ID of the signature request to duplicate.
+          example: 6c82bd7a-d7f7-45e0-82f4-b92222567346
+          format: uuid
+          title: Signature Request ID
+          type: string
+        name:
+          description: The name of the new Signature Request.
+          example: My duplicated Signature Request
+          maxLength: 128
+          minLength: 1
+          type: string
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+      required:
+      - signature_request_id
+      title: Duplicate a Signature Request
+      type: object
+    SignatureRequestLabel:
+      properties:
+        id:
+          description: Unique identifier of the Label.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          readOnly: true
+          type: string
+        name:
+          description: Name of the Label.
+          example: Contracts
+          maxLength: 128
+          minLength: 1
+          type: string
+      required:
+      - id
+      - name
+      type: object
+    SignatureRequest_EmailNotification:
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        sender:
+          $ref: '#/components/schemas/SignatureRequest_EmailNotification_Sender'
+        custom_note:
+          deprecated: true
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          example: Please sign these documents as soon as possible.
+          format: safe-string
+          maxLength: 2000
+          type:
+          - string
+          - 'null'
+        custom_text:
+          $ref: '#/components/schemas/SignatureRequest_EmailNotification_custom_text'
+      title: SignatureRequest_EmailNotification
+      type:
+      - object
+      - 'null'
+    SignatureRequestInList_documents_inner:
+      properties:
+        id:
+          type: string
+        nature:
+          enum:
+          - attachment
+          - signable_document
+          type: string
+      required:
+      - id
+      - nature
+      type: object
+    Locale:
+      description: Locale settings used for communication.
+      enum:
+      - en
+      - fr
+      - de
+      - it
+      - nl
+      - es
+      - pl
+      minLength: 1
+      title: Locale
+      type: string
+    RadioGroup_2:
+      properties:
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - radio_group
+          type: string
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        optional:
+          type: boolean
+        name:
+          description: Radio group's name
+          example: radio_group_name_1
+          maxLength: 128
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        read_only:
+          default: false
+          description: If set to `true`, the radio button cannot be modified by the Signer.
+          type: boolean
+        radios:
+          items:
+            $ref: '#/components/schemas/RadioGroup_2_radios_inner'
+          type: array
+      required:
+      - document_id
+      - optional
+      - page
+      - radios
+      - type
+      title: RadioGroup
+      type: object
+    SignatureRequestTimeZone:
+      default: Europe/Paris
+      description: 'Time zone of the dates and times displayed in emails, the Signature Request expiration date, and the PDF Audit Trail. Format: tz database. Default is set to Europe/Paris.'
+      example: Europe/Paris
+      type: string
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    CustomPropertyInList:
+      properties:
+        id:
+          description: Unique identifier of the custom property.
+          format: uuid
+          type: string
+        name:
+          description: Display name of the property.
+          type: string
+        type:
+          $ref: '#/components/schemas/CustomPropertyType'
+        required:
+          description: Whether users must fill this property before sending the SR via the application (not enforced via API).
+          type: boolean
+        multiple_answer_allowed:
+          description: For list type only — whether multiple options can be selected. Null for text type.
+          type:
+          - boolean
+          - 'null'
+        workspace_ids:
+          description: List of workspace IDs where this property is applicable. Null means org-wide.
+          items:
+            $ref: '#/components/schemas/UUID'
+          type:
+          - array
+          - 'null'
+        default_value:
+          description: For text type only — default text pre-filled on new signature requests. Null for list type.
+          type:
+          - string
+          - 'null'
+        options:
+          description: 'For list type only: selectable options.
+
+            Null for text type.
+
+            '
+          items:
+            $ref: '#/components/schemas/CustomPropertyOption'
+          type:
+          - array
+          - 'null'
+      required:
+      - id
+      - name
+      - type
+      title: CustomPropertyInList
+      type: object
+    New_Signature_Request_From_Scratch_template_placeholders:
+      additionalProperties: false
+      description: When creating a signature request from a template, all substituting data for placeholders defined in the given template.
+      properties:
+        signers:
+          description: Substituting data for placeholder signers.
+          items:
+            $ref: '#/components/schemas/New_Signature_Request_From_Scratch_template_placeholders_signers_inner'
+          maxItems: 100
+          type: array
+        read_only_text_fields:
+          description: Substituting data for placeholder read_only_text fields.
+          items:
+            $ref: '#/components/schemas/SignatureRequest_PlaceholderReadOnlyTextFieldSubstituteInput'
+          maxItems: 500
+          type: array
+      type:
+      - object
+      - 'null'
+    UpdateSignatureRequest_reminder_settings:
+      properties:
+        interval_in_days:
+          enum:
+          - 1
+          - 2
+          - 7
+          - 14
+          format: int32
+          type: integer
+        max_occurrences:
+          example: 5
+          format: int32
+          maximum: 10
+          minimum: 1
+          type: integer
+      required:
+      - interval_in_days
+      - max_occurrences
+      type:
+      - object
+      - 'null'
+    ApproverToNotify:
+      description: ''
+      properties:
+        id:
+          format: uuid
+          minLength: 1
+          type: string
+        status:
+          enum:
+          - initiated
+          - notified
+          - approved
+          - rejected
+          minLength: 1
+          type: string
+        approval_link:
+          format: uri
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        approval_link_expiration_date:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type:
+          - string
+          - 'null'
+      required:
+      - approval_link
+      - approval_link_expiration_date
+      - id
+      - status
+      type: object
+    New_Signature_Request_From_Scratch_template_placeholders_signers_inner:
+      anyOf:
+      - $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput'
+      - $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromUserIdInput'
+      - $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromContactIdInput'
     New_Signature_Request_From_Scratch_reminder_settings:
       additionalProperties: false
       description: Enable automatic reminders for pending Signers.
@@ -2648,6 +2646,51 @@ components:
       type:
       - object
       - 'null'
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    SignatureRequestInList_signers_inner:
+      properties:
+        id:
+          type: string
+        status:
+          enum:
+          - initiated
+          - declined
+          - notified
+          - verified
+          - processing
+          - consent_given
+          - signed
+          - aborted
+          - error
+          type: string
+      required:
+      - id
+      - status
+      type: object
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    get_signature_requests_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/SignatureRequestInList'
+          type: array
+      type: object
     MethodNotAllowed:
       properties:
         message:
@@ -2656,49 +2699,228 @@ components:
       - message
       title: MethodNotAllowed
       type: object
-    Locale:
-      description: Locale settings used for communication.
-      enum:
-      - en
-      - fr
-      - de
-      - it
-      - nl
-      - es
-      - pl
-      minLength: 1
-      title: Locale
-      type: string
     CustomPropertyType:
       enum:
       - text
       - list
       example: text
       type: string
-    SignatureRequest_rejection_information:
-      description: Information related to the rejection of a Signature Request by an Approver.
+    SignatureRequest_SignerFromInfoInput_custom_text:
+      additionalProperties: false
       properties:
-        approver_id:
-          description: Id of the Approver who rejected the Signature Request.
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+        request_subject:
+          maxLength: 512
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        request_body:
+          maxLength: 2000
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        reminder_subject:
+          maxLength: 512
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        reminder_body:
+          maxLength: 2000
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      type: object
+    Checkbox_2:
+      properties:
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
           format: uuid
           type: string
-        reason:
-          description: Reason provided by the Approver explaining why they rejected the Signature Request.
-          example: I don't agree with the terms in the document.
+        type:
+          enum:
+          - checkbox
           type: string
-        rejected_at:
-          description: Timestamp indicating when the Approver rejected the Signature Request.
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        size:
+          description: The omission of size parameter is considered as deprecated. The size determines both the width and height of the checkbox.
+          format: int32
+          maximum: 240
+          minimum: 8
+          type: integer
+        optional:
+          type: boolean
+        name:
+          example: Checkbox 1
+          type:
+          - string
+          - 'null'
+        checked:
+          type: boolean
+        default_checked:
+          type: boolean
+        read_only:
+          default: false
+          description: If set to `true`, the checkbox cannot be modified by the signer.
+          type: boolean
+      required:
+      - checked
+      - document_id
+      - optional
+      - page
+      - type
+      - x
+      - y
+      title: Checkbox
+      type: object
+    Text_2:
+      properties:
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
           type: string
-      readOnly: true
+        type:
+          enum:
+          - text
+          type: string
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        width:
+          description: If not set, the width is automatically calculated with the max_length value
+          example: 90
+          format: int32
+          minimum: 24
+          type: integer
+        height:
+          description: The height must be 24 or a multiple of 15 greater than 24.
+          example: 150
+          format: int32
+          minimum: 24
+          type: integer
+        max_length:
+          maximum: 32767
+          minimum: 1
+          type: integer
+        question:
+          example: What is your job title?
+          maxLength: 255
+          type: string
+        instruction:
+          example: Your position in the company
+          type:
+          - string
+          - 'null'
+        optional:
+          type: boolean
+        name:
+          description: Name of the Field.
+          example: Job Title
+          maxLength: 128
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        default_value:
+          description: If a default value is provided, the Field will be pre-filled with this value. The Signer can modify it before signing unless the Field is set to `read-only`.
+          example: Software Engineer
+          maxLength: 32767
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        read_only:
+          default: false
+          description: If set to `true`, the Signer cannot modify the Field and the default value (if provided) will remain unchanged.
+          type: boolean
+      required:
+      - document_id
+      - max_length
+      - optional
+      - page
+      - question
+      - type
+      - x
+      - y
+      title: Text
+      type: object
+    SignerDeliveryMode:
+      description: Override the delivery mode of the Signature Request for this Signer
+      enum:
+      - email
+      - none
       type:
-      - object
+      - string
       - 'null'
-    SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_info:
+    CustomPropertyValue:
+      properties:
+        id:
+          description: ID of the Custom Property.
+          format: uuid
+          type: string
+        name:
+          description: Name of the Custom Property.
+          type: string
+        type:
+          enum:
+          - text
+          - list
+          type: string
+        value:
+          description: Text value for text properties.
+          type:
+          - string
+          - 'null'
+        value_ids:
+          description: Array of option ids for list properties.
+          items:
+            format: uuid
+            type: string
+          type:
+          - array
+          - 'null'
+        values:
+          description: Array of option values for list properties.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      required:
+      - id
+      - name
+      - type
+      title: CustomPropertyValue
+      type: object
+    SignatureRequest_SignerFromInfoInput_info:
       additionalProperties: false
-      description: Create new signer
+      description: create new signer
       properties:
         first_name:
           allOf:
@@ -2734,37 +2956,59 @@ components:
       - last_name
       - locale
       type: object
-    SignatureRequest_email_notification_sender:
+    SignatureRequest_SignerFromInfoInput:
+      additionalProperties: false
+      description: Create a signer from info
       properties:
-        type:
+        info:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_info'
+        fields:
+          items:
+            $ref: '#/components/schemas/FieldsInput'
+          type: array
+        signature_level:
+          default: electronic_signature
           enum:
-          - organization
-          - workspace
-          - user
-          - custom
+          - electronic_signature
+          - advanced_electronic_signature
+          - qualified_electronic_signature
           type: string
-        custom_name:
-          description: To use in association with sender type custom to precise the name
-          maxLength: 128
-          minLength: 1
+        signature_authentication_mode:
+          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
+          enum:
+          - null
+          - otp_email
+          - otp_sms
+          - no_otp
           type:
           - string
           - 'null'
+        redirect_urls:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_redirect_urls'
+        custom_text:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
+        pre_identity_verification_required:
+          description: Defines the way the Signer's Identity Documents will be uploaded for Verification. If set to `true`, `signature_level`should be equal to `advanced_electronic_signature` and `delivery_mode` set to `none`.
+          type: boolean
       required:
-      - custom_name
-      - type
+      - info
+      - signature_level
+      title: From Scratch
       type: object
-    SignatureRequest_PlaceholderSignerSubstituteFromInfoInput:
+    SignatureRequest_PlaceholderSignerSubstituteFromUserIdInput:
       additionalProperties: false
-      description: Create a placeholder signer substitute from info
+      description: Create a placeholder signer substitute from a user
       properties:
         label:
           example: Employee
           maxLength: 64
           minLength: 1
           type: string
-        info:
-          $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_info'
+        user_id:
+          description: Create signer from an existing user
+          example: 8b6ed2f3-244f-487a-baa1-bbe4f51c8744
+          format: uuid
+          type: string
         signature_level:
           default: electronic_signature
           enum:
@@ -2789,69 +3033,356 @@ components:
         delivery_mode:
           $ref: '#/components/schemas/SignerDeliveryMode'
       required:
-      - info
       - label
-      title: From Scratch
+      - user_id
+      title: From Existing User
       type: object
-    SignatureRequest_PlaceholderReadOnlyTextFieldSubstituteInput:
-      additionalProperties: false
-      description: Create a placeholder read_only_text field substitute
+    RadioGroup_2_radios_inner:
       properties:
-        label:
-          example: Employee
-          maxLength: 64
+        name:
+          description: Radio button's name
+          maxLength: 128
           minLength: 1
-          type: string
-        text:
-          example: This is my read_only_text
-          maxLength: 5000
-          minLength: 1
-          type: string
-      required:
-      - label
-      - text
-      type: object
-    UpdateSignatureRequest_reminder_settings:
-      properties:
-        interval_in_days:
-          enum:
-          - 1
-          - 2
-          - 7
-          - 14
+          type:
+          - string
+          - 'null'
+        x:
           format: int32
+          maximum: 32767
+          minimum: 0
           type: integer
-        max_occurrences:
-          example: 5
+        y:
           format: int32
-          maximum: 10
+          maximum: 32767
+          minimum: 0
+          type: integer
+        size:
+          description: The omission of size parameter is considered as deprecated. The size determines both the width and height of the checkbox.
+          format: int32
+          maximum: 240
+          minimum: 8
+          type: integer
+        default_checked:
+          default: false
+          description: Indicates whether the radio is initially checked (`true`) or unchecked (`false`).
+          type: boolean
+      required:
+      - x
+      - y
+      type: object
+    EmbeddedSignerWithSignatureLink:
+      description: ''
+      properties:
+        id:
+          format: uuid
+          minLength: 1
+          type: string
+        status:
+          enum:
+          - initiated
+          - notified
+          - verified
+          - processing
+          - consent_given
+          - signed
+          - aborted
+          - error
+          minLength: 1
+          type: string
+        signature_link:
+          format: uri
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        signature_link_expiration_date:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - signature_link
+      - signature_link_expiration_date
+      - status
+      type: object
+    FieldsInput:
+      oneOf:
+      - $ref: '#/components/schemas/Signature_2'
+      - $ref: '#/components/schemas/Mention_2'
+      - $ref: '#/components/schemas/Text_2'
+      - $ref: '#/components/schemas/Checkbox_2'
+      - $ref: '#/components/schemas/RadioGroup_2'
+      type: object
+    CustomPropertyOption:
+      properties:
+        id:
+          description: Unique identifier of the option
+          format: uuid
+          type: string
+        value:
+          description: Display text of the option
+          type: string
+        is_default:
+          description: Whether this option is pre-selected on new SRs
+          type: boolean
+        position:
+          description: Sort order
+          type: integer
+      required:
+      - id
+      - is_default
+      - position
+      - value
+      title: CustomPropertyOption
+      type: object
+    Mention_2:
+      properties:
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
+          type: string
+        type:
+          enum:
+          - mention
+          type: string
+        page:
+          format: int32
           minimum: 1
           type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        width:
+          description: If not set, the width is automatically calculated with the mention length
+          format: int32
+          minimum: 24
+          type: integer
+        height:
+          description: The height must be 24 or a multiple of 15 greater than 24. If height is not provided, it will be calculated depending on the number of newlines in the mention
+          example: 150
+          format: int32
+          minimum: 24
+          type:
+          - integer
+          - 'null'
+        mention:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email.
+          format: safe-string
+          type: string
+        name:
+          description: Name of the Field.
+          example: Job Title
+          maxLength: 128
+          minLength: 1
+          type:
+          - string
+          - 'null'
       required:
-      - interval_in_days
-      - max_occurrences
-      type:
-      - object
-      - 'null'
-    New_Signature_Request_From_Scratch_template_placeholders:
-      additionalProperties: false
-      description: When creating a signature request from a template, all substituting data for placeholders defined in the given template.
+      - document_id
+      - mention
+      - page
+      - type
+      - x
+      - y
+      title: Mention
+      type: object
+    SignatureRequestInList:
       properties:
+        id:
+          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
+          minLength: 1
+          type: string
+        status:
+          $ref: '#/components/schemas/SignatureRequestStatus'
+        name:
+          example: signature request name
+          maxLength: 128
+          minLength: 1
+          type: string
+        delivery_mode:
+          enum:
+          - email
+          - none
+          type: string
+        created_at:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          minLength: 1
+          type: string
+        activated_at:
+          description: 'Timestamp indicating when the Signature Request was activated and made available to its recipients.\
+
+            Returns `null` if the Signature Request is still in `draft`.
+
+            '
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        completed_at:
+          description: 'Timestamp indicating when the Signature Request reached the `done` status, i.e. all required Signers have signed and all Approvers have approved.\
+
+            Returns `null` if the Signature Request is not yet complete.
+
+            '
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        approved_at:
+          description: 'Timestamp indicating when all Approvers have approved the Signature Request when custom recipient flow is not enabled.\
+
+            Returns `null` if no approvers are configured, or if at least one approver has not yet approved, or when `custom_recipient_order` is enabled.
+
+            '
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        ordered_signers:
+          description: Enable an ordered workflow, each Signer will be requested to sign in a sequential order
+          type: boolean
+        ordered_approvers:
+          description: Enable an ordered workflow, each Approver will be requested to approve in a sequential order
+          type: boolean
+        reminder_settings:
+          $ref: '#/components/schemas/SignatureRequestInList_reminder_settings'
+        timezone:
+          $ref: '#/components/schemas/SignatureRequestTimeZone'
+        email_custom_note:
+          deprecated: true
+          example: Please sign these documents as soon as possible.
+          type:
+          - string
+          - 'null'
+        expiration_date:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+        source:
+          enum:
+          - app
+          - public_api
+          - hubspot_integration
+          - connector_salesforce_api
+          - connector_google_api
+          - connector_zapier_api
+          type: string
         signers:
-          description: Substituting data for placeholder signers.
           items:
-            $ref: '#/components/schemas/New_Signature_Request_From_Scratch_template_placeholders_signers_inner'
-          maxItems: 100
+            $ref: '#/components/schemas/SignatureRequestInList_signers_inner'
           type: array
-        read_only_text_fields:
-          description: Substituting data for placeholder read_only_text fields.
+        approvers:
           items:
-            $ref: '#/components/schemas/SignatureRequest_PlaceholderReadOnlyTextFieldSubstituteInput'
-          maxItems: 500
+            $ref: '#/components/schemas/SignatureRequestInList_approvers_inner'
           type: array
-      type:
-      - object
-      - 'null'
+        labels:
+          description: Labels associated to the Signature Request
+          items:
+            $ref: '#/components/schemas/SignatureRequestLabel'
+          type: array
+        documents:
+          items:
+            $ref: '#/components/schemas/SignatureRequestInList_documents_inner'
+          type: array
+        sender:
+          $ref: '#/components/schemas/SignatureRequestInList_sender'
+        external_id:
+          example: An_external-ID
+          type:
+          - string
+          - 'null'
+        branding_id:
+          deprecated: true
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+        custom_experience_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+        signers_allowed_to_decline:
+          example: true
+          type: boolean
+        workspace_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+        audit_trail_locale:
+          $ref: '#/components/schemas/AuditTrailLocale'
+        bulk_send_batch_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type:
+          - string
+          - 'null'
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
+        custom_recipient_order:
+          description: Enable a custom recipients order
+          type: boolean
+        custom_properties:
+          description: Custom properties associated with the Signature Request.
+          items:
+            $ref: '#/components/schemas/CustomPropertyInList'
+          type: array
+      required:
+      - activated_at
+      - approved_at
+      - audit_trail_locale
+      - branding_id
+      - bulk_send_batch_id
+      - completed_at
+      - created_at
+      - custom_experience_id
+      - custom_recipient_order
+      - delivery_mode
+      - documents
+      - email_custom_note
+      - expiration_date
+      - external_id
+      - id
+      - name
+      - ordered_approvers
+      - ordered_signers
+      - previous_attempt_id
+      - reminder_settings
+      - sender
+      - signers
+      - signers_allowed_to_decline
+      - source
+      - status
+      - timezone
+      - workflow_session_id
+      title: SignatureRequest
+      type: object
+    New_Signature_Request_From_Scratch_signers_inner:
+      anyOf:
+      - $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput'
+      - $ref: '#/components/schemas/SignatureRequest_SignerFromUserIdInput'
+      - $ref: '#/components/schemas/SignatureRequest_SignerFromContactIdInput'
+      description: Create signers
     SignatureRequestActivated:
       properties:
         id:
@@ -3015,206 +3546,77 @@ components:
       - workflow_session_id
       title: SignatureRequestActivated
       type: object
-    HumanName:
-      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
-      type: string
-    CustomPropertyValue:
+    SignatureRequest_decline_information:
       properties:
-        id:
-          description: ID of the Custom Property.
+        signer_id:
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
           format: uuid
           type: string
-        name:
-          description: Name of the Custom Property.
+        reason:
+          type: string
+        declined_at:
+          example: '2024-01-18T22:59:00Z'
+          format: date-time
+          type: string
+      type:
+      - object
+      - 'null'
+    Signature_2:
+      properties:
+        document_id:
+          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
+          format: uuid
           type: string
         type:
           enum:
-          - text
-          - list
+          - signature
           type: string
-        value:
-          description: Text value for text properties.
-          type:
-          - string
-          - 'null'
-        value_ids:
-          description: Array of option ids for list properties.
-          items:
-            format: uuid
-            type: string
-          type:
-          - array
-          - 'null'
-        values:
-          description: Array of option values for list properties.
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-      required:
-      - id
-      - name
-      - type
-      title: CustomPropertyValue
-      type: object
-    SignatureRequest_SignerFromInfoInput:
-      additionalProperties: false
-      description: Create a signer from info
-      properties:
-        info:
-          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_info'
-        fields:
-          items:
-            $ref: '#/components/schemas/FieldsInput'
-          type: array
-        signature_level:
-          default: electronic_signature
-          enum:
-          - electronic_signature
-          - advanced_electronic_signature
-          - qualified_electronic_signature
-          type: string
-        signature_authentication_mode:
-          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
-          enum:
-          - null
-          - otp_email
-          - otp_sms
-          - no_otp
-          type:
-          - string
-          - 'null'
-        redirect_urls:
-          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_redirect_urls'
-        custom_text:
-          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
-        pre_identity_verification_required:
-          description: Defines the way the Signer's Identity Documents will be uploaded for Verification. If set to `true`, `signature_level`should be equal to `advanced_electronic_signature` and `delivery_mode` set to `none`.
-          type: boolean
-      required:
-      - info
-      - signature_level
-      title: From Scratch
-      type: object
-    SignatureRequest_PlaceholderSignerSubstituteFromContactIdInput:
-      additionalProperties: false
-      description: Create a placeholder signer substitute from a contact
-      properties:
-        label:
-          example: Employee
-          maxLength: 64
-          minLength: 1
-          type: string
-        contact_id:
-          description: Create signer from an existing contact
-          example: ddecfb85-8a45-4254-b940-6171b8df0a90
-          format: uuid
-          type: string
-        signature_level:
-          default: electronic_signature
-          enum:
-          - electronic_signature
-          - advanced_electronic_signature
-          - qualified_electronic_signature
-          type: string
-        signature_authentication_mode:
-          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
-          enum:
-          - null
-          - otp_email
-          - otp_sms
-          - no_otp
-          type:
-          - string
-          - 'null'
-        redirect_urls:
-          $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_redirect_urls'
-        custom_text:
-          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
-        delivery_mode:
-          $ref: '#/components/schemas/SignerDeliveryMode'
-      required:
-      - contact_id
-      - label
-      title: From Existing Contact
-      type: object
-    SignatureRequestActivated_documents_inner:
-      properties:
-        id:
-          type: string
-        nature:
-          type: string
-      required:
-      - id
-      - nature
-      type: object
-    New_Signature_Request_From_Scratch_signers_inner:
-      anyOf:
-      - $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput'
-      - $ref: '#/components/schemas/SignatureRequest_SignerFromUserIdInput'
-      - $ref: '#/components/schemas/SignatureRequest_SignerFromContactIdInput'
-      description: Create signers
-    SignatureRequest_SignerFromInfoInput_info:
-      additionalProperties: false
-      description: create new signer
-      properties:
-        first_name:
+        page:
+          format: int32
+          minimum: 1
+          type: integer
+        x:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          format: int32
+          maximum: 32767
+          minimum: 0
+          type: integer
+        height:
+          description: Default value is 37
+          format: int32
+          maximum: 1000
+          minimum: 37
+          type: integer
+        width:
+          description: Default value is 85
+          format: int32
+          maximum: 2000
+          minimum: 85
+          type: integer
+        reason:
           allOf:
           - $ref: '#/components/schemas/HumanName'
-          example: John
-          maxLength: 255
-          minLength: 1
-          type: string
-        last_name:
-          allOf:
-          - $ref: '#/components/schemas/HumanName'
-          example: Doe
-          maxLength: 255
-          minLength: 1
-          type: string
-        email:
-          format: email
-          maxLength: 100
-          minLength: 1
-          type: string
-        phone_number:
-          description: E.164 format. Becomes mandatory if `signature_authentication_mode` requires a phone number.
-          example: '+41446667700'
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        locale:
-          $ref: '#/components/schemas/Locale'
-      required:
-      - email
-      - first_name
-      - last_name
-      - locale
-      type: object
-    get_signature_requests_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/SignatureRequestInList'
-          type: array
-      type: object
-    Pagination:
-      description: Metadata about the response.
-      properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
+          description: 'Provide extra context to explain why the Document is being signed. Once the Document is signed, the custom reason is stored in the Audit Trail and is included in the signature certificate.
+
+            The default value is: "Signed by [Signer first name] [Signer last name]".
 
             '
-          minLength: 1
+          example: Signed by John Doe
+          maxLength: 150
           type:
           - string
           - 'null'
       required:
-      - next_cursor
+      - document_id
+      - page
+      - type
+      - x
+      - y
+      title: Signature
       type: object
     UpdateSignatureRequest:
       properties:
@@ -3316,472 +3718,48 @@ components:
           maxItems: 50
           type: array
       type: object
-    CreateSignatureRequest:
-      additionalProperties: false
-      oneOf:
-      - $ref: '#/components/schemas/New_Signature_Request_From_Scratch'
-      - $ref: '#/components/schemas/Duplicate_a_Signature_Request'
-      type: object
-    ActivateSignatureRequest:
+    SignatureRequestInList_reminder_settings:
       properties:
-        sender_id:
-          description: 'The Id of the User that should be considered as the Signature Request sender.
-
-            They must be part of the Workspace of the Signature Request and be active.
-
-            Mandatory with `sender_type: "user"`, must be omitted otherwise.
-
-            '
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type: string
-      type: object
-    CustomPropertyOption:
-      properties:
-        id:
-          description: Unique identifier of the option
-          format: uuid
-          type: string
-        value:
-          description: Display text of the option
-          type: string
-        is_default:
-          description: Whether this option is pre-selected on new SRs
-          type: boolean
-        position:
-          description: Sort order
-          type: integer
-      required:
-      - id
-      - is_default
-      - position
-      - value
-      title: CustomPropertyOption
-      type: object
-    SignatureRequestInList_documents_inner:
-      properties:
-        id:
-          type: string
-        nature:
+        interval_in_days:
           enum:
-          - attachment
-          - signable_document
-          type: string
-      required:
-      - id
-      - nature
-      type: object
-    CustomPropertyInList:
-      properties:
-        id:
-          description: Unique identifier of the custom property.
-          format: uuid
-          type: string
-        name:
-          description: Display name of the property.
-          type: string
-        type:
-          $ref: '#/components/schemas/CustomPropertyType'
-        required:
-          description: Whether users must fill this property before sending the SR via the application (not enforced via API).
-          type: boolean
-        multiple_answer_allowed:
-          description: For list type only — whether multiple options can be selected. Null for text type.
-          type:
-          - boolean
-          - 'null'
-        workspace_ids:
-          description: List of workspace IDs where this property is applicable. Null means org-wide.
-          items:
-            $ref: '#/components/schemas/UUID'
-          type:
-          - array
-          - 'null'
-        default_value:
-          description: For text type only — default text pre-filled on new signature requests. Null for list type.
-          type:
-          - string
-          - 'null'
-        options:
-          description: 'For list type only: selectable options.
-
-            Null for text type.
-
-            '
-          items:
-            $ref: '#/components/schemas/CustomPropertyOption'
-          type:
-          - array
-          - 'null'
-      required:
-      - id
-      - name
-      - type
-      title: CustomPropertyInList
-      type: object
-    ApproverToNotify:
-      description: ''
-      properties:
-        id:
-          format: uuid
-          minLength: 1
-          type: string
-        status:
-          enum:
-          - initiated
-          - notified
-          - approved
-          - rejected
-          minLength: 1
-          type: string
-        approval_link:
-          format: uri
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        approval_link_expiration_date:
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          type:
-          - string
-          - 'null'
-      required:
-      - approval_link
-      - approval_link_expiration_date
-      - id
-      - status
-      type: object
-    AuditTrailLocale:
-      enum:
-      - de
-      - en
-      - es
-      - fr
-      - it
-      - pt
-      - ro
-      example: en
-      type: string
-    Signature_2:
-      properties:
-        document_id:
-          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
-          format: uuid
-          type: string
-        type:
-          enum:
-          - signature
-          type: string
-        page:
+          - 1
+          - 2
+          - 7
+          - 14
           format: int32
+          type: integer
+        max_occurrences:
+          format: int32
+          maximum: 10
           minimum: 1
           type: integer
-        x:
-          format: int32
-          maximum: 32767
-          minimum: 0
-          type: integer
-        y:
-          format: int32
-          maximum: 32767
-          minimum: 0
-          type: integer
-        height:
-          description: Default value is 37
-          format: int32
-          maximum: 1000
-          minimum: 37
-          type: integer
-        width:
-          description: Default value is 85
-          format: int32
-          maximum: 2000
-          minimum: 85
-          type: integer
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/HumanName'
-          description: 'Provide extra context to explain why the Document is being signed. Once the Document is signed, the custom reason is stored in the Audit Trail and is included in the signature certificate.
-
-            The default value is: "Signed by [Signer first name] [Signer last name]".
-
-            '
-          example: Signed by John Doe
-          maxLength: 150
-          type:
-          - string
-          - 'null'
       required:
-      - document_id
-      - page
-      - type
-      - x
-      - y
-      title: Signature
-      type: object
-    RadioGroup_2:
-      properties:
-        document_id:
-          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
-          format: uuid
-          type: string
-        type:
-          enum:
-          - radio_group
-          type: string
-        page:
-          format: int32
-          minimum: 1
-          type: integer
-        optional:
-          type: boolean
-        name:
-          description: Radio group's name
-          example: radio_group_name_1
-          maxLength: 128
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        read_only:
-          default: false
-          description: If set to `true`, the radio button cannot be modified by the Signer.
-          type: boolean
-        radios:
-          items:
-            $ref: '#/components/schemas/RadioGroup_2_radios_inner'
-          type: array
-      required:
-      - document_id
-      - optional
-      - page
-      - radios
-      - type
-      title: RadioGroup
-      type: object
-    SignatureRequestStatus:
-      enum:
-      - draft
-      - ongoing
-      - done
-      - deleted
-      - expired
-      - canceled
-      - approval
-      - rejected
-      - declined
-      - paused
-      type: string
-    RadioGroup_2_radios_inner:
-      properties:
-        name:
-          description: Radio button's name
-          maxLength: 128
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        x:
-          format: int32
-          maximum: 32767
-          minimum: 0
-          type: integer
-        y:
-          format: int32
-          maximum: 32767
-          minimum: 0
-          type: integer
-        size:
-          description: The omission of size parameter is considered as deprecated. The size determines both the width and height of the checkbox.
-          format: int32
-          maximum: 240
-          minimum: 8
-          type: integer
-        default_checked:
-          default: false
-          description: Indicates whether the radio is initially checked (`true`) or unchecked (`false`).
-          type: boolean
-      required:
-      - x
-      - y
-      type: object
-    SignerDeliveryMode:
-      description: Override the delivery mode of the Signature Request for this Signer
-      enum:
-      - email
-      - none
-      type:
-      - string
-      - 'null'
-    New_Signature_Request_From_Scratch_template_placeholders_signers_inner:
-      anyOf:
-      - $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput'
-      - $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromUserIdInput'
-      - $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromContactIdInput'
-    SignatureRequest_email_notification:
-      properties:
-        sender:
-          $ref: '#/components/schemas/SignatureRequest_email_notification_sender'
-        custom_note:
-          example: Please sign these documents as soon as possible.
-          maxLength: 2000
-          type:
-          - string
-          - 'null'
-      required:
-      - custom_note
-      - sender
-      type: object
-    SignatureRequestInList_signers_inner:
-      properties:
-        id:
-          type: string
-        status:
-          enum:
-          - initiated
-          - declined
-          - notified
-          - verified
-          - processing
-          - consent_given
-          - signed
-          - aborted
-          - error
-          type: string
-      required:
-      - id
-      - status
-      type: object
-    SignatureRequest_SignerFromInfoInput_redirect_urls:
-      additionalProperties: false
-      properties:
-        success:
-          example: https://example.com/success
-          format: uri
-          maxLength: 255
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        error:
-          example: https://example.com/error
-          format: uri
-          maxLength: 255
-          minLength: 1
-          type:
-          - string
-          - 'null'
-      type: object
-    post_signature_requests_signatureRequestId_cancel_request:
-      properties:
-        reason:
-          enum:
-          - contractualization_aborted
-          - errors_in_document
-          - other
-          type: string
-        custom_note:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          format: safe-string
-          maxLength: 500
-          type:
-          - string
-          - 'null'
-      required:
-      - reason
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
-    SignatureRequest_EmailNotification_custom_text:
-      additionalProperties: false
-      properties:
-        request_subject:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
-          format: safe-string
-          maxLength: 512
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        request_body:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
-          format: safe-string
-          maxLength: 2000
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        reminder_subject:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
-          format: safe-string
-          maxLength: 512
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        reminder_body:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
-          format: safe-string
-          maxLength: 2000
-          minLength: 1
-          type:
-          - string
-          - 'null'
+      - interval_in_days
+      - max_occurrences
       type:
       - object
       - 'null'
-    post_signature_requests_signatureRequestId_reactivate_request:
+    SignatureRequest_PlaceholderReadOnlyTextFieldSubstituteInput:
+      additionalProperties: false
+      description: Create a placeholder read_only_text field substitute
       properties:
-        expiration_date:
-          description: 'Due date of the Signature Request (yyyy-mm-dd).
-
-            The date cannot be in the past and cannot be more than one year after initiation.
-
-            '
-          format: date
-          pattern: ^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$
+        label:
+          example: Employee
+          maxLength: 64
+          minLength: 1
+          type: string
+        text:
+          example: This is my read_only_text
+          maxLength: 5000
+          minLength: 1
           type: string
       required:
-      - expiration_date
+      - label
+      - text
       type: object
-    SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_redirect_urls:
-      additionalProperties: false
-      properties:
-        success:
-          example: https://example.com/success
-          format: uri
-          maxLength: 255
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        error:
-          example: https://example.com/error
-          format: uri
-          maxLength: 255
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        decline:
-          example: https://example.com/decline
-          format: uri
-          maxLength: 255
-          minLength: 1
-          type:
-          - string
-          - 'null'
-      type: object
+    HumanName:
+      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
+      type: string
     SignatureRequestInList_approvers_inner:
       properties:
         id:
@@ -3797,230 +3775,6 @@ components:
       - id
       - status
       type: object
-    SignatureRequestLabel:
-      properties:
-        id:
-          description: Unique identifier of the Label.
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          readOnly: true
-          type: string
-        name:
-          description: Name of the Label.
-          example: Contracts
-          maxLength: 128
-          minLength: 1
-          type: string
-      required:
-      - id
-      - name
-      type: object
-    Mention_2:
-      properties:
-        document_id:
-          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
-          format: uuid
-          type: string
-        type:
-          enum:
-          - mention
-          type: string
-        page:
-          format: int32
-          minimum: 1
-          type: integer
-        x:
-          format: int32
-          maximum: 32767
-          minimum: 0
-          type: integer
-        y:
-          format: int32
-          maximum: 32767
-          minimum: 0
-          type: integer
-        width:
-          description: If not set, the width is automatically calculated with the mention length
-          format: int32
-          minimum: 24
-          type: integer
-        height:
-          description: The height must be 24 or a multiple of 15 greater than 24. If height is not provided, it will be calculated depending on the number of newlines in the mention
-          example: 150
-          format: int32
-          minimum: 24
-          type:
-          - integer
-          - 'null'
-        mention:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email.
-          format: safe-string
-          type: string
-        name:
-          description: Name of the Field.
-          example: Job Title
-          maxLength: 128
-          minLength: 1
-          type:
-          - string
-          - 'null'
-      required:
-      - document_id
-      - mention
-      - page
-      - type
-      - x
-      - y
-      title: Mention
-      type: object
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    Text_2:
-      properties:
-        document_id:
-          example: 9b6ed2f3-244f-487a-baa1-bbe4f51c8748
-          format: uuid
-          type: string
-        type:
-          enum:
-          - text
-          type: string
-        page:
-          format: int32
-          minimum: 1
-          type: integer
-        x:
-          format: int32
-          maximum: 32767
-          minimum: 0
-          type: integer
-        y:
-          format: int32
-          maximum: 32767
-          minimum: 0
-          type: integer
-        width:
-          description: If not set, the width is automatically calculated with the max_length value
-          example: 90
-          format: int32
-          minimum: 24
-          type: integer
-        height:
-          description: The height must be 24 or a multiple of 15 greater than 24.
-          example: 150
-          format: int32
-          minimum: 24
-          type: integer
-        max_length:
-          maximum: 32767
-          minimum: 1
-          type: integer
-        question:
-          example: What is your job title?
-          maxLength: 255
-          type: string
-        instruction:
-          example: Your position in the company
-          type:
-          - string
-          - 'null'
-        optional:
-          type: boolean
-        name:
-          description: Name of the Field.
-          example: Job Title
-          maxLength: 128
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        default_value:
-          description: If a default value is provided, the Field will be pre-filled with this value. The Signer can modify it before signing unless the Field is set to `read-only`.
-          example: Software Engineer
-          maxLength: 32767
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        read_only:
-          default: false
-          description: If set to `true`, the Signer cannot modify the Field and the default value (if provided) will remain unchanged.
-          type: boolean
-      required:
-      - document_id
-      - max_length
-      - optional
-      - page
-      - question
-      - type
-      - x
-      - y
-      title: Text
-      type: object
-    Duplicate_a_Signature_Request:
-      description: Duplicate a Signature Request. It will be added to the same workspace as the original.
-      properties:
-        signature_request_id:
-          description: ID of the signature request to duplicate.
-          example: 6c82bd7a-d7f7-45e0-82f4-b92222567346
-          format: uuid
-          title: Signature Request ID
-          type: string
-        name:
-          description: The name of the new Signature Request.
-          example: My duplicated Signature Request
-          maxLength: 128
-          minLength: 1
-          type: string
-        workflow_session_id:
-          $ref: '#/components/schemas/WorkflowSessionId'
-        previous_attempt_id:
-          $ref: '#/components/schemas/PreviousAttemptId'
-      required:
-      - signature_request_id
-      title: Duplicate a Signature Request
-      type: object
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
-    SignatureRequestInList_sender:
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-      type:
-      - object
-      - 'null'
-    Archiving:
-      deprecated: true
-      description: Once the signature request completed, archive its documents in a secure digital safe
-      enum:
-      - archive
-      - archive_y
-      title: Archiving
-      type:
-      - string
-      - 'null'
     SignatureRequest_SignerFromUserIdInput:
       additionalProperties: false
       description: Create a signer from a user
@@ -4063,115 +3817,357 @@ components:
       - user_id
       title: From Existing User
       type: object
-    EmbeddedSignerWithSignatureLink:
-      description: ''
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - next_cursor
+      type: object
+    post_signature_requests_signatureRequestId_cancel_request:
+      properties:
+        reason:
+          enum:
+          - contractualization_aborted
+          - errors_in_document
+          - other
+          type: string
+        custom_note:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          format: safe-string
+          maxLength: 500
+          type:
+          - string
+          - 'null'
+      required:
+      - reason
+      type: object
+    SignatureRequestInList_sender:
       properties:
         id:
-          format: uuid
-          minLength: 1
           type: string
-        status:
-          enum:
-          - initiated
-          - notified
-          - verified
-          - processing
-          - consent_given
-          - signed
-          - aborted
-          - error
-          minLength: 1
+        email:
           type: string
-        signature_link:
-          format: uri
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        signature_link_expiration_date:
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          type:
-          - string
-          - 'null'
+      type:
+      - object
+      - 'null'
+    SignatureRequestActivated_documents_inner:
+      properties:
+        id:
+          type: string
+        nature:
+          type: string
       required:
       - id
-      - signature_link
-      - signature_link_expiration_date
-      - status
+      - nature
       type: object
-    BadRequestResponse:
+    New_Signature_Request_From_Scratch:
+      description: Create a new Signature Request from scratch
       properties:
-        type:
+        name:
+          description: 'Name of the signature request.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+
+            '
+          format: safe-string
+          maxLength: 128
+          minLength: 1
           type: string
-        detail:
+        delivery_mode:
+          description: Delivery mode to notify Signers.
+          enum:
+          - none
+          - email
           type: string
+        ordered_signers:
+          description: Enable an ordered workflow, each Signer will be requested to sign in a sequential order
+          example: true
+          type: boolean
+        ordered_approvers:
+          description: 'When enabled, Approvers are requested to approve sequentially.
+
+            Each Approver will be invited to approve only once the previous one has completed their approval.
+
+            '
+          example: true
+          type: boolean
+        custom_recipient_order:
+          description: 'When enabled, Approvers and Signers are requested to approve depending of a sequence composed of stages.
+
+            Every recipients present in a stage will be invited to approve or sign parallelly, and stages are sequential each other.
+
+            When `custom_recipient_order` is enabled, `ordered_approvers` and `ordered_signers` are ignored.
+
+            '
+          example: true
+          type: boolean
+        reminder_settings:
+          $ref: '#/components/schemas/New_Signature_Request_From_Scratch_reminder_settings'
+        timezone:
+          $ref: '#/components/schemas/SignatureRequestTimeZone'
+        email_custom_note:
+          deprecated: true
+          description: 'A custom note added to emails sent to signers.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+
+            '
+          example: Please sign these documents as soon as possible.
+          format: safe-string
+          maxLength: 500
+          type:
+          - string
+          - 'null'
+        expiration_date:
+          description: 'Due date of the Signature Request (yyyy-mm-dd). Defaults to 6 months after initiation.
+
+            The date cannot be in the past and cannot be more than one year after initiation.
+
+            '
+          format: date
+          pattern: ^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$
+          type: string
+        template_id:
+          description: Create a Signature Request from an existing template.
+          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+          format: uuid
+          type: string
+        external_id:
+          description: Store a custom id that will be added to webhooks & appended to redirect urls.
+          maxLength: 255
+          pattern: ^[\w\-@.%+]+$
+          type:
+          - string
+          - 'null'
+        branding_id:
+          deprecated: true
+          description: Use a specific branding to customize the signature experience.
+          example: 3a93d3b5-fb3b-4abf-9e70-26315b33506b
+          format: uuid
+          type:
+          - string
+          - 'null'
+        custom_experience_id:
+          description: Use a specific Custom Experience to customize the signature experience.
+          example: 3a93d3b5-fb3b-4abf-9e70-26315b33506b
+          format: uuid
+          type:
+          - string
+          - 'null'
+        documents:
+          deprecated: true
+          description: You can directly attach orphan Documents to the Signature Request.
+          items:
+            example: 89120884-d29a-4b1a-ac7b-a9e73a872795
+            format: uuid
+            type: string
+          maxItems: 5
+          type: array
+          uniqueItems: true
+        signers:
+          deprecated: true
+          description: Can only be used if you add documents at the same time.
+          items:
+            $ref: '#/components/schemas/New_Signature_Request_From_Scratch_signers_inner'
+          type: array
+        workspace_id:
+          description: Scope the signature request to a specific workspace. If template_id is filled and Template is already linked to a Workspace, keep this field to null ; the created Signature Request will be scoped to Template's Workspace.
+          example: 89120884-d29a-4b1a-ac7b-a9e73a872795
+          format: uuid
+          type:
+          - string
+          - 'null'
+        audit_trail_locale:
+          allOf:
+          - $ref: '#/components/schemas/AuditTrailLocale'
+          description: Define the locale for the generated audit trail.
+          type:
+          - string
+          - 'null'
+        signers_allowed_to_decline:
+          default: false
+          description: Allowing signers to decline to sign.
+          example: true
+          type: boolean
+        email_notification:
+          $ref: '#/components/schemas/SignatureRequest_EmailNotification'
+        template_placeholders:
+          $ref: '#/components/schemas/New_Signature_Request_From_Scratch_template_placeholders'
+        archiving:
+          $ref: '#/components/schemas/Archiving'
+        labels:
+          description: List of Labels to associate with the Signature Request. Labels are identified by their ID.
+          example:
+          - 3a93d3b5-fb3b-4abf-9e70-26315b33506b
+          - 89120884-d29a-4b1a-ac7b-a9e73a872795
+          items:
+            format: uuid
+            type: string
+          maxItems: 50
+          type: array
+        workflow_session_id:
+          $ref: '#/components/schemas/WorkflowSessionId'
+        previous_attempt_id:
+          $ref: '#/components/schemas/PreviousAttemptId'
       required:
-      - detail
-      - type
-      title: BadRequestResponse
+      - delivery_mode
+      - name
+      title: New Signature Request From Scratch
       type: object
-    UnsupportedMediaTypeResponse:
+    SignatureRequest_PlaceholderSignerSubstituteFromInfoInput:
+      additionalProperties: false
+      description: Create a placeholder signer substitute from info
       properties:
-        type:
+        label:
+          example: Employee
+          maxLength: 64
+          minLength: 1
           type: string
-        detail:
+        info:
+          $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_info'
+        signature_level:
+          default: electronic_signature
+          enum:
+          - electronic_signature
+          - advanced_electronic_signature
+          - qualified_electronic_signature
           type: string
+        signature_authentication_mode:
+          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
+          enum:
+          - null
+          - otp_email
+          - otp_sms
+          - no_otp
+          type:
+          - string
+          - 'null'
+        redirect_urls:
+          $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_redirect_urls'
+        custom_text:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
+        delivery_mode:
+          $ref: '#/components/schemas/SignerDeliveryMode'
       required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
+      - info
+      - label
+      title: From Scratch
       type: object
-    SignatureRequest_SignerFromInfoInput_custom_text:
+    Archiving:
+      deprecated: true
+      description: Once the signature request completed, archive its documents in a secure digital safe
+      enum:
+      - archive
+      - archive_y
+      title: Archiving
+      type:
+      - string
+      - 'null'
+    SignatureRequest_PlaceholderSignerSubstituteFromContactIdInput:
+      additionalProperties: false
+      description: Create a placeholder signer substitute from a contact
+      properties:
+        label:
+          example: Employee
+          maxLength: 64
+          minLength: 1
+          type: string
+        contact_id:
+          description: Create signer from an existing contact
+          example: ddecfb85-8a45-4254-b940-6171b8df0a90
+          format: uuid
+          type: string
+        signature_level:
+          default: electronic_signature
+          enum:
+          - electronic_signature
+          - advanced_electronic_signature
+          - qualified_electronic_signature
+          type: string
+        signature_authentication_mode:
+          description: Method to authenticate the Signers. Authentication via SMS one-time password (otp_sms) is unavailable for phone numbers in China.
+          enum:
+          - null
+          - otp_email
+          - otp_sms
+          - no_otp
+          type:
+          - string
+          - 'null'
+        redirect_urls:
+          $ref: '#/components/schemas/SignatureRequest_PlaceholderSignerSubstituteFromInfoInput_redirect_urls'
+        custom_text:
+          $ref: '#/components/schemas/SignatureRequest_SignerFromInfoInput_custom_text'
+        delivery_mode:
+          $ref: '#/components/schemas/SignerDeliveryMode'
+      required:
+      - contact_id
+      - label
+      title: From Existing Contact
+      type: object
+    SignatureRequest_EmailNotification_custom_text:
       additionalProperties: false
       properties:
         request_subject:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          format: safe-string
           maxLength: 512
           minLength: 1
           type:
           - string
           - 'null'
         request_body:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          format: safe-string
           maxLength: 2000
           minLength: 1
           type:
           - string
           - 'null'
         reminder_subject:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          format: safe-string
           maxLength: 512
           minLength: 1
           type:
           - string
           - 'null'
         reminder_body:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email and leading or trailing whitespaces.
+          format: safe-string
           maxLength: 2000
           minLength: 1
           type:
           - string
           - 'null'
-      type: object
-    SignatureRequest_decline_information:
-      properties:
-        signer_id:
-          example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-          format: uuid
-          type: string
-        reason:
-          type: string
-        declined_at:
-          example: '2024-01-18T22:59:00Z'
-          format: date-time
-          type: string
       type:
       - object
       - 'null'
+    SignatureRequest_email_notification:
+      properties:
+        sender:
+          $ref: '#/components/schemas/SignatureRequest_email_notification_sender'
+        custom_note:
+          example: Please sign these documents as soon as possible.
+          maxLength: 2000
+          type:
+          - string
+          - 'null'
+      required:
+      - custom_note
+      - sender
+      type: object
   headers:
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
       schema:
         type: integer
     rateLimit-limit-minute:
@@ -4186,12 +4182,16 @@ components:
       description: The number of requests remaining in the current rate limit window
       schema:
         type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
     rateLimit-remaining-hour:
       description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
       schema:
         type: integer
     retry-after:
