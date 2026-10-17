@@ -551,40 +551,20 @@ paths:
       tags:
       - Electronic Seal
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
   schemas:
+    HumanName:
+      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
+      type: string
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
+    CreateElectronicSealPayload_fields_inner:
+      anyOf:
+      - $ref: '#/components/schemas/CreateElectronicSealFieldSealPayload'
+      - $ref: '#/components/schemas/CreateElectronicSealFieldReadOnlyTextPayload'
+      type: object
     ForbiddenResponse:
       properties:
         type:
@@ -596,65 +576,24 @@ components:
       - type
       title: ForbiddenResponse
       type: object
-    HumanName:
-      pattern: ^(?!\s)[0-9A-Za-zĄÀÁÂÃÄÅÇĆÈÉÊËĘÌÍÎÏŁÑŃÒÓÔÕÖŚÙÚÛÜÝŹŻąàáâãäåæçćèéêëęìíîïłñńòóôõöśùúûüýÿźżßĀāĂăĈĉĊċČčĎďĐđĒēĔĕĖėĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİıĲĳĴĵĶķĸĹĺĻļĽľĿŀŅņŇňŉŊŋŌōŎŏŐőŒœŔŕŖŗŘřŜŝŞşŠšŢţŤťŦŧŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŽžſøØÆȘșȚț`'() -]+(?<!\s)$
-      type: string
-    CreateElectronicSealFieldSealPayload:
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    NotFoundResponse:
       properties:
         type:
-          enum:
-          - seal
-          - read_only_text
-          example: seal
           type: string
-        height:
-          example: 200
-          maximum: 32767
-          minimum: 1
-          type: integer
-        width:
-          example: 250
-          maximum: 32767
-          minimum: 1
-          type: integer
-        page:
-          example: 1
-          maximum: 32767
-          minimum: 1
-          type: integer
-        x:
-          example: 0
-          maximum: 32767
-          minimum: 0
-          type: integer
-        y:
-          example: 0
-          maximum: 32767
-          minimum: 0
-          type: integer
-        reason:
-          allOf:
-          - $ref: '#/components/schemas/HumanName'
-          maxLength: 200
-          type:
-          - string
-          - 'null'
-        captions:
-          description: Optional captions to display on the seal image. Limited to one caption per field.
-          items:
-            $ref: '#/components/schemas/CreateElectronicSealFieldSealPayload_captions_inner'
-          maxItems: 1
-          type:
-          - array
-          - 'null'
+        detail:
+          type: string
       required:
-      - height
-      - page
+      - detail
       - type
-      - width
-      - x
-      - y
-      title: Seal
+      title: NotFoundResponse
       type: object
     ElectronicSealImage:
       properties:
@@ -679,52 +618,6 @@ components:
       - id
       - name
       - workspace_id
-      type: object
-    CreateElectronicSealFieldReadOnlyTextPayload:
-      properties:
-        type:
-          enum:
-          - read_only_text
-          example: read_only_text
-          type: string
-        height:
-          example: 200
-          maximum: 32767
-          minimum: 1
-          type: integer
-        width:
-          example: 250
-          maximum: 32767
-          minimum: 1
-          type: integer
-        page:
-          example: 1
-          maximum: 32767
-          minimum: 1
-          type: integer
-        x:
-          example: 0
-          maximum: 32767
-          minimum: 0
-          type: integer
-        y:
-          example: 0
-          maximum: 32767
-          minimum: 0
-          type: integer
-        text:
-          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
-          format: safe-string
-          maxLength: 80
-          type: string
-      required:
-      - height
-      - page
-      - type
-      - width
-      - x
-      - y
-      title: Read Only Text
       type: object
     Pagination:
       description: Metadata about the response.
@@ -801,90 +694,6 @@ components:
       - workspace_id
       title: ElectronicSeal
       type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    list_electronic_seal_images_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/ElectronicSealImage'
-          type: array
-      type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    CreateElectronicSealFieldSealPayload_captions_inner:
-      additionalProperties: false
-      properties:
-        text:
-          description: The caption text to display on the seal image.
-          maxLength: 150
-          type: string
-      required:
-      - text
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
     CreateElectronicSealPayload:
       properties:
         document_id:
@@ -932,10 +741,112 @@ components:
       - fields
       title: CreateElectronicSealPayload
       type: object
-    CreateElectronicSealPayload_fields_inner:
-      anyOf:
-      - $ref: '#/components/schemas/CreateElectronicSealFieldSealPayload'
-      - $ref: '#/components/schemas/CreateElectronicSealFieldReadOnlyTextPayload'
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
+      type: object
+    list_electronic_seal_images_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/ElectronicSealImage'
+          type: array
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    CreateElectronicSealFieldSealPayload:
+      properties:
+        type:
+          enum:
+          - seal
+          - read_only_text
+          example: seal
+          type: string
+        height:
+          example: 200
+          maximum: 32767
+          minimum: 1
+          type: integer
+        width:
+          example: 250
+          maximum: 32767
+          minimum: 1
+          type: integer
+        page:
+          example: 1
+          maximum: 32767
+          minimum: 1
+          type: integer
+        x:
+          example: 0
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 0
+          maximum: 32767
+          minimum: 0
+          type: integer
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/HumanName'
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+        captions:
+          description: Optional captions to display on the seal image. Limited to one caption per field.
+          items:
+            $ref: '#/components/schemas/CreateElectronicSealFieldSealPayload_captions_inner'
+          maxItems: 1
+          type:
+          - array
+          - 'null'
+      required:
+      - height
+      - page
+      - type
+      - width
+      - x
+      - y
+      title: Seal
       type: object
     InternalServerError:
       properties:
@@ -950,6 +861,95 @@ components:
       - type
       title: InternalServerError
       type: object
+    CreateElectronicSealFieldReadOnlyTextPayload:
+      properties:
+        type:
+          enum:
+          - read_only_text
+          example: read_only_text
+          type: string
+        height:
+          example: 200
+          maximum: 32767
+          minimum: 1
+          type: integer
+        width:
+          example: 250
+          maximum: 32767
+          minimum: 1
+          type: integer
+        page:
+          example: 1
+          maximum: 32767
+          minimum: 1
+          type: integer
+        x:
+          example: 0
+          maximum: 32767
+          minimum: 0
+          type: integer
+        y:
+          example: 0
+          maximum: 32767
+          minimum: 0
+          type: integer
+        text:
+          description: This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string).
+          format: safe-string
+          maxLength: 80
+          type: string
+      required:
+      - height
+      - page
+      - type
+      - width
+      - x
+      - y
+      title: Read Only Text
+      type: object
+    CreateElectronicSealFieldSealPayload_captions_inner:
+      additionalProperties: false
+      properties:
+        text:
+          description: The caption text to display on the seal image.
+          maxLength: 150
+          type: string
+      required:
+      - text
+      type: object
+  headers:
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

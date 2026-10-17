@@ -1504,149 +1504,12 @@ paths:
       tags:
       - Label
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
   schemas:
-    ForbiddenResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: ForbiddenResponse
-      type: object
-    get_labels_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/Label'
-          type: array
-      type: object
-    CreateLabel:
-      properties:
-        name:
-          description: 'Name of the Label. Each Label name must be unique within the organization.\
-
-            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email, HTML and URL.
-
-            '
-          example: Contracts
-          format: safe-string
-          maxLength: 128
-          minLength: 1
-          title: Name of the Label.
-          type: string
-      required:
-      - name
-      title: A Label object
-      type: object
-    Pagination:
-      description: Metadata about the response.
-      properties:
-        next_cursor:
-          description: 'Token to get the next page of results. If `null`, there are no more pages.
-
-            '
-          minLength: 1
-          type:
-          - string
-          - 'null'
-      required:
-      - next_cursor
-      type: object
-    UnauthorizedResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnauthorizedResponse
-      type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
     UUID:
       description: The unique identifier for a resource.
       example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
       format: uuid
       type: string
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
     Label:
       properties:
         id:
@@ -1673,53 +1536,71 @@ components:
       - name
       title: Label
       type: object
-    UpdateLabel:
+    ForbiddenResponse:
       properties:
-        name:
-          description: 'Name of the Label. Each Label name must be unique within the organization.\
-
-            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email, HTML and URL.
-
-            '
-          example: Contracts
-          format: safe-string
-          maxLength: 128
-          minLength: 1
-          title: The name of your Label
+        type:
+          type: string
+        detail:
           type: string
       required:
-      - name
-      title: A Label object
+      - detail
+      - type
+      title: ForbiddenResponse
       type: object
-    MethodNotAllowed:
+    TooManyRequestsResponse:
       properties:
         message:
           type: string
       required:
       - message
-      title: MethodNotAllowed
+      title: TooManyRequestsResponse
       type: object
-    get_signature_requests_id_labels_200_response:
-      properties:
-        meta:
-          $ref: '#/components/schemas/Pagination'
-        data:
-          items:
-            $ref: '#/components/schemas/SignatureRequestLabel'
-          type: array
-      type: object
-    InternalServerError:
+    NotFoundResponse:
       properties:
         type:
-          example: about:blank
           type: string
         detail:
-          example: Something wrong occurred.
           type: string
       required:
       - detail
       - type
-      title: InternalServerError
+      title: NotFoundResponse
+      type: object
+    Pagination:
+      description: Metadata about the response.
+      properties:
+        next_cursor:
+          description: 'Token to get the next page of results. If `null`, there are no more pages.
+
+            '
+          minLength: 1
+          type:
+          - string
+          - 'null'
+      required:
+      - next_cursor
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
       type: object
     SignatureRequestLabel:
       properties:
@@ -1739,6 +1620,125 @@ components:
       - id
       - name
       type: object
+    get_signature_requests_id_labels_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/SignatureRequestLabel'
+          type: array
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    BadRequestResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: BadRequestResponse
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
+      type: object
+    CreateLabel:
+      properties:
+        name:
+          description: 'Name of the Label. Each Label name must be unique within the organization.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email, HTML and URL.
+
+            '
+          example: Contracts
+          format: safe-string
+          maxLength: 128
+          minLength: 1
+          title: Name of the Label.
+          type: string
+      required:
+      - name
+      title: A Label object
+      type: object
+    UpdateLabel:
+      properties:
+        name:
+          description: 'Name of the Label. Each Label name must be unique within the organization.\
+
+            This property is a [Safe String](https://developers.yousign.com/reference/oas-specification#safe-string) allowing email, HTML and URL.
+
+            '
+          example: Contracts
+          format: safe-string
+          maxLength: 128
+          minLength: 1
+          title: The name of your Label
+          type: string
+      required:
+      - name
+      title: A Label object
+      type: object
+    get_labels_200_response:
+      properties:
+        meta:
+          $ref: '#/components/schemas/Pagination'
+        data:
+          items:
+            $ref: '#/components/schemas/Label'
+          type: array
+      type: object
+  headers:
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

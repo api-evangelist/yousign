@@ -403,40 +403,17 @@ paths:
       tags:
       - Follower
 components:
-  headers:
-    rateLimit-remaining:
-      description: The number of requests remaining in the current rate limit window
-      schema:
-        type: integer
-    rateLimit-remaining-hour:
-      description: The number of requests remaining in the current hour rate limit window
-      schema:
-        type: integer
-    rateLimit-remaining-minute:
-      description: The number of requests remaining in the current minute rate limit window
-      schema:
-        type: integer
-    rateLimit-limit:
-      description: The maximum number of requests that the consumer is permitted to make in a given period
-      schema:
-        type: integer
-    rateLimit-limit-minute:
-      description: The maximum number of requests that the consumer is permitted to make in an minute window
-      schema:
-        type: integer
-    rateLimit-limit-hour:
-      description: The maximum number of requests that the consumer is permitted to make in an hour window
-      schema:
-        type: integer
-    rateLimit-reset:
-      description: The remaining time until the rate limit resets in seconds
-      schema:
-        type: integer
-    retry-after:
-      description: Retry the request after X seconds
-      schema:
-        type: integer
   schemas:
+    CreateFollowers:
+      description: A list of Follower objects to be added to the signature request.
+      items:
+        $ref: '#/components/schemas/CreateFollowers_inner'
+      type: array
+    UUID:
+      description: The unique identifier for a resource.
+      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
+      format: uuid
+      type: string
     ForbiddenResponse:
       properties:
         type:
@@ -447,6 +424,55 @@ components:
       - detail
       - type
       title: ForbiddenResponse
+      type: object
+    TooManyRequestsResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: TooManyRequestsResponse
+      type: object
+    NotFoundResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: NotFoundResponse
+      type: object
+    get_signature_requests_signatureRequestId_followers_200_response:
+      description: A list of Followers added to the Signature Request.
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Follower'
+          type: array
+      type: object
+    UnsupportedMediaTypeResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnsupportedMediaTypeResponse
+      type: object
+    UnauthorizedResponse:
+      properties:
+        type:
+          type: string
+        detail:
+          type: string
+      required:
+      - detail
+      - type
+      title: UnauthorizedResponse
       type: object
     Locale:
       description: Locale settings used for communication.
@@ -461,7 +487,29 @@ components:
       minLength: 1
       title: Locale
       type: string
-    UnauthorizedResponse:
+    CreateFollowers_inner:
+      properties:
+        email:
+          example: john.doe@example.com
+          format: email
+          maxLength: 100
+          minLength: 1
+          type: string
+        locale:
+          $ref: '#/components/schemas/Locale'
+      required:
+      - email
+      - locale
+      type: object
+    MethodNotAllowed:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      title: MethodNotAllowed
+      type: object
+    BadRequestResponse:
       properties:
         type:
           type: string
@@ -470,7 +518,20 @@ components:
       required:
       - detail
       - type
-      title: UnauthorizedResponse
+      title: BadRequestResponse
+      type: object
+    InternalServerError:
+      properties:
+        type:
+          example: about:blank
+          type: string
+        detail:
+          example: Something wrong occurred.
+          type: string
+      required:
+      - detail
+      - type
+      title: InternalServerError
       type: object
     Follower:
       properties:
@@ -491,100 +552,39 @@ components:
       - follower_link
       - locale
       type: object
-    UnsupportedMediaTypeResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: UnsupportedMediaTypeResponse
-      type: object
-    BadRequestResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: BadRequestResponse
-      type: object
-    NotFoundResponse:
-      properties:
-        type:
-          type: string
-        detail:
-          type: string
-      required:
-      - detail
-      - type
-      title: NotFoundResponse
-      type: object
-    UUID:
-      description: The unique identifier for a resource.
-      example: 9a93d3b5-fb3b-4abf-9e70-26315b33506c
-      format: uuid
-      type: string
-    TooManyRequestsResponse:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: TooManyRequestsResponse
-      type: object
-    MethodNotAllowed:
-      properties:
-        message:
-          type: string
-      required:
-      - message
-      title: MethodNotAllowed
-      type: object
-    get_signature_requests_signatureRequestId_followers_200_response:
-      description: A list of Followers added to the Signature Request.
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Follower'
-          type: array
-      type: object
-    CreateFollowers_inner:
-      properties:
-        email:
-          example: john.doe@example.com
-          format: email
-          maxLength: 100
-          minLength: 1
-          type: string
-        locale:
-          $ref: '#/components/schemas/Locale'
-      required:
-      - email
-      - locale
-      type: object
-    InternalServerError:
-      properties:
-        type:
-          example: about:blank
-          type: string
-        detail:
-          example: Something wrong occurred.
-          type: string
-      required:
-      - detail
-      - type
-      title: InternalServerError
-      type: object
-    CreateFollowers:
-      description: A list of Follower objects to be added to the signature request.
-      items:
-        $ref: '#/components/schemas/CreateFollowers_inner'
-      type: array
+  headers:
+    rateLimit-remaining:
+      description: The number of requests remaining in the current rate limit window
+      schema:
+        type: integer
+    rateLimit-remaining-minute:
+      description: The number of requests remaining in the current minute rate limit window
+      schema:
+        type: integer
+    rateLimit-limit-hour:
+      description: The maximum number of requests that the consumer is permitted to make in an hour window
+      schema:
+        type: integer
+    rateLimit-limit-minute:
+      description: The maximum number of requests that the consumer is permitted to make in an minute window
+      schema:
+        type: integer
+    rateLimit-limit:
+      description: The maximum number of requests that the consumer is permitted to make in a given period
+      schema:
+        type: integer
+    rateLimit-remaining-hour:
+      description: The number of requests remaining in the current hour rate limit window
+      schema:
+        type: integer
+    retry-after:
+      description: Retry the request after X seconds
+      schema:
+        type: integer
+    rateLimit-reset:
+      description: The remaining time until the rate limit resets in seconds
+      schema:
+        type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer
