@@ -1,1742 +1,2091 @@
 {
+  "info": {
+    "_postman_id": "6876d885-5270-47f9-847b-f8998dc63912",
+    "name": "Public Api v3 Follower API",
+    "description": "Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.\n\nContact Support:\n Name: Support\n Email: contact@yousign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:19:26.000Z",
+    "updatedAt": "2026-10-22T02:19:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6876d885-5270-47f9-847b-f8998dc63912"
+  },
   "item": [
     {
-      "id": "2ff7c2f0-7444-4628-add8-f6166e172109",
-      "name": "Follower",
-      "description": {
-        "content": "Person who is kept informed about the progress of the signing process without being an Approver or a Signer.",
-        "type": "text/plain"
-      },
+      "name": "signature_requests",
       "item": [
         {
-          "id": "f4e5fdad-4999-4380-8443-f08dec978c53",
-          "name": "List the Signature Request's Followers",
-          "request": {
-            "name": "List the Signature Request's Followers",
-            "description": {
-              "content": "Returns a list of Followers for a given Signature Request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "signature_requests",
-                ":signatureRequestId",
-                "followers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "signatureRequestId",
-                  "description": "(Required) Signature Request Id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{signatureRequestId}",
+          "item": [
             {
-              "id": "40257554-8549-4402-8887-0f54b42f51de",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+              "name": "followers",
+              "item": [
+                {
+                  "name": "List the Signature Request's Followers",
+                  "id": "2c919103-2a36-4d0a-868c-cddaa932231b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "signature_requests",
+                        ":signatureRequestId",
+                        "followers"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8bf8049c-e8d5-4a58-af56-809797a562e9",
+                          "key": "signatureRequestId",
+                          "value": "<uuid>",
+                          "description": "(Required) Signature Request Id"
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of Followers for a given Signature Request."
+                  },
+                  "response": [
+                    {
+                      "id": "1d56e538-4ce5-44ae-a9df-ec8fc1505392",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"email\": \"<email>\",\n      \"follower_link\": \"<string,null-uri>\",\n      \"locale\": \"de\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"follower_link\": \"<string,null-uri>\",\n      \"locale\": \"es\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-1d56e538-4ce5-44ae-a9df-ec8fc1505392"
+                    },
+                    {
+                      "id": "0cb1e47a-567f-42fc-b643-f6b138956969",
+                      "name": "Access unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-0cb1e47a-567f-42fc-b643-f6b138956969"
+                    },
+                    {
+                      "id": "855aafe6-d076-46aa-a181-6b464058e4f8",
+                      "name": "Access forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-855aafe6-d076-46aa-a181-6b464058e4f8"
+                    },
+                    {
+                      "id": "43e0ebdf-2ed9-4db6-afbe-1251806c3837",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-43e0ebdf-2ed9-4db6-afbe-1251806c3837"
+                    },
+                    {
+                      "id": "3d92f06d-5bdb-4a4c-baf1-4b3b8d893a9c",
+                      "name": "This method is not allowed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-3d92f06d-5bdb-4a4c-baf1-4b3b8d893a9c"
+                    },
+                    {
+                      "id": "da7e0631-19f0-4fbc-8805-183dc856eb3d",
+                      "name": "Too Many Requests, please try again later.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-da7e0631-19f0-4fbc-8805-183dc856eb3d"
+                    },
+                    {
+                      "id": "e85ba015-fbff-4f51-a77a-07c961f39924",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-e85ba015-fbff-4f51-a77a-07c961f39924"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:19:26.000Z",
+                  "updatedAt": "2026-10-22T02:19:26.000Z",
+                  "uid": "35240-2c919103-2a36-4d0a-868c-cddaa932231b"
                 },
                 {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Create new Followers",
+                  "id": "c6ac60d5-6fdc-43fa-8a95-4d4d78597779",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"it\"\n  },\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"pl\"\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "signature_requests",
+                        ":signatureRequestId",
+                        "followers"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ce8ebb61-fccd-4780-b86e-0a2bde8c7d1d",
+                          "key": "signatureRequestId",
+                          "value": "<uuid>",
+                          "description": "(Required) Signature Request Id"
+                        }
+                      ]
+                    },
+                    "description": "Adds a Follower to a given Signature Request."
+                  },
+                  "response": [
+                    {
+                      "id": "4f6a8d57-20a8-49e5-8eb9-d6cd130df0db",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"it\"\n  },\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"pl\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"email\": \"<email>\",\n    \"follower_link\": \"<string,null-uri>\",\n    \"locale\": \"nl\"\n  },\n  {\n    \"email\": \"<email>\",\n    \"follower_link\": \"<string,null-uri>\",\n    \"locale\": \"fr\"\n  }\n]",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-4f6a8d57-20a8-49e5-8eb9-d6cd130df0db"
+                    },
+                    {
+                      "id": "c7330619-84fd-4121-b230-426554040ea6",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"it\"\n  },\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"pl\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-c7330619-84fd-4121-b230-426554040ea6"
+                    },
+                    {
+                      "id": "0ec5922b-3d86-4c1a-a635-cac0923ec2e8",
+                      "name": "Access unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"it\"\n  },\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"pl\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-0ec5922b-3d86-4c1a-a635-cac0923ec2e8"
+                    },
+                    {
+                      "id": "0c306337-0aac-425a-9a05-bc4439e19c20",
+                      "name": "Access forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"it\"\n  },\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"pl\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-0c306337-0aac-425a-9a05-bc4439e19c20"
+                    },
+                    {
+                      "id": "e2fe66eb-1817-4bc9-a6ee-c0ba70755a7a",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"it\"\n  },\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"pl\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-e2fe66eb-1817-4bc9-a6ee-c0ba70755a7a"
+                    },
+                    {
+                      "id": "9a2fd3ee-4fc8-4aab-ac44-5a55642369bd",
+                      "name": "This method is not allowed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"it\"\n  },\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"pl\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-9a2fd3ee-4fc8-4aab-ac44-5a55642369bd"
+                    },
+                    {
+                      "id": "ffc26937-b260-41a3-813c-93adea3bb9cb",
+                      "name": "UnsupportedMediaType",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"it\"\n  },\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"pl\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unsupported Media Type",
+                      "code": 415,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-ffc26937-b260-41a3-813c-93adea3bb9cb"
+                    },
+                    {
+                      "id": "d76952d0-c3fd-4783-a733-f501beaf9112",
+                      "name": "Too Many Requests, please try again later.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"it\"\n  },\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"pl\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-d76952d0-c3fd-4783-a733-f501beaf9112"
+                    },
+                    {
+                      "id": "ee3540e8-8b6b-4942-bab6-489a5f1dfd36",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"it\"\n  },\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"pl\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/signature_requests/:signatureRequestId/followers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "signature_requests",
+                            ":signatureRequestId",
+                            "followers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "signatureRequestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:19:26.000Z",
+                      "updatedAt": "2026-10-22T02:19:26.000Z",
+                      "uid": "35240-ee3540e8-8b6b-4942-bab6-489a5f1dfd36"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:19:26.000Z",
+                  "updatedAt": "2026-10-22T02:19:26.000Z",
+                  "uid": "35240-c6ac60d5-6fdc-43fa-8a95-4d4d78597779"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"email\": \"john.doe@example.com\",\n      \"follower_link\": \"https://vQzNGJiRfbZtlrOSufgGAfHBOUuC.tqjffc3ko2rgRyzHGwbV.A+ONfWJlVXgu1rRlD87TccG3l.sqDDR0IVFChaVn7Yu3kYTsHha46CLvOGeTIKZB\",\n      \"locale\": \"it\"\n    },\n    {\n      \"email\": \"john.doe@example.com\",\n      \"follower_link\": \"http://CDwgsFFLOZM.anvI3me0.HrSuBJOUiiJlJCZHqhAbnTClKQ7DC6.qKe9p.2QPLxql,vMel9fe\",\n      \"locale\": \"de\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "be1bd676-08cf-4bb8-ac9e-2161169e82ac",
-              "name": "Access unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5836c918-3def-403e-9039-856748176ae7",
-              "name": "Access forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8eb319af-fca6-442d-9cc7-05006279043b",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c6fd76e0-a0d6-4f8a-ab43-abb217d50315",
-              "name": "This method is not allowed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Method Not Allowed",
-              "code": 405,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "Retry the request after X seconds",
-                  "key": "Retry-After",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "284d5052-c0bb-4937-8ebb-65b8d5d03d1c",
-              "name": "Too Many Requests, please try again later.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "Retry the request after X seconds",
-                  "key": "Retry-After",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a501d270-7d1a-441f-b67f-590de6865c3d",
-              "name": "Internal Server Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "3c98ebd2-ac26-4bf2-a8c8-943c7d405447",
+              "createdAt": "2026-10-22T02:19:26.000Z",
+              "updatedAt": "2026-10-22T02:19:26.000Z",
+              "uid": "35240-3c98ebd2-ac26-4bf2-a8c8-943c7d405447"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "964ade9d-b560-4287-b081-92cab49caf64",
-          "name": "Create new Followers",
-          "request": {
-            "name": "Create new Followers",
-            "description": {
-              "content": "Adds a Follower to a given Signature Request.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "signature_requests",
-                ":signatureRequestId",
-                "followers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "signatureRequestId",
-                  "description": "(Required) Signature Request Id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "[\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"<string>\"\n  },\n  {\n    \"email\": \"<email>\",\n    \"locale\": \"<string>\"\n  }\n]",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "8f5312a8-b1fb-46b9-86fa-017a4c1ec924",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  },\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"email\": \"john.doe@example.com\",\n    \"follower_link\": \"https://kUIp.cblsjVYN3OvBbgf0uGcw4EMaYRXwG91Pvib-xSRlMFnZlbiHmDx0uJscYM\",\n    \"locale\": \"<string>\"\n  },\n  {\n    \"email\": \"john.doe@example.com\",\n    \"follower_link\": \"http://IJayYMSJyXaSGiVnCJaBlQlhJtGeimY.xyxy69pn5NYx\",\n    \"locale\": \"<string>\"\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6ef4d242-d9f6-4431-97a5-dc34d68542f8",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  },\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cd5bf8db-ce9f-4f25-a7e8-989bb30ba3fe",
-              "name": "Access unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  },\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d42d8f86-bdad-4b6b-8481-1763bfbb1eca",
-              "name": "Access forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  },\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b23c092c-c090-45a4-b9b6-f3cf5156ea9b",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  },\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4feb9337-3d77-4e79-9d06-b71e98164f2e",
-              "name": "This method is not allowed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  },\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Method Not Allowed",
-              "code": 405,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "Retry the request after X seconds",
-                  "key": "Retry-After",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "101a1ded-ac84-4e26-95ac-b7b8ac246580",
-              "name": "UnsupportedMediaType",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  },\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unsupported Media Type",
-              "code": 415,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6c04f0eb-2d13-447c-8652-cea09ac69e06",
-              "name": "Too Many Requests, please try again later.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  },\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "Retry the request after X seconds",
-                  "key": "Retry-After",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "db63b75c-ca25-46db-8528-06d7ef49b09f",
-              "name": "Internal Server Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "signature_requests",
-                    ":signatureRequestId",
-                    "followers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "signatureRequestId",
-                      "description": "(Required) Signature Request Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "[\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  },\n  {\n    \"email\": \"john.doe@example.com\",\n    \"locale\": \"<string>\"\n  }\n]",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "2811"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "2811"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "c790f44f-1e4c-4bd5-956f-910ccbfc110f",
+          "createdAt": "2026-10-22T02:19:26.000Z",
+          "updatedAt": "2026-10-22T02:19:26.000Z",
+          "uid": "35240-c790f44f-1e4c-4bd5-956f-910ccbfc110f"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api-sandbox.yousign.app/v3",
-      "key": "baseUrl"
+      "id": "ebd5bbc8-2606-4db4-b74f-5b9296672549",
+      "createdAt": "2026-10-22T02:19:26.000Z",
+      "updatedAt": "2026-10-22T02:19:26.000Z",
+      "uid": "35240-ebd5bbc8-2606-4db4-b74f-5b9296672549"
     }
   ],
   "auth": {
@@ -1744,17 +2093,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "dfa570ac-402f-4560-a1a7-08806372bedb",
-    "name": "Public Api v3 Applicant Follower API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.\n\nContact Support:\n Name: Support\n Email: contact@yousign.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-sandbox.yousign.app/v3"
     }
-  }
+  ]
 }

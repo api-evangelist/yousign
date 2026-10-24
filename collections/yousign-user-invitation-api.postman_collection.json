@@ -1,2221 +1,2673 @@
 {
+  "info": {
+    "_postman_id": "d5b72c3f-e667-4f74-9313-4928050b3def",
+    "name": "Public Api v3 User Invitation API",
+    "description": "Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.\n\nContact Support:\n Name: Support\n Email: contact@yousign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:20:55.000Z",
+    "updatedAt": "2026-10-22T02:20:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d5b72c3f-e667-4f74-9313-4928050b3def"
+  },
   "item": [
     {
-      "id": "745ad77e-bc84-423c-a906-b4714e3545b9",
-      "name": "User Invitation",
-      "description": {
-        "content": "The Invitation of a new User to join the Yousign organization.",
-        "type": "text/plain"
-      },
+      "name": "users",
       "item": [
         {
-          "id": "f6da1d3d-7dae-48ff-8d21-e30dbfb56c3b",
-          "name": "List User Invitations",
-          "request": {
-            "name": "List User Invitations",
-            "description": {
-              "content": "Returns the list of all the Users Invitations within your Organization.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                "invitations"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "after",
-                  "value": "<string>",
-                  "description": "After cursor (pagination)"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100",
-                  "description": "The limit of items count to retrieve."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "invitations",
+          "item": [
             {
-              "id": "9a6be280-5783-46d6-b4e6-1c16be20822d",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "{invitationId}",
+              "item": [
+                {
+                  "name": "Get an Invitation",
+                  "id": "e6a85628-3415-46e5-8402-8990ca9cca21",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/invitations/:invitationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "invitations",
+                        ":invitationId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b512656d-b110-44b6-a7d2-e76830311f16",
+                          "key": "invitationId",
+                          "value": "<uuid>",
+                          "description": "(Required) Invitation Id"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a given User Invitation."
+                  },
+                  "response": [
                     {
-                      "key": "after",
-                      "value": "<string>"
+                      "id": "41cbd3f8-4423-4101-911d-78cdf47b5277",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/invitations/:invitationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "invitations",
+                            ":invitationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "invitationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"created_at\": \"<dateTime>\",\n  \"email\": \"<email>\",\n  \"expired_at\": \"<dateTime>\",\n  \"id\": \"<uuid>\",\n  \"role\": \"admin\",\n  \"workspaces\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-41cbd3f8-4423-4101-911d-78cdf47b5277"
                     },
                     {
-                      "key": "limit",
-                      "value": "100"
+                      "id": "36c40aad-0b8f-43a0-b132-b712edad2939",
+                      "name": "Access unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/invitations/:invitationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "invitations",
+                            ":invitationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "invitationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-36c40aad-0b8f-43a0-b132-b712edad2939"
                     },
                     {
-                      "key": "email[eq][0]",
-                      "value": "user@example.com"
+                      "id": "9ef308f3-2df4-42bf-8cf4-7235656f4f66",
+                      "name": "Access forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/invitations/:invitationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "invitations",
+                            ":invitationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "invitationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-9ef308f3-2df4-42bf-8cf4-7235656f4f66"
+                    },
+                    {
+                      "id": "cff1b6ab-2e94-427c-9fcc-a31901b3a7e3",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/invitations/:invitationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "invitations",
+                            ":invitationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "invitationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-cff1b6ab-2e94-427c-9fcc-a31901b3a7e3"
+                    },
+                    {
+                      "id": "883ef0e4-6dd6-4e8f-944c-982b39564742",
+                      "name": "This method is not allowed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/invitations/:invitationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "invitations",
+                            ":invitationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "invitationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-883ef0e4-6dd6-4e8f-944c-982b39564742"
+                    },
+                    {
+                      "id": "92008d6d-37f2-4ce7-95de-5daf513e92cb",
+                      "name": "Too Many Requests, please try again later.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/invitations/:invitationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "invitations",
+                            ":invitationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "invitationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-92008d6d-37f2-4ce7-95de-5daf513e92cb"
+                    },
+                    {
+                      "id": "ffb07f90-aa3b-474d-814b-f579310fa8a6",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/invitations/:invitationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "invitations",
+                            ":invitationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "invitationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-ffb07f90-aa3b-474d-814b-f579310fa8a6"
                     }
                   ],
-                  "variable": []
-                },
+                  "createdAt": "2026-10-22T02:20:55.000Z",
+                  "updatedAt": "2026-10-22T02:20:55.000Z",
+                  "uid": "35240-e6a85628-3415-46e5-8402-8990ca9cca21"
+                }
+              ],
+              "id": "f1291e12-f8cd-4349-8c93-a64704af6799",
+              "createdAt": "2026-10-22T02:20:55.000Z",
+              "updatedAt": "2026-10-22T02:20:55.000Z",
+              "uid": "35240-f1291e12-f8cd-4349-8c93-a64704af6799"
+            },
+            {
+              "name": "List User Invitations",
+              "id": "214116f1-ee30-4a6d-a53e-125c914e1869",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"meta\": {\n    \"next_cursor\": \"string\"\n  },\n  \"data\": [\n    {\n      \"created_at\": \"2024-01-18T22:59:00Z\",\n      \"email\": \"email@example.com\",\n      \"expired_at\": \"2024-01-18T22:59:00Z\",\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n      \"role\": \"admin\",\n      \"workspaces\": [\n        {\n          \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n        },\n        {\n          \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n        }\n      ]\n    },\n    {\n      \"created_at\": \"2024-01-18T22:59:00Z\",\n      \"email\": \"email@example.com\",\n      \"expired_at\": \"2024-01-18T22:59:00Z\",\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n      \"role\": \"member\",\n      \"workspaces\": [\n        {\n          \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n        },\n        {\n          \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3f33d6f2-7866-4a1d-8e0c-07a9066bfdfa",
-              "name": "Bad request",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/users/invitations?after=<string>&limit=100&email[quis_48]=47640467.74810794",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "users",
                     "invitations"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "After cursor (pagination)",
                       "key": "after",
                       "value": "<string>"
                     },
                     {
+                      "description": "The limit of items count to retrieve.",
                       "key": "limit",
                       "value": "100"
                     },
                     {
-                      "key": "email[eq][0]",
-                      "value": "user@example.com"
+                      "description": "Filter by `email`. Allowed operators: `eq`.\nExample: `email[eq]=user@example.com`\n",
+                      "key": "email[quis_48]",
+                      "value": "47640467.74810794"
+                    }
+                  ]
+                },
+                "description": "Returns the list of all the Users Invitations within your Organization."
+              },
+              "response": [
+                {
+                  "id": "fe230047-b1e1-49fd-850f-a526478d4a84",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/invitations?after=<string>&limit=100&email[quis_48]=47640467.74810794",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "After cursor (pagination)",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The limit of items count to retrieve.",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Filter by `email`. Allowed operators: `eq`.\nExample: `email[eq]=user@example.com`\n",
+                          "key": "email[quis_48]",
+                          "value": "47640467.74810794"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Reset",
+                      "value": ""
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"next_cursor\": \"<string,null>\"\n  },\n  \"data\": [\n    {\n      \"created_at\": \"<dateTime>\",\n      \"email\": \"<email>\",\n      \"expired_at\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"role\": \"member\",\n      \"workspaces\": [\n        {\n          \"id\": \"<uuid>\"\n        },\n        {\n          \"id\": \"<uuid>\"\n        }\n      ]\n    },\n    {\n      \"created_at\": \"<dateTime>\",\n      \"email\": \"<email>\",\n      \"expired_at\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"role\": \"admin\",\n      \"workspaces\": [\n        {\n          \"id\": \"<uuid>\"\n        },\n        {\n          \"id\": \"<uuid>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:20:55.000Z",
+                  "updatedAt": "2026-10-22T02:20:55.000Z",
+                  "uid": "35240-fe230047-b1e1-49fd-850f-a526478d4a84"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "id": "082cd050-d29f-422a-b917-2a9ebfc9b175",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/invitations?after=<string>&limit=100&email[quis_48]=47640467.74810794",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "After cursor (pagination)",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The limit of items count to retrieve.",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Filter by `email`. Allowed operators: `eq`.\nExample: `email[eq]=user@example.com`\n",
+                          "key": "email[quis_48]",
+                          "value": "47640467.74810794"
+                        }
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f549ff22-6826-4e85-9442-46f8d8cac857",
-              "name": "Access unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "after",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     },
                     {
-                      "key": "limit",
-                      "value": "100"
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Limit",
+                      "value": ""
                     },
                     {
-                      "key": "email[eq][0]",
-                      "value": "user@example.com"
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Reset",
+                      "value": ""
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:20:55.000Z",
+                  "updatedAt": "2026-10-22T02:20:55.000Z",
+                  "uid": "35240-082cd050-d29f-422a-b917-2a9ebfc9b175"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "id": "abeeda7e-5af4-4d85-b13c-0f4c7f958ee3",
+                  "name": "Access unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/invitations?after=<string>&limit=100&email[quis_48]=47640467.74810794",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "After cursor (pagination)",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The limit of items count to retrieve.",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Filter by `email`. Allowed operators: `eq`.\nExample: `email[eq]=user@example.com`\n",
+                          "key": "email[quis_48]",
+                          "value": "47640467.74810794"
+                        }
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f51f8fa2-183b-4638-ae0a-57acc8d292b0",
-              "name": "Access forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "after",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     },
                     {
-                      "key": "limit",
-                      "value": "100"
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Limit",
+                      "value": ""
                     },
                     {
-                      "key": "email[eq][0]",
-                      "value": "user@example.com"
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Reset",
+                      "value": ""
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:20:55.000Z",
+                  "updatedAt": "2026-10-22T02:20:55.000Z",
+                  "uid": "35240-abeeda7e-5af4-4d85-b13c-0f4c7f958ee3"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "id": "3451268b-4ea1-4ef1-b908-7ad0d8043666",
+                  "name": "Access forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/invitations?after=<string>&limit=100&email[quis_48]=47640467.74810794",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "After cursor (pagination)",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The limit of items count to retrieve.",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Filter by `email`. Allowed operators: `eq`.\nExample: `email[eq]=user@example.com`\n",
+                          "key": "email[quis_48]",
+                          "value": "47640467.74810794"
+                        }
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "673155ca-13d1-4acf-813e-cbbbc5252cb4",
-              "name": "This method is not allowed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "after",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     },
                     {
-                      "key": "limit",
-                      "value": "100"
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Limit",
+                      "value": ""
                     },
                     {
-                      "key": "email[eq][0]",
-                      "value": "user@example.com"
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Reset",
+                      "value": ""
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:20:55.000Z",
+                  "updatedAt": "2026-10-22T02:20:55.000Z",
+                  "uid": "35240-3451268b-4ea1-4ef1-b908-7ad0d8043666"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "id": "a07098fa-6172-4db6-944c-732e010c0bfd",
+                  "name": "This method is not allowed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/invitations?after=<string>&limit=100&email[quis_48]=47640467.74810794",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "After cursor (pagination)",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The limit of items count to retrieve.",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Filter by `email`. Allowed operators: `eq`.\nExample: `email[eq]=user@example.com`\n",
+                          "key": "email[quis_48]",
+                          "value": "47640467.74810794"
+                        }
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Method Not Allowed",
-              "code": 405,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "Retry the request after X seconds",
-                  "key": "Retry-After",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a9b053ff-edba-4422-9ed4-6c31478b4d15",
-              "name": "Too Many Requests, please try again later.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "status": "Method Not Allowed",
+                  "code": 405,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "after",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     },
                     {
-                      "key": "limit",
-                      "value": "100"
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Limit",
+                      "value": ""
                     },
                     {
-                      "key": "email[eq][0]",
-                      "value": "user@example.com"
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Reset",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Retry-After",
+                      "value": ""
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:20:55.000Z",
+                  "updatedAt": "2026-10-22T02:20:55.000Z",
+                  "uid": "35240-a07098fa-6172-4db6-944c-732e010c0bfd"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "id": "20a171c3-207a-4125-95db-7707b614295c",
+                  "name": "Too Many Requests, please try again later.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/invitations?after=<string>&limit=100&email[quis_48]=47640467.74810794",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "After cursor (pagination)",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The limit of items count to retrieve.",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Filter by `email`. Allowed operators: `eq`.\nExample: `email[eq]=user@example.com`\n",
+                          "key": "email[quis_48]",
+                          "value": "47640467.74810794"
+                        }
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "Retry the request after X seconds",
-                  "key": "Retry-After",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9abd6de1-6d59-4269-8aac-391f60046cef",
-              "name": "Internal Server Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "after",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     },
                     {
-                      "key": "limit",
-                      "value": "100"
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Limit",
+                      "value": ""
                     },
                     {
-                      "key": "email[eq][0]",
-                      "value": "user@example.com"
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Reset",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Retry-After",
+                      "value": ""
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:20:55.000Z",
+                  "updatedAt": "2026-10-22T02:20:55.000Z",
+                  "uid": "35240-20a171c3-207a-4125-95db-7707b614295c"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "id": "e53c4051-9532-4239-bf12-6a5d17148cde",
+                  "name": "Internal Server Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/invitations?after=<string>&limit=100&email[quis_48]=47640467.74810794",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "invitations"
+                      ],
+                      "query": [
+                        {
+                          "description": "After cursor (pagination)",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The limit of items count to retrieve.",
+                          "key": "limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "Filter by `email`. Allowed operators: `eq`.\nExample: `email[eq]=user@example.com`\n",
+                          "key": "email[quis_48]",
+                          "value": "47640467.74810794"
+                        }
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Limit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Limit-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Remaining",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Hour",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "X-RateLimit-Remaining-Minute",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Reset",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:20:55.000Z",
+                  "updatedAt": "2026-10-22T02:20:55.000Z",
+                  "uid": "35240-e53c4051-9532-4239-bf12-6a5d17148cde"
                 }
               ],
-              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T02:20:55.000Z",
+              "updatedAt": "2026-10-22T02:20:55.000Z",
+              "uid": "35240-214116f1-ee30-4a6d-a53e-125c914e1869"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "ccb3fe57-6b8c-4f4a-ba84-5e994e39603c",
+          "createdAt": "2026-10-22T02:20:55.000Z",
+          "updatedAt": "2026-10-22T02:20:55.000Z",
+          "uid": "35240-ccb3fe57-6b8c-4f4a-ba84-5e994e39603c"
         },
         {
-          "id": "fd96c3b8-ea47-4024-8e93-262b082350c4",
-          "name": "Get an Invitation",
-          "request": {
-            "name": "Get an Invitation",
-            "description": {
-              "content": "Retrieves a given User Invitation.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                "invitations",
-                ":invitationId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "invitationId",
-                  "description": "(Required) Invitation Id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{userId}",
+          "item": [
             {
-              "id": "0dc290cf-a7c8-445b-a8db-ec377cedf036",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations",
-                    ":invitationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "invitationId",
-                      "description": "(Required) Invitation Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+              "name": "invitation",
+              "item": [
+                {
+                  "name": "Get a User Invitation via the User",
+                  "id": "92450de8-80dc-455e-8a8f-81f24d5ab701",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:userId/invitation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":userId",
+                        "invitation"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d9954dd4-5362-4c0f-9a89-4afb9f9c711d",
+                          "key": "userId",
+                          "value": "<uuid>",
+                          "description": "(Required) User Id"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the Invitation of a given User. The Invitation only exists when the User is in `invited` status."
+                  },
+                  "response": [
+                    {
+                      "id": "a30cca07-4512-4bea-9a82-2f9dfb6477fb",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/invitation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "invitation"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"created_at\": \"<dateTime>\",\n  \"email\": \"<email>\",\n  \"expired_at\": \"<dateTime>\",\n  \"id\": \"<uuid>\",\n  \"role\": \"admin\",\n  \"workspaces\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-a30cca07-4512-4bea-9a82-2f9dfb6477fb"
+                    },
+                    {
+                      "id": "f320740c-b803-45d9-8dee-416c3b410e52",
+                      "name": "Access unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/invitation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "invitation"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-f320740c-b803-45d9-8dee-416c3b410e52"
+                    },
+                    {
+                      "id": "7897c215-8bf2-40d1-95fb-4d0161f7a5fa",
+                      "name": "Access forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/invitation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "invitation"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-7897c215-8bf2-40d1-95fb-4d0161f7a5fa"
+                    },
+                    {
+                      "id": "4b8d2eb4-130d-44f7-b380-c98949268232",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/invitation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "invitation"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-4b8d2eb4-130d-44f7-b380-c98949268232"
+                    },
+                    {
+                      "id": "b72fc026-157a-48b5-a3fd-6f9d4fe72061",
+                      "name": "This method is not allowed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/invitation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "invitation"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-b72fc026-157a-48b5-a3fd-6f9d4fe72061"
+                    },
+                    {
+                      "id": "76a35691-d555-4975-98d6-b4dfad72ac0a",
+                      "name": "Too Many Requests, please try again later.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/invitation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "invitation"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-76a35691-d555-4975-98d6-b4dfad72ac0a"
+                    },
+                    {
+                      "id": "99c077ca-b9f3-460d-80fd-7be39f2676a4",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:userId/invitation",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":userId",
+                            "invitation"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Limit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Limit-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Remaining",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Hour",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "X-RateLimit-Remaining-Minute",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Reset",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:20:55.000Z",
+                      "updatedAt": "2026-10-22T02:20:55.000Z",
+                      "uid": "35240-99c077ca-b9f3-460d-80fd-7be39f2676a4"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:20:55.000Z",
+                  "updatedAt": "2026-10-22T02:20:55.000Z",
+                  "uid": "35240-92450de8-80dc-455e-8a8f-81f24d5ab701"
                 }
               ],
-              "body": "{\n  \"created_at\": \"2024-01-18T22:59:00Z\",\n  \"email\": \"email@example.com\",\n  \"expired_at\": \"2024-01-18T22:59:00Z\",\n  \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n  \"role\": \"admin\",\n  \"workspaces\": [\n    {\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n    },\n    {\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "21fb111a-e736-409a-bd9c-545877f3140d",
-              "name": "Access unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations",
-                    ":invitationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "invitationId",
-                      "description": "(Required) Invitation Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "714ebe82-6a91-4b50-9e8d-bc56acb5e835",
-              "name": "Access forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations",
-                    ":invitationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "invitationId",
-                      "description": "(Required) Invitation Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0f56d335-2091-45ce-a710-a979836df074",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations",
-                    ":invitationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "invitationId",
-                      "description": "(Required) Invitation Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5d8f7c7c-1be5-43e7-8d21-2a3f6be7e4a5",
-              "name": "This method is not allowed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations",
-                    ":invitationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "invitationId",
-                      "description": "(Required) Invitation Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Method Not Allowed",
-              "code": 405,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "Retry the request after X seconds",
-                  "key": "Retry-After",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6b081c14-3778-4f6a-b326-d7dbc55d242b",
-              "name": "Too Many Requests, please try again later.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations",
-                    ":invitationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "invitationId",
-                      "description": "(Required) Invitation Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "Retry the request after X seconds",
-                  "key": "Retry-After",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1cf49299-5ff7-4d8c-a319-e368cee8a916",
-              "name": "Internal Server Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    "invitations",
-                    ":invitationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "invitationId",
-                      "description": "(Required) Invitation Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "beeec655-cb25-4f55-8237-fc36a531b062",
+              "createdAt": "2026-10-22T02:20:55.000Z",
+              "updatedAt": "2026-10-22T02:20:55.000Z",
+              "uid": "35240-beeec655-cb25-4f55-8237-fc36a531b062"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e64085d2-1733-4e53-a328-dc01c997ca5f",
-          "name": "Get a User Invitation via the User",
-          "request": {
-            "name": "Get a User Invitation via the User",
-            "description": {
-              "content": "Retrieves the Invitation of a given User. The Invitation only exists when the User is in `invited` status.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                ":userId",
-                "invitation"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "userId",
-                  "description": "(Required) User Id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "2e98ee2b-8124-44f6-be48-a82cb2b9bf4f",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userId",
-                    "invitation"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "userId",
-                      "description": "(Required) User Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"created_at\": \"2024-01-18T22:59:00Z\",\n  \"email\": \"email@example.com\",\n  \"expired_at\": \"2024-01-18T22:59:00Z\",\n  \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\",\n  \"role\": \"admin\",\n  \"workspaces\": [\n    {\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n    },\n    {\n      \"id\": \"9a93d3b5-fb3b-4abf-9e70-26315b33506c\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8fe45677-6e58-4df4-913f-6458889f8cc6",
-              "name": "Access unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userId",
-                    "invitation"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "userId",
-                      "description": "(Required) User Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "42d56838-ec4c-427e-8279-bfaee7bd94ce",
-              "name": "Access forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userId",
-                    "invitation"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "userId",
-                      "description": "(Required) User Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a16ac980-bd77-4a43-94ab-ce90fd921033",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userId",
-                    "invitation"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "userId",
-                      "description": "(Required) User Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "af3335a2-14e8-4674-9846-732dadf16cd6",
-              "name": "This method is not allowed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userId",
-                    "invitation"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "userId",
-                      "description": "(Required) User Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Method Not Allowed",
-              "code": 405,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "Retry the request after X seconds",
-                  "key": "Retry-After",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f02c6a41-af34-4334-8bea-d437b5e9b306",
-              "name": "Too Many Requests, please try again later.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userId",
-                    "invitation"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "userId",
-                      "description": "(Required) User Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "Retry the request after X seconds",
-                  "key": "Retry-After",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bd21d94d-0310-489c-a600-916ba431bfde",
-              "name": "Internal Server Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":userId",
-                    "invitation"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "userId",
-                      "description": "(Required) User Id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "7203"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "7203"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "bea7dca7-d52f-4c7d-9e7e-debb051c6661",
+          "createdAt": "2026-10-22T02:20:55.000Z",
+          "updatedAt": "2026-10-22T02:20:55.000Z",
+          "uid": "35240-bea7dca7-d52f-4c7d-9e7e-debb051c6661"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api-sandbox.yousign.app/v3",
-      "key": "baseUrl"
+      "id": "e04a43ac-ecdf-44b7-a2bc-a8996d14f586",
+      "createdAt": "2026-10-22T02:20:55.000Z",
+      "updatedAt": "2026-10-22T02:20:55.000Z",
+      "uid": "35240-e04a43ac-ecdf-44b7-a2bc-a8996d14f586"
     }
   ],
   "auth": {
@@ -2223,17 +2675,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "15943d1e-89ad-4844-9371-ce424f42cfec",
-    "name": "Public Api v3 Applicant User Invitation API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.\n\nContact Support:\n Name: Support\n Email: contact@yousign.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-sandbox.yousign.app/v3"
     }
-  }
+  ]
 }

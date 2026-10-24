@@ -1,912 +1,1044 @@
 {
+  "info": {
+    "_postman_id": "dc63d8b9-f9ed-4195-a257-05b9d90bafe6",
+    "name": "Public Api v3 Verification Audit Trail API",
+    "description": "Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.\n\nContact Support:\n Name: Support\n Email: contact@yousign.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:21:01.000Z",
+    "updatedAt": "2026-10-22T02:21:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-dc63d8b9-f9ed-4195-a257-05b9d90bafe6"
+  },
   "item": [
     {
-      "id": "214068d3-02ec-46a5-baa3-f82c77b7024d",
-      "name": "Verification Audit Trail",
-      "description": {
-        "content": "Set of documents generated once a Verification is completed.",
-        "type": "text/plain"
-      },
+      "name": "verifications",
       "item": [
         {
-          "id": "d5972fdd-1720-4036-aa24-d0962d54a44a",
-          "name": "Download Verification Audit Trail",
-          "request": {
-            "name": "Download Verification Audit Trail",
-            "description": {
-              "content": "Downloads the Audit Trail of a given Verification. Only possible when the Verification status is `verified` or `failed`.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "verifications",
-                ":verificationType",
-                ":verificationId",
-                "audit_trail"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "verificationType",
-                  "description": "(Required) Type of the Verification for which to download the audit trail."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "verificationId",
-                  "description": "(Required) Unique identifier of the Verification."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/pdf"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{verificationType}",
+          "item": [
             {
-              "id": "4eb68ee2-a58d-4b9c-8990-ea7703f88db7",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "verifications",
-                    ":verificationType",
-                    ":verificationId",
-                    "audit_trail"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "{verificationId}",
+              "item": [
+                {
+                  "name": "audit_trail",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "verificationType",
-                      "description": "(Required) Type of the Verification for which to download the audit trail."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "verificationId",
-                      "description": "(Required) Unique identifier of the Verification."
+                      "name": "Download Verification Audit Trail",
+                      "id": "0ad992ab-151f-472b-a8b5-13b9912d8343",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/pdf"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/verifications/:verificationType/:verificationId/audit_trail",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "verifications",
+                            ":verificationType",
+                            ":verificationId",
+                            "audit_trail"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9b29d234-3a9f-4609-8220-1d77ceb8c839",
+                              "key": "verificationType",
+                              "value": "bank_account_connections",
+                              "description": "(Required) Type of the Verification for which to download the audit trail."
+                            },
+                            {
+                              "id": "d86390c6-578b-4b70-aea7-ecd9fe93ae62",
+                              "key": "verificationId",
+                              "value": "<uuid>",
+                              "description": "(Required) Unique identifier of the Verification."
+                            }
+                          ]
+                        },
+                        "description": "Downloads the Audit Trail of a given Verification. Only possible when the Verification status is `verified` or `failed`."
+                      },
+                      "response": [
+                        {
+                          "id": "25faf846-91de-410a-bd9e-fe5df36c74c5",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/pdf"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/verifications/:verificationType/:verificationId/audit_trail",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "verifications",
+                                ":verificationType",
+                                ":verificationId",
+                                "audit_trail"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "verificationType"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/pdf"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Limit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Remaining",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Reset",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<binary>",
+                          "createdAt": "2026-10-22T02:21:01.000Z",
+                          "updatedAt": "2026-10-22T02:21:01.000Z",
+                          "uid": "35240-25faf846-91de-410a-bd9e-fe5df36c74c5"
+                        },
+                        {
+                          "id": "936e0b4a-6aa2-4582-bd0f-deac02d9beb7",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/verifications/:verificationType/:verificationId/audit_trail",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "verifications",
+                                ":verificationType",
+                                ":verificationId",
+                                "audit_trail"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "verificationType"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Limit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Remaining",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Reset",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:21:01.000Z",
+                          "updatedAt": "2026-10-22T02:21:01.000Z",
+                          "uid": "35240-936e0b4a-6aa2-4582-bd0f-deac02d9beb7"
+                        },
+                        {
+                          "id": "9a3ecbf4-93b9-4355-89d6-2c7c7624808b",
+                          "name": "Access unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/verifications/:verificationType/:verificationId/audit_trail",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "verifications",
+                                ":verificationType",
+                                ":verificationId",
+                                "audit_trail"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "verificationType"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Limit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Remaining",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Reset",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:21:01.000Z",
+                          "updatedAt": "2026-10-22T02:21:01.000Z",
+                          "uid": "35240-9a3ecbf4-93b9-4355-89d6-2c7c7624808b"
+                        },
+                        {
+                          "id": "eebe2d00-0af2-4b9a-9b89-48b96d764f14",
+                          "name": "Access forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/verifications/:verificationType/:verificationId/audit_trail",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "verifications",
+                                ":verificationType",
+                                ":verificationId",
+                                "audit_trail"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "verificationType"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Limit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Remaining",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Reset",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:21:01.000Z",
+                          "updatedAt": "2026-10-22T02:21:01.000Z",
+                          "uid": "35240-eebe2d00-0af2-4b9a-9b89-48b96d764f14"
+                        },
+                        {
+                          "id": "0ec9fb7c-021e-4e87-b913-23de0c47878b",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/verifications/:verificationType/:verificationId/audit_trail",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "verifications",
+                                ":verificationType",
+                                ":verificationId",
+                                "audit_trail"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "verificationType"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Limit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Remaining",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Reset",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:21:01.000Z",
+                          "updatedAt": "2026-10-22T02:21:01.000Z",
+                          "uid": "35240-0ec9fb7c-021e-4e87-b913-23de0c47878b"
+                        },
+                        {
+                          "id": "6f0d3304-7ed3-485e-866b-c9770afaa151",
+                          "name": "This method is not allowed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/verifications/:verificationType/:verificationId/audit_trail",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "verifications",
+                                ":verificationType",
+                                ":verificationId",
+                                "audit_trail"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "verificationType"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Method Not Allowed",
+                          "code": 405,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Limit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Remaining",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Reset",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:21:01.000Z",
+                          "updatedAt": "2026-10-22T02:21:01.000Z",
+                          "uid": "35240-6f0d3304-7ed3-485e-866b-c9770afaa151"
+                        },
+                        {
+                          "id": "2aca78e8-f0fe-4837-b6c3-13b953559ee4",
+                          "name": "Too Many Requests, please try again later.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/verifications/:verificationType/:verificationId/audit_trail",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "verifications",
+                                ":verificationType",
+                                ":verificationId",
+                                "audit_trail"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "verificationType"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Limit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Remaining",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Reset",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:21:01.000Z",
+                          "updatedAt": "2026-10-22T02:21:01.000Z",
+                          "uid": "35240-2aca78e8-f0fe-4837-b6c3-13b953559ee4"
+                        },
+                        {
+                          "id": "f1186123-a323-4195-912b-454f47400c20",
+                          "name": "Internal Server Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/verifications/:verificationType/:verificationId/audit_trail",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "verifications",
+                                ":verificationType",
+                                ":verificationId",
+                                "audit_trail"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "verificationType"
+                                },
+                                {
+                                  "key": "verificationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Limit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Limit-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Remaining",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Hour",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "X-RateLimit-Remaining-Minute",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimit-Reset",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"detail\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:21:01.000Z",
+                          "updatedAt": "2026-10-22T02:21:01.000Z",
+                          "uid": "35240-f1186123-a323-4195-912b-454f47400c20"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:21:01.000Z",
+                      "updatedAt": "2026-10-22T02:21:01.000Z",
+                      "uid": "35240-0ad992ab-151f-472b-a8b5-13b9912d8343"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/pdf"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "1732"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/pdf"
+                  ],
+                  "id": "bd5181b4-8ab9-40e2-aaa4-283c4dd7578a",
+                  "createdAt": "2026-10-22T02:21:01.000Z",
+                  "updatedAt": "2026-10-22T02:21:01.000Z",
+                  "uid": "35240-bd5181b4-8ab9-40e2-aaa4-283c4dd7578a"
                 }
               ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "9eb72a2b-d7bb-41df-b444-cf09687b97e3",
-              "name": "Bad request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "verifications",
-                    ":verificationType",
-                    ":verificationId",
-                    "audit_trail"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "verificationType",
-                      "description": "(Required) Type of the Verification for which to download the audit trail."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "verificationId",
-                      "description": "(Required) Unique identifier of the Verification."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "1732"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "14c7b000-681a-462b-92fc-812d78a5c857",
-              "name": "Access unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "verifications",
-                    ":verificationType",
-                    ":verificationId",
-                    "audit_trail"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "verificationType",
-                      "description": "(Required) Type of the Verification for which to download the audit trail."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "verificationId",
-                      "description": "(Required) Unique identifier of the Verification."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "1732"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fc60ebcd-1294-429f-915c-31cdadb855bc",
-              "name": "Access forbidden",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "verifications",
-                    ":verificationType",
-                    ":verificationId",
-                    "audit_trail"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "verificationType",
-                      "description": "(Required) Type of the Verification for which to download the audit trail."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "verificationId",
-                      "description": "(Required) Unique identifier of the Verification."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "1732"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "07984840-5f94-487b-8f42-d002555a10bc",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "verifications",
-                    ":verificationType",
-                    ":verificationId",
-                    "audit_trail"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "verificationType",
-                      "description": "(Required) Type of the Verification for which to download the audit trail."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "verificationId",
-                      "description": "(Required) Unique identifier of the Verification."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "1732"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"string\",\n  \"type\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3e9a585e-3592-4d91-9eb3-796eb32882fa",
-              "name": "This method is not allowed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "verifications",
-                    ":verificationType",
-                    ":verificationId",
-                    "audit_trail"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "verificationType",
-                      "description": "(Required) Type of the Verification for which to download the audit trail."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "verificationId",
-                      "description": "(Required) Unique identifier of the Verification."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Method Not Allowed",
-              "code": 405,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "Retry the request after X seconds",
-                  "key": "Retry-After",
-                  "value": "1732"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e06282d7-81fa-422a-ab07-f3877b6ad403",
-              "name": "Too Many Requests, please try again later.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "verifications",
-                    ":verificationType",
-                    ":verificationId",
-                    "audit_trail"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "verificationType",
-                      "description": "(Required) Type of the Verification for which to download the audit trail."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "verificationId",
-                      "description": "(Required) Unique identifier of the Verification."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "Retry the request after X seconds",
-                  "key": "Retry-After",
-                  "value": "1732"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a942e8e5-0d34-4989-881a-acac02751a46",
-              "name": "Internal Server Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "verifications",
-                    ":verificationType",
-                    ":verificationId",
-                    "audit_trail"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "verificationType",
-                      "description": "(Required) Type of the Verification for which to download the audit trail."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "verificationId",
-                      "description": "(Required) Unique identifier of the Verification."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in a given period",
-                  "key": "RateLimit-Limit",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an hour window",
-                  "key": "X-RateLimit-Limit-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The maximum number of requests that the consumer is permitted to make in an minute window",
-                  "key": "X-RateLimit-Limit-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current rate limit window",
-                  "key": "RateLimit-Remaining",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current hour rate limit window",
-                  "key": "X-RateLimit-Remaining-Hour",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The number of requests remaining in the current minute rate limit window",
-                  "key": "X-RateLimit-Remaining-Minute",
-                  "value": "1732"
-                },
-                {
-                  "disabled": false,
-                  "description": "The remaining time until the rate limit resets in seconds",
-                  "key": "RateLimit-Reset",
-                  "value": "1732"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": \"Something wrong occurred.\",\n  \"type\": \"about:blank\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "148b3d2c-2b0c-439d-92bb-776c26edfdd7",
+              "createdAt": "2026-10-22T02:21:01.000Z",
+              "updatedAt": "2026-10-22T02:21:01.000Z",
+              "uid": "35240-148b3d2c-2b0c-439d-92bb-776c26edfdd7"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "eb0d35f2-632e-4c7c-9340-788bc1812dc5",
+          "createdAt": "2026-10-22T02:21:01.000Z",
+          "updatedAt": "2026-10-22T02:21:01.000Z",
+          "uid": "35240-eb0d35f2-632e-4c7c-9340-788bc1812dc5"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api-sandbox.yousign.app/v3",
-      "key": "baseUrl"
+      "id": "b0cf2605-c999-4b3e-86a9-6a5b77a53b57",
+      "createdAt": "2026-10-22T02:21:01.000Z",
+      "updatedAt": "2026-10-22T02:21:01.000Z",
+      "uid": "35240-b0cf2605-c999-4b3e-86a9-6a5b77a53b57"
     }
   ],
   "auth": {
@@ -914,17 +1046,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "964e26eb-8077-43cf-9196-0e5b8a8c95f9",
-    "name": "Public Api v3 Applicant Verification Audit Trail API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Build the best experience of digital signature through your own platform. Increase your conversion rates, leverage your data and reduce your costs with Yousign API.\n\nContact Support:\n Name: Support\n Email: contact@yousign.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-sandbox.yousign.app/v3"
     }
-  }
+  ]
 }
